@@ -1,0 +1,44 @@
+name: Deploy2OSS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Cache Modules
+        uses: actions/cache@v1
+        env:
+          cache-name: blog-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Modules
+        run: npm install
+
+      - name: Build Statics
+        run: yarn build
+
+      - name: Setup OSSUtil
+        uses: manyuanrong/setup-ossutil@v1.0
+        with:
+          endpoint: "oss-cn-shanghai.aliyuncs.com"
+          access-key-id: ${{ secrets.ALIOSS_ACCESSKEYID }}
+          access-key-secret: ${{ secrets.ALIOSS_ACCESSKEYSECRET }}
+
+      - name: Deploy Statics
+        run: ossutil cp -r -u dist oss://msxblog
