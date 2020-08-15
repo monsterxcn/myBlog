@@ -39,13 +39,13 @@
                 <td align="center"><strong>Email</strong></td>
                 <td align="left">
                   <a
-                    href="javascript:location='mailto:\u006d\u006f\u006e\u0073\u0074\u0065\u0072\u0078\u0063\u006e\u0040\u0067\u006d\u0061\u0069\u006c\u002e\u0063\u006f\u006d';void 0"
+                    href="mailto:monsterxcn@gmail.com" target="_blank"
                     >monsterxcn AT gmail.com</a
                   >
                 </td>
                 <td align="center"><strong>Telegram</strong></td>
                 <td align="left">
-                  <a href="javascript:location='https://t.me/monsterxcn';void 0"
+                  <a href="https://t.me/monsterxcn" target="_blank"
                     >@monsterxcn</a
                   >
                 </td>
@@ -54,7 +54,7 @@
                 <td align="center"><strong>QQ</strong></td>
                 <td align="left">
                   <a
-                    href="javascript:location='https://wpa.qq.com/msgrd?v=3&uin=38877256&site=qq&menu=yes';void 0"
+                    href="https://wpa.qq.com/msgrd?v=3&uin=38877256&site=qq&menu=yes" target="_blank"
                     >38877256</a
                   >
                 </td>
@@ -65,14 +65,14 @@
                 <td align="center">Twitter</td>
                 <td align="left">
                   <a
-                    href="javascript:location='https://twitter.com/mo_curio';void 0"
+                    href="https://twitter.com/mo_curio" target="_blank"
                     >@mo_curio</a
                   >
                 </td>
                 <td align="center">Steam</td>
                 <td align="left">
                   <a
-                    href="javascript:location='https://steamcommunity.com/id/monsterxcn';void 0"
+                    href="https://steamcommunity.com/id/monsterxcn" target="_blank"
                     >@呆一斯 ki dæ 哟</a
                   >
                 </td>
@@ -81,14 +81,14 @@
                 <td align="center">Bilibili</td>
                 <td align="left">
                   <a
-                    href="javascript:location='https://space.bilibili.com/358575230';void 0"
+                    href="https://space.bilibili.com/358575230" target="_blank"
                     >@初夏阳光12138</a
                   >
                 </td>
                 <td align="center">WeiBo</td>
                 <td align="left">
                   <a
-                    href="javascript:location='https://weibo.com/u/3978619198';void 0"
+                    href="https://weibo.com/u/3978619198" target="_blank"
                     >@小怪兽MonsterX</a
                   >
                 </td>
@@ -122,7 +122,7 @@
             <a href="https://blog.spencerwoo.com/" target="_blank">Spencer</a>
             和
             <a href="https://blog.jalenchuh.cn/" target="_blank">Jalen</a>
-            进行了小部分修改，开源地址 GitHub
+            进行了一丁点修改，代码开源于 GitHub
             <a href="https://github.com/monsterxcn/myBlog" target="_blank"
               >@monsterxcn/myBlog</a
             >
@@ -130,26 +130,26 @@
           </p>
           <div>
             <h4>History</h4>
-            <p><span>2018 Oct.01</span> New Start (Typecho + Material)</p>
-            <p><span>2018 Oct.17</span> 工信部备案</p>
-            <p><span>2018 Nov.03</span> 公安机关备案</p>
-            <p><span>2018 Nov.10</span> TLS v1.0 No, TLS v1.3 Yes</p>
-            <p><span>2019 Apr.29</span> 图片全部迁移至服务器</p>
-            <p><span>2019 May.22</span> AMP & MIP 支持</p>
+            <p><span>2018 Oct.01</span> × New Start (Typecho + Material)</p>
+            <p><span>2018 Oct.17</span> × 工信部备案</p>
+            <p><span>2018 Nov.03</span> × 公安机关备案</p>
+            <p><span>2018 Nov.10</span> × TLS v1.0 No, TLS v1.3 Yes</p>
+            <p><span>2019 Apr.29</span> × 图片全部迁移至服务器</p>
+            <p><span>2019 May.22</span> × AMP & MIP 支持</p>
             <p>
-              <span>2019 May.14</span> Material v3.3.1，色调 #757575 更新为
+              <span>2019 May.14</span> × Material v3.3.1，色调 #757575 更新为
               #0099FF
             </p>
-            <p><span>2019 Aug.20</span> Material No, VOID Yes</p>
-            <p><span>2019 Aug.25</span> 静态资源迁移至阿里云 OSS</p>
-            <p><span>2020 Mar.17</span> TLS v1.1 No, HTTP/3 QUIC Yes</p>
+            <p><span>2019 Aug.20</span> × Material No, VOID Yes</p>
+            <p><span>2019 Aug.25</span> × 静态资源迁移至阿里云 OSS</p>
+            <p><span>2020 Mar.17</span> × TLS v1.1 No, HTTP/3 QUIC Yes</p>
             <p>
-              <span>2020 Mar.18</span> 域名解析中国境外境内分离，Cloudflare and
-              Aliyun CDN
+              <span>2020 Mar.18</span> × 域名解析中国境外境内分离，Cloudflare
+              and Aliyun CDN
             </p>
-            <p><span>2020 Mar.21</span> JPG PNG No, Webp Yes</p>
-            <p><span>2020 May.21</span> VOID No, myVOID Yes</p>
-            <p><span>2020 Aug.15</span> Typecho No, Gridsome Yes</p>
+            <p><span>2020 Mar.21</span> × JPG PNG No, Webp Yes</p>
+            <p><span>2020 May.21</span> × VOID No, myVOID Yes</p>
+            <p><span>2020 Aug.15</span> × Typecho No, Gridsome Yes</p>
             <p><span>Keep moving...</span></p>
           </div>
 

@@ -269,7 +269,7 @@ export default {
 }
 .note {
   margin: calc(var(--space) / 2) 0;
-  margin-top: 2em;
+  margin-top: 5em;
   font-size: 0.9em;
   opacity: 0.9;
 }
