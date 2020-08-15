@@ -41,4 +41,6 @@ jobs:
           access-key-secret: ${{ secrets.ALIOSS_ACCESSKEYSECRET }}
 
       - name: Deploy Statics
-        run: ossutil cp -r -u dist oss://msxblog
+        run: |
+          ossutil rm oss://msxblog/ --all-versions -r
+          ossutil cp -r -u dist oss://msxblog

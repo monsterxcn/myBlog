@@ -38,8 +38,7 @@
               <tr>
                 <td align="center"><strong>Email</strong></td>
                 <td align="left">
-                  <a
-                    href="mailto:monsterxcn@gmail.com" target="_blank"
+                  <a href="mailto:monsterxcn@gmail.com" target="_blank"
                     >monsterxcn AT gmail.com</a
                   >
                 </td>
@@ -54,7 +53,8 @@
                 <td align="center"><strong>QQ</strong></td>
                 <td align="left">
                   <a
-                    href="https://wpa.qq.com/msgrd?v=3&uin=38877256&site=qq&menu=yes" target="_blank"
+                    href="https://wpa.qq.com/msgrd?v=3&uin=38877256&site=qq&menu=yes"
+                    target="_blank"
                     >38877256</a
                   >
                 </td>
@@ -64,15 +64,15 @@
               <tr>
                 <td align="center">Twitter</td>
                 <td align="left">
-                  <a
-                    href="https://twitter.com/mo_curio" target="_blank"
+                  <a href="https://twitter.com/mo_curio" target="_blank"
                     >@mo_curio</a
                   >
                 </td>
                 <td align="center">Steam</td>
                 <td align="left">
                   <a
-                    href="https://steamcommunity.com/id/monsterxcn" target="_blank"
+                    href="https://steamcommunity.com/id/monsterxcn"
+                    target="_blank"
                     >@呆一斯 ki dæ 哟</a
                   >
                 </td>
@@ -80,15 +80,13 @@
               <tr>
                 <td align="center">Bilibili</td>
                 <td align="left">
-                  <a
-                    href="https://space.bilibili.com/358575230" target="_blank"
+                  <a href="https://space.bilibili.com/358575230" target="_blank"
                     >@初夏阳光12138</a
                   >
                 </td>
                 <td align="center">WeiBo</td>
                 <td align="left">
-                  <a
-                    href="https://weibo.com/u/3978619198" target="_blank"
+                  <a href="https://weibo.com/u/3978619198" target="_blank"
                     >@小怪兽MonsterX</a
                   >
                 </td>
@@ -253,7 +251,7 @@ export default {
       const disqusjs = new DisqusJS({
         shortname: 'msxblog',
         siteName: "Monstx's Blog",
-        identifier: this.$page.post.path,
+        identifier: "monstx-blog-about",
         apikey:
           'nnWvERGRgCp61HgRxkILYfkUAaWnPDcuqfmoE4ZVJt9C8Tys4abmOcLRdOzEFLti',
         admin: 'monstx',
