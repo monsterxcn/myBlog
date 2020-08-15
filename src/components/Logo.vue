@@ -3,7 +3,7 @@
     <!-- <span id="sitename"></span> -->
     <g-link class="logo" to="/">
       <span class="logo__text">
-        &#9650; &nbsp; {{ $static.metadata.siteName }}
+        &#10177; &nbsp; {{ $static.metadata.siteName }}
       </span>
     </g-link>
   </div>

@@ -3,7 +3,7 @@
     <g-image
       alt="Author image"
       class="author__image"
-      src="https://cdn.monsterx.cn/img/logo.jpg"
+      src="https://blog.monsterx.cn/assets/static/favicon-180x180.png"
       width="180"
       height="180"
       blur="5"
@@ -19,7 +19,7 @@
 
     <p class="author__links">
       <g-link
-        href="//blog.monsterx.cn/atom.xml"
+        href="//blog.monsterx.cn/feed.xml"
         target="_blank"
         style="color: #F5A623;"
         ><font-awesome :icon="['fas', 'rss']"/></g-link

@@ -7,6 +7,7 @@
     "explore": "gridsome explore",
     "prettier": "prettier --write **/*.{ts,js,css,html,vue}"
   },
+  "pre-commit": [ "prettier" ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "node-sass": "^4.12.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.0"
   }

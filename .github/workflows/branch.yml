@@ -1,4 +1,4 @@
-name: Deploy2Branch
+name: Deploy to Branch
 
 on:
   push:
@@ -28,10 +28,10 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install
-        run: yarn install
+        run: npm install
 
       - name: Build
-        run: yarn build
+        run: npm run build
 
       - name: Deploy
         uses: docker://peaceiris/gh-pages:v2

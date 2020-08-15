@@ -1,4 +1,4 @@
-name: Deploy2OSS
+name: Deploy to OSS
 
 on:
   push:
@@ -28,10 +28,10 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install Modules
-        run: yarn install
+        run: npm install
 
       - name: Build Statics
-        run: yarn build
+        run: npm run build
 
       - name: Setup OSSUtil
         uses: manyuanrong/setup-ossutil@v1.0
