@@ -19,39 +19,56 @@
 
     <footer class="footer">
       <div class="footer__copyright">
-        Copyright © 2014 - {{ new Date().getFullYear() }}.
         <a
           href="http://www.beian.miit.gov.cn/"
           target="_blank"
           style="text-decoration: none; cursor: default;"
           >皖 ICP 备 18021272 号 - 1</a
         >
+        © 2014 - {{ new Date().getFullYear() }}
       </div>
       <div class="footer__links">
-        Thanks to
         <a href="https://gridsome.org" target="_blank">Gridsome</a> ·
-        <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=ztik1iwq&utm_source=ztik1iwq" target="_blank">Aliyun</a> ·
-        <a href="https://www.dogedoge.com" target="_blank">DogeDoge</a> +
-        <a href="https://github.com/spencerwooo" target="_blank">SpencerWoo</a> ·
-        <a href="https://github.com/JalenChuh" target="_blank">Jalen</a> 
-        <font-awesome :icon="['fas', 'heart']" />
+        <a
+          href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=ztik1iwq&utm_source=ztik1iwq"
+          target="_blank"
+          >Aliyun</a
+        >
+        · <a href="https://www.dogedoge.com" target="_blank">DogeDoge</a> ×
+        <a href="https://github.com/spencerwooo" target="_blank">SpencerWoo</a>
+        ·
+        <a href="https://github.com/JalenChuh" target="_blank">Jalen</a>
       </div>
-      <div class="footer__links"></div>
       <div class="footer__links">
-        <a href="//github.com/monsterxcn" target="_blank" style="color: #24292E;"
-        ><font-awesome :icon="['fab', 'github']"
+        <a
+          href="//github.com/monsterxcn"
+          target="_blank"
+          style="color: #24292E;font-size: 1.3em;margin: 0 .5em;"
+          ><font-awesome :icon="['fab', 'github']"
         /></a>
-        <a href="//t.me/monsterxcn" target="_blank" style="color: #179CDE;"
-        ><font-awesome :icon="['fab', 'telegram']"
+        <a
+          href="//t.me/monsterxcn"
+          target="_blank"
+          style="color: #179CDE;font-size: 1.3em;margin: 0 .5em;"
+          ><font-awesome :icon="['fab', 'telegram']"
         /></a>
-        <a href="//twitter.com/mo_curio" target="_blank" style="color: #1da1f2;"
-        ><font-awesome :icon="['fab', 'twitter']"
+        <a
+          href="//twitter.com/mo_curio"
+          target="_blank"
+          style="color: #1da1f2;font-size: 1.3em;margin: 0 .5em;"
+          ><font-awesome :icon="['fab', 'twitter']"
         /></a>
-        <a href="//weibo.com/u/3978619198" target="_blank" style="color: #E6162D;"
-        ><font-awesome :icon="['fab', 'weibo']"
+        <a
+          href="//weibo.com/u/3978619198"
+          target="_blank"
+          style="color: #E6162D;font-size: 1.3em;margin: 0 .5em;"
+          ><font-awesome :icon="['fab', 'weibo']"
         /></a>
-        <a href="//steamcommunity.com/id/monsterxcn" target="_blank" style="color: #1B2838;"
-        ><font-awesome :icon="['fab', 'steam']"
+        <a
+          href="//steamcommunity.com/id/monsterxcn"
+          target="_blank"
+          style="color: #1B2838;font-size: 1.3em;margin: 0 .5em;"
+          ><font-awesome :icon="['fab', 'steam']"
         /></a>
       </div>
     </footer>
@@ -59,17 +76,17 @@
 </template>
 
 <script>
-import Logo from "~/components/Logo.vue";
-import ToggleTheme from "~/components/ToggleTheme.vue";
+import Logo from '~/components/Logo.vue'
+import ToggleTheme from '~/components/ToggleTheme.vue'
 export default {
   props: {
-    showLogo: { default: true }
+    showLogo: { default: true },
   },
   components: {
     Logo,
-    ToggleTheme
-  }
-};
+    ToggleTheme,
+  },
+}
 </script>
 
 <style lang="scss">
@@ -121,12 +138,6 @@ export default {
   }
   svg {
     margin-right: 0.2rem;
-  }
-  #rss-stats {
-    padding-top: 0.35rem;
-    a {
-      margin-right: 0.35rem;
-    }
   }
 }
 </style>

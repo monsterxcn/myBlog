@@ -1,11 +1,11 @@
 <template>
   <div :show-logo="false">
-    <h1 class="text-center space-bottom">Archives</h1>
+    <h1 class="text-center space-bottom">册</h1>
 
     <div class="posts content-box">
       <p style="opacity: 0.6;">
-        <strong
-          >( •̀ ω •́ )✧) 2018 年起总计写作 {{ totalPosts }} 篇，共计
+        <strong>
+          ( •̀ ω •́ )✧) 2018 年起总计写作 {{ totalPosts }} 篇，共计
           {{ totalWords }} 字🌶</strong
         >
       </p>
@@ -15,11 +15,11 @@
         <p v-for="p in timeline[year]" :key="p.id">
           <span>{{
             new Date(p.date)
-              .toLocaleString("en-US", {
-                month: "short",
-                day: "2-digit"
+              .toLocaleString('en-US', {
+                month: 'short',
+                day: '2-digit',
               })
-              .replace(" ", ".")
+              .replace(' ', '.')
           }}</span
           ><g-link :to="p.path">{{ p.title }}</g-link>
         </p>
@@ -57,7 +57,7 @@ query {
 <script>
 export default {
   metaInfo: {
-    title: "册"
+    title: '册',
   },
   data() {
     return {
@@ -65,51 +65,51 @@ export default {
       backwardsTimeKey: [],
       totalPosts: 0,
       totalWords: 0,
-      scrolledDist: 0
-    };
+      scrolledDist: 0,
+    }
   },
   methods: {
     // Covert actual number to `xx.x k` expression, see: https://url.cn/JobLixKT
     kFormatter: num => {
       return Math.abs(num) > 999
-        ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
-        : Math.sign(num) * Math.abs(num);
+        ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + 'k'
+        : Math.sign(num) * Math.abs(num)
     },
     handleScroll() {
       if (process.isClient) {
-        this.scrolledDist = window.scrollY;
+        this.scrolledDist = window.scrollY
       }
-    }
+    },
   },
   created() {
     if (process.isClient) {
-      window.addEventListener("scroll", this.handleScroll);
+      window.addEventListener('scroll', this.handleScroll)
     }
   },
   destroyed() {
     if (process.isClient) {
-      window.removeEventListener("scroll", this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll)
     }
   },
   mounted() {
-    this.totalPosts = this.$page.posts.edges.length;
-    const timeline = {};
+    this.totalPosts = this.$page.posts.edges.length
+    const timeline = {}
     this.$page.posts.edges.forEach(post => {
-      this.totalWords += post.node.cjkWordCount;
+      this.totalWords += post.node.cjkWordCount
       // Render timeline views
-      const postYear = new Date(post.node.date).getFullYear();
+      const postYear = new Date(post.node.date).getFullYear()
       if (!(postYear in timeline)) {
-        timeline[postYear] = [];
+        timeline[postYear] = []
       }
-      timeline[postYear].push(post.node);
-    });
-    this.timeline = timeline;
+      timeline[postYear].push(post.node)
+    })
+    this.timeline = timeline
     this.backwardsTimeKey = Object.keys(timeline)
       .sort()
-      .reverse();
-    this.totalWords = this.kFormatter(this.totalWords);
-  }
-};
+      .reverse()
+    this.totalWords = this.kFormatter(this.totalWords)
+  },
+}
 </script>
 
 <style lang="scss">
@@ -118,7 +118,7 @@ export default {
     font-size: 0.85rem;
     font-family: var(--monospace-font-family);
     &::after {
-      content: " ";
+      content: ' ';
     }
   }
 }

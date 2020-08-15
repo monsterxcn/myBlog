@@ -10,8 +10,8 @@
 
 <script>
 export default {
-  props: ["post"]
-};
+  props: ['post'],
+}
 </script>
 
 <style lang="scss">

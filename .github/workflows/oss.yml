@@ -28,7 +28,7 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install Modules
-        run: npm install
+        run: yarn install
 
       - name: Build Statics
         run: yarn build

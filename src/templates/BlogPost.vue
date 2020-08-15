@@ -280,7 +280,7 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
   opacity: 0;
 }
 .post__navigation__ {
-  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, Segoe UI,
+  font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, Segoe UI,
     Helvetica, Arial, pingfang sc, source han sans sc, noto sans cjk sc,
     sarasa gothic sc, microsoft yahei, sans-serif, Apple Color Emoji,
     Segoe UI Emoji;

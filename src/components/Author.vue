@@ -18,12 +18,15 @@
     </p>
 
     <p class="author__links">
-      <g-link href="//blog.monsterx.cn/atom.xml" target="_blank" style="color: #F5A623;"
+      <g-link
+        href="//blog.monsterx.cn/atom.xml"
+        target="_blank"
+        style="color: #F5A623;"
         ><font-awesome :icon="['fas', 'rss']"/></g-link
       ><g-link to="/archives" style="color: var(--title-color);"
         ><font-awesome :icon="['fas', 'archive']"/></g-link
-      ><g-link to="/friends" style="color: #06a878;"
-        ><font-awesome :icon="['fas', 'comment-dots']"/></g-link
+      ><g-link to="/friends" style="color: #ff0000;"
+        ><font-awesome :icon="['fas', 'heart']"/></g-link
       ><g-link to="/about"><font-awesome :icon="['fas', 'id-badge']"/></g-link>
     </p>
   </div>
@@ -39,8 +42,8 @@ query {
 
 <script>
 export default {
-  props: ["showTitle"]
-};
+  props: ['showTitle'],
+}
 </script>
 
 <style lang="scss">
