@@ -60,6 +60,24 @@ module.exports = {
       },
     },
     {
+      use: '@gridsome/plugin-sitemap',
+      // options: {
+      //   exclude: ['/exclude-me'],
+      //   config: {
+      //     '/articles/*': {
+      //       changefreq: 'weekly',
+      //       priority: 0.5,
+      //       lastmod: '2020-02-19',
+      //     },
+      //     '/about': {
+      //       changefreq: 'monthly',
+      //       priority: 0.7,
+      //       lastmod: '2020-05-12',
+      //     }
+      //   }
+      // }
+    },
+    {
       use: "gridsome-plugin-service-worker",
       options: {
         networkFirst: {
@@ -76,11 +94,11 @@ module.exports = {
     {
       use: "gridsome-plugin-manifest",
       options: {
-        background_color: "transparent",
+        background_color: "#fafafa",
         icon_path: "./src/assets/images/favicon.png",
         name: "Monstx's Blog",
         short_name: "monstxBlog",
-        theme_color: "transparent",
+        theme_color: "#fafafa",
         lang: "en",
       },
     },
