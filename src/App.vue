@@ -1,0 +1,132 @@
+<template>
+  <div id="app">
+    <header class="header">
+      <div class="header__left">
+        <Logo v-if="showLogo" />
+      </div>
+
+      <div class="header__right">
+        <ToggleTheme />
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- <slot /> -->
+      <!-- Re-render components on each route to force route path change.
+           See: https://github.com/gridsome/gridsome/issues/835 -->
+      <router-view :key="$route.path" />
+    </main>
+
+    <footer class="footer">
+      <div class="footer__copyright">
+        Copyright © 2014 - {{ new Date().getFullYear() }}.
+        <a
+          href="http://www.beian.miit.gov.cn/"
+          target="_blank"
+          style="text-decoration: none; cursor: default;"
+          >皖 ICP 备 18021272 号 - 1</a
+        >
+      </div>
+      <div class="footer__links">
+        Thanks to
+        <a href="https://gridsome.org" target="_blank">Gridsome</a> ·
+        <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=ztik1iwq&utm_source=ztik1iwq" target="_blank">Aliyun</a> ·
+        <a href="https://www.dogedoge.com" target="_blank">DogeDoge</a> +
+        <a href="https://github.com/spencerwooo" target="_blank">SpencerWoo</a> ·
+        <a href="https://github.com/JalenChuh" target="_blank">Jalen</a> 
+        <font-awesome :icon="['fas', 'heart']" />
+      </div>
+      <div class="footer__links"></div>
+      <div class="footer__links">
+        <a href="//github.com/monsterxcn" target="_blank" style="color: #24292E;"
+        ><font-awesome :icon="['fab', 'github']"
+        /></a>
+        <a href="//t.me/monsterxcn" target="_blank" style="color: #179CDE;"
+        ><font-awesome :icon="['fab', 'telegram']"
+        /></a>
+        <a href="//twitter.com/mo_curio" target="_blank" style="color: #1da1f2;"
+        ><font-awesome :icon="['fab', 'twitter']"
+        /></a>
+        <a href="//weibo.com/u/3978619198" target="_blank" style="color: #E6162D;"
+        ><font-awesome :icon="['fab', 'weibo']"
+        /></a>
+        <a href="//steamcommunity.com/id/monsterxcn" target="_blank" style="color: #1B2838;"
+        ><font-awesome :icon="['fab', 'steam']"
+        /></a>
+      </div>
+    </footer>
+  </div>
+</template>
+
+<script>
+import Logo from "~/components/Logo.vue";
+import ToggleTheme from "~/components/ToggleTheme.vue";
+export default {
+  props: {
+    showLogo: { default: true }
+  },
+  components: {
+    Logo,
+    ToggleTheme
+  }
+};
+</script>
+
+<style lang="scss">
+#app {
+  scroll-behavior: smooth;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: var(--header-height);
+  padding: 0 calc(var(--space) / 2);
+  top: 0;
+  z-index: 10;
+  // backdrop-filter: blur(16px);
+  &__left,
+  &__right {
+    display: flex;
+    align-items: center;
+    font-family: var(--base-font-family);
+  }
+  @media screen and (min-width: 1300px) {
+    //Make header sticky for large screens
+    position: sticky;
+    width: 100%;
+  }
+}
+.main {
+  margin: 0 auto;
+  padding: 1.5vw 15px 0;
+}
+.footer {
+  // max-width: var(--content-width);
+  // margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space) 15px var(--space);
+  text-align: center;
+  line-height: 1.8;
+  font-size: 0.9em;
+  font-family: var(--base-font-family);
+  > span {
+    margin: 0 0.35em;
+  }
+  a {
+    color: currentColor;
+  }
+  svg {
+    margin-right: 0.2rem;
+  }
+  #rss-stats {
+    padding-top: 0.35rem;
+    a {
+      margin-right: 0.35rem;
+    }
+  }
+}
+</style>
