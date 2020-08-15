@@ -1,5 +1,5 @@
 // Import main css
-import "~/assets/style/index.scss";
+import '~/assets/style/index.scss'
 
 // × Import default layout so we don't need to import it to every page
 // ! Use default App.vue to force reload each component on new blog page, or else $route.path
@@ -7,14 +7,14 @@ import "~/assets/style/index.scss";
 // import DefaultLayout from '~/layouts/Default.vue'
 
 // Disqus
-import "~/assets/style/disqusjs.scss";
+import '~/assets/style/disqusjs.scss'
 
 // Pagination
-import { Pager } from "gridsome";
+import { Pager } from 'gridsome'
 
 // Icons by font awesome
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { config, library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { config, library } from '@fortawesome/fontawesome-svg-core'
 import {
   faHome,
   faRss,
@@ -27,7 +27,7 @@ import {
   faArchive,
   faPlane,
   faPenSquare,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons'
 import {
   faGithub,
   faTwitter,
@@ -35,9 +35,9 @@ import {
   faSteam,
   faWeibo,
 } from '@fortawesome/free-brands-svg-icons'
-import "@fortawesome/fontawesome-svg-core/styles.css";
+import '@fortawesome/fontawesome-svg-core/styles.css'
 
-config.autoAddCss = false;
+config.autoAddCss = false
 library.add(
   faGithub,
   faTwitter,
@@ -55,61 +55,61 @@ library.add(
   faArchive,
   faPlane,
   faPenSquare
-);
+)
 
 // notifications from @JalenChuh/blog
 // import Notifications from "vue-notification/dist/ssr";
 // import "~/assets/style/notification.scss";
 
 // back to top
-import VueScrollTo from "vue-scrollto";
+import VueScrollTo from 'vue-scrollto'
 
 // HTTP API
-import axios from "axios";
+import axios from 'axios'
 
 // NProgress
-import NProgress from "nprogress";
-import "~/assets/style/nprogress.scss";
+import NProgress from 'nprogress'
+import '~/assets/style/nprogress.scss'
 
 // container
-import "~/assets/style/container.scss";
+import '~/assets/style/container.scss'
 
 // katex
-import "katex/dist/katex.min.css";
+import 'katex/dist/katex.min.css'
 
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 export default function(Vue, { router, head, isClient }) {
-  NProgress.configure({ easing: "ease", speed: 500, showSpinner: false });
+  NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false })
 
   // Set default layout as a global component
   // Vue.component('Layout', DefaultLayout)
-  Vue.component("Pager", Pager);
-  Vue.component("font-awesome", FontAwesomeIcon);
+  Vue.component('Pager', Pager)
+  Vue.component('font-awesome', FontAwesomeIcon)
 
-  Vue.prototype.$http = axios;
+  Vue.prototype.$http = axios
 
   // back to top
   Vue.use(VueScrollTo, {
-    container: "body",
+    container: 'body',
     duration: 1000,
-    easing: "ease-in-out",
+    easing: 'ease-in-out',
     offset: 0,
     force: true,
     cancelable: true,
     x: false,
-    y: true
-  });
+    y: true,
+  })
 
   // notifications from @JalenChuh/blog
   // Vue.use(Notifications);
 
   router.beforeEach((to, from, next) => {
     if (from.name !== null) {
-      NProgress.start();
+      NProgress.start()
     }
-    next();
-  });
+    next()
+  })
   router.afterEach((to, from) => {
-    NProgress.done();
-  });
+    NProgress.done()
+  })
 }

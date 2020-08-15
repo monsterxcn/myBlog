@@ -13,7 +13,7 @@ module.exports = {
   siteDescription: '学生 / 前端 / 电气',
 
   templates: {
-    Post: '/:cat/:slug.html',
+    Post: '/:cat/:slug',
     Tag: '/tag/:id',
   },
 
@@ -43,11 +43,11 @@ module.exports = {
         },
         rss: {
           enabled: true,
-          output: '/feed.xml'
+          output: '/feed.xml',
         },
         atom: {
           enabled: true,
-          output: '/feed.atom'
+          output: '/feed.atom',
         },
         htmlFields: ['description', 'content'],
         enforceTrailingSlashes: false,
@@ -61,45 +61,34 @@ module.exports = {
     },
     {
       use: '@gridsome/plugin-sitemap',
-      // options: {
-      //   exclude: ['/exclude-me'],
-      //   config: {
-      //     '/articles/*': {
-      //       changefreq: 'weekly',
-      //       priority: 0.5,
-      //       lastmod: '2020-02-19',
-      //     },
-      //     '/about': {
-      //       changefreq: 'monthly',
-      //       priority: 0.7,
-      //       lastmod: '2020-05-12',
-      //     }
-      //   }
-      // }
     },
     {
-      use: "gridsome-plugin-service-worker",
+      use: 'gridsome-plugin-pwa',
       options: {
-        networkFirst: {
-          cacheName: "sw-nf",
-          routes: ["/", /\.(js|css|png|jpg|webp)/],
-        },
-        // precachedRoutes: ["/"],
-        // cacheOnly: {
-        //   cacheName: "sw-co",
-        //   routes: ["/"],
-        // },
-      },
-    },
-    {
-      use: "gridsome-plugin-manifest",
-      options: {
-        background_color: "#fafafa",
-        icon_path: "./src/assets/images/favicon.png",
-        name: "Monstx's Blog",
-        short_name: "monstxBlog",
-        theme_color: "#fafafa",
-        lang: "en",
+        // Service Worker Options
+        disableServiceWorker: false,
+        serviceWorkerPath: 'service-worker.js',
+        cachedFileTypes: 'js,json,css,html,png,jpg,jpeg,svg,gif',
+
+        // Manifest Options (https://developer.mozilla.org/en-US/docs/Web/Manifest)
+        manifestPath: 'manifest.json',
+        title: "someMonstx's Blog",
+        startUrl: 'https://blog.monsterx.cn/',
+        display: 'standalone',
+        statusBarStyle: 'default',
+        themeColor: '#fafafa',
+        backgroundColor: '#ffffff',
+        icon: 'favicon.png',
+        shortName: 'monstxBlog',
+        description: 'Monsterx CN - 学生 / 前端 / 电气',
+        lang: 'en-GB',
+        // Standard Meta Tags
+        svgFavicon: 'favicon.svg',
+        // Microsoft Windows Meta Tags
+        msTileColor: '#fafafa',
+        // Apple MacOS Meta Tags
+        appleMaskIcon: 'favicon.svg',
+        appleMaskIconColor: '#fafafa',
       },
     },
   ],

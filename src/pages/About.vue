@@ -2,7 +2,7 @@
   <div>
     <div class="post-title">
       <h1 class="post-title__text">
-        About
+        己
       </h1>
       <!-- <PostMeta :post="$page.post" /> -->
     </div>
@@ -10,74 +10,150 @@
     <div class="post content-box">
       <div class="post__content">
         <div class="md-content">
-          <h3 style="margin-top: 0" id="关于这个站长的一些情报"><a href="#关于这个站长的一些情报"></a>关于这个站长的一些情报</h3>
+          <h3 style="margin-top: 0" id="关于这个站长的一些情报">
+            <a href="#关于这个站长的一些情报"></a>关于这个站长的一些情报
+          </h3>
           <p>
             坐标：合肥 / 哈尔滨 <br />
             爱好：烧烤 / 动漫 / Marvel DC Disney / 博客写作 / 代码 <br />
             入门：Clang / JavaScript / PHP <br />
             想学：Cpp / Python / Vue.js / React.js <br />
             习惯：VSCode / 4 spaces / Windows / Linux <br />
-            人格：ISFP-A Adventurer 冒险家 / 实用主义属性 平等・人权・社会主义 / 前网络话痨
+            人格：ISFP-A Adventurer 冒险家 / 实用主义属性 平等・人权・社会主义 /
+            前网络话痨
           </p>
           <p>
-            按照推荐程度，欢迎通过下面方式联系我。直接留言亦可，交友不必如此复杂。<br />
-            Email: <a
-              href="javascript:location='mailto:\u006d\u006f\u006e\u0073\u0074\u0065\u0072\u0078\u0063\u006e\u0040\u0067\u006d\u0061\u0069\u006c\u002e\u0063\u006f\u006d';void 0"
-              >monsterxcn[AT]gmail.com</a> / 
-            QQ: <a href="javascript:location='https://wpa.qq.com/msgrd?v=3&uin=38877256&site=qq&menu=yes';void 0">38877256</a> / 
-            Telegram: <a href="javascript:location='https://t.me/monsterxcn';void 0">@monsterxcn</a> <br />
-            我还出没在这些地方，欢迎捕捉：<br />
-            Twitter: <a href="javascript:location='https://twitter.com/mo_curio';void 0">@mo_curio</a> / 
-            GitHub: <a href="javascript:location='https://github.com/monsterxcn';void 0">@monsterxcn</a> / 
-            WeChat: <a href="">@mocurio</a> / 
-            Bilibili: <a href="javascript:location='https://space.bilibili.com/358575230';void 0">@初夏阳光12138</a> / 
-            ZhiHu: <a href="javascript:location='https://www.zhihu.com/people/monsterxcn';void 0">@初夏Sunshine</a> / 
-            Steam: <a href="javascript:location='https://steamcommunity.com/id/monsterxcn';void 0">@呆一斯 ki dæ 哟</a> / 
-            WeiBo: <a href="javascript:location='https://weibo.com/u/3978619198';void 0">@小怪兽MonsterX</a>
+            按照推荐程度，欢迎通过下面方式联系我。直接留言亦可，交友不必如此复杂。
           </p>
+          <table>
+            <thead>
+              <tr>
+                <th align="center">Key</th>
+                <th align="center">Value</th>
+                <th align="center">Key</th>
+                <th align="center">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="center"><strong>Email</strong></td>
+                <td align="left">
+                  <a
+                    href="javascript:location='mailto:\u006d\u006f\u006e\u0073\u0074\u0065\u0072\u0078\u0063\u006e\u0040\u0067\u006d\u0061\u0069\u006c\u002e\u0063\u006f\u006d';void 0"
+                    >monsterxcn AT gmail.com</a
+                  >
+                </td>
+                <td align="center"><strong>Telegram</strong></td>
+                <td align="left">
+                  <a href="javascript:location='https://t.me/monsterxcn';void 0"
+                    >@monsterxcn</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td align="center"><strong>QQ</strong></td>
+                <td align="left">
+                  <a
+                    href="javascript:location='https://wpa.qq.com/msgrd?v=3&uin=38877256&site=qq&menu=yes';void 0"
+                    >38877256</a
+                  >
+                </td>
+                <td align="center">WeChat</td>
+                <td align="left">@mocurio</td>
+              </tr>
+              <tr>
+                <td align="center">Twitter</td>
+                <td align="left">
+                  <a
+                    href="javascript:location='https://twitter.com/mo_curio';void 0"
+                    >@mo_curio</a
+                  >
+                </td>
+                <td align="center">Steam</td>
+                <td align="left">
+                  <a
+                    href="javascript:location='https://steamcommunity.com/id/monsterxcn';void 0"
+                    >@呆一斯 ki dæ 哟</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Bilibili</td>
+                <td align="left">
+                  <a
+                    href="javascript:location='https://space.bilibili.com/358575230';void 0"
+                    >@初夏阳光12138</a
+                  >
+                </td>
+                <td align="center">WeiBo</td>
+                <td align="left">
+                  <a
+                    href="javascript:location='https://weibo.com/u/3978619198';void 0"
+                    >@小怪兽MonsterX</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-          <h3 id="关于这个博客的一些情报"><a href="#关于这个博客的一些情报"></a>关于这个博客的一些情报</h3>
+          <h3 id="关于这个博客的一些情报">
+            <a href="#关于这个博客的一些情报"></a>关于这个博客的一些情报
+          </h3>
           <p>
-            WordPress -> Typecho -> Hexo -> Gridsome <br />
-            2014      -> 2017    -> 2019 -> 2020 <br />
-            moc­coo.cn -> mocurio.com -> monsterx.cn
+            <code class="language-text"
+              >WordPress -> Typecho -> Hexo -> Gridsome</code
+            ><br />
+            <code class="language-text">2014 -> 2017 -> 2019 -> 2020</code
+            ><br />
+            <code class="language-text"
+              >moc­coo.cn -> mocurio.com -> monsterx.cn</code
+            >
           </p>
           <p>
-            <a href="http://gridsome.org/" target="_blank">Gridsome</a> +
-            <a href="https://github.com/gridsome/gridsome-starter-blog" target="_blank">gridsome-starter-blog</a> 
-            (<a href="https://blog.spencerwoo.com/" target="_blank">Spencer</a> & 
-            <a href="https://blog.jalenchuh.cn/" target="_blank">Jalen</a>) / Repo:
-            <a href="https://github.com/monsterxcn/myBlog" target="_blank">@monsterxcn/myBlog</a>
+            当前由
+            <a href="http://gridsome.org/" target="_blank">Gridsome</a>
+            驱动，使用
+            <a
+              href="https://github.com/gridsome/gridsome-starter-blog"
+              target="_blank"
+              >gridsome-starter-blog</a
+            >
+            主题，参考
+            <a href="https://blog.spencerwoo.com/" target="_blank">Spencer</a>
+            和
+            <a href="https://blog.jalenchuh.cn/" target="_blank">Jalen</a>
+            进行了小部分修改，开源地址 GitHub
+            <a href="https://github.com/monsterxcn/myBlog" target="_blank"
+              >@monsterxcn/myBlog</a
+            >
+            。
           </p>
           <div>
             <h4>History</h4>
-            <h5>2018</h5>
-            <p><span>Oct.01</span>New Start (Typecho + Material)</p>
-            <p><span>Oct.17</span>工信部备案</p>
-            <p><span>Nov.03</span>公安机关备案</p>
-            <p><span>Nov.10</span>TLS v1.0 No, TLS v1.3 Yes</p>
-            <h5>2019</h5>
-            <p><span>Apr.29</span>图片全部迁移至服务器</p>
-            <p><span>May.22</span>AMP & MIP 支持</p>
-            <p><span>May.14</span>Material v3.3.1，色调 #757575 更新为 #0099FF</p>
-            <p><span>Aug.20</span>Material No, VOID Yes</p>
-            <p><span>Aug.25</span>静态资源迁移至阿里云 OSS</p>
-            <h5>2020</h5>
-            <p><span>Mar.17</span>TLS v1.1 No, HTTP/3 QUIC Yes</p>
-            <p><span>Mar.18</span>域名解析中国境外境内分离，Cloudflare & Aliyun CDN</p>
-            <p><span>Mar.21</span>JPG PNG No, Webp Yes</p>
-            <p><span>May.21</span>VOID No, myVOID Yes</p>
-            <p><span>Aug.15</span>Typecho No, Gridsome Yes</p>
-            <h5>Keep moving...</h5>
+            <p><span>2018 Oct.01</span> New Start (Typecho + Material)</p>
+            <p><span>2018 Oct.17</span> 工信部备案</p>
+            <p><span>2018 Nov.03</span> 公安机关备案</p>
+            <p><span>2018 Nov.10</span> TLS v1.0 No, TLS v1.3 Yes</p>
+            <p><span>2019 Apr.29</span> 图片全部迁移至服务器</p>
+            <p><span>2019 May.22</span> AMP & MIP 支持</p>
+            <p>
+              <span>2019 May.14</span> Material v3.3.1，色调 #757575 更新为
+              #0099FF
+            </p>
+            <p><span>2019 Aug.20</span> Material No, VOID Yes</p>
+            <p><span>2019 Aug.25</span> 静态资源迁移至阿里云 OSS</p>
+            <p><span>2020 Mar.17</span> TLS v1.1 No, HTTP/3 QUIC Yes</p>
+            <p>
+              <span>2020 Mar.18</span> 域名解析中国境外境内分离，Cloudflare and
+              Aliyun CDN
+            </p>
+            <p><span>2020 Mar.21</span> JPG PNG No, Webp Yes</p>
+            <p><span>2020 May.21</span> VOID No, myVOID Yes</p>
+            <p><span>2020 Aug.15</span> Typecho No, Gridsome Yes</p>
+            <p><span>Keep moving...</span></p>
           </div>
-          
-          <p>
-          </p>
-          <p>
-            本博客题图均为自制，大部分素材来自
-            <a href="https://icons8.con/" target="_blank">icons8</a> 和
-            <a href="https://stories.freepik.com/" target="_blank">freepik</a>。
-          </p>
+
+          <p></p>
           <div class="admonition admonition-important">
             <div class="admonition-heading">
               <h5>
@@ -98,9 +174,14 @@
               </h5>
             </div>
             <div class="admonition-content">
-              若无特殊声明，作品默认基于 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a>
-              协议许可，请注意遵守协议规定 <br />
-              作品引用图片小部分来自网络，可能存在版权问题。如发现版权争议请及时联系站长处理，给您带来困扰请谅解
+              若无特殊声明，作品默认基于
+              <a
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+                target="_blank"
+                >CC BY-NC-SA 4.0</a
+              >
+              协议许可，请注意遵守协议规定。 <br />
+              作品引用图片小部分来自网络，可能存在版权问题。如发现相关争议请及时联系站长处理！
             </div>
           </div>
         </div>
@@ -126,44 +207,44 @@
 </template>
 
 <script>
-import PostMeta from "~/components/PostMeta";
-import Author from "~/components/Author.vue";
-import DisqusJS from "disqusjs";
+import PostMeta from '~/components/PostMeta'
+import Author from '~/components/Author.vue'
+import DisqusJS from 'disqusjs'
 export default {
   components: {
     Author,
-    PostMeta
+    PostMeta,
   },
   metaInfo() {
     return {
-      title: "己",
+      title: '己',
       meta: [
         {
-          name: "关于这个站点的一些情报"
-        }
-      ]
-    };
+          name: '关于这个站点的一些情报',
+        },
+      ],
+    }
   },
   data() {
     return {
-      scrolledDist: 0
-    };
+      scrolledDist: 0,
+    }
   },
   methods: {
     handleScroll() {
       if (process.isClient) {
-        this.scrolledDist = window.scrollY;
+        this.scrolledDist = window.scrollY
       }
-    }
+    },
   },
   created() {
     if (process.isClient) {
-      window.addEventListener("scroll", this.handleScroll);
+      window.addEventListener('scroll', this.handleScroll)
     }
   },
   destroyed() {
     if (process.isClient) {
-      window.removeEventListener("scroll", this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll)
     }
   },
   mounted() {
@@ -179,8 +260,8 @@ export default {
         adminLabel: '萌新',
       })
     }
-  }
-};
+  },
+}
 </script>
 
 <style lang="scss">

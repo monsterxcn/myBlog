@@ -34,153 +34,153 @@
 <script>
 export default {
   metaInfo: {
-    title: "友"
+    title: '友',
   },
   data() {
     return {
       friends: [
         {
-          id: "友人 C",
-          link: "https://www.ihewro.com",
-          avatar: "https://cdn.monsterx.cn/logo.ihewro.jpg.webp",
-          style: "color: #FFF; background-color: #f1f3f4"
+          id: '友人 C',
+          link: 'https://www.ihewro.com',
+          avatar: 'https://cdn.monsterx.cn/logo.ihewro.jpg.webp',
+          style: 'color: #FFF; background-color: #000000',
         },
         {
-          id: "QWQAQ",
-          link: "https://qwqaq.com",
-          avatar: "https://cdn.monsterx.cn/logo.qwqcode.jpg.webp",
-          style: "color: #FFF; background-color: #4285f4"
+          id: 'QWQAQ',
+          link: 'https://qwqaq.com',
+          avatar: 'https://cdn.monsterx.cn/logo.qwqcode.jpg.webp',
+          style: 'color: #FFF; background-color: #4285f4',
         },
         {
-          id: "ZigZagK",
-          link: "https://zigzagk.top",
-          avatar: "https://cdn.monsterx.cn/logo.zig.jpg.webp",
-          style: "color: #FFF; background-color: #5d9aff"
+          id: 'ZigZagK',
+          link: 'https://zigzagk.top',
+          avatar: 'https://cdn.monsterx.cn/logo.zig.jpg.webp',
+          style: 'color: #FFF; background-color: #5d9aff',
         },
         {
-          id: "TonyHe",
-          link: "https://www.ouorz.com",
-          avatar: "https://cdn.monsterx.cn/logo.tonyhe.jpg.webp",
-          style: "color: #FFF; background-color: #e2e6ea"
+          id: 'TonyHe',
+          link: 'https://www.ouorz.com',
+          avatar: 'https://cdn.monsterx.cn/logo.tonyhe.jpg.webp',
+          style: 'color: #FFF; background-color: #e2e6ea',
         },
         {
-          id: "LOGI",
-          link: "https://logi.im",
-          avatar: "https://cdn.monsterx.cn/logo.logi.jpg.webp",
-          style: "color: #FFF; background-color: #fe6c6c"
+          id: 'LOGI',
+          link: 'https://logi.im',
+          avatar: 'https://cdn.monsterx.cn/logo.logi.jpg.webp',
+          style: 'color: #FFF; background-color: #fe6c6c',
         },
         {
-          id: "Ojhdt",
-          link: "https://blog.ojhdt.com",
-          avatar: "https://cdn.monsterx.cn/logo.ojhjt.jpg.webp",
-          style: "color: #FFF; background-color: #3273dc"
+          id: 'Ojhdt',
+          link: 'https://blog.ojhdt.com',
+          avatar: 'https://cdn.monsterx.cn/logo.ojhjt.jpg.webp',
+          style: 'color: #FFF; background-color: #3273dc',
         },
         {
-          id: "探索子",
-          link: "https://beyondstars.xyz",
-          avatar: "https://cdn.monsterx.cn/logo.tsz.jpg.webp",
-          style: "color: #FFF; background-color: #fdf6e3"
+          id: '探索子',
+          link: 'https://beyondstars.xyz',
+          avatar: 'https://cdn.monsterx.cn/logo.tsz.jpg.webp',
+          style: 'color: #FFF; background-color: #eb7350',
         },
         {
-          id: "XYenon",
-          link: "https://blog.xyenon.bid",
-          avatar: "https://cdn.monsterx.cn/logo.xyen.jpg.webp",
-          style: "color: #FFF; background-color: #9f563a"
+          id: 'XYenon',
+          link: 'https://blog.xyenon.bid',
+          avatar: 'https://cdn.monsterx.cn/logo.xyen.jpg.webp',
+          style: 'color: #FFF; background-color: #9f563a',
         },
         {
-          id: "Pluveto",
-          link: "https://www.pluvet.com",
-          avatar: "https://cdn.monsterx.cn/logo.ipluvet.jpg.webp",
-          style: "color: #FFF; background-color: #654990"
+          id: 'Pluveto',
+          link: 'https://www.pluvet.com',
+          avatar: 'https://cdn.monsterx.cn/logo.ipluvet.jpg.webp',
+          style: 'color: #FFF; background-color: #654990',
         },
         {
-          id: "Aiokr",
-          link: "http://itypen.app",
-          avatar: "https://cdn.monsterx.cn/logo.aiokr.jpg.webp",
-          style: "color: #FFF; background-color: #333333"
+          id: 'Aiokr',
+          link: 'http://itypen.app',
+          avatar: 'https://cdn.monsterx.cn/logo.aiokr.jpg.webp',
+          style: 'color: #FFF; background-color: #333333',
         },
         {
-          id: "OldUrchin",
-          link: "https://blog.csdn.net/qq_44605933",
-          avatar: "https://cdn.monsterx.cn/logo.qy.jpg.webp",
-          style: "color: #FFF; background-color: #e33e33"
+          id: 'OldUrchin',
+          link: 'https://blog.csdn.net/qq_44605933',
+          avatar: 'https://cdn.monsterx.cn/logo.qy.jpg.webp',
+          style: 'color: #FFF; background-color: #e33e33',
         },
         {
-          id: "三十三言",
-          link: "https://o0o0o0.cn",
-          avatar: "https://cdn.monsterx.cn/logo.33y.jpg.webp",
-          style: "color: #FFF; background-color: #ea9595"
+          id: '三十三言',
+          link: 'https://o0o0o0.cn',
+          avatar: 'https://cdn.monsterx.cn/logo.33y.jpg.webp',
+          style: 'color: #FFF; background-color: #ea9595',
         },
         {
-          id: "致远博客",
-          link: "https://blog.uniartisan.com",
-          avatar: "https://cdn.monsterx.cn/logo.zy.jpg.webp",
-          style: "color: #FFF; background-color: #111111"
+          id: '致远博客',
+          link: 'https://blog.uniartisan.com',
+          avatar: 'https://cdn.monsterx.cn/logo.zy.jpg.webp',
+          style: 'color: #FFF; background-color: #111111',
         },
         {
-          id: "Steins;Lab",
-          link: "https://steinslab.io",
-          avatar: "https://cdn.monsterx.cn/logo.stein.png.webp",
-          style: "color: #FFF; background-color: #51aded"
+          id: 'Steins;Lab',
+          link: 'https://steinslab.io',
+          avatar: 'https://cdn.monsterx.cn/logo.stein.png.webp',
+          style: 'color: #FFF; background-color: #51aded',
         },
         {
-          id: "Helo",
-          link: "https://www.ishelo.com",
-          avatar: "https://cdn.monsterx.cn/logo.helo.jpg.webp",
-          style: "color: #FFF; background-color: #1196c4"
+          id: 'Helo',
+          link: 'https://www.ishelo.com',
+          avatar: 'https://cdn.monsterx.cn/logo.helo.jpg.webp',
+          style: 'color: #FFF; background-color: #1196c4',
         },
         {
-          id: "EYHN",
-          link: "https://eyhn.in",
-          avatar: "https://cdn.monsterx.cn/logo.huaji8.jpg.webp",
-          style: "color: #FFF; background-color: #6cc8da"
+          id: 'EYHN',
+          link: 'https://eyhn.in',
+          avatar: 'https://cdn.monsterx.cn/logo.huaji8.jpg.webp',
+          style: 'color: #FFF; background-color: #6cc8da',
         },
         {
-          id: "LiarOnce",
-          link: "https://www.liaronce.com",
-          avatar: "https://cdn.monsterx.cn/logo.liar.jpg.webp",
-          style: "color: #FFF; background-color: #ff1100"
+          id: 'LiarOnce',
+          link: 'https://www.liaronce.com',
+          avatar: 'https://cdn.monsterx.cn/logo.liar.jpg.webp',
+          style: 'color: #FFF; background-color: #65c186',
         },
         {
-          id: "Zero",
-          link: "https://mikuac.com",
-          avatar: "https://cdn.monsterx.cn/logo.zero.jpg.webp",
-          style: "color: #FFF; background-color: #bd6363"
+          id: 'Zero',
+          link: 'https://mikuac.com',
+          avatar: 'https://cdn.monsterx.cn/logo.zero.jpg.webp',
+          style: 'color: #FFF; background-color: #bd6363',
         },
         {
-          id: "哔哩哔哩",
-          link: "https://blog.csdn.net/qq_43690756",
-          avatar: "https://cdn.monsterx.cn/logo.lhw.jpg.webp",
-          style: "color: #FFF; background-color: #e33e33"
+          id: '哔哩哔哩',
+          link: 'https://blog.csdn.net/qq_43690756',
+          avatar: 'https://cdn.monsterx.cn/logo.lhw.jpg.webp',
+          style: 'color: #FFF; background-color: #e33e33',
         },
         {
-          id: "Acetyl",
-          link: "https://blog.acetyl.me",
-          avatar: "https://cdn.monsterx.cn/logo.ylwsqq.jpg.webp",
-          style: "color: #FFF; background-color: #3f51b5"
+          id: 'Acetyl',
+          link: 'https://blog.acetyl.me',
+          avatar: 'https://cdn.monsterx.cn/logo.ylwsqq.jpg.webp',
+          style: 'color: #FFF; background-color: #3f51b5',
         },
         {
-          id: "九猫",
-          link: "https://hydrcat.github.io",
-          avatar: "https://cdn.monsterx.cn/logo.mh.png.webp",
-          style: "color: #FFF; background-color: #1e87f0"
+          id: '九猫',
+          link: 'https://hydrcat.github.io',
+          avatar: 'https://cdn.monsterx.cn/logo.mh.png.webp',
+          style: 'color: #FFF; background-color: #1e87f0',
         },
         {
-          id: "独清独醒",
-          link: "https://www.foreverlong.cn",
-          avatar: "https://cdn.monsterx.cn/logo.dqfavicon.ico.webp",
-          style: "color: #FFF; background-color: #00a2ff"
+          id: '独清独醒',
+          link: 'https://www.foreverlong.cn',
+          avatar: 'https://cdn.monsterx.cn/logo.dqfavicon.ico.webp',
+          style: 'color: #FFF; background-color: #00a2ff',
         },
         {
-          id: "Ste.Sun",
-          link: "https://stevesun.cn",
-          avatar: "https://cdn.monsterx.cn/logo.sunq.jpg.webp",
-          style: "color: #FFF; background-color: #d274cd"
+          id: 'Ste.Sun',
+          link: 'https://stevesun.cn',
+          avatar: 'https://cdn.monsterx.cn/logo.sunq.jpg.webp',
+          style: 'color: #FFF; background-color: #d274cd',
         },
-      ]
-    };
-  }
-};
+      ],
+    }
+  },
+}
 </script>
 
 <style lang="scss">
@@ -191,9 +191,11 @@ export default {
     display: flex;
     flex-wrap: wrap;
     margin: -8px;
-    border-radius: 5px;
     align-items: flex-start;
     line-height: 1.3;
+    a {
+      border-radius: 10px;
+    }
     .friends-card {
       display: flex;
       padding: 8px;
@@ -252,6 +254,7 @@ export default {
 @media screen and (max-width: 1280px) {
   .friends-container .friends-content .friends-card {
     width: calc(100% / 3 - 16px);
+    margin-top: 16px;
   }
 }
 @media screen and (max-width: 1080px) {
@@ -266,7 +269,8 @@ export default {
 }
 .note {
   margin: calc(var(--space) / 2) 0;
+  margin-top: 2em;
   font-size: 0.9em;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 </style>

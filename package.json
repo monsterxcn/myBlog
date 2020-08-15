@@ -1,17 +1,18 @@
 {
-  "name": "myBlog",
+  "name": "myblog",
   "private": true,
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore"
+    "explore": "gridsome explore",
+    "prettier": "prettier --write **/*.{ts,js,css,html,vue}"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/vue-fontawesome": "^0.1.9",
-    "@gridsome/plugin-google-analytics": "^0.1.0",
+    "@gridsome/plugin-google-analytics": "^0.1.1",
     "@gridsome/plugin-sitemap": "^0.4.0",
     "@gridsome/remark-prismjs": "^0.2.0",
     "@gridsome/source-filesystem": "^0.6.0",
@@ -20,9 +21,8 @@
     "axios": "^0.19.2",
     "disqusjs": "^1.3.0",
     "gridsome": "^0.7.13",
-    "gridsome-plugin-manifest": "^0.3.5",
+    "gridsome-plugin-pwa": "0.0.18",
     "gridsome-plugin-remark-container": "^0.1.3",
-    "gridsome-plugin-service-worker": "^0.1.5",
     "gridsome-remark-figure-caption": "^1.1.3",
     "gridsome-remark-katex": "^0.1.1",
     "marked": "^0.8.0",

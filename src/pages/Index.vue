@@ -57,39 +57,39 @@ query ($page: Int) {
 </page-query>
 
 <script>
-import Author from "~/components/Author.vue";
-import PostCard from "~/components/PostCard.vue";
+import Author from '~/components/Author.vue'
+import PostCard from '~/components/PostCard.vue'
 export default {
   components: {
     Author,
-    PostCard
+    PostCard,
   },
   metaInfo: {
-    title: "Monstx's Blog"
+    title: "Monstx's Blog",
   },
   data() {
     return {
-      scrolledDist: 0
-    };
+      scrolledDist: 0,
+    }
   },
   methods: {
     handleScroll() {
       if (process.isClient) {
-        this.scrolledDist = window.scrollY;
+        this.scrolledDist = window.scrollY
       }
-    }
+    },
   },
   created() {
     if (process.isClient) {
-      window.addEventListener("scroll", this.handleScroll);
+      window.addEventListener('scroll', this.handleScroll)
     }
   },
   destroyed() {
     if (process.isClient) {
-      window.removeEventListener("scroll", this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll)
     }
-  }
-};
+  },
+}
 </script>
 
 <style lang="scss">
