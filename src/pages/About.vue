@@ -251,7 +251,7 @@ export default {
       const disqusjs = new DisqusJS({
         shortname: 'msxblog',
         siteName: "Monstx's Blog",
-        identifier: "monstx-blog-about",
+        identifier: 'monstx-blog-about',
         apikey:
           'nnWvERGRgCp61HgRxkILYfkUAaWnPDcuqfmoE4ZVJt9C8Tys4abmOcLRdOzEFLti',
         admin: 'monstx',

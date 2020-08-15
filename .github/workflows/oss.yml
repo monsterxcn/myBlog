@@ -42,5 +42,5 @@ jobs:
 
       - name: Deploy Statics
         run: |
-          ossutil rm oss://msxblog/ --all-versions -r
+          ossutil rm -r -f oss://msxblog/
           ossutil cp -r -u dist oss://msxblog
