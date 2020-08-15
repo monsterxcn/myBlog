@@ -78,16 +78,16 @@ module.exports = {
         statusBarStyle: 'default',
         themeColor: '#fafafa',
         backgroundColor: '#ffffff',
-        icon: 'favicon.png',
+        icon: './src/assets/images/favicon.png',
         shortName: 'monstxBlog',
         description: 'Monsterx CN - 学生 / 前端 / 电气',
         lang: 'en-GB',
         // Standard Meta Tags
-        svgFavicon: 'favicon.svg',
+        svgFavicon: './src/assets/images/favicon.svg',
         // Microsoft Windows Meta Tags
         msTileColor: '#fafafa',
         // Apple MacOS Meta Tags
-        appleMaskIcon: 'favicon.svg',
+        appleMaskIcon: './src/assets/images/favicon.svg',
         appleMaskIconColor: '#fafafa',
       },
     },
