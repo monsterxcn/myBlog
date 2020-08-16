@@ -16,17 +16,18 @@ import { Pager } from 'gridsome'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faHome,
-  faRss,
-  faIdBadge,
-  faRocket,
-  faHeart,
-  faCaretSquareUp,
-  faArrowUp,
-  faCommentDots,
   faArchive,
-  faPlane,
+  faArrowUp,
+  faCaretSquareUp,
+  faCommentDots,
+  faDragon,
+  faHeart,
+  faHome,
+  faIdBadge,
   faPenSquare,
+  faPlane,
+  faRocket,
+  faRss,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faGithub,
@@ -44,17 +45,18 @@ library.add(
   faTelegram,
   faSteam,
   faWeibo,
-  faHome,
-  faRss,
-  faIdBadge,
-  faRocket,
-  faHeart,
-  faCaretSquareUp,
-  faArrowUp,
-  faCommentDots,
   faArchive,
+  faArrowUp,
+  faCaretSquareUp,
+  faCommentDots,
+  faDragon,
+  faHeart,
+  faHome,
+  faIdBadge,
+  faPenSquare,
   faPlane,
-  faPenSquare
+  faRocket,
+  faRss
 )
 
 // notifications from @JalenChuh/blog
