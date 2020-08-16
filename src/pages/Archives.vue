@@ -18,6 +18,8 @@
         </p>
       </div>
 
+      <p></p>
+      <br />
       <div class="admonition admonition-important">
         <div class="admonition-heading">
           <h5>
