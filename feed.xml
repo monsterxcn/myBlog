@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Sun, 16 Aug 2020 05:09:38 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 16 Aug 2020 05:47:57 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -80,7 +80,7 @@ docker restart ariapro</code></pre>
 <p>由于使用 IP 登录不太方便，所以继续部署 Nginx 服务反向代理 RPC 端口、绑定自己的域名。简便起见，直接使用 Ubuntu 仓库中的 nginx 包。如果服务器中已安装 Nginx，则直接新建配置文件。</p>
 <pre><code class="language-bash">apt install -y nginx</code></pre>
 <p>安装好后 Nginx 配置文件位于 <code>/etc/nginx</code>，于 <code>/etc/nginx/conf.d</code> 文件夹下新建 <code>.conf</code> 文件。</p>
-<details><summary>Nginx 配置文件</summary><br>
+<details><summary><s>Nginx 配置文件</s></summary><br />
 
 
 <pre><code class="language-conf">server {
@@ -142,7 +142,7 @@ docker restart ariapro</code></pre>
   #   proxy_pass_header X-Transmission-Session-Id;
   # }
 }</code></pre>
-</details>
+</details><br />
 
 
 <p>修改上方例子中的域名、端口即可。多个 Aria2 RPC 端口时可以参考注释掉的部分。最后重启 Nginx。</p>
@@ -182,8 +182,8 @@ https://bangumi.moe/rss/search/Lilith%20%E8%B3%A2%E8%80%85%E6%99%82%E9%96%93%201
 <h2 id="flexget">Flexget</h2>
 <p>以上部分搭建了基础的下载环境，接下来利用 Flexget 实现 aria2 的 RSS 订阅下载。</p>
 <blockquote>
-<p>FlexGet is a multipurpose automation tool for all of your media
-Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and more.
+<p>FlexGet is a multipurpose automation tool for all of your media <br />
+Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and more. <br />
 <a href="https://flexget.com/">Official website</a></p>
 </blockquote>
 <p>由于是 Python 编写，需要先安装 python3 pip3 包。</p>
@@ -193,7 +193,7 @@ pip3 install flexget</code></pre>
 <p>安装完成后新建 Flexget 配置文件夹并编写 Flexget 配置文件。</p>
 <pre><code class="language-bash">mkdir -p ~/.config/flexget
 nano ~/.config/flexget/config.yml</code></pre>
-<details><summary>我的配置文件</summary><br>
+<details><summary><s>Flexget 配置文件</s></summary><br />
 
 
 <pre><code class="language-yaml">schedules:
@@ -234,7 +234,7 @@ tasks:
       port: 6800
       secret: &lt;TOKEN&gt;
       path: /YTS.MX.Japan4KAnime/</code></pre>
-</details>
+</details><br />
 
 
 <p>注意修改 Aria2 后端端口和 Secret。保存后手动运行测试一次，选一种模式设置定时任务，查看状态。</p>
