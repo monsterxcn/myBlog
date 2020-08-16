@@ -28,16 +28,16 @@
         © 2014 - {{ new Date().getFullYear() }}
       </div>
       <div class="footer__links">
-        <a href="https://gridsome.org" target="_blank">Gridsome</a> ·
+        <a href="https://gridsome.org" target="_blank">Gridsome</a> ×
+        <a href="https://github.com/spencerwooo" target="_blank">SpencerWoo</a>
+        <!-- × <a href="https://www.dogedoge.com" target="_blank">DogeDoge</a>-->
+        ×
         <a
           href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=ztik1iwq&utm_source=ztik1iwq"
           target="_blank"
           >Aliyun</a
         >
-        <!-- · <a href="https://www.dogedoge.com" target="_blank">DogeDoge</a>-->
-        ×
-        <a href="https://github.com/spencerwooo" target="_blank">SpencerWoo</a>
-        <!-- ·
+        <!-- ×
         <a href="https://github.com/JalenChuh" target="_blank">Jalen</a>-->
       </div>
       <div class="footer__links">

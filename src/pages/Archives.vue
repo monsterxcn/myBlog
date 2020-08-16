@@ -3,12 +3,31 @@
     <h1 class="text-center space-bottom">册</h1>
 
     <div class="posts content-box">
-      <p style="opacity: 0.6;">
-        <strong>
-          ( •̀ ω •́ )✧) 2018 年起总计写作 {{ totalPosts }} 篇，共计
-          {{ totalWords }} 字🌶</strong
-        >
-      </p>
+      <div class="admonition admonition-important">
+        <div class="admonition-heading">
+          <h5>
+            <div class="admonition-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="16"
+                viewBox="0 0 14 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"
+                ></path>
+              </svg>
+            </div>
+            统计
+          </h5>
+        </div>
+        <div class="admonition-content">
+          自 2018 年起，我在这里总计写作 {{ totalPosts }} 篇，共
+          {{ totalWords }} 字 <br />
+          加油 ( •̀ ω •́ )✧)
+        </div>
+      </div>
 
       <div v-for="year in backwardsTimeKey" :key="year">
         <h5>{{ year }}</h5>
