@@ -128,26 +128,26 @@
           </p>
           <div>
             <h4>History</h4>
-            <p><span>2018 Oct.01</span> × New Start (Typecho + Material)</p>
-            <p><span>2018 Oct.17</span> × 工信部备案</p>
-            <p><span>2018 Nov.03</span> × 公安机关备案</p>
-            <p><span>2018 Nov.10</span> × TLS v1.0 No, TLS v1.3 Yes</p>
-            <p><span>2019 Apr.29</span> × 图片全部迁移至服务器</p>
-            <p><span>2019 May.22</span> × AMP & MIP 支持</p>
+            <p><span>2018 Oct.01</span>New Start (Typecho + Material)</p>
+            <p><span>2018 Oct.17</span>工信部备案</p>
+            <p><span>2018 Nov.03</span>公安机关备案</p>
+            <p><span>2018 Nov.10</span>TLS v1.0 No, TLS v1.3 Yes</p>
+            <p><span>2019 Apr.29</span>图片全部迁移至服务器</p>
+            <p><span>2019 May.22</span>AMP & MIP 支持</p>
             <p>
-              <span>2019 May.14</span> × Material v3.3.1，色调 #757575 更新为
+              <span>2019 May.14</span>Material v3.3.1，色调 #757575 更新为
               #0099FF
             </p>
-            <p><span>2019 Aug.20</span> × Material No, VOID Yes</p>
-            <p><span>2019 Aug.25</span> × 静态资源迁移至阿里云 OSS</p>
-            <p><span>2020 Mar.17</span> × TLS v1.1 No, HTTP/3 QUIC Yes</p>
+            <p><span>2019 Aug.20</span>Material No, VOID Yes</p>
+            <p><span>2019 Aug.25</span>静态资源迁移至阿里云 OSS</p>
+            <p><span>2020 Mar.17</span>TLS v1.1 No, HTTP/3 QUIC Yes</p>
             <p>
-              <span>2020 Mar.18</span> × 域名解析中国境外境内分离，Cloudflare
+              <span>2020 Mar.18</span>域名解析中国境外境内分离，Cloudflare
               and Aliyun CDN
             </p>
-            <p><span>2020 Mar.21</span> × JPG PNG No, Webp Yes</p>
-            <p><span>2020 May.21</span> × VOID No, myVOID Yes</p>
-            <p><span>2020 Aug.15</span> × Typecho No, Gridsome Yes</p>
+            <p><span>2020 Mar.21</span>JPG PNG No, Webp Yes</p>
+            <p><span>2020 May.21</span>VOID No, myVOID Yes</p>
+            <p><span>2020 Aug.15</span>Typecho No, Gridsome Yes</p>
             <p><span>Keep moving...</span></p>
           </div>
 
@@ -205,13 +205,11 @@
 </template>
 
 <script>
-import PostMeta from '~/components/PostMeta'
 import Author from '~/components/Author.vue'
 import DisqusJS from 'disqusjs'
 export default {
   components: {
     Author,
-    PostMeta,
   },
   metaInfo() {
     return {
@@ -282,6 +280,13 @@ export default {
   font-family: var(--base-font-family);
 }
 .post {
+  p span {
+    font-size: 0.85rem;
+    font-family: var(--monospace-font-family);
+    &::after {
+      content: ' ';
+    }
+  }
   &__header {
     width: calc(100% + var(--space) * 2);
     margin-left: calc(var(--space) * -1);

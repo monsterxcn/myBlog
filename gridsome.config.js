@@ -72,7 +72,7 @@ module.exports = {
 
         // Manifest Options (https://developer.mozilla.org/en-US/docs/Web/Manifest)
         manifestPath: 'manifest.json',
-        title: "someMonstx's Blog",
+        title: "Monstx's Blog",
         startUrl: 'https://blog.monsterx.cn/',
         display: 'standalone',
         statusBarStyle: 'default',

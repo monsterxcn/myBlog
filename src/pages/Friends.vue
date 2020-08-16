@@ -21,20 +21,29 @@
       </div>
       <p class="note">
         友链排序无关紧要，请不要在意 o((>ω< ))o <br />
-        如需申请链接，请多来看一看说一说，熟悉之后我会主动向你申请 <br />
+        如需申请链接，请多来逛逛，熟悉之后我会主动向你申请
       </p>
     </div>
-
-    <div class="post-comments">
-      <div id="disqus_thread" />
-    </div>
+    
+    <Author class="post-author" />
   </div>
 </template>
 
 <script>
+import Author from '~/components/Author.vue'
 export default {
-  metaInfo: {
-    title: '友',
+  components: {
+    Author,
+  },
+  metaInfo() {
+    return {
+      title: '友',
+      meta: [
+        {
+          name: '青青子衿，悠悠我心',
+        },
+      ],
+    }
   },
   data() {
     return {
@@ -178,6 +187,24 @@ export default {
           style: 'color: #FFF; background-color: #d274cd',
         },
       ],
+      scrolledDist: 0,
+    }
+  },
+  methods: {
+    handleScroll() {
+      if (process.isClient) {
+        this.scrolledDist = window.scrollY
+      }
+    },
+  },
+  created() {
+    if (process.isClient) {
+      window.addEventListener('scroll', this.handleScroll)
+    }
+  },
+  destroyed() {
+    if (process.isClient) {
+      window.removeEventListener('scroll', this.handleScroll)
     }
   },
 }
