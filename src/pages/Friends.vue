@@ -21,10 +21,10 @@
       </div>
       <p class="note">
         友链排序无关紧要，请不要在意 o((>ω< ))o <br />
-        如需申请链接，请多来逛逛，熟悉之后我会主动向你申请
+        如需申请链接，请多来逛逛，熟悉后我会主动申请
       </p>
     </div>
-    
+
     <Author class="post-author" />
   </div>
 </template>

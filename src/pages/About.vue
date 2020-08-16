@@ -14,13 +14,14 @@
             <a href="#关于这个站长的一些情报"></a>关于这个站长的一些情报
           </h3>
           <p>
-            坐标：合肥 / 哈尔滨 <br />
-            爱好：烧烤 / 动漫 / Marvel DC Disney / 博客写作 / 代码 <br />
-            入门：Clang / JavaScript / PHP <br />
-            想学：Cpp / Python / Vue.js / React.js <br />
-            习惯：VSCode / 4 spaces / Windows / Linux <br />
-            人格：ISFP-A Adventurer 冒险家 / 实用主义属性 平等・人权・社会主义 /
-            前网络话痨
+            <span>坐标</span>合肥 / 哈尔滨 <br />
+            <span>爱好</span>烧烤 / 动漫 / Marvel DC Disney / 博客写作 / 代码
+            <br />
+            <span>入门</span>Clang / JavaScript / PHP <br />
+            <span>想学</span>Cpp / Python / Vue.js / React.js <br />
+            <span>习惯</span>VSCode / 4 spaces / Windows / Linux <br />
+            <span>人格</span>ISFP-A Adventurer 冒险家 / 实用主义属性
+            平等・人权・社会主义 / 前网络话痨
           </p>
           <p>
             按照推荐程度，欢迎通过下面方式联系我。直接留言亦可，交友不必如此复杂。
@@ -142,8 +143,8 @@
             <p><span>2019 Aug.25</span>静态资源迁移至阿里云 OSS</p>
             <p><span>2020 Mar.17</span>TLS v1.1 No, HTTP/3 QUIC Yes</p>
             <p>
-              <span>2020 Mar.18</span>域名解析中国境外境内分离，Cloudflare
-              and Aliyun CDN
+              <span>2020 Mar.18</span>域名解析中国境外境内分离，Cloudflare and
+              Aliyun CDN
             </p>
             <p><span>2020 Mar.21</span>JPG PNG No, Webp Yes</p>
             <p><span>2020 May.21</span>VOID No, myVOID Yes</p>
