@@ -3,6 +3,21 @@
     <h1 class="text-center space-bottom">册</h1>
 
     <div class="posts content-box">
+      <div v-for="year in backwardsTimeKey" :key="year">
+        <h5>{{ year }}</h5>
+        <p v-for="p in timeline[year]" :key="p.id">
+          <span>{{
+            new Date(p.date)
+              .toLocaleString('en-US', {
+                month: 'short',
+                day: '2-digit',
+              })
+              .replace(' ', '.')
+          }}</span
+          ><g-link :to="p.path">{{ p.title }}</g-link>
+        </p>
+      </div>
+
       <div class="admonition admonition-important">
         <div class="admonition-heading">
           <h5>
@@ -23,25 +38,9 @@
           </h5>
         </div>
         <div class="admonition-content">
-          自 2018 年起，我在这里总计写作 {{ totalPosts }} 篇，共
-          {{ totalWords }} 字 <br />
-          加油 ( •̀ ω •́ )✧)
+          (*/ω＼*) 2018 年起，我在博客共写作 {{ totalPosts }} 篇
+          {{ totalWords }} 字。继续努力！
         </div>
-      </div>
-
-      <div v-for="year in backwardsTimeKey" :key="year">
-        <h5>{{ year }}</h5>
-        <p v-for="p in timeline[year]" :key="p.id">
-          <span>{{
-            new Date(p.date)
-              .toLocaleString('en-US', {
-                month: 'short',
-                day: '2-digit',
-              })
-              .replace(' ', '.')
-          }}</span
-          ><g-link :to="p.path">{{ p.title }}</g-link>
-        </p>
       </div>
     </div>
 
