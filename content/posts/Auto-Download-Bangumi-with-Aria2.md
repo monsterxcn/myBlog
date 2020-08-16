@@ -87,7 +87,7 @@ apt install -y nginx
 安装好后 Nginx 配置文件位于 `/etc/nginx`，于 `/etc/nginx/conf.d` 文件夹下新建 `.conf` 文件。
 
 
-<details><summary><s>Nginx 配置文件</s></summary><br />
+<details><summary><strong>Nginx 配置文件</strong></summary><br />
 
 
 ```conf
@@ -219,7 +219,7 @@ nano ~/.config/flexget/config.yml
 ```
 
 
-<details><summary><s>Flexget 配置文件</s></summary><br />
+<details><summary><strong>Flexget 配置文件</strong></summary><br />
 
 
 ```yaml
