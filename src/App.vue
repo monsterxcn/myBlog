@@ -44,7 +44,7 @@
         <a
           href="//github.com/monsterxcn"
           target="_blank"
-          style="color: #24292E;font-size: 1.3em;margin: 0 .5em;"
+          style="color: var(--title-color);font-size: 1.3em;margin: 0 .5em;"
           ><font-awesome :icon="['fab', 'github']"
         /></a>
         <a
@@ -68,7 +68,7 @@
         <a
           href="//steamcommunity.com/id/monsterxcn"
           target="_blank"
-          style="color: #1B2838;font-size: 1.3em;margin: 0 .5em;"
+          style="color: var(--social-steam-color);font-size: 1.3em;margin: 0 .5em;"
           ><font-awesome :icon="['fab', 'steam']"
         /></a>
       </div>

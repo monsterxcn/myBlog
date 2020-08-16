@@ -87,7 +87,7 @@ apt install -y nginx
 安装好后 Nginx 配置文件位于 `/etc/nginx`，于 `/etc/nginx/conf.d` 文件夹下新建 `.conf` 文件。
 
 
-<details><summary>Nginx 配置文件</summary><br>
+<details><summary><s>Nginx 配置文件</s></summary><br />
 
 
 ```conf
@@ -153,7 +153,7 @@ server {
 ```
 
 
-</details>
+</details><br />
 
 
 修改上方例子中的域名、端口即可。多个 Aria2 RPC 端口时可以参考注释掉的部分。最后重启 Nginx。
@@ -177,30 +177,30 @@ https://bangumi.moe/rss/search/Lilith%20%E8%B3%A2%E8%80%85%E6%99%82%E9%96%93%201
 除了 bangumi.moe 之外还有很多平台，部分资源相同，罗列一些包括但不限于二次元的资源站：
 
  - BT RSS 订阅
-  + [動漫花園資源網](https://share.dmhy.org) 动漫、日剧、游戏、特摄等
-  + [ACG.RIP](https://acg.rip) 动画、日剧、综艺、音乐等
-  + [旋风动漫分享站](https://bt.xfsub.org) 漫画！
-  + [Nyaa](https://nyaa.si) 侧重于东亚（中日韩）多媒体资源，被日本政府确定为主要的数字盗版网站
-  + [YIFY](https://yts.mx) 以 BitTorrent 分发大量免费下载的电影而闻名，国内很多电影资源源头
-  + [EZTV](https://eztv.io) 国外电视节目等，“TV Torrents Online Series Download”
-  + [The Pirate Bay 10](https://thepiratebay10.org/) 据称是“the galaxy's most resilient BitTorrent site”
-  + [MAG 磁力站](http://f.cili001.com/home.html) 侧重影视剧集，可以搜人人影视专用链接
+   + [動漫花園資源網](https://share.dmhy.org) 动漫、日剧、游戏、特摄等
+   + [ACG.RIP](https://acg.rip) 动画、日剧、综艺、音乐等
+   + [旋风动漫分享站](https://bt.xfsub.org) 漫画！
+   + [Nyaa](https://nyaa.si) 侧重于东亚（中日韩）多媒体资源，被日本政府确定为主要的数字盗版网站
+   + [YIFY](https://yts.mx) 以 BitTorrent 分发大量免费下载的电影而闻名，国内很多电影资源源头
+   + [EZTV](https://eztv.io) 国外电视节目等，“TV Torrents Online Series Download”
+   + [The Pirate Bay 10](https://thepiratebay10.org/) 据称是“the galaxy's most resilient BitTorrent site”
+   + [MAG 磁力站](http://f.cili001.com/home.html) 侧重影视剧集，可以搜人人影视专用链接
  - 字幕
-  + [VCB-S 分享论坛](https://bbs.vcb-s.com/forum-37-1.html) ACG 字幕分享
-  + [SubHD.tv](https://subhd.tv/) 资源+字幕站，找字幕体验非常好
-  + [字幕天堂](http://www.zmtiantang.cc)
+   + [VCB-S 分享论坛](https://bbs.vcb-s.com/forum-37-1.html) ACG 字幕分享
+   + [SubHD.tv](https://subhd.tv/) 资源+字幕站，找字幕体验非常好
+   + [字幕天堂](http://www.zmtiantang.cc)
  - 漫画
-  + [Animex 动漫社](http://www.animetox.com) 最近找进击的巨人漫画发现的
-  + [Māngabz](http://mangabz.com) 在线漫画阅读
-  + [动漫之家](https://www.dmzj.com)
-  + [木马漫画](https://www.omyschool.com)
+   + [Animex 动漫社](http://www.animetox.com) 最近找进击的巨人漫画发现的
+   + [Māngabz](http://mangabz.com) 在线漫画阅读
+   + [动漫之家](https://www.dmzj.com)
+   + [木马漫画](https://www.omyschool.com)
 
 ## Flexget
 
 以上部分搭建了基础的下载环境，接下来利用 Flexget 实现 aria2 的 RSS 订阅下载。
 
-> FlexGet is a multipurpose automation tool for all of your media
-> Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and more.
+> FlexGet is a multipurpose automation tool for all of your media <br />
+> Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and more. <br />
 > [Official website](https://flexget.com/)
 
 由于是 Python 编写，需要先安装 python3 pip3 包。
@@ -219,7 +219,7 @@ nano ~/.config/flexget/config.yml
 ```
 
 
-<details><summary>我的配置文件</summary><br>
+<details><summary><s>Flexget 配置文件</s></summary><br />
 
 
 ```yaml
@@ -264,7 +264,7 @@ tasks:
 ```
 
 
-</details>
+</details><br />
 
 
 注意修改 Aria2 后端端口和 Secret。保存后手动运行测试一次，选一种模式设置定时任务，查看状态。
