@@ -6,12 +6,6 @@
         🍌 Oh, no, not here.
         <g-link to="/">Take me back home. ↩</g-link>
       </p>
-      <g-image
-        alt="404 Not Found"
-        class="not-found-bg"
-        src="~/assets/images/404.svg"
-        blur="5"
-      />
     </div>
   </div>
 </template>

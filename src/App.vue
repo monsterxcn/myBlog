@@ -34,10 +34,11 @@
           target="_blank"
           >Aliyun</a
         >
-        · <a href="https://www.dogedoge.com" target="_blank">DogeDoge</a> ×
+        <!-- · <a href="https://www.dogedoge.com" target="_blank">DogeDoge</a>-->
+        ×
         <a href="https://github.com/spencerwooo" target="_blank">SpencerWoo</a>
-        ·
-        <a href="https://github.com/JalenChuh" target="_blank">Jalen</a>
+        <!-- ·
+        <a href="https://github.com/JalenChuh" target="_blank">Jalen</a>-->
       </div>
       <div class="footer__links">
         <a

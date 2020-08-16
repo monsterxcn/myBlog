@@ -1,9 +1,9 @@
 <template>
   <div class="post-meta">
-    Posted {{ post.date }}.
+    {{ post.date }} ·
     <template v-if="post.cjkWordCount">
-      {{ post.cjkWordCount }} words.
-      <strong> {{ post.cjkReadTime }} min read. </strong>
+      {{ post.cjkWordCount }} words ·
+      <strong> {{ post.cjkReadTime }} min read</strong>
     </template>
   </div>
 </template>

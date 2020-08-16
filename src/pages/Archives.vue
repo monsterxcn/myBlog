@@ -35,6 +35,8 @@
         <font-awesome id="back-to-top-icon" :icon="['fas', 'arrow-up']" />
       </div>
     </transition>
+
+    <Author class="post-author" />
   </div>
 </template>
 
@@ -55,9 +57,20 @@ query {
 </page-query>
 
 <script>
+import Author from '~/components/Author.vue'
 export default {
-  metaInfo: {
-    title: '册',
+  components: {
+    Author,
+  },
+  metaInfo() {
+    return {
+      title: '册',
+      meta: [
+        {
+          name: '笔耕不辍，钟情翰墨',
+        },
+      ],
+    }
   },
   data() {
     return {
