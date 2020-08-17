@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-17T07:59:35.017Z</updated>
+    <updated>2020-08-17T13:53:33.634Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -14,7 +14,7 @@
         <updated>2020-08-15T00:00:00.000Z</updated>
         <content type="html"><![CDATA[<p>在这普通的一天，我穿着普通的鞋，很普通地呆在这普通的家，掏出普通的耳机，找点普通的感觉，来一首我最爱的普通音乐，踩着普通的鼓点，世界随着我旋转，这让我普通地单曲循环，跟着普通的节奏，手腕普通地抖动，这普通的一切，都变得不同……</p>
 <p>博客稳定两周年之际，我正式从动态博客迁移至静态博客，如你所见这个博客正由 <a href="https://gridsome.org">Gridsome</a> 驱动着。“Gridsome 是一个免费、开源、基于 Vue.js 构建的框架，用 Gridsome 创建的网站和应用程序具有天然的速度优势”，官网如是说，这确实是我选择她的一个理由，另外一个理由是身边用 <a href="https://hexo.io">Hexo</a> 的人似乎太多了，我想玩点花的。</p>
-<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@SpencerWooo</a> <a href="https://blog.jalenchuh.cn">@JalenChuh</a> 仓库修改，基于 Gridsome 主题 <a href="https://github.com/gridsome/gridsome-starter-blog">gridsome-starter-blog</a> 。中国境内部署于阿里云 OSS，境外部署于 Vercel。</p>
+<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@SpencerWooo</a> <a href="https://blog.jalenchuh.cn">@JalenChuh</a> 仓库修改，基于 Gridsome 主题 <a href="https://github.com/gridsome/gridsome-starter-blog">gridsome-starter-blog</a> 。中国境内部署于阿里云 OSS -&gt; 全站加速，境外部署于 Vercel -&gt; Cloudflare。</p>
 ]]></content>
     </entry>
     <entry>
@@ -482,6 +482,356 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 <p>写写停停，一篇普通的日记花了三个多小时，又是一次无意义的写作。</p>
 <p>写完再看一遍觉得结构实在是糟糕，但是又不知道从何理出一条线索来，索性就着 Markdown 标题简单提炼了一下。脑袋里装的稀奇古怪的想法没有什么人值得我倾诉，家人亦是如此，所以还是写到博客里痛快。以前手写日记的感觉很难再找到了，敲击键盘比拿出纸笔似乎更加容易，尽管如此我还是不知道下一次日记会写在什么时候。一切随缘吧！</p>
 <p>[^1]:《<a href="https://beyondstars.xyz/">探索子</a>》《<a href="https://www.mina.moe/">MiNa!</a>》《<a href="https://blog.ichr.me/">ChrAlpha 的幻想乡</a>》</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mark 并调试 HEU 自动打卡代码]]></title>
+        <id>https://blog.monsterx.cn/code/heu-auto-checkin-covid19/</id>
+        <link href="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/"/>
+        <updated>2020-04-05T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>最近这几天又不知道干点啥，天天上课累死了，前面的还没掌握就又要接新的知识，真是太难了。心血来潮想好好学一下 JavaScript 什么的前端基础，找资料逛博客的时候碰巧发现了一个学长的博客，看到《<a href="https://zjw1.top/2020/03/10/auto_checkin_during_covid19_and_cas_sso_learning/">疫情期间自动健康打卡暨 CAS 单点登录认证实践 - SiteForZJW</a>》这篇文章，常年起不来床的我赶紧点开了，啊啊啊我为什么没有早点发现这种好东西啊，生气。</p>
+<p>第一次看的时候了解到这个 Python 代码要自己先手动执行一边获取表单数据。Emmm，那是啥，好像不太了解呢，先 Mark 了！</p>
+<h2 id="python-和依赖">Python 和依赖</h2>
+<p>什么？你说这个年头还有人电脑上没装 Python？なんと！</p>
+<p>Windows 系统直接上 Python 官网下载安装包，注意将 Python 安装目录添加到 PATH 环境变量，一并安装 pip。如果运行时显示缺少模块就 pip 安装一下。</p>
+<pre><code class="language-bash">python -m pip install --upgrade pip
+pip install requests lxml</code></pre>
+<h2 id="获取-form-data">获取 form Data</h2>
+<p>今天早上起来的出奇的早（7 点半我就醒了），一想到学校的打卡十点前就要完成，我突然想到了那个自动打卡、表单数据的事情。于是我点开了浏览器开始尝试。</p>
+<p>打开 <a href="http://one.hrbeu.edu.cn/infoplus/form/JKXXSB/start">网上办事中心 - 平安行动</a> ，虽然不知道是啥，但 F12 肯定会告诉我的。选择 Network 栏，网页从打开这个菜单后加载的所有请求都会在这里显示，先刷新一遍网页，找了一遍好像什么也没有（一开始我以为表单数据是缓存下来的什么东西），Emmm，提交一遍试试，点完确认提交之后 Network 最下面显示了一个新的名叫 <code>doAction</code> 资源，那一定就是你了！</p>
+<p>好的，<code>Form Data</code> Get√ 。选择 <code>view parsed</code> <code>view decoded</code> 就能看到这个表单的所有数据，也就是之前 Python 自动打卡需要自定义的。完整存好 <code>formData</code> <code>boundFields</code> 的内容。</p>
+<p><img src="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/images/post/heu-checkin1.png" alt="Network"><img src="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/images/post/heu-checkin2.png" alt="doAction - Form Data"></p>
+<h2 id="调试">调试</h2>
+<p>表单数据有了，开始调试 Python 。</p>
+<h3 id="邮件提醒">邮件提醒</h3>
+<p>源代码最后的发送邮件部分需要自行引用发送邮件的 <code>.py</code> 文件，但是谷歌找到的好几个 sendmail.py 补上去之后都有奇怪的报错，比如 <code>if</code> 条件右括号报语法错误，我明明是直接复制的啊 QaQ ，看了好几遍也不应该有错啊（后来发觉可能是 Python 版本问题）。最终我索性直接搜 Python SMTP 的用法，找了一段代码补上去。</p>
+<p>在 Linux 下试运行的时候发现打卡段没问题，但是后面邮件发送这段报错：</p>
+<pre><code class="language-shell">Traceback (most recent call last):
+  File &quot;checkin.py&quot;, line 151, in &lt;module&gt;
+    smtpObj.connect(mail_host, 25)    # 25 为 SMTP 端口号
+  File &quot;/usr/lib64/python3.6/smtplib.py&quot;, line 336, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File &quot;/usr/lib64/python3.6/smtplib.py&quot;, line 307, in _get_socket
+    self.source_address)
+  File &quot;/usr/lib64/python3.6/socket.py&quot;, line 724, in create_connection
+    raise err
+  File &quot;/usr/lib64/python3.6/socket.py&quot;, line 713, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out</code></pre>
+<p>搜索了一圈发现 Linux 下 SMTP 发信加密程度要求更高，所以得加密发信，将原来的发信替换为 SSL 加密发信：</p>
+<pre><code class="language-python">        smtpObj = smtplib.SMTP_SSL() 
+        smtpObj.connect(mail_host, 465)                        # 一般加密发信 smtp 端口号为 465</code></pre>
+<p>在 3.7 版本以上的 Python 中需要此脚本时必须使用 <code>smtpObj = smtplib.SMTP_SSL(mail_host)</code> ，否则邮件发信会报错 ValueError 如下：</p>
+<pre><code class="language-shell">Traceback (most recent call last):
+  File &quot;/home/Project/Python/HEUCheckin-2018041015.py&quot;, line 170, in &lt;module&gt;
+    smtpObj.connect(mail_host, 465)       # 加密时 SMTP 端口号为 465
+  File &quot;/usr/local/Python3.8.2/lib/python3.8/smtplib.py&quot;, line 339, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File &quot;/usr/local/Python3.8.2/lib/python3.8/smtplib.py&quot;, line 1042, in _get_socket
+    new_socket = self.context.wrap_socket(new_socket,
+  File &quot;/usr/local/Python3.8.2/lib/python3.8/ssl.py&quot;, line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File &quot;/usr/local/Python3.8.2/lib/python3.8/ssl.py&quot;, line 1031, in _create
+    self._sslobj = self._context._wrap_socket(
+ValueError: server_hostname cannot be an empty string or start with a leading dot.</code></pre>
+<h3 id="关闭代理">关闭代理</h3>
+<p>本地调试的时候，由于我平时习惯开 Clash 代理挂着，没注意这个，结果就报错了，信息如下：</p>
+<details><summary><strong>Python Traceback</strong></summary><br />
+
+
+<pre><code class="language-shell">Traceback (most recent call last):
+  File &quot;D:\Python\Python38-64\lib\site-packages\urllib3\connectionpool.py&quot;, line 665, in urlopen
+    httplib_response = self._make_request(
+  File &quot;D:\Python\Python38-64\lib\site-packages\urllib3\connectionpool.py&quot;, line 421, in _make_request
+    six.raise_from(e, None)
+  File &quot;&lt;string&gt;&quot;, line 3, in raise_from
+  File &quot;D:\Python\Python38-64\lib\site-packages\urllib3\connectionpool.py&quot;, line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File &quot;D:\Python\Python38-64\lib\http\client.py&quot;, line 1322, in getresponse
+    response.begin()
+  File &quot;D:\Python\Python38-64\lib\http\client.py&quot;, line 303, in begin
+    version, status, reason = self._read_status()
+  File &quot;D:\Python\Python38-64\lib\http\client.py&quot;, line 272, in _read_status
+    raise RemoteDisconnected(&quot;Remote end closed connection without&quot;
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;D:\Python\Python38-64\lib\site-packages\requests\adapters.py&quot;, line 439, in send
+    resp = conn.urlopen(
+  File &quot;D:\Python\Python38-64\lib\site-packages\urllib3\connectionpool.py&quot;, line 719, in urlopen
+    retries = retries.increment(
+  File &quot;D:\Python\Python38-64\lib\site-packages\urllib3\util\retry.py&quot;, line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host=&#39;127.0.0.1&#39;, port=7890): Max retries exceeded with url: http://cas.hrbeu.edu.cn/cas/login?service=http%3A%2F%2Fjkgc.hrbeu.edu.cn%2Finfoplus%2Flogin%3FretUrl%3Dhttp%253A%252F%252Fjkgc.hrbeu.edu.cn%252Finfoplus%252Fform%252FJSXNYQSBtest%252Fstart%253Fticket%253DST-3779417-6SDr7iRPSkJxSd3MFyNd-cas01.example.org (Caused by ProxyError(&#39;Cannot connect to proxy.&#39;, RemoteDisconnected(&#39;Remote end closed connection without response&#39;)))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;d:/workshop/PythonProject/CheckIn/checkin.py&quot;, line 61, in &lt;module&gt;
+    response302 = sesh.post(req.url, data=user_form, headers=headers)
+  File &quot;D:\Python\Python38-64\lib\site-packages\requests\sessions.py&quot;, line 578, in post
+    return self.request(&#39;POST&#39;, url, data=data, json=json, **kwargs)
+  File &quot;D:\Python\Python38-64\lib\site-packages\requests\sessions.py&quot;, line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File &quot;D:\Python\Python38-64\lib\site-packages\requests\sessions.py&quot;, line 665, in send
+    history = [resp for resp in gen] if allow_redirects else []
+  File &quot;D:\Python\Python38-64\lib\site-packages\requests\sessions.py&quot;, line 665, in &lt;listcomp&gt;
+    history = [resp for resp in gen] if allow_redirects else []
+  File &quot;D:\Python\Python38-64\lib\site-packages\requests\sessions.py&quot;, line 237, in resolve_redirects
+    resp = self.send(
+  File &quot;D:\Python\Python38-64\lib\site-packages\requests\sessions.py&quot;, line 643, in send
+    r = adapter.send(request, **kwargs)
+  File &quot;D:\Python\Python38-64\lib\site-packages\requests\adapters.py&quot;, line 510, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: HTTPConnectionPool(host=&#39;127.0.0.1&#39;, port=7890): Max retries exceeded with url: http://cas.hrbeu.edu.cn/cas/login?service=http%3A%2F%2Fjkgc.hrbeu.edu.cn%2Finfoplus%2Flogin%3FretUrl%3Dhttp%253A%252F%252Fjkgc.hrbeu.edu.cn%252Finfoplus%252Fform%252FJSXNYQSBtest%252Fstart%253Fticket%253DST-3779417-6SDr7iRPSkJxSd3MFyNd-cas01.example.org (Caused by ProxyError(&#39;Cannot connect to proxy.&#39;, RemoteDisconnected(&#39;Remote end closed connection without response&#39;)))</code></pre>
+</details><br />
+
+
+<p>报错一大堆没怎么看懂，<code>ProxyError</code> 看来应该是代理问题，可能和主机的网络设置有关系，没有深究原因，所以解决方案就是 <strong>关掉代理</strong> ！</p>
+<blockquote>
+<p>尝试了在运行前用 <code>export</code> 或者 <code>set</code> 命令设置 <code>http_proxy</code> <code>https_proxy</code> 代理，也一样无法使用。</p>
+</blockquote>
+<h3 id="结果判定">结果判定</h3>
+<p>调试时还发现个问题，原代码打卡出错的判定有缺陷，只报 Python 脚本出 Exception 时的错，而提交表单时可能成功提交，但是返回的不是打卡成功，而是打卡失败。那么如何判断打卡提交正常但是打卡失败呢，这里关注返回的数据 <code>response_end</code> ，用 requests 库转换成 text 后的 <code>response_end.text</code> 长这个样子：</p>
+<pre><code class="language-json"># 成功时
+{&quot;errno&quot;:0,
+&quot;ecode&quot;:&quot;SUCCEED&quot;,
+&quot;entities&quot;:[{&quot;stepId&quot;:2,&quot;name&quot;:&quot;办结&quot;,&quot;code&quot;:&quot;autoStep1&quot;,&quot;status&quot;:0,&quot;type&quot;:&quot;Auto&quot;,&quot;flowStepId&quot;:0,&quot;executorSelection&quot;:0,&quot;timestamp&quot;:0,&quot;posts&quot;:[],&quot;users&quot;:[],&quot;parallel&quot;:false,&quot;hasInstantNotification&quot;:false,&quot;hasCarbonCopy&quot;:false,&quot;entryId&quot;:2797847,&quot;entryStatus&quot;:0,&quot;entryRelease&quot;:false}]}
+
+# 失败时
+{&quot;errno&quot;:22001,
+&quot;ecode&quot;:&quot;EVENT_CANCELLED&quot;,
+&quot;error&quot;:&quot;发生异常\n\njava.lang.reflect.InvocationTargetException\n\tat sun.reflect.GeneratedMethodAccessor457.invoke(Unknown Source)\n\t...\n&quot;,
+&quot;entities&quot;:[]}</code></pre>
+<p>可以看到返回的字段中 <code>errno</code> 为 <code>0</code> 代表成功提交，剩下的 <code>ecode</code> 显示 <code>str</code> 型的状态，<code>error</code> 只有出现错误时才有，包含了所有的错误信息，这个错误是在学校服务器上报的，不是本地脚本的问题。<code>entities</code> 包含成功提交后的一些数据。那么这就用 <code>errno</code> 来判定远程提交后返回是否成功。先使用 <code>json.loads()</code> 将其转换为 Json 格式，注意在返回的数据中 <code>errno</code> 字段为 <code>int</code> 类型，<code>entities</code> 字段为 <code>list</code> 类型，发信的 <code>msg</code> 要用 <code>str()</code> 转换这两个数据。</p>
+<p>实现代码如下：</p>
+<pre><code class="language-python">try:
+    # ......
+
+    response_end = sesh.post(submit_url, data=submit_form, headers=headers)
+    resJson = json.loads(response_end.text)
+
+    print(&#39;Form url: &#39;, form_response.url)
+    # print(&#39;Form status: &#39;, response_end.text)
+    print(&#39;Form Status: &#39;, resJson[&#39;ecode&#39;])
+    print(&#39;Form stJson: &#39;, resJson)
+    # 获取表单返回 Json 数据所有 key 用这个
+    # print(&#39;Form stJsonkey: &#39;, resJson.keys())
+
+    # 加入远程提交返回结果判断
+    if (resJson[&#39;errno&#39;] == 0):
+        print(&#39;Form Succeed: &#39;, resJson[&#39;ecode&#39;])
+        title = f&#39;打卡成功 &lt;{submit_form[&quot;stepId&quot;]}&gt;&#39;
+        msg = &#39;\t表单地址: &#39; + form_response.url + &#39;\n\n\t表单状态: \n\t\terrno：&#39; + str(resJson[&#39;errno&#39;]) + &#39;\n\t\tecode：&#39; + str(resJson[&#39;ecode&#39;]) + &#39;\n\t\tentities：&#39; + str(resJson[&#39;entities&#39;]) + &#39;\n\n\n\t完整返回：&#39; + response_end.text
+    else:
+        print(&#39;Form Error: &#39;, resJson[&#39;ecode&#39;])
+        title = f&#39;打卡失败！校网出错&#39;
+        msg = &#39;\t表单地址: &#39; + form_response.url + &#39;\n\n\t错误信息: \n\t\terrno：&#39; + str(resJson[&#39;errno&#39;]) + &#39;\n\t\tecode：&#39; + str(resJson[&#39;ecode&#39;]) + &#39;\n\t\tentities：&#39; + str(resJson[&#39;entities&#39;]) + &#39;\n\n\n\t完整返回：&#39; + response_end.text
+except:
+    print(&#39;\n:.:.:.:.: Except return :.:.:.:.:&#39;)
+    err = traceback.format_exc()
+    print(&#39;Python Error: \n&#39;, err)
+    title = &#39;打卡失败！脚本出错&#39;
+    msg = &#39;\t脚本报错: \n\n\t&#39; + err</code></pre>
+<p>好啦，现在就差不多完美了，唯一美中不足的就是没有加入 <code>retry</code> 的功能，还不了解这个怎么实现，有空可以试试。</p>
+<h2 id="完工">完工</h2>
+<details><summary><strong>修补完整的 auto-checkin.py</strong></summary><br />
+
+
+<pre><code class="language-python">#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
+&quot;&quot;&quot;
+平安行动自动打卡
+
+Created on 2020-04-13 20:20
+@author: ZhangJiawei &amp; Monst.x
+&quot;&quot;&quot;
+
+import requests
+import lxml.html
+import re
+import json
+import random
+import time
+import smtplib
+import traceback
+
+headers = {
+    &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&quot;,
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate, br&quot;,
+    &quot;Accept-Language&quot;: &quot;zh-CN&quot;,
+    &quot;Cache-Control&quot;: &quot;max-age=0&quot;,
+    &quot;Connection&quot;: &quot;keep-alive&quot;,
+    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;,
+    &quot;Cookie&quot;: &quot;MESSAGE_TICKET=%7B%22times%22%3A0%7D; &quot;,
+    &quot;Host&quot;: &quot;cas.hrbeu.edu.cn&quot;,
+    &quot;Referer&quot;: &quot;https://cas.hrbeu.edu.cn/cas/login?service=http%3A%2F%2Fjkgc.hrbeu.edu.cn%2Finfoplus%2Flogin%3FretUrl%3Dhttp%253A%252F%252Fjkgc.hrbeu.edu.cn%252Finfoplus%252Fform%252FJSXNYQSBtest%252Fstart&quot;,
+    &quot;Upgrade-Insecure-Requests&quot;: &quot;1&quot;,
+    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362&quot;
+}
+
+data = {
+    &quot;username&quot;:&quot;studentNumber&quot;,                # 学号
+    &quot;password&quot;:&quot;password&quot;                      # 教务处密码
+}
+def findStr(source, target):
+    return source.find(target) != -1
+title = &quot;&quot;
+msg = &quot;&quot;
+
+try:
+    #get
+    url_login = &#39;https://cas.hrbeu.edu.cn/cas/login?service=http%3A%2F%2Fjkgc.hrbeu.edu.cn%2Finfoplus%2Fform%2FJSXNYQSBtest%2Fstart&#39;
+    print(&quot;Begin to login ...&quot;)
+    sesh = requests.session()
+    req = sesh.get(url_login)
+    html_content = req.text
+
+    #post
+    login_html = lxml.html.fromstring(html_content)
+    hidden_inputs=login_html.xpath(r&#39;//div[@id=&quot;main&quot;]//input[@type=&quot;hidden&quot;]&#39;)
+    user_form = {x.attrib[&quot;name&quot;] : x.attrib[&quot;value&quot;] for x in hidden_inputs}
+
+    user_form[&quot;username&quot;]=data[&#39;username&#39;]
+    user_form[&quot;password&quot;]=data[&#39;password&#39;]
+    user_form[&quot;captcha&quot;]=&#39;&#39;
+    user_form[&quot;submit&quot;]=&#39;登 录&#39;
+    headers[&#39;Cookie&#39;] = headers[&#39;Cookie&#39;] + req.headers[&#39;Set-cookie&#39;]
+
+    req.url = f&#39;https://cas.hrbeu.edu.cn/cas/login;jsessionid={req.cookies.get(&quot;JSESSIONID&quot;)}?service=http%3A%2F%2Fjkgc.hrbeu.edu.cn%2Finfoplus%2Fform%2FJSXNYQSBtest%2Fstart&#39;
+    response302 = sesh.post(req.url, data=user_form, headers=headers)
+    casRes = response302.history[0]
+    print(&quot;CAS response header&quot;, findStr(casRes.headers[&#39;Set-Cookie&#39;],&#39;CASTGC&#39;))
+
+    #get
+    jkgc_response = sesh.get(response302.url)
+
+    #post
+    headers[&#39;Accept&#39;] = &#39;*/*&#39;
+    headers[&#39;Cookie&#39;] = jkgc_response.request.headers[&#39;Cookie&#39;]
+    headers[&#39;Host&#39;] = &#39;jkgc.hrbeu.edu.cn&#39;
+    headers[&#39;Referer&#39;] = jkgc_response.url
+    jkgc_html = lxml.html.fromstring(jkgc_response.text)
+    csrfToken = jkgc_html.xpath(r&#39;//meta[@itemscope=&quot;csrfToken&quot;]&#39;)
+    csrfToken = csrfToken.pop().attrib[&quot;content&quot;]
+    jkgc_form = {
+        &#39;idc&#39;: &#39;JSXNYQSBtest&#39;,
+        &#39;release&#39;: &#39;&#39;,
+        &#39;csrfToken&#39;: csrfToken,
+        &#39;formData&#39;: {
+            &#39;_VAR_URL&#39;: jkgc_response.url,
+            &#39;_VAR_URL_Attr&#39;: {
+                &#39;ticket&#39;: re.match(r&#39;.*ticket=(.*)&#39;, jkgc_response.url).group(1)
+            }
+        }
+    }
+    jkgc_form[&#39;formData&#39;] = json.dumps(jkgc_form[&#39;formData&#39;])
+    jkgc_url = &#39;http://jkgc.hrbeu.edu.cn/infoplus/interface/start&#39;
+    response3 = sesh.post(jkgc_url, data=jkgc_form, headers=headers)
+
+    #get
+    form_url = json.loads(response3.text)[&#39;entities&#39;][0]
+    form_response = sesh.get(form_url)
+
+    #post
+    headers[&#39;Accept&#39;] = &#39;application/json, text/javascript, */*; q=0.01&#39;
+    headers[&#39;Referer&#39;] = form_url
+    headers[&#39;X-Requested-With&#39;] = &#39;XMLHttpRequest&#39;
+    submit_url = &#39;http://jkgc.hrbeu.edu.cn/infoplus/interface/doAction&#39;
+
+    submit_html = lxml.html.fromstring(form_response.text)
+    csrfToken2 = submit_html.xpath(r&#39;//meta[@itemscope=&quot;csrfToken&quot;]&#39;)
+    csrfToken2 = csrfToken2.pop().attrib[&quot;content&quot;]
+
+    submit_form = {
+        &#39;actionId&#39;: &#39;1&#39;,
+        # boundFields 修改位置
+        &#39;boundFields&#39;: &#39;fieldCXXXdqszdjtx,fieldCXXXjtgjbc,...&#39;,
+        &#39;csrfToken&#39;: csrfToken2,
+        # formData 修改位置
+        &#39;formData&#39;: r&#39;{&quot;_VAR_EXECUTE_INDEP_ORGANIZE_Name&quot;:&quot;学院&quot;,&quot;_VAR_ACTION_INDEP_ORGANIZES_Codes&quot;:&quot;xxxxx&quot;,...}&#39;,
+        &#39;lang&#39;: &#39;zh&#39;,
+        &#39;nextUsers&#39;: &#39;{}&#39;,
+        &#39;rand&#39;: str(random.random() * 999),
+        &#39;remark&#39;: &#39;&#39;,
+        &#39;stepId&#39;: re.match(r&#39;.*form/(\d*?)/&#39;,form_response.url).group(1),
+        &#39;timestamp&#39;: str(int(time.time()+0.5))
+    }
+    response_end = sesh.post(submit_url, data=submit_form, headers=headers)
+    resJson = json.loads(response_end.text)
+
+    ## 表单填写完成，返回结果
+    print(&#39;Form url: &#39;, form_response.url)
+    # print(&#39;Form status: &#39;, response_end.text)
+    print(&#39;Form Status: &#39;, resJson[&#39;ecode&#39;])
+    print(&#39;Form stJson: &#39;, resJson)
+    # 获取表单返回 Json 数据所有 key 用这个
+    # print(&#39;Form stJsonkey: &#39;, resJson.keys())
+
+    if (resJson[&#39;errno&#39;] == 0):
+        print(&#39;Form Succeed: &#39;, resJson[&#39;ecode&#39;])
+        title = f&#39;打卡成功 &lt;{submit_form[&quot;stepId&quot;]}&gt;&#39;
+        msg = &#39;\t表单地址: &#39; + form_response.url + &#39;\n\n\t表单状态: \n\t\terrno：&#39; + str(resJson[&#39;errno&#39;]) + &#39;\n\t\tecode：&#39; + str(resJson[&#39;ecode&#39;]) + &#39;\n\t\tentities：&#39; + str(resJson[&#39;entities&#39;]) + &#39;\n\n\n\t完整返回：&#39; + response_end.text
+    else:
+        print(&#39;Form Error: &#39;, resJson[&#39;ecode&#39;])
+        title = f&#39;打卡失败！校网出错&#39;
+        msg = &#39;\t表单地址: &#39; + form_response.url + &#39;\n\n\t错误信息: \n\t\terrno：&#39; + str(resJson[&#39;errno&#39;]) + &#39;\n\t\tecode：&#39; + str(resJson[&#39;ecode&#39;]) + &#39;\n\t\tentities：&#39; + str(resJson[&#39;entities&#39;]) + &#39;\n\n\n\t完整返回：&#39; + response_end.text
+except:
+    print(&#39;\n:.:.:.:.: Except return :.:.:.:.:&#39;)
+    err = traceback.format_exc()
+    print(&#39;Python Error: \n&#39;, err)
+    title = &#39;打卡失败！脚本出错&#39;
+    msg = &#39;\t脚本报错: \n\n\t&#39; + err
+finally:
+    print(&#39;\n:.:.:.:.: Finally :.:.:.:.:&#39;)
+    ## 发送邮件
+    # import sendmail     ## 这个是普通.py文件，不是Python库
+    # sendmail.sendmail(title, msg)
+
+    from email.mime.text import MIMEText
+    from email.header import Header
+
+    # 第三方 SMTP 服务
+    mail_host=&quot;smtp.exmail.qq.com&quot;                 # 设置 smtp 服务器
+    mail_user=&quot;example@example.com&quot;                # smtp 发信邮箱用户名
+    mail_pass=&quot;emailpassword&quot;                      # smtp 发信邮箱密码
+    sender = &#39;1@example.com&#39;                       # 发信邮箱显示
+    receivers = [&#39;2@example.com&#39;]                  # 修改为收件人邮箱，多邮箱以数组形式写
+    message = MIMEText(msg, &#39;plain&#39;, &#39;utf-8&#39;)
+    message[&#39;From&#39;] = Header(&quot;1@example.com&quot;, &#39;utf-8&#39;)        # 发件人邮箱
+    message[&#39;To&#39;] =  Header(&quot;2@example.com&quot;, &#39;utf-8&#39;)         # 收件人邮箱
+    subject = title
+    message[&#39;Subject&#39;] = Header(subject, &#39;utf-8&#39;)
+    try:
+        # smtpObj = smtplib.SMTP()              # 使用一般发信
+        # smtpObj.connect(mail_host, 25)        # 不加密时 SMTP 端口号为 25
+        # smtpObj = smtplib.SMTP_SSL()          # Python 3.7 以下版本 SSL 加密发信
+        smtpObj = smtplib.SMTP_SSL(mail_host)   # Python 3.7 及以上版本 SSL 加密发信
+        smtpObj.connect(mail_host, 465)         # 加密时 SMTP 端口号为 465
+        smtpObj.login(mail_user,mail_pass)
+        smtpObj.sendmail(sender, receivers, message.as_string())
+        print (&quot;Success: The email was sent successfully&quot;)
+    except smtplib.SMTPException:
+        print (&quot;Error: Can not send mail&quot;)</code></pre>
+</details><br />
+
+
+<p>合理地偷个懒，需要修改的地方都在代码注释里了。</p>
+<h2 id="定时任务">定时任务</h2>
+<p>要想让代码实现自动打卡，还需要另外设置定时任务，Linux 可以用 <strong>crontab</strong> ，Windows 可以用 <strong>任务计划程序</strong> 。</p>
+<pre><code class="language-bash"># Linux 下添加 crontab 定时命令，每天 8:00 执行打卡并输出日志到 .log 文件
+# 建议先运行测试是否可行
+# python3 auto-checkin.py
+
+crontab -e
+0 8 * * * root /path/to/python3 /path/to/auto-checkin.py &gt; /path/to/checkin.log
+# :wq 保存并退出</code></pre>
+<p>Windows 下按 <code>win</code> 搜索“任务计划程序”调出菜单，然后在右栏选择创建基础任务。跟着创建基本任务向导的指示一步一步来就好了，「触发器 -&gt; 每日」设置时间推荐避开 6:00 腐败街预约打卡的高峰，8:00 就不错。「操作 -&gt; 启动程序」的程序或脚本项按下面格式填写。</p>
+<p><img src="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/images/post/heu-autotask.png" alt="Windows 定时任务设置"></p>
+<p>Okay，睡个回笼觉庆祝一下 🥳..</p>
 ]]></content>
     </entry>
 </feed>
