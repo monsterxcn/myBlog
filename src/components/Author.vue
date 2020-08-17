@@ -26,10 +26,8 @@
         ><font-awesome :icon="['fas', 'rss']"/></g-link
       ><g-link to="/archives" style="color: var(--title-color);"
         ><font-awesome :icon="['fas', 'archive']"/></g-link
-      ><!--<g-link to="/watch" style="color: #06a878;"
+      ><g-link to="/watch" style="color: #06a878;"
         ><font-awesome :icon="['fas', 'dragon']"/></g-link
-      >--><g-link to="/watch" style="color: #06a878;"
-        ><font-awesome :icon="['fas', 'film']"/></g-link
       ><g-link to="/friends" style="color: #ff0000;"
         ><font-awesome :icon="['fas', 'heart']"/></g-link
       ><g-link to="/about"><font-awesome :icon="['fas', 'id-badge']"/></g-link>
