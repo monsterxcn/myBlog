@@ -2,10 +2,10 @@
 title: 照葫芦画瓢 · 编写 Actions 打卡工作流
 date: 2020-06-30
 published: true
-slug: Modified-GitHub-Actions-4-HEU-Checkin
+slug: Modified-Github-Actions-4-HEU-Checkin
 cat: tech
 tags: ['GitHub Actions', '定时任务', 'webdrivers']
-cover_image: "./images/github-actions-heu-checkin.png"
+cover_image: "./images/github-actions-checkin.png"
 canonical_url: false
 description: "赶在上半年的最后半小时发布了 6 月唯一一篇更新：利用 GitHub Actions 定时执行 Python / Ruby 打卡代码"
 ---

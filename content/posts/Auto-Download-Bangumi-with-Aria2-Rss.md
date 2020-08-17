@@ -2,7 +2,7 @@
 title: 从零开始的追番生活
 date: 2020-07-28
 published: true
-slug: Auto-Download-Bangumi-with-Aria2
+slug: Auto-Download-Bangumi-with-Aria2-Rss
 cat: tech
 tags: ['aria', 'flexget', 'RSS']
 cover_image: "./images/aria-rss-bangumi.png"

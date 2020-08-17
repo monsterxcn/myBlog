@@ -31,14 +31,14 @@
           <h3 id="次元碰撞の贰"><a href="#次元碰撞の贰"></a>次元碰撞の贰</h3>
           <p>
             <a
-              class="watch"
-              href="http://bangumi.tv/subject/29561"
+              class="watch good"
+              href="http://bangumi.tv/subject/29648"
               target="_blank"
               >中二病也要谈恋爱！</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
-              class="watch go'o"
+              class="watch"
               href="https://bgm.tv/subject/181354"
               target="_blank"
               >齐木楠雄的灾难</a
@@ -1554,18 +1554,17 @@ export default {
 }
 .watch-item {
   display: block;
+  opacity: 1 !important;
   margin-left: 20px;
   margin-bottom: 20px;
   position: relative;
   border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  transition: 0.3s ease box-shadow;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease !important;
   border: none !important;
   text-decoration: none !important;
   &:hover {
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-    border: none !important;
-    text-decoration: none !important;
   }
   @media screen and (max-width: 767.5px) {
     & {
@@ -1697,7 +1696,7 @@ body[data-theme='dark'] {
     a.watch {
       color: var(--body-color);
       box-shadow: inset 0 -6px 0 rgba(26, 188, 156, 0.3);
-      transition: box-shadow 0.3s;
+      transition: box-shadow 0.3s, opacity 0.3s;
       text-decoration: none;
       &.cinema {
         box-shadow: inset 0 -6px 0 rgba(156, 39, 176, 0.3);
