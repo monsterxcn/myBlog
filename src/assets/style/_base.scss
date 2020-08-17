@@ -68,3 +68,12 @@ sup {
     content: ']';
   }
 }
+
+::-webkit-scrollbar {
+  width: .49rem!important;
+  height: .36rem!important;
+  background: 0 0!important;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.3)!important;
+}

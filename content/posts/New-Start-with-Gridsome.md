@@ -14,4 +14,4 @@ description: "在这普通的一天，这个普通的博客诞生 / 重生了。
 
 博客稳定两周年之际，我正式从动态博客迁移至静态博客，如你所见这个博客正由 [Gridsome](https://gridsome.org) 驱动着。“Gridsome 是一个免费、开源、基于 Vue.js 构建的框架，用 Gridsome 创建的网站和应用程序具有天然的速度优势”，官网如是说，这确实是我选择她的一个理由，另外一个理由是身边用 [Hexo](https://hexo.io) 的人似乎太多了，我想玩点花的。
 
-本站的主题参考 [@SpencerWooo](https://blog.spencerwoo.com) [@JalenChuh](https://blog.jalenchuh.cn) 仓库修改，基于 Gridsome 主题 [gridsome-starter-blog](https://github.com/gridsome/gridsome-starter-blog) 。中国境内部署于阿里云 OSS，境外部署于 Vercel。
+本站的主题参考 [@SpencerWooo](https://blog.spencerwoo.com) [@JalenChuh](https://blog.jalenchuh.cn) 仓库修改，基于 Gridsome 主题 [gridsome-starter-blog](https://github.com/gridsome/gridsome-starter-blog) 。中国境内部署于阿里云 OSS -> 全站加速，境外部署于 Vercel -> Cloudflare。
