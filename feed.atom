@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-17T13:53:33.634Z</updated>
+    <updated>2020-08-18T03:28:29.055Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -28,7 +28,7 @@
 <p>Rclone 用于网盘挂载，从 <a href="https://rclone.org/downloads/">官方</a> 下载安装，按照命令行提示输入后得到配置文件 rclone.conf（后续使用），路径一般为 <code>~/.config/rclone/rclone.conf</code> 。</p>
 <p>注意使用自己的 Secret ID &amp; Key，据说能极大的提高文件传输速率。公用的 API 想想就知道肯定比不过自建。参考文档 <a href="https://rclone.org/drive/#making-your-own-client-id">GoogleDrive: Making your own client_id</a> 和 <a href="https://rclone.org/onedrive/#getting-your-own-client-id-and-key">OneDrive: Getting your own Client ID and Key</a> 创建即可。</p>
 <p>Rclone 挂载 OneDrive 时需要在运行图形界面的系统上完成。Linux 服务器由于一般不带图形界面，所以需要配合本地机器：在 Windows 中下载 Rclone 相应版本文件，Power Shell 进入解压后的文件夹中键入下面命令后复制 <code>Paste the following into your remote machine ---&gt;</code> 和 <code>&lt;---End paste</code> 之间的 <code>SECRET_TOKEN</code> 到远程服务器命令行中。</p>
-<pre><code class="language-shell">.\rclone authorize &quot;onedrive&quot; &quot;Client_ID&quot; &quot;Client_secret&quot;</code></pre>
+<pre><code class="language-powershell">.\rclone authorize &quot;onedrive&quot; &quot;Client_ID&quot; &quot;Client_secret&quot;</code></pre>
 <p>OneDrive 更详细挂载过程可参考文章《<a href="https://p3terx.com/archives/rclone-connect-onedrive-with-selfbuilt-api.html">Rclone 进阶使用教程 - 自建私有 API 挂载 OneDrive - P3TERX</a>》。<strong>后面均使用 OneDrive 部署</strong></p>
 <h2 id="aria2">Aria2</h2>
 <p>Aria2 是一个强大的下载工具，这里使用 Docker 部署 Aria2 后端服务和 AriaNG 前端页面。参考文章《<a href="https://p3terx.com/archives/docker-aria2-pro.html">Aria2 Pro - 更好用的 Aria2 Docker 容器镜像 - P3TERX</a>》。</p>
@@ -80,7 +80,7 @@ docker restart ariapro</code></pre>
 <details><summary><strong>Nginx 配置文件</strong></summary><br />
 
 
-<pre><code class="language-conf">server {
+<pre><code class="language-nginx">server {
   listen [::]:80;                       # 若支持 IPv6 则启用
   listen 80;
   listen [::]:443 ssl http2;            # 若支持 IPv6 则启用
@@ -506,7 +506,7 @@ pip install requests lxml</code></pre>
 <h3 id="邮件提醒">邮件提醒</h3>
 <p>源代码最后的发送邮件部分需要自行引用发送邮件的 <code>.py</code> 文件，但是谷歌找到的好几个 sendmail.py 补上去之后都有奇怪的报错，比如 <code>if</code> 条件右括号报语法错误，我明明是直接复制的啊 QaQ ，看了好几遍也不应该有错啊（后来发觉可能是 Python 版本问题）。最终我索性直接搜 Python SMTP 的用法，找了一段代码补上去。</p>
 <p>在 Linux 下试运行的时候发现打卡段没问题，但是后面邮件发送这段报错：</p>
-<pre><code class="language-shell">Traceback (most recent call last):
+<pre><code class="language-powershell">Traceback (most recent call last):
   File &quot;checkin.py&quot;, line 151, in &lt;module&gt;
     smtpObj.connect(mail_host, 25)    # 25 为 SMTP 端口号
   File &quot;/usr/lib64/python3.6/smtplib.py&quot;, line 336, in connect
@@ -519,10 +519,10 @@ pip install requests lxml</code></pre>
     sock.connect(sa)
 TimeoutError: [Errno 110] Connection timed out</code></pre>
 <p>搜索了一圈发现 Linux 下 SMTP 发信加密程度要求更高，所以得加密发信，将原来的发信替换为 SSL 加密发信：</p>
-<pre><code class="language-python">        smtpObj = smtplib.SMTP_SSL() 
-        smtpObj.connect(mail_host, 465)                        # 一般加密发信 smtp 端口号为 465</code></pre>
+<pre><code class="language-python">smtpObj = smtplib.SMTP_SSL() 
+smtpObj.connect(mail_host, 465)                        # 一般加密发信 smtp 端口号为 465</code></pre>
 <p>在 3.7 版本以上的 Python 中需要此脚本时必须使用 <code>smtpObj = smtplib.SMTP_SSL(mail_host)</code> ，否则邮件发信会报错 ValueError 如下：</p>
-<pre><code class="language-shell">Traceback (most recent call last):
+<pre><code class="language-powershell">Traceback (most recent call last):
   File &quot;/home/Project/Python/HEUCheckin-2018041015.py&quot;, line 170, in &lt;module&gt;
     smtpObj.connect(mail_host, 465)       # 加密时 SMTP 端口号为 465
   File &quot;/usr/local/Python3.8.2/lib/python3.8/smtplib.py&quot;, line 339, in connect
@@ -539,7 +539,7 @@ ValueError: server_hostname cannot be an empty string or start with a leading do
 <details><summary><strong>Python Traceback</strong></summary><br />
 
 
-<pre><code class="language-shell">Traceback (most recent call last):
+<pre><code class="language-powershell">Traceback (most recent call last):
   File &quot;D:\Python\Python38-64\lib\site-packages\urllib3\connectionpool.py&quot;, line 665, in urlopen
     httplib_response = self._make_request(
   File &quot;D:\Python\Python38-64\lib\site-packages\urllib3\connectionpool.py&quot;, line 421, in _make_request
@@ -596,15 +596,23 @@ requests.exceptions.ProxyError: HTTPConnectionPool(host=&#39;127.0.0.1&#39;, por
 <h3 id="结果判定">结果判定</h3>
 <p>调试时还发现个问题，原代码打卡出错的判定有缺陷，只报 Python 脚本出 Exception 时的错，而提交表单时可能成功提交，但是返回的不是打卡成功，而是打卡失败。那么如何判断打卡提交正常但是打卡失败呢，这里关注返回的数据 <code>response_end</code> ，用 requests 库转换成 text 后的 <code>response_end.text</code> 长这个样子：</p>
 <pre><code class="language-json"># 成功时
-{&quot;errno&quot;:0,
-&quot;ecode&quot;:&quot;SUCCEED&quot;,
-&quot;entities&quot;:[{&quot;stepId&quot;:2,&quot;name&quot;:&quot;办结&quot;,&quot;code&quot;:&quot;autoStep1&quot;,&quot;status&quot;:0,&quot;type&quot;:&quot;Auto&quot;,&quot;flowStepId&quot;:0,&quot;executorSelection&quot;:0,&quot;timestamp&quot;:0,&quot;posts&quot;:[],&quot;users&quot;:[],&quot;parallel&quot;:false,&quot;hasInstantNotification&quot;:false,&quot;hasCarbonCopy&quot;:false,&quot;entryId&quot;:2797847,&quot;entryStatus&quot;:0,&quot;entryRelease&quot;:false}]}
+{
+  &quot;errno&quot;:0,
+  &quot;ecode&quot;:&quot;SUCCEED&quot;,
+  &quot;entities&quot;:[{
+    &quot;stepId&quot;:2,
+    &quot;name&quot;:&quot;办结&quot;,
+    &quot;code&quot;:&quot;autoStep1&quot;,&quot;status&quot;:0,&quot;type&quot;:&quot;Auto&quot;,&quot;flowStepId&quot;:0,&quot;executorSelection&quot;:0,&quot;timestamp&quot;:0,&quot;posts&quot;:[],&quot;users&quot;:[],&quot;parallel&quot;:false,&quot;hasInstantNotification&quot;:false,&quot;hasCarbonCopy&quot;:false,&quot;entryId&quot;:2797847,&quot;entryStatus&quot;:0,&quot;entryRelease&quot;:false
+  }]
+}
 
 # 失败时
-{&quot;errno&quot;:22001,
-&quot;ecode&quot;:&quot;EVENT_CANCELLED&quot;,
-&quot;error&quot;:&quot;发生异常\n\njava.lang.reflect.InvocationTargetException\n\tat sun.reflect.GeneratedMethodAccessor457.invoke(Unknown Source)\n\t...\n&quot;,
-&quot;entities&quot;:[]}</code></pre>
+{
+  &quot;errno&quot;:22001,
+  &quot;ecode&quot;:&quot;EVENT_CANCELLED&quot;,
+  &quot;error&quot;:&quot;发生异常\n\njava.lang.reflect.InvocationTargetException\n\tat sun.reflect.GeneratedMethodAccessor457.invoke(Unknown Source)\n\t...\n&quot;,
+  &quot;entities&quot;:[]
+}</code></pre>
 <p>可以看到返回的字段中 <code>errno</code> 为 <code>0</code> 代表成功提交，剩下的 <code>ecode</code> 显示 <code>str</code> 型的状态，<code>error</code> 只有出现错误时才有，包含了所有的错误信息，这个错误是在学校服务器上报的，不是本地脚本的问题。<code>entities</code> 包含成功提交后的一些数据。那么这就用 <code>errno</code> 来判定远程提交后返回是否成功。先使用 <code>json.loads()</code> 将其转换为 Json 格式，注意在返回的数据中 <code>errno</code> 字段为 <code>int</code> 类型，<code>entities</code> 字段为 <code>list</code> 类型，发信的 <code>msg</code> 要用 <code>str()</code> 转换这两个数据。</p>
 <p>实现代码如下：</p>
 <pre><code class="language-python">try:
