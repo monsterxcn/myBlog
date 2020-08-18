@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Tue, 18 Aug 2020 16:05:04 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 18 Aug 2020 16:45:10 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -13,18 +13,18 @@
             <link>https://blog.monsterx.cn/code/update-your-posts-in-readme/</link>
             <guid>https://blog.monsterx.cn/code/update-your-posts-in-readme/</guid>
             <pubDate>Tue, 18 Aug 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 README.md 就可以在 GitHub 个人主页上看到其内容。比起单纯的 Pin 仓库和 Gist 在个人主页，我觉得这让 GitHub 主页变得多元化，查看官方 <a href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">文档</a> 了解更多。不过，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也是满足下自己的虚荣心，能力的提升微乎其微。</p>
+            <content:encoded><![CDATA[<p>今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 README.md 就可以在 GitHub 个人主页上看到其内容。比起单纯的 Pin 仓库和 Gist 在个人主页，我觉得这让 GitHub 主页变得多元化，查看官方 <a href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">文档</a> 了解更多。不过，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也只是满足下自己的虚荣心，能力的提升微乎其微。</p>
 <p>这段时间看了很多个人介绍仓库，发现我想的有点多：GitHub 是什么? <del>全球最大的同性交友网站啊！</del> 又不是世纪佳缘，写得漂亮能找着对象吗?开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 README.md 就达标辣！（靠 GitHub 找工作的话那当我没说</p>
-<p>单单写 READMD.md 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格而制作同步最近博文功能的经过吧，毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。</p>
+<p>单单写 READMD.md 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作 README.md 同步最近博文功能的经过吧，毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。</p>
 <blockquote>
 <p>写着写着就变成了幼儿读物的感觉，请不要笑话我了，毕竟我是个萌新，阿巴阿巴 🤪</p>
 </blockquote>
 <h2 id="从文章中学习">从文章中学习</h2>
 <p>一切是从这里开始的：《<a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">Building a self-updating profile README for GitHub - Simon Willison’s Weblog</a>》，这位作者的 README 仓库 <a href="https://github.com/simonw/simonw">@simonw/simonw</a> 显示了三栏自动更新的内容，包括 GitHub 上的打包发布、博客文章和另外一个站点 T(hings) I L(earned) 的条目。这三栏分别对应了 Python 获取最新内容的三种方式：</p>
 <ul>
-<li>GitHub GraphQL API -&gt; python_graphql_client -&gt; Latest Release</li>
-<li>RSS Atom feed -&gt; feedparser -&gt; Latest posts</li>
-<li>Datasette API -&gt; SQL query -&gt; Latest entries</li>
+<li><code>GitHub GraphQL API -&gt; python_graphql_client -&gt; Latest Release</code></li>
+<li><code>RSS Atom feed -&gt; feedparser -&gt; Latest posts</code></li>
+<li><code>Datasette API -&gt; SQL query -&gt; Latest entries</code></li>
 </ul>
 <p>第一个和第三个我都不了解，只有 RSS 的格式稍微懂一点，巧的是这正好能用来获取博客最新的文章。动手开始！</p>
 <h2 id="面向谷歌编程">面向谷歌编程</h2>
@@ -93,7 +93,9 @@ def fetch_blog_entries():
         for entry in entries
     ]</code></pre>
 <p>看起来有点麻烦了，此时应该提取出用到的 Python 库，实际调试的时候只要尝试单独运行这些代码块会得到未定义之类的错误，然后就能定位到缺失的库。在 Python 文件开头使用 <code>import</code> 导入即可。</p>
-<p></detail><br /></p>
+</details><br />
+
+
 <p>下面是正式的面向谷歌编程，也就是学习用轮子（作者用到的那些库 pathlib、re、feedparser 等）：pathlib 库看起来没有需要谷歌的，一个能获取文件路径的库。re 库用到了正则表达式，结合作者在自己的仓库第一版 README.md 中写的 <code>&lt;!-- blog starts --&gt;</code> <code>&lt;!-- blog ends --&gt;</code> 这样的标记，不难理解是将结果通过正则匹配找到位置，然后进行替换的。feedparser 库从一个 Atom 链接获取了包含文章信息的数组，是数据获取的源头，于是从这开始。</p>
 <h3 id="feedparser-解析-rss">feedparser 解析 RSS</h3>
 <p>《<a href="https://vimsky.com/article/4399.html">在 Python 中使用 Feedparser 解析 RSS - 纯净天空</a>》一篇足矣，或者看英文版《<a href="https://www.pythonforbeginners.com/feedparser/using-feedparser-in-python">Using Feedparser in Python - PythonForBeginners</a>》。当然，RSS 文件也要有一丢丢了解。XML 格式由 HTML 触类旁通不难理解，可以试着戳 <a href="https://blog.monsterx.cn/feed.xml">这里</a> 看看本站的 RSS 源格式。在每个 <code>&lt;item&gt;</code> 中包含了 <code>&lt;title&gt;</code> <code>&lt;link&gt;</code> <code>&lt;pubDate&gt;</code>，用来输出到 README.md 够了。</p>
