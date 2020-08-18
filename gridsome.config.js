@@ -103,8 +103,7 @@ module.exports = {
       autolinkHeadings: true,
       autolinkClassName: 'icon icon-link',
       plugins: [
-        'gridsome-plugin-remark-prismjs',
-        { showLineNumbers: true },
+        ['@gridsome/remark-prismjs', { showLineNumbers: true }],
         'gridsome-plugin-remark-container',
         'gridsome-remark-katex',
         'gridsome-remark-figure-caption',
