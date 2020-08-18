@@ -22,7 +22,7 @@ Rclone 用于网盘挂载，从 [官方](https://rclone.org/downloads/) 下载�
 
 Rclone 挂载 OneDrive 时需要在运行图形界面的系统上完成。Linux 服务器由于一般不带图形界面，所以需要配合本地机器：在 Windows 中下载 Rclone 相应版本文件，Power Shell 进入解压后的文件夹中键入下面命令后复制 `Paste the following into your remote machine --->` 和 `<---End paste` 之间的 `SECRET_TOKEN` 到远程服务器命令行中。
 
-```shell
+```powershell
 .\rclone authorize "onedrive" "Client_ID" "Client_secret"
 ```
 
@@ -90,7 +90,7 @@ apt install -y nginx
 <details><summary><strong>Nginx 配置文件</strong></summary><br />
 
 
-```conf
+```nginx
 server {
   listen [::]:80;                       # 若支持 IPv6 则启用
   listen 80;

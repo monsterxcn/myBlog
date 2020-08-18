@@ -45,7 +45,7 @@ pip install requests lxml
 
 在 Linux 下试运行的时候发现打卡段没问题，但是后面邮件发送这段报错：
 
-```shell
+```powershell
 Traceback (most recent call last):
   File "checkin.py", line 151, in <module>
     smtpObj.connect(mail_host, 25)    # 25 为 SMTP 端口号
@@ -63,13 +63,13 @@ TimeoutError: [Errno 110] Connection timed out
 搜索了一圈发现 Linux 下 SMTP 发信加密程度要求更高，所以得加密发信，将原来的发信替换为 SSL 加密发信：
 
 ```python
-        smtpObj = smtplib.SMTP_SSL() 
-        smtpObj.connect(mail_host, 465)                        # 一般加密发信 smtp 端口号为 465
+smtpObj = smtplib.SMTP_SSL() 
+smtpObj.connect(mail_host, 465)                        # 一般加密发信 smtp 端口号为 465
 ```
 
 在 3.7 版本以上的 Python 中需要此脚本时必须使用 `smtpObj = smtplib.SMTP_SSL(mail_host)` ，否则邮件发信会报错 ValueError 如下：
 
-```shell
+```powershell
 Traceback (most recent call last):
   File "/home/Project/Python/HEUCheckin-2018041015.py", line 170, in <module>
     smtpObj.connect(mail_host, 465)       # 加密时 SMTP 端口号为 465
@@ -92,7 +92,7 @@ ValueError: server_hostname cannot be an empty string or start with a leading do
 <details><summary><strong>Python Traceback</strong></summary><br />
 
 
-```shell
+```powershell
 Traceback (most recent call last):
   File "D:\Python\Python38-64\lib\site-packages\urllib3\connectionpool.py", line 665, in urlopen
     httplib_response = self._make_request(
@@ -156,15 +156,23 @@ requests.exceptions.ProxyError: HTTPConnectionPool(host='127.0.0.1', port=7890):
 
 ```json
 # 成功时
-{"errno":0,
-"ecode":"SUCCEED",
-"entities":[{"stepId":2,"name":"办结","code":"autoStep1","status":0,"type":"Auto","flowStepId":0,"executorSelection":0,"timestamp":0,"posts":[],"users":[],"parallel":false,"hasInstantNotification":false,"hasCarbonCopy":false,"entryId":2797847,"entryStatus":0,"entryRelease":false}]}
+{
+  "errno":0,
+  "ecode":"SUCCEED",
+  "entities":[{
+    "stepId":2,
+    "name":"办结",
+    "code":"autoStep1","status":0,"type":"Auto","flowStepId":0,"executorSelection":0,"timestamp":0,"posts":[],"users":[],"parallel":false,"hasInstantNotification":false,"hasCarbonCopy":false,"entryId":2797847,"entryStatus":0,"entryRelease":false
+  }]
+}
 
 # 失败时
-{"errno":22001,
-"ecode":"EVENT_CANCELLED",
-"error":"发生异常\n\njava.lang.reflect.InvocationTargetException\n\tat sun.reflect.GeneratedMethodAccessor457.invoke(Unknown Source)\n\t...\n",
-"entities":[]}
+{
+  "errno":22001,
+  "ecode":"EVENT_CANCELLED",
+  "error":"发生异常\n\njava.lang.reflect.InvocationTargetException\n\tat sun.reflect.GeneratedMethodAccessor457.invoke(Unknown Source)\n\t...\n",
+  "entities":[]
+}
 ```
 
 可以看到返回的字段中 `errno` 为 `0` 代表成功提交，剩下的 `ecode` 显示 `str` 型的状态，`error` 只有出现错误时才有，包含了所有的错误信息，这个错误是在学校服务器上报的，不是本地脚本的问题。`entities` 包含成功提交后的一些数据。那么这就用 `errno` 来判定远程提交后返回是否成功。先使用 `json.loads()` 将其转换为 Json 格式，注意在返回的数据中 `errno` 字段为 `int` 类型，`entities` 字段为 `list` 类型，发信的 `msg` 要用 `str()` 转换这两个数据。
