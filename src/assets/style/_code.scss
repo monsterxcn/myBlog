@@ -6,8 +6,6 @@ pre {
   font-size: 1em;
   background-color: var(--bg-code);
   margin: 1em calc(0em - var(--space));
-  // border: 1px solid var(--border-color);
-  // border-radius: var(--radius);
 
   code {
     padding: 0em;
@@ -15,18 +13,11 @@ pre {
   }
 }
 
-code {
-  background-color: var(--bg-code);
-  // border: 1px solid var(--border-color);
-	font-family: var(--monospace-font-family);
-  font-size: 0.9em;
-  padding: 0.2em 0.5em;
-}
-
-/* PrismJS 1.21.0
-https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+arduino+bash+c+cpp+diff+docker+ini+latex+markdown+nginx+powershell+python+yaml&plugins=line-numbers+toolbar+copy-to-clipboard */
 /**
+ * PrismJS 1.21.0
+ * https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+arduino+bash+c+cpp+diff+docker+ini+latex+markdown+nginx+powershell+python+yaml&plugins=line-numbers
  * @author Lea Verou
+ * @modified spencerwooo monsterxcn
  */
 
 code[class*="language-"],
@@ -53,16 +44,6 @@ pre[class*="language-"] {
 	hyphens: none;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-	background: #b3d4fc;
-}
-
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
-	background: #b3d4fc;
-}
-
 @media print {
 	code[class*="language-"],
 	pre[class*="language-"] {
@@ -77,10 +58,14 @@ pre[class*='language-'] {
 }
 
 /* Inline code */
+:not(pre) > code[class*="language-"],
 :not(pre) > code {
   color: var(--text-code);
+  background-color: transparent;
   white-space: normal;
-  background-color: var(--bg-content-color);
+	font-family: var(--monospace-font-family);
+  font-size: 0.9em;
+  padding: 0.2em 0.5em;
 
   &::before {
     content: '`';
