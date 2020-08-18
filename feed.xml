@@ -4,10 +4,352 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Tue, 18 Aug 2020 04:11:10 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 18 Aug 2020 16:05:04 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[GitHub README.md 显示博文并自动更新]]></title>
+            <link>https://blog.monsterx.cn/code/update-your-posts-in-readme/</link>
+            <guid>https://blog.monsterx.cn/code/update-your-posts-in-readme/</guid>
+            <pubDate>Tue, 18 Aug 2020 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 README.md 就可以在 GitHub 个人主页上看到其内容。比起单纯的 Pin 仓库和 Gist 在个人主页，我觉得这让 GitHub 主页变得多元化，查看官方 <a href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">文档</a> 了解更多。不过，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也是满足下自己的虚荣心，能力的提升微乎其微。</p>
+<p>这段时间看了很多个人介绍仓库，发现我想的有点多：GitHub 是什么? <del>全球最大的同性交友网站啊！</del> 又不是世纪佳缘，写得漂亮能找着对象吗?开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 README.md 就达标辣！（靠 GitHub 找工作的话那当我没说</p>
+<p>单单写 READMD.md 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格而制作同步最近博文功能的经过吧，毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。</p>
+<blockquote>
+<p>写着写着就变成了幼儿读物的感觉，请不要笑话我了，毕竟我是个萌新，阿巴阿巴 🤪</p>
+</blockquote>
+<h2 id="从文章中学习">从文章中学习</h2>
+<p>一切是从这里开始的：《<a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">Building a self-updating profile README for GitHub - Simon Willison’s Weblog</a>》，这位作者的 README 仓库 <a href="https://github.com/simonw/simonw">@simonw/simonw</a> 显示了三栏自动更新的内容，包括 GitHub 上的打包发布、博客文章和另外一个站点 T(hings) I L(earned) 的条目。这三栏分别对应了 Python 获取最新内容的三种方式：</p>
+<ul>
+<li>GitHub GraphQL API -&gt; python_graphql_client -&gt; Latest Release</li>
+<li>RSS Atom feed -&gt; feedparser -&gt; Latest posts</li>
+<li>Datasette API -&gt; SQL query -&gt; Latest entries</li>
+</ul>
+<p>第一个和第三个我都不了解，只有 RSS 的格式稍微懂一点，巧的是这正好能用来获取博客最新的文章。动手开始！</p>
+<h2 id="面向谷歌编程">面向谷歌编程</h2>
+<p>查看仓库现成的 build_readme.py 文件，一眼扫下来 218 行，有点晕。一边看下来 GitHub GraphQL API 和 Datasette API 相关的占了较大篇幅，这说明通过 RSS 获取博客内容的代码较少。这时候我选择找到第一个版本的文件，我觉得最初的版本大概率应该是最简陋的，能让我最快的搞清楚代码的大体结构。第一个版本的 <code>.py</code> <a href="https://github.com/simonw/simonw/commit/d2b5e8ba30b0d2b1a867e0bfafa1215a2b5ef287#diff-b8502c56279bd4ac52ccb69f70e81a13">文件</a> 139 行，就从这里开始吧。</p>
+<details><summary><strong>从零开始学 Copy</strong></summary><br />
+
+
+<p>从 107 行 <code>if __name__ == &quot;__main__&quot;</code> 处开始读，截取在下面第 1 行。这相当于 C 语言的 <code>int main()</code>，以前尝试白嫖腾讯云无服务器环境的时候，环境设置让我知道了这点。</p>
+<pre><code class="language-python">if __name__ == &quot;__main__&quot;:
+    readme = root / &quot;README.md&quot;
+    releases = fetch_releases(TOKEN)
+    releases.sort(key=lambda r: r[&quot;published_at&quot;], reverse=True)
+    md = &quot;\n&quot;.join(
+        [
+            &quot;* [{repo} {release}]({url}) - {published_at}&quot;.format(**release)
+            for release in releases[:10]
+        ]
+    )
+    readme_contents = readme.open().read()
+    rewritten = replace_chunk(readme_contents, &quot;recent_releases&quot;, md)
+
+    tils = fetch_tils()
+    tils_md = &quot;\n&quot;.join(
+        [
+            &quot;* [{title}]({url}) - {created_at}&quot;.format(
+                title=til[&quot;title&quot;],
+                url=til[&quot;url&quot;],
+                created_at=til[&quot;created_utc&quot;].split(&quot;T&quot;)[0],
+            )
+            for til in tils
+        ]
+    )
+    rewritten = replace_chunk(rewritten, &quot;tils&quot;, tils_md)
+
+    entries = fetch_blog_entries()[:10]
+    entries_md = &quot;\n&quot;.join(
+        [&quot;* [{title}]({url}) - {published}&quot;.format(**entry) for entry in entries]
+    )
+    rewritten = replace_chunk(rewritten, &quot;blog&quot;, entries_md)
+
+    readme.open(&quot;w&quot;).write(rewritten)</code></pre>
+<p><code>release</code> <code>til</code> 命名的很显然是获取 GitHub 和 TIL 最新内容的，所以获取博客更新的主要代码就筛选出来了：L1-2 L27-33。L2 用到的变量 <code>root</code> 并没有出现定义，接下来找他的定义和用到的函数 <code>fetch_blog_entries()</code> <code>replace_chunk()</code>。</p>
+<pre><code class="language-python">root = pathlib.Path(__file__).parent.resolve()    # 库 pathlib
+
+## ...
+
+def replace_chunk(content, marker, chunk):
+    r = re.compile(                               # 库 re
+        r&quot;&lt;!\-\- {} starts \-\-&gt;.*&lt;!\-\- {} ends \-\-&gt;&quot;.format(marker, marker),
+        re.DOTALL,
+    )
+    chunk = &quot;&lt;!-- {} starts --&gt;\n{}\n&lt;!-- {} ends --&gt;&quot;.format(marker, chunk, marker)
+    return r.sub(chunk, content)
+
+## ...
+
+def fetch_blog_entries():
+    # 库 feedparser
+    entries = feedparser.parse(&quot;https://simonwillison.net/atom/entries/&quot;)[&quot;entries&quot;]
+    return [
+        {
+            &quot;title&quot;: entry[&quot;title&quot;],
+            &quot;url&quot;: entry[&quot;link&quot;].split(&quot;#&quot;)[0],
+            &quot;published&quot;: entry[&quot;published&quot;].split(&quot;T&quot;)[0],
+        }
+        for entry in entries
+    ]</code></pre>
+<p>看起来有点麻烦了，此时应该提取出用到的 Python 库，实际调试的时候只要尝试单独运行这些代码块会得到未定义之类的错误，然后就能定位到缺失的库。在 Python 文件开头使用 <code>import</code> 导入即可。</p>
+<p></detail><br /></p>
+<p>下面是正式的面向谷歌编程，也就是学习用轮子（作者用到的那些库 pathlib、re、feedparser 等）：pathlib 库看起来没有需要谷歌的，一个能获取文件路径的库。re 库用到了正则表达式，结合作者在自己的仓库第一版 README.md 中写的 <code>&lt;!-- blog starts --&gt;</code> <code>&lt;!-- blog ends --&gt;</code> 这样的标记，不难理解是将结果通过正则匹配找到位置，然后进行替换的。feedparser 库从一个 Atom 链接获取了包含文章信息的数组，是数据获取的源头，于是从这开始。</p>
+<h3 id="feedparser-解析-rss">feedparser 解析 RSS</h3>
+<p>《<a href="https://vimsky.com/article/4399.html">在 Python 中使用 Feedparser 解析 RSS - 纯净天空</a>》一篇足矣，或者看英文版《<a href="https://www.pythonforbeginners.com/feedparser/using-feedparser-in-python">Using Feedparser in Python - PythonForBeginners</a>》。当然，RSS 文件也要有一丢丢了解。XML 格式由 HTML 触类旁通不难理解，可以试着戳 <a href="https://blog.monsterx.cn/feed.xml">这里</a> 看看本站的 RSS 源格式。在每个 <code>&lt;item&gt;</code> 中包含了 <code>&lt;title&gt;</code> <code>&lt;link&gt;</code> <code>&lt;pubDate&gt;</code>，用来输出到 README.md 够了。</p>
+<p>写个示例，那篇文章用的是 dic[&#39;feed&#39;] 这种格式，我在本地用起来和 dic.feed 是一样的，就用后面这种短一点的。</p>
+<pre><code class="language-python">import feedparser
+
+# 解析本站的 RSS 源
+dic = feedparser.parse(&#39;https://blog.monsterx.cn/feed.xml&#39;)
+channel = dic.feed                 # 获取 &lt;channel&gt; 数据
+items = dic.entries                # 获取 &lt;item&gt; 数据
+item = items[0]                    # 获取第一个 &lt;item&gt; 数据
+sitetitle = channel.title          # 获取 &lt;channel&gt;&lt;title&gt; 数据
+sitelink = channel.link            # 获取 &lt;channel&gt;&lt;link&gt; 数据
+posttitle = items[0].title         # 获取 &lt;item&gt;&lt;title&gt; 数据
+postlink = items[0].link           # 获取 &lt;item&gt;&lt;link&gt; 数据
+postdate = items[0].published      # 获取 &lt;item&gt;&lt;pubDate&gt; 数据
+
+print(sitetitle)</code></pre>
+<p>RSS 数据较多时 print(dic) 出来可能让人头皮发麻，自行体会吧。下面给出更直观的对比：</p>
+<pre><code class="language-html">&lt;rss xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:content=&quot;http://purl.org/rss/1.0/modules/content/&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot; version=&quot;2.0&quot;&gt;
+    &lt;channel&gt;
+        &lt;title&gt;Monstx&#39;s Blog&lt;/title&gt;
+        &lt;link&gt;https://blog.monsterx.cn/&lt;/link&gt;
+        &lt;description&gt;Monsterx CN - 学生 / 前端 / 电气&lt;/description&gt;
+        &lt;lastBuildDate&gt;Tue, 18 Aug 2020 04:11:01 GMT&lt;/lastBuildDate&gt;
+        &lt;docs&gt;https://validator.w3.org/feed/docs/rss2.html&lt;/docs&gt;
+        &lt;generator&gt;Gridsome Feed Plugin&lt;/generator&gt;
+        &lt;atom:link href=&quot;https://blog.monsterx.cn/feed.xml&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot;/&gt;
+        &lt;item&gt;
+            &lt;title&gt;
+                &lt;![CDATA[ New Start ]]&gt;
+            &lt;/title&gt;
+            &lt;link&gt;https://blog.monsterx.cn/life/new-start-with-gridsome/&lt;/link&gt;
+            &lt;guid&gt;https://blog.monsterx.cn/life/new-start-with-gridsome/&lt;/guid&gt;
+            &lt;pubDate&gt;Sat, 15 Aug 2020 00:00:00 GMT&lt;/pubDate&gt;
+            &lt;content:encoded&gt;
+                &lt;![CDATA[ &lt;p&gt;在这普通的一天，我穿着普通的鞋...&lt;/p&gt; ]]&gt;
+            &lt;/content:encoded&gt;
+        &lt;/item&gt;
+        &lt;item&gt;
+            ....
+        &lt;/item&gt;
+        &lt;item&gt;
+            ....
+        &lt;/item&gt;
+    &lt;/channel&gt;
+&lt;/rss&gt;</code></pre>
+<p>解析后：</p>
+<details><summary><strong>Freeparser JSON 解析结果</strong></summary><br />
+
+
+<pre><code class="language-json">{
+  &#39;feed&#39;: {
+    &#39;title&#39;: &quot;Monstx&#39;s Blog&quot;, 
+    &#39;title_detail&#39;: {
+      &#39;type&#39;: &#39;text/plain&#39;, 
+      &#39;language&#39;: None, 
+      &#39;base&#39;: &#39;https://blog.monsterx.cn/feed.xml&#39;, 
+      &#39;value&#39;: &quot;Monstx&#39;s Blog&quot;
+    }, 
+    &#39;links&#39;: [
+      {
+        &#39;rel&#39;: &#39;alternate&#39;, 
+        &#39;type&#39;: &#39;text/html&#39;, 
+        &#39;href&#39;: &#39;https://blog.monsterx.cn/&#39;
+      }, {
+        &#39;href&#39;: &#39;https://blog.monsterx.cn/feed.xml&#39;, 
+        &#39;rel&#39;: &#39;self&#39;, 
+        &#39;type&#39;: &#39;application/rss+xml&#39;
+      }
+    ], 
+    &#39;link&#39;: &#39;https://blog.monsterx.cn/&#39;, 
+    &#39;subtitle&#39;: &#39;Monsterx CN - 学生 / 前端 / 电气&#39;, 
+    &#39;subtitle_detail&#39;: {
+      &#39;type&#39;: &#39;text/html&#39;, 
+      &#39;language&#39;: None, 
+      &#39;base&#39;: &#39;https://blog.monsterx.cn/feed.xml&#39;, 
+      &#39;value&#39;: &#39;Monsterx CN - 学生 / 前端 / 电气&#39;
+    }, 
+    &#39;updated&#39;: &#39;Tue, 18 Aug 2020 04:11:01 GMT&#39;, 
+    &#39;updated_parsed&#39;: time.struct_time(tm_year=2020, tm_mon=8, tm_mday=18, tm_hour=4, tm_min=11, tm_sec=1, tm_wday=1, tm_yday=231, tm_isdst=0), 
+    &#39;docs&#39;: &#39;https://validator.w3.org/feed/docs/rss2.html&#39;, 
+    &#39;generator_detail&#39;: {&#39;name&#39;: &#39;Gridsome Feed Plugin&#39;}, 
+    &#39;generator&#39;: &#39;Gridsome Feed Plugin&#39;
+  }, 
+  &#39;entries&#39;: [
+    {
+      &#39;title&#39;: &#39;New Start&#39;, 
+      &#39;title_detail&#39;: {
+        &#39;type&#39;: &#39;text/plain&#39;, 
+        &#39;language&#39;: None, 
+        &#39;base&#39;: &#39;https://blog.monsterx.cn/feed.xml&#39;, 
+        &#39;value&#39;: &#39;New Start&#39;
+      }, 
+      &#39;links&#39;: [
+        {
+          &#39;rel&#39;: &#39;alternate&#39;, 
+          &#39;type&#39;: &#39;text/html&#39;, 
+          &#39;href&#39;: &#39;https://blog.monsterx.cn/life/new-start-with-gridsome/&#39;
+        }
+      ], 
+      &#39;link&#39;: &#39;https://blog.monsterx.cn/life/new-start-with-gridsome/&#39;, 
+      &#39;id&#39;: &#39;https://blog.monsterx.cn/life/new-start-with-gridsome/&#39;, 
+      &#39;guidislink&#39;: False, 
+      &#39;published&#39;: &#39;Sat, 15 Aug 2020 00:00:00 GMT&#39;, 
+      &#39;published_parsed&#39;: time.struct_time(tm_year=2020, tm_mon=8, tm_mday=15, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=5, tm_yday=228, tm_isdst=0), 
+      &#39;content&#39;: [
+        {
+          &#39;type&#39;: &#39;text/html&#39;, 
+          &#39;language&#39;: None, 
+          &#39;base&#39;: &#39;https://blog.monsterx.cn/feed.xml&#39;, 
+          &#39;value&#39;: &#39;&lt;p&gt;在这普通的一天，我穿着普通的鞋...&lt;/p&gt;&#39;
+        }
+      ], 
+      &#39;summary&#39;: &#39;&lt;p&gt;在这普通的一天，我穿着普通的鞋...&lt;/p&gt;&#39;
+    }, {
+      ...
+    }
+  ], 
+  &#39;bozo&#39;: 0, 
+  &#39;headers&#39;: {
+    &#39;Server&#39;: &#39;Tengine&#39;, 
+    &#39;Content-Type&#39;: &#39;application/xml&#39;, 
+    &#39;Transfer-Encoding&#39;: &#39;chunked&#39;, 
+    &#39;Connection&#39;: &#39;close&#39;, 
+    &#39;Vary&#39;: &#39;Accept-Encoding&#39;, 
+    &#39;Strict-Transport-Security&#39;: &#39;max-age=31536000&#39;, 
+    &#39;Date&#39;: &#39;Tue, 18 Aug 2020 13:37:32 GMT&#39;, 
+    &#39;x-oss-request-id&#39;: &#39;5F3BD99C7DD3BB333136465D&#39;, 
+    &#39;x-oss-cdn-auth&#39;: &#39;success&#39;, 
+    &#39;ETag&#39;: &#39;W/&quot;7885150FF626A52F9C8E511300EDC191&quot;&#39;, 
+    &#39;Last-Modified&#39;: &#39;Tue, 18 Aug 2020 04:11:35 GMT&#39;, 
+    &#39;x-oss-object-type&#39;: &#39;Normal&#39;, 
+    &#39;x-oss-hash-crc64ecma&#39;: &#39;904326687370716414&#39;, 
+    &#39;x-oss-storage-class&#39;: &#39;Standard&#39;, 
+    &#39;x-oss-server-side-encryption&#39;: &#39;AES256&#39;, 
+    &#39;Content-MD5&#39;: &#39;eIUVD/YmpS+cjlETAO3BkQ==&#39;, 
+    &#39;x-oss-server-time&#39;: &#39;40&#39;, 
+    &#39;Via&#39;: &#39;cache36.l2cm9-5[104,0], kunlun8.cn2479[127,0]&#39;, 
+    &#39;Timing-Allow-Origin&#39;: &#39;*&#39;, 
+    &#39;EagleId&#39;: &#39;249c511c15977578523801838e&#39;, 
+    &#39;Content-Encoding&#39;: &#39;gzip&#39;
+  }, 
+  &#39;etag&#39;: &#39;W/&quot;7885150FF626A52F9C8E511300EDC191&quot;&#39;, 
+  &#39;updated&#39;: &#39;Tue, 18 Aug 2020 04:11:35 GMT&#39;, 
+  &#39;updated_parsed&#39;: time.struct_time(tm_year=2020, tm_mon=8, tm_mday=18, tm_hour=4, tm_min=11, tm_sec=35, tm_wday=1, tm_yday=231, tm_isdst=0), 
+  &#39;href&#39;: &#39;https://blog.monsterx.cn/feed.xml&#39;, 
+  &#39;status&#39;: 200, 
+  &#39;encoding&#39;: &#39;utf-8&#39;, 
+  &#39;version&#39;: &#39;rss20&#39;, 
+  &#39;namespaces&#39;: {
+    &#39;dc&#39;: &#39;http://purl.org/dc/elements/1.1/&#39;, 
+    &#39;content&#39;: &#39;http://purl.org/rss/1.0/modules/content/&#39;, 
+    &#39;&#39;: &#39;http://www.w3.org/2005/Atom&#39;
+  }
+}</code></pre>
+</details><br />
+
+
+<p>可以看到解析出来的内容是 JSON 格式的，而且结果不仅仅是 XML 文件可见的内容，HTTP Header 信息也能完整解析。值得注意的地方： <code>&lt;item&gt;&lt;pubDate&gt;</code> 并不是通过形如 <code>items[0].pubDate</code> 获取的，而是 <code>items[0].published</code> 。根据这个结构更加灵活的运用 feedparser 吧！实现 README 自动更新最近博文并不需要这些，我给的示例足够用了。</p>
+<h3 id="re-正则表达式替换">re 正则表达式替换</h3>
+<p>学 re 库从 Python 官方文档开始：<a href="https://docs.python.org/zh-cn/3/library/re.html">re --- 正则表达式操作 - Python 3 中文文档</a>。不过最重要的还是学会写正则表达式，多写一些多搜一搜，时间久了自然就会了，我是这么想的。这里给出用于匹配 <strong>指定字符串之间所有内容且不包含指定字符串的</strong> 正则表达式。</p>
+<ul>
+<li><code>(?&lt;=MARK)</code> 指定以 <code>MARK</code> 开头的：遇到 <code>MARK</code> 后开始匹配</li>
+<li><code>(?=MARK)</code> 指定 <code>MARK</code> 结尾的：遇到 <code>MARK</code> 前停止匹配</li>
+<li><code>.</code> ：re 库中 <code>.</code> 在默认模式匹配除了换行的任意字符。如果指定了标签 <code>DOTALL</code> ，它将匹配包括换行符的任意字符</li>
+<li><code>*</code> ：对它前面的正则式匹配 0 到任意次重复，尽可能多地匹配</li>
+</ul>
+<pre><code class="language-python"># 拼接正则表达式并指定标签 DOTALL
+# (?&lt;=(STARTMARK)).*(?=(ENDMARK))
+
+start = &quot;&lt;!-- posts start --&gt;&quot;
+end = &quot;&lt;!-- posts end --&gt;&quot;
+pattern = re.compile(
+    r&quot;(?&lt;=(&quot; + start + r&quot;)).*(?=(&quot; + end + r&quot;))&quot;,
+    re.DOTALL,
+)</code></pre>
+<p><code>re.compile()</code> 将正则表达式的样式编译为一个正则表达式对象（正则对象），如果需要多次使用这个正则表达式的话，使用 <code>re.compile()</code> 和保存这个正则对象以便复用，可以让程序更加高效。样例：<code>re.compile(pattern, flags=0)</code></p>
+<blockquote>
+<p><code>re.sub(pattern, repl, string, count=0, flags=0)</code> <br />
+返回通过使用 <code>repl</code> 替换在 <code>string</code> 最左边非重叠出现的 <code>pattern</code> 而获得的字符串。如果样式没有找到，则不加改变地返回 <code>string</code>。<code>repl</code> 可以是字符串或函数；如为字符串，则其中任何反斜杠转义序列都会被处理。也就是说，<code>\n</code> 会被转换为一个换行符，<code>\r</code> 会被转换为一个回车附，依此类推。未知的 ASCII 字符转义序列保留在未来使用，会被当作错误来处理。其他未知转义序列例如 <code>\&amp;</code> 会保持原样。 向后引用像是 <code>\6</code> 会用样式中第 6 组所匹配到的子字符串来替换。 <br /> 
+如果 <code>repl</code> 是一个函数，那它会对每个非重复的 <code>pattern</code> 的情况调用。这个函数只能有一个 <em>匹配对象</em> 参数，并返回一个替换后的字符串。 <br />
+样式可以是一个字符串或者一个 <em>样式对象</em> 。 <br />
+可选参数 <code>count</code> 是要替换的最大次数；<code>count</code> 必须是非负整数。如果忽略这个参数，或者设置为 0，所有的匹配都会被替换。空匹配只在不相临连续的情况被更替，所以 <code>sub(&#39;x*&#39;, &#39;-&#39;, &#39;abxd&#39;)</code> 返回 <code>&#39;-a-b--d-&#39;</code> 。 <br />
+在字符串类型的 <code>repl</code> 参数里，如上所述的转义和向后引用中，<code>\g&lt;name&gt;</code> 会使用命名组合 <code>name</code>，（在 <code>(?P&lt;name&gt;…)</code> 语法中定义） <code>\g&lt;number&gt;</code> 会使用数字组；<code>\g&lt;2&gt;</code> 就是 <code>\2</code>，但它避免了二义性，如 <code>\g&lt;2&gt;0</code>。 <code>\20</code> 就会被解释为组 <code>20</code>，而不是组 <code>2</code> 后面跟随一个字符 <code>&#39;0&#39;</code>。向后引用 <code>\g&lt;0&gt;</code> 把 <code>pattern</code> 作为一整个组进行引用。</p>
+</blockquote>
+<p>文档太专业了，总之 <code>re.sub(pattern, repl, string)</code> 可以用 <code>repl</code> 替换掉 <code>string</code> 内所有与 <code>pattern</code> 匹配的内容，或者使用编译后的样式 <code>pattern.sub(repl, string)</code>。</p>
+<p>写个示例：</p>
+<pre><code class="language-python">import re
+
+start = &quot;STARTMARK&quot;
+end = &quot;ENDMARK&quot;
+repl = &quot;text used to replace&quot;
+contents = &quot;&quot;&quot;text wait STARTMARK ing for being ENDMARK replaced&quot;&quot;&quot;
+
+pattern = re.compile(
+  r&quot;(?&lt;=(&quot; + start + r&quot;)).*(?=(&quot; + end + r&quot;))&quot;,
+  re.DOTALL,
+)
+pattern.sub(repl, contents)
+
+print(contents)</code></pre>
+<p>最终输出 <code>contents</code> 为 <code>text wait STARTMARKtext used to replaceENDMARK replaced</code>。</p>
+<h3 id="python-文件读写">Python 文件读写</h3>
+<p>懒得深究了，因为从之前作者的代码里找到了关于读写的:</p>
+<pre><code class="language-python"># 当前文件的文件夹路径
+thisdir = pathlib.Path(__file__).parent.resolve()
+# .py 与 README.md 同级时获取 README 完整路径
+thisfile = thisdir / &quot;README.md&quot;
+# 取得 README 内容
+contents = thisfile.open().read()
+# 结合之前的 re 库示例实现替换
+readme.open(&quot;w&quot;).write(pattern.sub(repl, contents))</code></pre>
+<p>C 语言文件读写 <code>fopen()</code> 后还有 <code>fclose()</code> 的，作者的代码里没有找到 close 之类的。应该是程序结束默认关闭了吧，急于实现功能，此处没有留意。</p>
+<h2 id="整理整套代码">整理整套代码</h2>
+<p>以上所有学习途径自以为都交代清楚了，最后整合时用了 <code>for</code> 循环和一个 <code>[start:end:step]</code> 的分割来获取最近的固定篇数，完整实现这个「从 RSS 获取最近更新并以 Markdown 格式写入 README.md」的功能需要的代码篇幅很短，Python 真有趣！</p>
+<pre><code class="language-python">import feedparser
+import pathlib
+import re
+
+rssUrl = &quot;https://blog.monsterx.cn/feed.xml&quot;
+startMark = r&quot;&lt;!-- posts start --&gt;&quot;
+endMark = r&quot;&lt;!-- posts end --&gt;&quot;
+NUM = 5
+
+def update_readme(start, end, repl):
+    # Splicing complete regular expressions
+    pattern = re.compile(
+        r&quot;(?&lt;=(&quot; + start + r&quot;)).*(?=(&quot; + end + r&quot;))&quot;,
+        re.DOTALL,
+    )
+    # Get contents and rewrite README.md
+    readme = pathlib.Path(__file__).parent.resolve() / &quot;README.md&quot;
+    readme_contents = readme.open().read()
+    readme.open(&quot;w&quot;).write(pattern.sub(&#39;\n&#39; + repl + &#39;\n&#39;, readme_contents))
+
+def fetch_posts(url):
+    blog = feedparser.parse(url)
+    posts = blog[&#39;entries&#39;]
+    markdown = &quot;\n&quot;
+    # Fetch only 5 latest posts&#39; info
+    # My post.published return &quot;Tue, 30 Jun 2020 00:00:00 GMT&quot;
+    # So I just intercept the middle part of the character
+    for post in posts[:NUM]:
+        # markdown += &quot; ※ 《[&quot; + post.title + &quot;](&quot; + post.link + &quot;)》&quot; + post.published + &quot;&lt;br /&gt;\n&quot;
+        markdown += &quot; ※ 《[&quot; + post.title + &quot;](&quot; + post.link + &quot;)》&quot; + post.published[5:16] + &quot;&lt;br /&gt;\n&quot;
+    markdown += &quot;\n\n [Read more..](&quot; + blog[&#39;feed&#39;][&#39;link&#39;] + &quot;)\n&quot;
+    return markdown
+
+if __name__ == &quot;__main__&quot;:
+    postsNew = fetch_posts(rssUrl)
+    update_readme(startMark, endMark, postsNew)</code></pre>
+<p>按需要小小修改一下，执行 <code>python this.py</code> 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置一个自己点 Star 触发和定时执行即可，给出我的工作流配置 <a href="https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml">new.yml</a> 。是和之前打卡项目相同的原理。看到这里的你我猜也有兴趣读读我之前的文章 🤣</p>
+<p>另外我的 README.md 使用了 <a href="https://github.com/anuraghazra/github-readme-stats">@anuraghazra/github-readme-stats</a> 展示 GitHub 账号的统计信息，使用了 <a href="https://shields.io">Shields.io</a> 和 <a href="https://simpleicons.org">Simple Icons</a> 生成精致的图标。快来给自己也安排一个吧！</p>
+]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[New Start]]></title>
             <link>https://blog.monsterx.cn/life/new-start-with-gridsome/</link>
