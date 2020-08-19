@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Wed, 19 Aug 2020 09:02:23 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2020 09:10:01 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -17,7 +17,8 @@
 <p>这段时间看了很多个人介绍仓库之后，发现我想多了：GitHub 是什么？<del>全球最大的同性交友网站啊！</del> 又不是世纪佳缘，写得漂亮能找着对象吗？开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 <code>README.md</code> 就达标辣！（靠 GitHub 找工作的话那当我没说。</p>
 <p>单单写 READMD 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作「从 RSS 获取最近更新并以 Markdown 格式写入 README」功能的经过吧。毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。</p>
 <blockquote>
-<p>写着写着就变成了幼儿读物的感觉，请不要笑话我了，毕竟我是个萌新，阿巴阿巴 🤪</p>
+<p>写着写着就变成了幼儿读物的感觉，请不要笑话我了，毕竟我是个萌新，阿巴阿巴 🤪 <br />
+看完这篇文章你至少会更理解萌新如何开始学习别人的代码和 GitHub Actions 如何跨仓库执行</p>
 </blockquote>
 <h2 id="从文章中学习">从文章中学习</h2>
 <p>一切是从这里开始的：《<a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">Building a self-updating profile README for GitHub - Simon Willison’s Weblog</a>》，这位作者的仓库 <a href="https://github.com/simonw/simonw">@simonw/simonw</a> 显示了三栏自动更新的内容，包括 GitHub 上的打包发布、博客文章和另外一个站点 T(hings) I L(earned) 的条目。这三栏分别使用了三种途径获取最新内容的，均由 Python 实现：</p>
@@ -403,7 +404,7 @@ jobs:
           git commit -m \
           &quot;:beers: Update from BlogRepo at \
           $(date +&quot;%Y-%m-%d %H:%M&quot;) \
-          &quot;
+          &quot; --allow-empty
           git push</code></pre>
 </details><br />
 
