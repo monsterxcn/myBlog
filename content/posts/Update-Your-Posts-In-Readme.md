@@ -16,7 +16,8 @@ description: "看见别人的 GitHub 主页都换上了 README，我就也安排
 
 单单写 READMD 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作「从 RSS 获取最近更新并以 Markdown 格式写入 README」功能的经过吧。毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。
 
-> 写着写着就变成了幼儿读物的感觉，请不要笑话我了，毕竟我是个萌新，阿巴阿巴 🤪
+> 写着写着就变成了幼儿读物的感觉，请不要笑话我了，毕竟我是个萌新，阿巴阿巴 🤪 <br />
+> 看完这篇文章你至少会了解到「萌新如何开始学习别人的代码」「GitHub Actions 如何跨仓库执行」「从 `workflows_run` 触发工作流」
 
 ## 从文章中学习
 
@@ -171,7 +172,7 @@ RSS 数据较多时 `print(dic)` 可能让人头皮发麻，自行体会吧。�
 解析后：
 
 
-<details><summary><strong>Freeparser 解析结构</strong></summary><br />
+<details><summary><strong>freeparser 解析结构</strong></summary><br />
 
 
 ```json
@@ -408,10 +409,73 @@ if __name__ == "__main__":
     update_readme(startMark, endMark, postsNew)
 ```
 
-按需小小修改一下，执行 `python this.py` 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置自己点 Star 触发和定时执行即可。给出我的工作流配置 [new.yml](https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml)，和之前打卡项目相同的原理。看到这里的你也许有兴趣读读我之前编写这种定时工作流的文章 🤣
+按需小小修改一下，执行 `python this.py` 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置自己点 Star 触发和定时执行即可。给出我的工作流配置 [new.yml](https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml)，和之前打卡项目相同的原理。（看到这里的你也许有兴趣读读我之前编写这种定时工作流的文章 🤣。
 
-另外我的 README 使用了 [@anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats) 展示 GitHub 账号的统计信息，使用了 [Shields.io](https://shields.io) 和 [Simple Icons](https://simpleicons.org) 生成精致的图标。快来给自己也安排一个吧！
+上面的定时执行工作流也许对于像我这种更新缓慢的博客来说有点浪费，于是我又写了个从「博客」仓库执行的工作流，这样只要「博客」仓库有文章更新就会第一时间更新 README！使用前先根据《[Creating a personal access token - GitHub Docs](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)》创建一个 Personal Access Token，要有写入仓库的权限。然后将生成的 Token 作为 Secrets 写入「博客」仓库。最后在「博客」仓库新建 `readme.yml`。
 
-GitHub 仓库地址 [@monsterxcn/monsterxcn](https://github.com/monsterxcn/monsterxcn)。
+由于我的博客仓库暂时没有公开（想到稳定两周年那天再公开，整点仪式感），所以直接将仓库里的工作流贴在这里吧。只需要将自己的站点发布工作流名称、Token 在「博客」仓库中的 Secrets 名称、README 仓库地址修改到下面 L10 L22-23 即可。
+
+编写参考 [@actions/checkout](https://github.com/actions/checkout) 和《[Events that trigger workflows #workflow_run - GitHub Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_run)》
+
+<details><summary><strong>从「博客」仓库更新 profile README 的工作流 readme.yml</strong></summary><br />
+
+
+```yaml
+name: Update README
+
+on:
+  # 直接使用 push 触发可能无法获取最新状态
+  # 这里设为在发布工作流执行完毕之后触发
+  # push:
+  #   branches:
+  #     - master
+  workflow_run:
+    workflows: ["Deploy to OSS"]      # 修改为你的站点发布工作流 name
+    types: 
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.UPDATE_README }}   # 修改为自定义的 Secrets 名
+          repository: monsterxcn/monsterxcn     # 修改为 README 仓库地址
+
+      - name: Setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install
+        run: pip install feedparser
+
+      - name: Update
+        run: python build_readme.py
+
+      - name: Commit
+        env:
+          TZ: Asia/Shanghai
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          git commit -m \
+          ":beers: Update from BlogRepo at \
+          $(date +"%Y-%m-%d %H:%M") \
+          " --allow-empty
+          git push
+```
+
+
+</details><br />
+
+
+> 我的 README [^2] 使用了 [@anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats) 展示 GitHub 账号的统计信息，使用了 [Shields.io](https://shields.io) 和 [Simple Icons](https://simpleicons.org) 生成精致的图标。快来给自己也安排一个吧！
+
 
 [^1]: 《[re --- 正则表达式操作 --- re.sub - Python 3 中文文档](https://docs.python.org/zh-cn/3/library/re.html#re.sub)》
+[^2]: GitHub 仓库地址 [@monsterxcn/monsterxcn](https://github.com/monsterxcn/monsterxcn)

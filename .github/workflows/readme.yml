@@ -1,0 +1,47 @@
+name: Update README
+
+on:
+  # 直接使用 push 触发可能无法获取最新状态
+  # 这里设为在发布工作流执行完毕之后触发
+  # push:
+  #   branches:
+  #     - master
+  workflow_run:
+    workflows: ["Deploy to OSS"]      # 修改为你的站点发布工作流 name
+    types: 
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.UPDATE_README }}   # 修改为自定义的 Secrets 名
+          repository: monsterxcn/monsterxcn     # 修改为 README 仓库地址
+
+      - name: Setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install
+        run: pip install feedparser
+
+      - name: Update
+        run: python build_readme.py
+
+      - name: Commit
+        env:
+          TZ: Asia/Shanghai
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          git commit -m \
+          ":beers: Update from BlogRepo at \
+          $(date +"%Y-%m-%d %H:%M") \
+          " --allow-empty
+          git push
