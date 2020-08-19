@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Wed, 19 Aug 2020 07:30:46 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2020 08:04:06 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -13,14 +13,14 @@
             <link>https://blog.monsterx.cn/code/update-your-posts-in-readme/</link>
             <guid>https://blog.monsterx.cn/code/update-your-posts-in-readme/</guid>
             <pubDate>Tue, 18 Aug 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 README.md 就可以在 GitHub 个人主页上看到其内容。比起单纯的固定仓库或 Gist 在个人主页，我觉得这会让 GitHub 主页变得更多姿多彩，戳官方 <a href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">文档</a> 了解更多。然而，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也只是满足下自己的虚荣心而已，能力提升微乎其微。</p>
-<p>这段时间看了很多个人介绍仓库之后，发现我想多了：GitHub 是什么？<del>全球最大的同性交友网站啊！</del> 又不是世纪佳缘，写得漂亮能找着对象吗？开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 README.md 就达标辣！（靠 GitHub 找工作的话那当我没说。</p>
-<p>单单写 READMD.md 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作「从 RSS 获取最近更新并以 Markdown 格式写入 README.md」功能的经过吧。毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。</p>
+            <content:encoded><![CDATA[<p>今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 <code>README.md</code> 就可以在 GitHub 个人主页上看到其内容。比起单纯的固定仓库或 Gist 在个人主页，我觉得这会让 GitHub 主页变得更多姿多彩，戳官方 <a href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">文档</a> 了解更多。然而，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也只是满足下自己的虚荣心而已，能力提升微乎其微。</p>
+<p>这段时间看了很多个人介绍仓库之后，发现我想多了：GitHub 是什么？<del>全球最大的同性交友网站啊！</del> 又不是世纪佳缘，写得漂亮能找着对象吗？开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 <code>README.md</code> 就达标辣！（靠 GitHub 找工作的话那当我没说。</p>
+<p>单单写 READMD 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作「从 RSS 获取最近更新并以 Markdown 格式写入 README」功能的经过吧。毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。</p>
 <blockquote>
 <p>写着写着就变成了幼儿读物的感觉，请不要笑话我了，毕竟我是个萌新，阿巴阿巴 🤪</p>
 </blockquote>
 <h2 id="从文章中学习">从文章中学习</h2>
-<p>一切是从这里开始的：《<a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">Building a self-updating profile README for GitHub - Simon Willison’s Weblog</a>》，这位作者的 README 仓库 <a href="https://github.com/simonw/simonw">@simonw/simonw</a> 显示了三栏自动更新的内容，包括 GitHub 上的打包发布、博客文章和另外一个站点 T(hings) I L(earned) 的条目。这三栏分别使用了三种途径获取最新内容的，均由 Python 实现：</p>
+<p>一切是从这里开始的：《<a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">Building a self-updating profile README for GitHub - Simon Willison’s Weblog</a>》，这位作者的仓库 <a href="https://github.com/simonw/simonw">@simonw/simonw</a> 显示了三栏自动更新的内容，包括 GitHub 上的打包发布、博客文章和另外一个站点 T(hings) I L(earned) 的条目。这三栏分别使用了三种途径获取最新内容的，均由 Python 实现：</p>
 <ul>
 <li>「GitHub GraphQL API -&gt; python_graphql_client -&gt; Latest Release」</li>
 <li>「RSS Atom feed -&gt; feedparser -&gt; Latest posts」</li>
@@ -28,7 +28,7 @@
 </ul>
 <p>第一个和第三个我都不了解，只有 RSS 的格式稍微懂一点，巧的是这正好能用来获取博客最新的文章。动手开始！</p>
 <h2 id="面向谷歌编程">面向谷歌编程</h2>
-<p>查看仓库现成的 <code>build_readme.py</code> 文件，一眼扫下来有 218 行，有点晕。一遍看下来 GitHub GraphQL API 和 Datasette API 相关的占了较大篇幅，这说明通过 RSS 获取博客内容的代码较少。这时候我选择找到第一个版本的文件，我觉得最初的版本大概率应该是最简陋的，能让我最快的搞清楚代码的大体结构。第一个版本的 <code>.py</code> <a href="https://github.com/simonw/simonw/commit/d2b5e8ba30b0d2b1a867e0bfafa1215a2b5ef287#diff-b8502c56279bd4ac52ccb69f70e81a13">文件</a> L139，就从这里开始吧。</p>
+<p>查看仓库现成的 <code>build_readme.py</code> 文件，一眼扫下来有 218 行，有点晕。一遍看下来 GitHub GraphQL API 和 Datasette API 相关的占了较大篇幅，这说明通过 RSS 获取博客内容的代码较少。这时候我选择找到第一个版本的文件，我觉得最初的版本大概率应该是最简陋的，能让我最快的搞清楚代码的大体结构。第一个版本的 <a href="https://github.com/simonw/simonw/commit/d2b5e8ba30b0d2b1a867e0bfafa1215a2b5ef287#diff-b8502c56279bd4ac52ccb69f70e81a13">build_readme.py</a> L139，就从这里开始吧。</p>
 <details><summary><strong>从零开始学 Copy</strong></summary><br />
 
 
@@ -96,9 +96,9 @@ def fetch_blog_entries():
 </details><br />
 
 
-<p>下面是正式的面向谷歌编程，也就是学习用轮子（作者用到的那些库 pathlib、re、feedparser）：pathlib 库看起来没有需要谷歌的，一个能获取文件路径的库。re 库用到了正则表达式，结合作者在仓库第一版 README.md 中写的 <code>&lt;!-- blog starts --&gt;</code> <code>&lt;!-- blog ends --&gt;</code> 这样的标记，不难理解是将结果通过正则匹配找到位置，然后进行替换。feedparser 库从一个 Atom 链接获取了包含文章信息的数组，是为「源头」。</p>
+<p>下面是正式的面向谷歌编程，也就是学习用轮子（作者用到的那些库 pathlib、re、feedparser）：pathlib 库看起来没有需要谷歌的，一个能获取文件路径的库。re 库用到了正则表达式，结合作者在仓库第一版 <code>README.md</code> 中写的 <code>&lt;!-- blog starts --&gt;</code> <code>&lt;!-- blog ends --&gt;</code> 这样的标记，不难理解是将结果通过正则匹配找到位置，然后进行替换。feedparser 库从一个 Atom 链接获取了包含文章信息的数组，是为「源头」。</p>
 <h3 id="feedparser-解析-rss">feedparser 解析 RSS</h3>
-<p>《<a href="https://vimsky.com/article/4399.html">在 Python 中使用 Feedparser 解析 RSS - 纯净天空</a>》一篇足矣，或者看英文版《<a href="https://www.pythonforbeginners.com/feedparser/using-feedparser-in-python">Using Feedparser in Python - PythonForBeginners</a>》。当然，RSS 文件也要有一丢丢了解。XML 格式由 HTML 触类旁通不难理解，可以试着戳 <a href="https://blog.monsterx.cn/feed.xml">这里</a> 看看本站的 RSS 源格式。在每个 <code>&lt;item&gt;</code> 中包含了 <code>&lt;title&gt;</code> <code>&lt;link&gt;</code> <code>&lt;pubDate&gt;</code>，用来输出到 README.md 够了。</p>
+<p>《<a href="https://vimsky.com/article/4399.html">在 Python 中使用 Feedparser 解析 RSS - 纯净天空</a>》一篇足矣，或者看英文版《<a href="https://www.pythonforbeginners.com/feedparser/using-feedparser-in-python">Using Feedparser in Python - PythonForBeginners</a>》。当然，RSS 文件也要有一丢丢了解。XML 格式由 HTML 触类旁通不难理解，可以试着戳 <a href="https://blog.monsterx.cn/feed.xml">这里</a> 看看本站的 RSS 源格式。在每个 <code>&lt;item&gt;</code> 中包含了 <code>&lt;title&gt;</code> <code>&lt;link&gt;</code> <code>&lt;pubDate&gt;</code>，用来输出到 <code>README.md</code> 够了。</p>
 <p>参考链接文章用的是 <code>dic[&#39;feed&#39;]</code> 这种格式，用起来和 <code>dic.feed</code> 是一样的，就用后面这种短一点的写个示例。</p>
 <pre><code class="language-python">import feedparser
 
@@ -321,7 +321,7 @@ contents = thisfile.open().read()
 readme.open(&quot;w&quot;).write(pattern.sub(repl, contents))</code></pre>
 <p>C 语言文件读写 <code>fopen()</code> 后还有 <code>fclose()</code> 的，作者的代码里没有找到 close 之类的。应该是程序结束默认关闭了吧，急于实现功能，此处没有留意。</p>
 <h2 id="整理整套代码">整理整套代码</h2>
-<p>以上所有学习途径自以为都交代清楚了，最后整合时用了 <code>for</code> 循环和数组的 <code>[start:end:step]</code> 分割（像数学上的区间表示法）来获取最近的固定篇数，完整实现这个「从 RSS 获取最近更新并以 Markdown 格式写入 README.md」的功能需要的代码篇幅很短，Python 真有趣！</p>
+<p>以上所有学习途径自以为都交代清楚了，最后整合时用了 <code>for</code> 循环和数组的 <code>[start:end:step]</code> 分割（像数学上的区间表示法）来获取最近的固定篇数，完整实现这个「从 RSS 获取最近更新并以 Markdown 格式写入 README」的功能需要的代码篇幅很短，Python 真有趣！</p>
 <pre><code class="language-python">import feedparser
 import pathlib
 import re
@@ -359,7 +359,7 @@ if __name__ == &quot;__main__&quot;:
     postsNew = fetch_posts(rssUrl)
     update_readme(startMark, endMark, postsNew)</code></pre>
 <p>按需小小修改一下，执行 <code>python this.py</code> 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置自己点 Star 触发和定时执行即可。给出我的工作流配置 <a href="https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml">new.yml</a>，和之前打卡项目相同的原理。看到这里的你也许有兴趣读读我之前编写这种定时工作流的文章 🤣</p>
-<p>另外我的 README.md 使用了 <a href="https://github.com/anuraghazra/github-readme-stats">@anuraghazra/github-readme-stats</a> 展示 GitHub 账号的统计信息，使用了 <a href="https://shields.io">Shields.io</a> 和 <a href="https://simpleicons.org">Simple Icons</a> 生成精致的图标。快来给自己也安排一个吧！</p>
+<p>另外我的 README 使用了 <a href="https://github.com/anuraghazra/github-readme-stats">@anuraghazra/github-readme-stats</a> 展示 GitHub 账号的统计信息，使用了 <a href="https://shields.io">Shields.io</a> 和 <a href="https://simpleicons.org">Simple Icons</a> 生成精致的图标。快来给自己也安排一个吧！</p>
 <p>[^1]: 《<a href="https://docs.python.org/zh-cn/3/library/re.html#re.sub">re --- 正则表达式操作 --- re.sub - Python 3 中文文档</a>》</p>
 ]]></content:encoded>
         </item>
@@ -372,7 +372,7 @@ if __name__ == &quot;__main__&quot;:
 <h2 id="新的平台">新的平台</h2>
 <p>博客稳定两周年之际，我正式从动态博客迁移至静态博客，如你所见这个博客正由 <a href="https://gridsome.org">Gridsome</a> 驱动着。「Gridsome 是一个免费、开源、基于 Vue.js 构建的框架，用 Gridsome 创建的网站和应用程序具有天然的速度优势」，身边用 <a href="https://hexo.io">Hexo</a> 的人似乎太多了，喜欢尝试小众作品的我选择了 Gridsome。除此之外，似乎是从给旧站点加了 Statusbot <a href="https://status.monsterx.cn">状态监控</a> 开始站内垃圾评论数量陡增，一直在用 Typecho 原生评论的我实在顶不住，评论拦截插件虽然也有，但都不太能满足我的需求，索性换个评论系统加入大家都说好的 Disqus 大家族了。</p>
 <p>使用 Disqus 的痛处其一是评论数据同步，手动导入了两篇文章的数据之后发现评论区头像都无法显示，网上的解决方案似乎得购买 Disqus 商业套餐。其二是国内用户上网环境不佳便无法评论，向来冷清的本站雪上加霜，以后可能会考虑在国内服务器上继续部署 <a href="https://lab.mocurio.com/artalk.html">Artalk</a> 评论系统以供 <del>小部分人的需求</del> 自娱自乐。</p>
-<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@Spencer&#39;s Blog</a> 和 <a href="https://blog.jalenchuh.cn">@Jalen&#39;s Blog</a> 的仓库修改，基于 Gridsome 主题 <a href="https://github.com/gridsome/gridsome-starter-blog">gridsome-starter-blog</a>。静态博客可以自由部署在很多地方，目前这个博客通过 GitHub Actions 自动构建静态文件发布到私有仓库的分支和阿里云 OSS，配合阿里云全站加速供中国境内访问，同时还利用 Vercel 部署并加持 Cloudflare CDN 供境外访问。以前将域名的境内境外解析拆分，是考虑国外可能会有人访问，现在想明白了，这其实是为了国内日常科学上网的同志们。就算在墙外访问本站应该也能获取较快的体验。</p>
+<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@Spencer&#39;s Blog</a> 和 <a href="https://blog.jalenchuh.cn">@Jalen&#39;s Blog</a> 的仓库修改，基于 <a href="https://github.com/gridsome/gridsome-starter-blog">@gridsome/gridsome-starter-blog</a>。静态博客可以自由部署在很多地方，目前这个博客通过 GitHub Actions 自动构建静态文件发布到私有仓库的分支和阿里云 OSS，配合阿里云全站加速供中国境内访问，同时还利用 Vercel 部署并加持 Cloudflare CDN 供境外访问。以前将域名的境内境外解析拆分，是考虑国外可能会有人访问，现在想明白了，这其实是为了国内日常科学上网的同志们。就算在墙外访问本站应该也能获取较快的体验。</p>
 <h2 id="文章排版">文章排版</h2>
 <p>格式工整的文章让人阅读的欲望更强烈。参照众多中文博客排版、GitHub 热门项目文档排版、GitHub 仓库 <a href="https://github.com/sparanoid/chinese-copywriting-guidelines">@sparanoid/chinese-copywriting-guidelines</a> 以及我的个人偏好，将本博客的 Markdown 文件书写规则做一点说明，有冲突时优先考虑下文的规则。</p>
 <ul>
@@ -386,7 +386,7 @@ if __name__ == &quot;__main__&quot;:
 </li>
 <li>空格<ul>
 <li>中英文之间留空格，（按照官方格式书写）</li>
-<li>中文与数字、数字与单位（<code>°</code> <code>℃</code> <code>%</code> 除外）之间留空格</li>
+<li>中文与数字、数字与单位（「°」「℃」「%」除外）之间留空格</li>
 <li>全角标点符号前后不留空格</li>
 <li>省略号「……」后留一个空格</li>
 </ul>
@@ -404,8 +404,9 @@ if __name__ == &quot;__main__&quot;:
 </li>
 <li>其他<ul>
 <li>指示流程的内容按「Step A -&gt; Step B -&gt; Step C」格式书写</li>
-<li>指示代码行号的内容按「LNum [-EndNumber]」格式书写</li>
-<li>引用 GitHub 的用户和仓库名称按「@<user> [/<repo>]」格式书写</li>
+<li>指示代码行号的内容按「LNUM [-ENDNUM]」格式书写</li>
+<li>引用拥有个人主页、博客或 GitHub 账号的人员名称按「@NICKNAME」格式书写</li>
+<li>引用 GitHub 的仓库名称按「@USER/REPO」格式书写</li>
 <li>引用文献的名称按「原标题 - 来源」格式书写并将链接包含在全角书名号之内</li>
 <li>段落中阐述代码用到的「变量名称」「函数名称」等按行内代码块格式书写</li>
 <li>段落中非阐述代码用到的且需要强调的内容使用直角引号包围</li>
@@ -585,8 +586,7 @@ https://bangumi.moe/rss/search/Lilith%20%E8%B3%A2%E8%80%85%E6%99%82%E9%96%93%201
 <p>以上部分搭建了基础的下载环境，接下来利用 FlexGet 实现 Aria2 的 RSS 订阅下载。</p>
 <blockquote>
 <p>FlexGet is a multipurpose automation tool for all of your media <br />
-Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and more. <br />
-<a href="https://flexget.com/">Official website</a></p>
+Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and more.  [^1]</p>
 </blockquote>
 <p>由于是 Python 编写，需要先安装 python3 pip3 包。</p>
 <pre><code class="language-bash">apt install python3 python3-pip
@@ -666,8 +666,11 @@ crontab -e
 <li>部分境外服务器可能禁止 BT 服务，选购前请仔细阅读用户条例</li>
 <li>有条件的话下载完毕后请做种一段时间</li>
 </ul>
-<p>&nbsp;</p>
-<center><span style="font-size:30px">微软赛高！</span></center>]]></content:encoded>
+<center><span style="font-size:30px">微软赛高！</span></center>
+
+
+<p>[^1]: <a href="https://flexget.com/">FlexGet Official website</a></p>
+]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[照葫芦画瓢 · 编写 Actions 打卡工作流]]></title>
@@ -799,7 +802,7 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
   run: python checkin.py | tee -a checkin-python.log</code></pre>
 <p>心情顿时舒畅了不少！</p>
 <h3 id="round-3">Round 3</h3>
-<p>上次那篇关于调试 Python 打卡的《<a href="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/">Mark 并调试 HEU 自动打卡代码</a>》下 <a href="https://xyenon.bid">XYenon</a> 给出了仅需用户名和密码的 Ruby 版本 <a href="https://gist.github.com/XYenon/79317d63e7f769e5bdff5b595d709b65">@XYenon/checkin.rb</a>。</p>
+<p>上次那篇关于调试 Python 打卡的《<a href="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/">Mark 并调试 HEU 自动打卡代码</a>》下 <a href="https://xyenon.bid">@XYenon</a> 给出了仅需用户名和密码的 Ruby 版本 <a href="https://gist.github.com/XYenon/79317d63e7f769e5bdff5b595d709b65">@XYenon/checkin.rb</a>。</p>
 <p>代码仅 60 行，第一次看完我觉得很赞，看起来只要脚本代替人执行「确认信息 -&gt; 提交表单」两步就完事了。现有的 Python 打卡每次都将事先定义的表单数据提交一遍，不考虑打卡系统中表单在服务器的缓存。如果表单数据在服务器上一直都有缓存，那部署这个 Ruby 版本我觉得似乎会更好，毕竟仓库里可以少写两个 Secrets。</p>
 <blockquote>
 <p>与 Python 类似，Ruby 也可以在代码中使用 <code>ENV[&#39;SECRET_ID&#39;]</code> 这样的语句直接获取环境变量。</p>
@@ -853,7 +856,7 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 <li>不熟悉 Linux命令，虽然日常 Copy 到命令行的 Linux 命令中也有用到过 <code>sed</code>，但我并没有积极的学习</li>
 </ul>
 <p>深层次的原因嘛，大概是怠惰吧！</p>
-<p>GitHub Actions 妙用多多，之前关注过一个博客 <a href="https://p3terx.com/">P3TERX ZONE</a> 里写了挺多关于 GitHub Actions 的文章，有时间的话要去学习学习！</p>
+<p>GitHub Actions 妙用多多，之前关注过一个博客 <a href="https://p3terx.com/">@P3TERX ZONE</a> 里写了挺多关于 GitHub Actions 的文章，有时间的话要去学习学习！</p>
 ]]></content:encoded>
         </item>
         <item>
@@ -886,7 +889,7 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 <p>写写停停，一篇普通的日记花了三个多小时，又是一次无意义的写作。</p>
 <p>写完再看一遍觉得结构实在是糟糕，但是又不知道从何理出一条线索来，索性就着 Markdown 标题简单提炼了一下。脑袋里装的稀奇古怪的想法没有什么人值得我倾诉，家人亦是如此，所以还是写到博客里痛快。以前手写日记的感觉很难再找到了，敲击键盘比拿出纸笔似乎更加容易，尽管如此我还是不知道下一次日记会写在什么时候。一切随缘吧！</p>
 <p>[^1]: 《<a href="https://blog.imalan.cn/archives/247/">VOID：现在可以公开的情报 - 无文字|三无计划</a>》
-[^2]: <a href="https://beyondstars.xyz/">探索子</a> <a href="https://www.mina.moe/">MiNa!</a> <a href="https://blog.ichr.me/">ChrAlpha 的幻想乡</a></p>
+[^2]: <a href="https://beyondstars.xyz/">@探索子</a> <a href="https://www.mina.moe/">@MiNa!</a> <a href="https://blog.ichr.me/">@ChrAlpha 的幻想乡</a></p>
 ]]></content:encoded>
         </item>
         <item>

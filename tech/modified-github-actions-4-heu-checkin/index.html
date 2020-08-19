@@ -168,7 +168,7 @@ myid <span class="token operator">=</span> os<span class="token punctuation">.</
   <span class="token key atrule">run</span><span class="token punctuation">:</span> python checkin.py <span class="token punctuation">|</span> tee <span class="token punctuation">-</span>a checkin<span class="token punctuation">-</span>python.log<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>心情顿时舒畅了不少！</p>
 <h3 id="round-3"><a href="#round-3" aria-hidden="true"><span class="icon icon-link"></span></a>Round 3</h3>
-<p>上次那篇关于调试 Python 打卡的《<a href="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/" target="_blank" rel="nofollow noopener noreferrer">Mark 并调试 HEU 自动打卡代码</a>》下 <a href="https://xyenon.bid" target="_blank" rel="nofollow noopener noreferrer">XYenon</a> 给出了仅需用户名和密码的 Ruby 版本 <a href="https://gist.github.com/XYenon/79317d63e7f769e5bdff5b595d709b65" target="_blank" rel="nofollow noopener noreferrer">@XYenon/checkin.rb</a>。</p>
+<p>上次那篇关于调试 Python 打卡的《<a href="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/" target="_blank" rel="nofollow noopener noreferrer">Mark 并调试 HEU 自动打卡代码</a>》下 <a href="https://xyenon.bid" target="_blank" rel="nofollow noopener noreferrer">@XYenon</a> 给出了仅需用户名和密码的 Ruby 版本 <a href="https://gist.github.com/XYenon/79317d63e7f769e5bdff5b595d709b65" target="_blank" rel="nofollow noopener noreferrer">@XYenon/checkin.rb</a>。</p>
 <p>代码仅 60 行，第一次看完我觉得很赞，看起来只要脚本代替人执行「确认信息 -> 提交表单」两步就完事了。现有的 Python 打卡每次都将事先定义的表单数据提交一遍，不考虑打卡系统中表单在服务器的缓存。如果表单数据在服务器上一直都有缓存，那部署这个 Ruby 版本我觉得似乎会更好，毕竟仓库里可以少写两个 Secrets。</p>
 <blockquote>
 <p>与 Python 类似，Ruby 也可以在代码中使用 <code>ENV['SECRET_ID']</code> 这样的语句直接获取环境变量。</p>
@@ -222,7 +222,7 @@ myid <span class="token operator">=</span> os<span class="token punctuation">.</
 <li>不熟悉 Linux命令，虽然日常 Copy 到命令行的 Linux 命令中也有用到过 <code>sed</code>，但我并没有积极的学习</li>
 </ul>
 <p>深层次的原因嘛，大概是怠惰吧！</p>
-<p>GitHub Actions 妙用多多，之前关注过一个博客 <a href="https://p3terx.com/" target="_blank" rel="nofollow noopener noreferrer">P3TERX ZONE</a> 里写了挺多关于 GitHub Actions 的文章，有时间的话要去学习学习！</p>
+<p>GitHub Actions 妙用多多，之前关注过一个博客 <a href="https://p3terx.com/" target="_blank" rel="nofollow noopener noreferrer">@P3TERX ZONE</a> 里写了挺多关于 GitHub Actions 的文章，有时间的话要去学习学习！</p>
 </div><div class="post__footer"><div class="post-tags"><a href="/tag/GitHub%20Actions/" class="post-tags__link"><span>#</span> GitHub Actions
   </a><a href="/tag/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-tags__link"><span>#</span> 定时任务
   </a><a href="/tag/webdrivers/" class="post-tags__link"><span>#</span> webdrivers
