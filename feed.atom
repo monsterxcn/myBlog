@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-19T01:58:17.347Z</updated>
+    <updated>2020-08-19T03:06:17.250Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -806,7 +806,7 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[日记 · 常]]></title>
+        <title type="html"><![CDATA[手帐 · 常]]></title>
         <id>https://blog.monsterx.cn/life/daily-impermanence/</id>
         <link href="https://blog.monsterx.cn/life/daily-impermanence/"/>
         <updated>2020-05-18T00:00:00.000Z</updated>
