@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Wed, 19 Aug 2020 08:37:17 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2020 09:02:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -144,7 +144,7 @@ print(sitetitle)</code></pre>
     &lt;/channel&gt;
 &lt;/rss&gt;</code></pre>
 <p>解析后：</p>
-<details><summary><strong>Freeparser 解析结构</strong></summary><br />
+<details><summary><strong>freeparser 解析结构</strong></summary><br />
 
 
 <pre><code class="language-json">{
@@ -358,10 +358,61 @@ def fetch_posts(url):
 if __name__ == &quot;__main__&quot;:
     postsNew = fetch_posts(rssUrl)
     update_readme(startMark, endMark, postsNew)</code></pre>
-<p>按需小小修改一下，执行 <code>python this.py</code> 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置自己点 Star 触发和定时执行即可。给出我的工作流配置 <a href="https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml">new.yml</a>，和之前打卡项目相同的原理。看到这里的你也许有兴趣读读我之前编写这种定时工作流的文章 🤣</p>
-<p>另外我的 README 使用了 <a href="https://github.com/anuraghazra/github-readme-stats">@anuraghazra/github-readme-stats</a> 展示 GitHub 账号的统计信息，使用了 <a href="https://shields.io">Shields.io</a> 和 <a href="https://simpleicons.org">Simple Icons</a> 生成精致的图标。快来给自己也安排一个吧！</p>
-<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/monsterxcn">@monsterxcn/monsterxcn</a>。</p>
-<p>[^1]: 《<a href="https://docs.python.org/zh-cn/3/library/re.html#re.sub">re --- 正则表达式操作 --- re.sub - Python 3 中文文档</a>》</p>
+<p>按需小小修改一下，执行 <code>python this.py</code> 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置自己点 Star 触发和定时执行即可。给出我的工作流配置 <a href="https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml">new.yml</a>，和之前打卡项目相同的原理。（看到这里的你也许有兴趣读读我之前编写这种定时工作流的文章 🤣。</p>
+<p>上面的定时执行工作流也许对于像我这种更新缓慢的博客来说有点浪费 GitHub 资源，于是我又写了个从「博客」仓库执行的工作流，这样只要「博客」仓库有文章更新就会第一时间更新 README！使用前先根据《<a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token">Creating a personal access token -GitHub Docs</a>》创建一个 Personal Access Token，要有写入仓库的权限。然后将生成的 Token 作为 Secrets 写入「博客」仓库。最后在「博客」仓库新建 <code>readme.yml</code>。</p>
+<p>由于我的博客仓库暂时没有公开（想到稳定两周年那天再公开，整点仪式感），所以直接将仓库里的工作流贴在这里吧。只需要将自己的 Token 在「博客」仓库中的 Secrets 名称、README 仓库名修改到下面 L16-17 即可。</p>
+<details><summary><strong>从「博客」仓库更新 profile README 的工作流 readme.yml</strong></summary><br />
+
+
+<pre><code class="language-yaml">name: Update README
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.UPDATE_README }}
+          repository: monsterxcn/monsterxcn
+
+      - name: Setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: &#39;3.x&#39;
+
+      - name: Install
+        run: pip install feedparser
+
+      - name: Update
+        run: python build_readme.py
+
+      - name: Commit
+        env:
+          TZ: Asia/Shanghai
+        run: |
+          git config --local user.email &quot;github-actions[bot]@users.noreply.github.com&quot;
+          git config --local user.name &quot;github-actions[bot]&quot;
+          git add README.md
+          git commit -m \
+          &quot;:beers: Update from BlogRepo at \
+          $(date +&quot;%Y-%m-%d %H:%M&quot;) \
+          &quot;
+          git push</code></pre>
+</details><br />
+
+
+<blockquote>
+<p>我的 README [^2] 使用了 <a href="https://github.com/anuraghazra/github-readme-stats">@anuraghazra/github-readme-stats</a> 展示 GitHub 账号的统计信息，使用了 <a href="https://shields.io">Shields.io</a> 和 <a href="https://simpleicons.org">Simple Icons</a> 生成精致的图标。快来给自己也安排一个吧！</p>
+</blockquote>
+<p>[^1]: 《<a href="https://docs.python.org/zh-cn/3/library/re.html#re.sub">re --- 正则表达式操作 --- re.sub - Python 3 中文文档</a>》
+[^2]: GitHub 仓库地址 <a href="https://github.com/monsterxcn/monsterxcn">@monsterxcn/monsterxcn</a></p>
 ]]></content:encoded>
         </item>
         <item>
