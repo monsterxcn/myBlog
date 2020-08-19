@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Wed, 19 Aug 2020 09:52:24 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2020 14:55:54 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -432,7 +432,7 @@ jobs:
 <h2 id="新的平台">新的平台</h2>
 <p>博客稳定两周年之际，我正式从动态博客迁移至静态博客，如你所见这个博客正由 <a href="https://gridsome.org">Gridsome</a> 驱动着。「Gridsome 是一个免费、开源、基于 Vue.js 构建的框架，用 Gridsome 创建的网站和应用程序具有天然的速度优势」，身边用 <a href="https://hexo.io">Hexo</a> 的人似乎太多了，喜欢尝试小众作品的我选择了 Gridsome。除此之外，似乎是从给旧站点加了 Statusbot <a href="https://status.monsterx.cn">状态监控</a> 开始站内垃圾评论数量陡增，一直在用 Typecho 原生评论的我实在顶不住，评论拦截插件虽然也有，但都不太能满足我的需求，索性换个评论系统加入大家都说好的 Disqus 大家族了。</p>
 <p>使用 Disqus 的痛处其一是评论数据同步，手动导入了两篇文章的数据之后发现评论区头像都无法显示，网上的解决方案似乎得购买 Disqus 商业套餐。其二是国内用户上网环境不佳便无法评论，向来冷清的本站雪上加霜，以后可能会考虑在国内服务器上继续部署 <a href="https://lab.mocurio.com/artalk.html">Artalk</a> 评论系统以供 <del>小部分人的需求</del> 自娱自乐。</p>
-<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@Spencer&#39;s Blog</a> 和 <a href="https://blog.jalenchuh.cn">@Jalen&#39;s Blog</a> 的仓库修改，基于 <a href="https://github.com/gridsome/gridsome-starter-blog">@gridsome/gridsome-starter-blog</a>。静态博客可以自由部署在很多地方，目前这个博客通过 GitHub Actions 自动构建静态文件发布到私有仓库的分支和阿里云 OSS，配合阿里云全站加速供中国境内访问，同时还利用 Vercel 部署并加持 Cloudflare CDN 供境外访问。以前将域名的境内境外解析拆分，是考虑国外可能会有人访问，现在想明白了，这其实是为了国内日常科学上网的同志们。就算在墙外访问本站应该也能获取较快的体验。</p>
+<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@Spencer&#39;s Blog</a> 和 <a href="https://blog.jalenchuh.cn">@Jalen&#39;s Blog</a> 的仓库修改，基于 <a href="https://github.com/gridsome/gridsome-starter-blog">@gridsome/gridsome-starter-blog</a>。静态博客可以自由部署在很多地方，目前这个博客通过 GitHub Actions 自动构建静态文件发布到私有仓库的分支和阿里云 OSS，配合阿里云全站加速供中国境内访问，同时部署到 Cloudflare Workers Sites 供境外访问。以前将域名的境内境外解析拆分，是考虑国外可能会有人访问，现在想明白了，这其实是为了国内日常科学上网的同志们。就算在墙外访问本站应该也能获取稍快的体验。</p>
 <h2 id="文章排版">文章排版</h2>
 <p>格式工整的文章让人阅读的欲望更强烈。参照众多中文博客排版、GitHub 热门项目文档排版、GitHub 仓库 <a href="https://github.com/sparanoid/chinese-copywriting-guidelines">@sparanoid/chinese-copywriting-guidelines</a> 以及我的个人偏好，将本博客的 Markdown 文件书写规则做一点说明，有冲突时优先考虑下文的规则。</p>
 <ul>
