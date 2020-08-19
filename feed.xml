@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Wed, 19 Aug 2020 01:46:42 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2020 01:58:17 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -257,12 +257,12 @@ print(sitetitle)</code></pre>
 
 <p>可以看到解析出来是 JSON 格式，而且不仅仅包含 XML 文件可见内容，HTTP Header 信息也在其中。值得注意的地方： <code>&lt;item&gt;&lt;pubDate&gt;</code> 并不是通过形如 <code>items[0].pubDate</code> 获取，而是 <code>items[0].published</code> 。根据这个结构更加灵活的运用 feedparser 吧！实现 README 自动更新最近博文并不需要这些，我给的示例足够用了。</p>
 <h3 id="re-正则表达式替换">re 正则表达式替换</h3>
-<p>学 re 库从 Python 官方文档开始：<a href="https://docs.python.org/zh-cn/3/library/re.html">re --- 正则表达式操作 - Python 3 中文文档</a>。不过最重要的还是学会写正则表达式，多写一些多搜一搜，时间久了自然就会了，我是这么想的。这里给出用于匹配 <strong>指定字符串之间所有内容且不包含指定字符串的</strong> 正则表达式。</p>
+<p>学 re 库从 Python 官方文档开始：<a href="https://docs.python.org/zh-cn/3/library/re.html">re --- 正则表达式操作 - Python 3 中文文档</a>。不过最重要的还是学会写正则表达式，多写一些多搜一搜，时间久了自然就会了，我是这么想的。这里给出用于匹配 <strong>指定字符串之间所有内容且不包含指定字符串</strong> 的正则表达式。</p>
 <ul>
-<li><code>(?&lt;=MARK)</code> 指定以 <code>MARK</code> 开头的：遇到 <code>MARK</code> 后开始匹配</li>
-<li><code>(?=MARK)</code> 指定 <code>MARK</code> 结尾的：遇到 <code>MARK</code> 前停止匹配</li>
-<li><code>.</code> ：<code>.</code> 在默认模式匹配除了换行的任意字符。re 库中如果指定了标签 <code>DOTALL</code> 则匹配包括换行符的任意字符</li>
-<li><code>*</code> ：对它前面的正则式匹配 0 到任意次重复，尽可能多地匹配</li>
+<li><code>(?&lt;=MARK)</code> 指定以 <code>MARK</code> 开头，遇到 <code>MARK</code> 后开始匹配</li>
+<li><code>(?=MARK)</code> 指定 <code>MARK</code> 结尾，遇到 <code>MARK</code> 前停止匹配</li>
+<li><code>.</code> 在默认模式匹配除了换行的任意字符。re 库中如果指定了标签 <code>DOTALL</code> 则匹配包括换行符的任意字符</li>
+<li><code>*</code> 对它前面的正则式匹配 0 到任意次重复，尽可能多地匹配</li>
 </ul>
 <pre><code class="language-python"># 拼接正则表达式并指定标签 DOTALL
 # (?&lt;=(STARTMARK)).*(?=(ENDMARK))
@@ -275,7 +275,7 @@ pattern = re.compile(
 )</code></pre>
 <p><code>re.compile()</code> 将正则表达式的样式编译为一个正则表达式对象（正则对象），如果需要多次使用这个正则表达式的话，使用 <code>re.compile()</code> 和保存这个正则对象以便复用，可以让程序更加高效。参数：<code>re.compile(pattern, flags=0)</code>，参考官方文档给出介绍如下：</p>
 <blockquote>
-<p><strong>re.sub(pattern, repl, string, count=0, flags=0)</strong>
+<p><strong>re.sub(pattern, repl, string, count=0, flags=0)</strong> <br />
 返回通过使用 <code>repl</code> 替换在 <code>string</code> 最左边非重叠出现的 <code>pattern</code> 匹配的字符串。</p>
 </blockquote>
 <ul>
@@ -288,9 +288,9 @@ pattern = re.compile(
 <li>反向引用（Backreferences）例如 <code>\g&lt;0&gt;</code> 等同于由 <code>pattern</code> 匹配的整个子字符串</li>
 </ul>
 </li>
-<li><code>repl</code> 是函数时，在每次非重叠出现 <code>pattern</code> 时都会被调用。这个函数只能有一个 <em>匹配对象</em> 参数，并返回替换后的字符串。</li>
+<li><code>repl</code> 是函数时，在每次非重叠出现 <code>pattern</code> 时都会被调用。这个函数只能有一个 <em>匹配对象</em> 参数，并返回替换后的字符串</li>
 <li>可选参数 <code>count</code> 是要替换的最大次数，必须为非负整数。如果忽略这个参数或设置为 0，所有的匹配都会被替换</li>
-<li>空匹配仅在不与先前的空匹配相邻时才被替换，所以 <code>sub(&#39;x*&#39;, &#39;-&#39;, &#39;abxd&#39;)</code> 返回 <code>-a-b--d-</code></li>
+<li>空匹配（Empty matches）仅在不与先前的空匹配相邻时，才被替换。所以 <code>sub(&#39;x*&#39;, &#39;-&#39;, &#39;abxd&#39;)</code> 将返回 <code>-a-b--d-</code></li>
 </ul>
 <p>文档太专业了，总之 <code>re.sub(pattern, repl, string)</code> 可以用 <code>repl</code> 替换掉 <code>string</code> 内所有与 <code>pattern</code> 匹配的内容，这便是最基础的用法了。使用编译后的样式 <code>pattern.sub(repl, string)</code> 效果一样。</p>
 <p>写个示例：</p>
@@ -321,7 +321,7 @@ contents = thisfile.open().read()
 readme.open(&quot;w&quot;).write(pattern.sub(repl, contents))</code></pre>
 <p>C 语言文件读写 <code>fopen()</code> 后还有 <code>fclose()</code> 的，作者的代码里没有找到 close 之类的。应该是程序结束默认关闭了吧，急于实现功能，此处没有留意。</p>
 <h2 id="整理整套代码">整理整套代码</h2>
-<p>以上所有学习途径自以为都交代清楚了，最后整合时用了 <code>for</code> 循环和数组的 <code>[start:end:step]</code> 分割（像数学上的区间表示法一样）来获取最近的固定篇数，完整实现这个「从 RSS 获取最近更新并以 Markdown 格式写入 README.md」的功能需要的代码篇幅很短，Python 真有趣！</p>
+<p>以上所有学习途径自以为都交代清楚了，最后整合时用了 <code>for</code> 循环和数组的 <code>[start:end:step]</code> 分割（像数学上的区间表示法）来获取最近的固定篇数，完整实现这个「从 RSS 获取最近更新并以 Markdown 格式写入 README.md」的功能需要的代码篇幅很短，Python 真有趣！</p>
 <pre><code class="language-python">import feedparser
 import pathlib
 import re
