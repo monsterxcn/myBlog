@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Wed, 19 Aug 2020 08:04:06 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2020 08:07:48 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -360,6 +360,7 @@ if __name__ == &quot;__main__&quot;:
     update_readme(startMark, endMark, postsNew)</code></pre>
 <p>按需小小修改一下，执行 <code>python this.py</code> 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置自己点 Star 触发和定时执行即可。给出我的工作流配置 <a href="https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml">new.yml</a>，和之前打卡项目相同的原理。看到这里的你也许有兴趣读读我之前编写这种定时工作流的文章 🤣</p>
 <p>另外我的 README 使用了 <a href="https://github.com/anuraghazra/github-readme-stats">@anuraghazra/github-readme-stats</a> 展示 GitHub 账号的统计信息，使用了 <a href="https://shields.io">Shields.io</a> 和 <a href="https://simpleicons.org">Simple Icons</a> 生成精致的图标。快来给自己也安排一个吧！</p>
+<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/monsterxcn">@monsterxcn/monsterxcn</a>。</p>
 <p>[^1]: 《<a href="https://docs.python.org/zh-cn/3/library/re.html#re.sub">re --- 正则表达式操作 --- re.sub - Python 3 中文文档</a>》</p>
 ]]></content:encoded>
         </item>
@@ -679,7 +680,7 @@ crontab -e
             <pubDate>Tue, 30 Jun 2020 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<p>昨天逛博客看到了使用 GitHub Actions 定时调用 Microsoft 365 E5 API 以帮助续订的文章，我转念一想这是不是也可以用来跑定时任务打卡呢？说干就干我开了一个小的坑：用 GitHub Actions 跑之前写的 Python 打卡脚本。无意薅羊毛，只是希望通过一点学习将自己的想法实现。</p>
 <h2 id="照葫芦环节">照葫芦环节</h2>
-<p>参考项目 <a href="https://github.com/wangziyingwen/AutoApiSecret">@wangziyingwen/AutoApiSecret</a> 的 <code>autoapi.yml</code> <a href="https://github.com/wangziyingwen/AutoApiSecret/blob/master/.github/workflows/autoapi.yml">文件</a>，搞懂了这一流程：</p>
+<p>参考项目 <a href="https://github.com/wangziyingwen/AutoApiSecret">@wangziyingwen/AutoApiSecret</a> 的 <a href="https://github.com/wangziyingwen/AutoApiSecret/blob/master/.github/workflows/autoapi.yml">autoapi.yml</a>，搞懂了这一流程：</p>
 <ol>
 <li>将私密信息存于仓库 Secrets，以 <code>name=value</code> 的赋值语句格式定义</li>
 <li>将 Secrets 内容写入脚本复制来的临时文件</li>
@@ -787,7 +788,7 @@ jobs:
 </li>
 </ul>
 <h3 id="round-2">Round 2</h3>
-<p>也许看官早就想说了：为什么引用 Secrets 而已，又是设置环境变量、又是将环境变量 <code>echo</code> 到 <code>.txt</code> 文件、又是将 <code>.txt</code> <code>sed</code> 写入 <code>.py</code> 的，不能简单点吗？确实，在朋友 <a href="https://xyenon.bid">XYenon</a> 的指导下我得知 Python 可以通过 <code>os.environ</code> 读取环境变量，所以简单的办法来了，将 Python 脚本中原来的赋值改写成下面的格式直接读环境变量</p>
+<p>也许看官早就想说了：为什么引用 Secrets 而已，又是设置环境变量、又是将环境变量 <code>echo</code> 到 <code>.txt</code> 文件、又是将 <code>.txt</code> <code>sed</code> 写入 <code>.py</code> 的，不能简单点吗？确实，在朋友 <a href="https://xyenon.bid">@XYenon</a> 的指导下我得知 Python 可以通过 <code>os.environ</code> 读取环境变量，所以简单的办法来了，将 Python 脚本中原来的赋值改写成下面的格式直接读环境变量</p>
 <pre><code class="language-python">import os
 
 myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
@@ -848,7 +849,7 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 <p>也许 Ruby 版本的打卡程序更适合写成 JavaScript 用户脚本交给浏览器插件执行。</p>
 </blockquote>
 <h2 id="结语">结语</h2>
-<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/HEU-Checkin-COVID-19">@monsterxcn/HEU-Checkin-COVID-19</a></p>
+<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/HEU-Checkin-COVID-19">@monsterxcn/HEU-Checkin-COVID-19</a>。</p>
 <p>我原以为在 GitHub Actions 中实现定时任务要很复杂的配置，毕竟每次工作流都是相当于在一个全新的服务器上执行。现在发现原来定时任务只需要在工作流的触发事件中写入 <code>schedule</code> 即可。在查找文档时我发现这点在官方文档中有详细说明，害，都是不会看文档惹的祸。</p>
 <p>榆木脑袋的我在看到别人的代码之前总是从没想过可以这样实现。比如：将私密信息以赋值语句形式写入仓库设置，执行 GitHub Actions 时将赋值语句插进文件头部继续执行。甚是高明（虽然到后面我发现这也挺笨的）。剖析了我的不足之处，浅层来看最重要的两点估计就是：</p>
 <ul>
