@@ -14,14 +14,14 @@ description: "赶在上半年的最后半小时发布了 6 月唯一一篇更新
 
 ## 照葫芦环节
 
-参考项目 [@wangziyingwen/AutoApiSecret](https://github.com/wangziyingwen/AutoApiSecret) 的 [工作流](https://github.com/wangziyingwen/AutoApiSecret/blob/master/.github/workflows/autoapi.yml)，搞懂了这一流程：
+参考项目 [@wangziyingwen/AutoApiSecret](https://github.com/wangziyingwen/AutoApiSecret) 的 [autoapi.yml](https://github.com/wangziyingwen/AutoApiSecret/blob/master/.github/workflows/autoapi.yml)，搞懂了这一流程：
 
 1. 将私密信息存于仓库 Secrets，以 `name=value` 的赋值语句格式定义
 2. 将 Secrets 内容写入脚本复制来的临时文件
 3. 执行填入了 Serects 的临时文件
 4. 删除所有临时文件并提交历史记录
 
-“定时”这一特性是 GitHub Actions 提供的，在触发条件中定义 `on.schedule.cron` 即可！呐噜吼多！将 Secrets 写入文件是通过 Linux 命令 `sed` 实现的，比如使用 `sed -i '10 r tmp.txt' tmp.py` 可以将 `tmp.txt` 的内容写入了 `tmp.py` 的指定行 `10` 的下一行。对 Linux 命令的认知水平停留在 rm -rf 的我大吃一惊，呀，又学到了新知识！
+「定时」这一特性是 GitHub Actions 提供的，在触发条件中定义 `on.schedule.cron` 即可！呐噜吼多！将 Secrets 写入文件是通过 Linux 命令 `sed` 实现的，比如使用 `sed -i '10 r tmp.txt' tmp.py` 可以将 `tmp.txt` 的内容写入了 `tmp.py` 的指定行 `10` 的下一行。对 Linux 命令的认知水平停留在 `rm -rf` 的我大吃一惊，呀，又学到了新知识！
 
 ## 画瓢环节
 
@@ -115,7 +115,7 @@ jobs:
 
 ## 润色
 
-写完第一份工作流文件之后，我开心地将文件提交到了 GitHub 仓库，又煞有介事地写了份文档。但是坐下来反复看自己的代码之后，我越发觉得这过于粗糙。在博客的文章收到了大佬的指导，于是我有了新的思路并开始不断地给自己的代码“润色”。
+写完第一份工作流文件之后，我开心地将文件提交到了 GitHub 仓库，又煞有介事地写了份文档。但是坐下来反复看自己的代码之后，我越发觉得这过于粗糙。在博客的文章收到了大佬的指导，于是我有了新的思路并开始不断地给自己的代码「润色」。
 
 ### Round 1
 
@@ -123,11 +123,11 @@ jobs:
 
  - **pip 模块缓存**
 
-   这是从苏卡大大在 Cloudflare Workers Sites 部署 Hexo 博客的 [文章](https://blog.skk.moe/post/deploy-blog-to-cf-workers-site) 中学到的。Node.js 项目构建时需要的依赖挺多，没有缓存的话每次 GitHub Action 得跑很长分钟，于是他给出了缓存 node_modules 的办法： `uses: actions/cache@v2` ，通过检查缓存特征 Key 是否存在，比如 Node.js 就检测是否存在 package-lock.json 文件，进而处理缓存。
+   这是从苏卡大大《[将 Hexo 部署到 Cloudflare Workers Site 上的趟坑记录 - Sukka's Blog](https://blog.skk.moe/post/deploy-blog-to-cf-workers-site)》中学到的。Node.js 项目构建时需要的依赖挺多，没有缓存的话每次 GitHub Action 得跑很长分钟，于是他给出了缓存 node_modules 的办法： `uses: actions/cache@v2` ，通过检查缓存特征 Key 是否存在，比如 Node.js 就检测是否存在 `package-lock.json` 文件，进而处理缓存。
 
    GitHub Actions 使用这一特性其实很简单，只要按照 [@actions/cache](https://github.com/actions/cache) 中需要缓存的类型确定好监测的特定路径和文件，编写类似上方 L26-31 的步骤在安装依赖前即可。之前尝试是能将用于构建并发布站点的 2 mins 工作流优化到 1 min 多，提升还是蛮大的。
 
-   在这个项目中缓存 pip 模块需要做的就是照葫芦画瓢检查 `~/.cache/pip` 目录下 requirements.txt 文件。
+   在这个项目中缓存 pip 模块需要做的就是照葫芦画瓢检查 `~/.cache/pip` 目录下 `requirements.txt` 文件。
 
  - **发布 log 记录文件到分支**
 
@@ -139,7 +139,7 @@ jobs:
 
 ### Round 2
 
-也许看官早就想说了：为什么引用 Secrets 而已，又是设置环境变量、又是将环境变量 `echo` 到 `.txt` 文件、又是将 `.txt` `sed` 写入 `.py` 的，不能简单点吗？确实，在朋友 [XYenon](https://xyenon.bid) 的指导下我得知 Python 可以通过 `os.environ` 读取环境变量，所以简单的办法来了，将 Python 脚本中原来的赋值改写成下面的格式直接读环境变量
+也许看官早就想说了：为什么引用 Secrets 而已，又是设置环境变量、又是将环境变量 `echo` 到 `.txt` 文件、又是将 `.txt` `sed` 写入 `.py` 的，不能简单点吗？确实，在朋友 [@XYenon](https://xyenon.bid) 的指导下我得知 Python 可以通过 `os.environ` 读取环境变量，所以简单的办法来了，将 Python 脚本中原来的赋值改写成下面的格式直接读环境变量
 
 ```python
 import os
@@ -164,7 +164,7 @@ myid = os.environ ['SECRET_ID']
 
 ### Round 3
 
-上次那篇关于调试 Python 打卡的 [文章](https://blog.monsterx.cn/code/HEU-Auto-Checkin-COVID19.html) 下 [XYenon](https://xyenon.bid) 给出了仅需用户名和密码的 Ruby 版本 [代码](https://gist.github.com/XYenon/79317d63e7f769e5bdff5b595d709b65)。
+上次那篇关于调试 Python 打卡的《[Mark 并调试 HEU 自动打卡代码](https://blog.monsterx.cn/code/heu-auto-checkin-covid19/)》下 [@XYenon](https://xyenon.bid) 给出了仅需用户名和密码的 Ruby 版本 [@XYenon/checkin.rb](https://gist.github.com/XYenon/79317d63e7f769e5bdff5b595d709b65)。
 
 代码仅 60 行，第一次看完我觉得很赞，看起来只要脚本代替人执行「确认信息 -> 提交表单」两步就完事了。现有的 Python 打卡每次都将事先定义的表单数据提交一遍，不考虑打卡系统中表单在服务器的缓存。如果表单数据在服务器上一直都有缓存，那部署这个 Ruby 版本我觉得似乎会更好，毕竟仓库里可以少写两个 Secrets。
 
@@ -216,16 +216,15 @@ jobs:
 
 ## 结语
 
-GitHub [@monsterxcn/HEU-Checkin-COVID-19](https://github.com/monsterxcn/HEU-Checkin-COVID-19)
-
+GitHub 仓库地址 [@monsterxcn/HEU-Checkin-COVID-19](https://github.com/monsterxcn/HEU-Checkin-COVID-19)。
 
 我原以为在 GitHub Actions 中实现定时任务要很复杂的配置，毕竟每次工作流都是相当于在一个全新的服务器上执行。现在发现原来定时任务只需要在工作流的触发事件中写入 `schedule` 即可。在查找文档时我发现这点在官方文档中有详细说明，害，都是不会看文档惹的祸。
 
-榆木脑袋的我在看到别人的代码之前总是从没想过可以这样实现。比如：将私密信息以赋值语句形式写入仓库设置，执行 Actions 时将赋值语句插进文件头部继续执行。甚是高明（虽然到后面我发现这也挺笨的）。剖析了我的不足之处，浅层来看最重要的两点估计就是：
+榆木脑袋的我在看到别人的代码之前总是从没想过可以这样实现。比如：将私密信息以赋值语句形式写入仓库设置，执行 GitHub Actions 时将赋值语句插进文件头部继续执行。甚是高明（虽然到后面我发现这也挺笨的）。剖析了我的不足之处，浅层来看最重要的两点估计就是：
 
- - 我对仓库 Secrets 设置的认识是死板的，我一直将其当作 Actions 执行时传递普通变量值的纽带，仅此而已
- - 不熟悉 Linux命令，虽然日常 Copy 到命令行的 Linux 命令中也有用到过 `sed` ，但我并没有积极的学习
+ - 我对仓库 Secrets 设置的认识是死板的，我一直将其当作 GitHub Actions 执行时传递普通变量值的纽带，仅此而已
+ - 不熟悉 Linux命令，虽然日常 Copy 到命令行的 Linux 命令中也有用到过 `sed`，但我并没有积极的学习
 
 深层次的原因嘛，大概是怠惰吧！
 
-GitHub Actions 妙用多多，之前关注过一个博客 [P3TERX ZONE](https://p3terx.com/) 里写了挺多关于 GitHub Actions 的文章，有时间的话要去学习学习！
+GitHub Actions 妙用多多，之前关注过一个博客 [@P3TERX ZONE](https://p3terx.com/) 里写了挺多关于 GitHub Actions 的文章，有时间的话要去学习学习！

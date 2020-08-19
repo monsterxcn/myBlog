@@ -41,7 +41,7 @@ pip install requests lxml
 
 ### 邮件提醒
 
-源代码最后的发送邮件部分需要自行引用发送邮件的 `.py` 文件，但是谷歌找到的好几个 sendmail.py 补上去之后都有奇怪的报错，比如 `if` 条件右括号报语法错误，我明明是直接复制的啊 QaQ ，看了好几遍也不应该有错啊（后来发觉可能是 Python 版本问题）。最终我索性直接搜 Python SMTP 的用法，找了一段代码补上去。
+源代码最后的发送邮件部分需要自行引用发送邮件的 `.py` 文件，但是谷歌找到的好几个 `sendmail.py` 补上去之后都有奇怪的报错，比如 `if` 条件右括号报语法错误，我明明是直接复制的啊 QaQ ，看了好几遍也不应该有错啊（后来发觉可能是 Python 版本问题）。最终我索性直接搜 Python SMTP 的用法，找了一段代码补上去。
 
 在 Linux 下试运行的时候发现打卡段没问题，但是后面邮件发送这段报错：
 
@@ -64,7 +64,7 @@ TimeoutError: [Errno 110] Connection timed out
 
 ```python
 smtpObj = smtplib.SMTP_SSL() 
-smtpObj.connect(mail_host, 465)                        # 一般加密发信 smtp 端口号为 465
+smtpObj.connect(mail_host, 465)      # 一般加密发信 smtp 端口号为 465
 ```
 
 在 3.7 版本以上的 Python 中需要此脚本时必须使用 `smtpObj = smtplib.SMTP_SSL(mail_host)` ，否则邮件发信会报错 ValueError 如下：
@@ -152,7 +152,7 @@ requests.exceptions.ProxyError: HTTPConnectionPool(host='127.0.0.1', port=7890):
 
 ### 结果判定
 
-调试时还发现个问题，原代码打卡出错的判定有缺陷，只报 Python 脚本出 Exception 时的错，而提交表单时可能成功提交，但是返回的不是打卡成功，而是打卡失败。那么如何判断打卡提交正常但是打卡失败呢，这里关注返回的数据 `response_end` ，用 requests 库转换成 text 后的 `response_end.text` 长这个样子：
+调试时还发现个问题，原代码打卡出错的判定有缺陷，只报 Python 脚本出 Exception 时的错，而提交表单时可能成功提交，但是返回的不是打卡成功，而是打卡失败。那么如何判断打卡提交正常但是打卡失败呢，这里关注返回的数据 `response_end` ，用 requests 库转换成 text 后的 `response_end.text` 缩进一下长这个样子：
 
 ```json
 # 成功时
@@ -175,7 +175,7 @@ requests.exceptions.ProxyError: HTTPConnectionPool(host='127.0.0.1', port=7890):
 }
 ```
 
-可以看到返回的字段中 `errno` 为 `0` 代表成功提交，剩下的 `ecode` 显示 `str` 型的状态，`error` 只有出现错误时才有，包含了所有的错误信息，这个错误是在学校服务器上报的，不是本地脚本的问题。`entities` 包含成功提交后的一些数据。那么这就用 `errno` 来判定远程提交后返回是否成功。先使用 `json.loads()` 将其转换为 Json 格式，注意在返回的数据中 `errno` 字段为 `int` 类型，`entities` 字段为 `list` 类型，发信的 `msg` 要用 `str()` 转换这两个数据。
+可以看到返回的字段中 `errno` 为 `0` 代表成功提交，剩下的 `ecode` 显示 `str` 型的状态，`error` 只有出现错误时才有，包含了所有的错误信息，这个错误是在学校服务器上报的，不是本地脚本的问题。`entities` 包含成功提交后的一些数据。那么这就用 `errno` 来判定远程提交后返回是否成功。先使用 `json.loads()` 将其转换为 JSON 格式，注意在返回的数据中 `errno` 字段为 `int` 类型，`entities` 字段为 `list` 类型，发信的 `msg` 要用 `str()` 转换这两个数据。
 
 实现代码如下：
 
@@ -405,7 +405,7 @@ finally:
 
 ## 定时任务
 
-要想让代码实现自动打卡，还需要另外设置定时任务，Linux 可以用 **crontab** ，Windows 可以用 **任务计划程序** 。
+要想让代码实现自动打卡，还需要另外设置定时任务，Linux 可以用 **crontab**，Windows 可以用 **任务计划程序**。
 
 ```bash
 # Linux 下添加 crontab 定时命令，每天 8:00 执行打卡并输出日志到 .log 文件

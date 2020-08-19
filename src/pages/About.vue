@@ -115,15 +115,22 @@
             <a
               href="https://github.com/gridsome/gridsome-starter-blog"
               target="_blank"
-              >gridsome-starter-blog</a
+              >@gridsome/gridsome-starter-blog</a
             >
             主题，参考
-            <a href="https://blog.spencerwoo.com/" target="_blank">Spencer</a>
+            <a href="https://blog.spencerwoo.com/" target="_blank"
+              >@Spencer's Blog</a
+            >
             和
-            <a href="https://blog.jalenchuh.cn/" target="_blank">Jalen</a>
-            进行了一丁点修改，代码开源于 GitHub
-            <a href="https://github.com/monsterxcn/myBlog" target="_blank"
-              >@monsterxcn/myBlog</a
+            <a href="https://blog.jalenchuh.cn/" target="_blank"
+              >@Jalen's Blog</a
+            >
+            进行了一丁点修改
+            <s
+              >，代码开源于 GitHub
+              <a href="https://github.com/monsterxcn/myBlog" target="_blank"
+                >@monsterxcn/myBlog</a
+              ></s
             >
             。
           </p>
@@ -149,6 +156,7 @@
             <p><span>2020 Mar.21</span>JPG PNG No, Webp Yes</p>
             <p><span>2020 May.21</span>VOID No, myVOID Yes</p>
             <p><span>2020 Aug.15</span>Typecho No, Gridsome Yes</p>
+            <p><span>2020 Aug.19</span>规范 Markdown 源文件书写格式</p>
             <p><span>Keep moving...</span></p>
           </div>
 

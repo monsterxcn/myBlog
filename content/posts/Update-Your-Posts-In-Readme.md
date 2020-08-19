@@ -7,36 +7,36 @@ cat: code
 tags: ['GitHub Actions', 'README', 'RSS']
 cover_image: "./images/readme-update-posts.png"
 canonical_url: false
-description: "看见别人的 GitHub 主页都换上了 README.md，我就也安排上了。顺便网上冲浪现学 Python 做了个通过 RSS 获取最近博文并自动更新到 README 的小玩意。"
+description: "看见别人的 GitHub 主页都换上了 README，我就也安排上了。顺便网上冲浪现学 Python 做了个通过 RSS 获取最近博文并自动更新到 README 的小玩意。"
 ---
 
-今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 README.md 就可以在 GitHub 个人主页上看到其内容。比起单纯的 Pin 仓库和 Gist 在个人主页，我觉得这让 GitHub 主页变得多姿多彩，戳官方 [文档](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme) 了解更多。可惜，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也只是满足下自己的虚荣心而已，能力提升微乎其微。
+今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 `README.md` 就可以在 GitHub 个人主页上看到其内容。比起单纯的固定仓库或 Gist 在个人主页，我觉得这会让 GitHub 主页变得更多姿多彩，戳官方 [文档](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme) 了解更多。然而，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也只是满足下自己的虚荣心而已，能力提升微乎其微。
 
-这段时间看了很多个人介绍仓库之后，发现我想多了：GitHub 是什么? ~~全球最大的同性交友网站啊！~~ 又不是世纪佳缘，写得漂亮能找着对象吗?开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 README.md 就达标辣！（靠 GitHub 找工作的话那当我没说
+这段时间看了很多个人介绍仓库之后，发现我想多了：GitHub 是什么？~~全球最大的同性交友网站啊！~~ 又不是世纪佳缘，写得漂亮能找着对象吗？开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 `README.md` 就达标辣！（靠 GitHub 找工作的话那当我没说。
 
-单单写 READMD.md 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作 README.md 同步最近博文功能的经过吧，毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。
+单单写 READMD 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作「从 RSS 获取最近更新并以 Markdown 格式写入 README」功能的经过吧。毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。
 
 > 写着写着就变成了幼儿读物的感觉，请不要笑话我了，毕竟我是个萌新，阿巴阿巴 🤪
 
 ## 从文章中学习
 
-一切是从这里开始的：《[Building a self-updating profile README for GitHub - Simon Willison’s Weblog](https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/)》，这位作者的 README 仓库 [@simonw/simonw](https://github.com/simonw/simonw) 显示了三栏自动更新的内容，包括 GitHub 上的打包发布、博客文章和另外一个站点 T(hings) I L(earned) 的条目。这三栏分别使用了三种途径获取最新内容的，均由 Python 实现：
+一切是从这里开始的：《[Building a self-updating profile README for GitHub - Simon Willison’s Weblog](https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/)》，这位作者的仓库 [@simonw/simonw](https://github.com/simonw/simonw) 显示了三栏自动更新的内容，包括 GitHub 上的打包发布、博客文章和另外一个站点 T(hings) I L(earned) 的条目。这三栏分别使用了三种途径获取最新内容的，均由 Python 实现：
 
- - `GitHub GraphQL API -> python_graphql_client -> Latest Release`
- - `RSS Atom feed -> feedparser -> Latest posts`
- - `Datasette API -> SQL query -> Latest entries`
+ - 「GitHub GraphQL API -> python_graphql_client -> Latest Release」
+ - 「RSS Atom feed -> feedparser -> Latest posts」
+ - 「Datasette API -> SQL query -> Latest entries」
 
 第一个和第三个我都不了解，只有 RSS 的格式稍微懂一点，巧的是这正好能用来获取博客最新的文章。动手开始！
 
 ## 面向谷歌编程
 
-查看仓库现成的 build_readme.py 文件，一眼扫下来 218 行，有点晕。一遍看下来 GitHub GraphQL API 和 Datasette API 相关的占了较大篇幅，这说明通过 RSS 获取博客内容的代码较少。这时候我选择找到第一个版本的文件，我觉得最初的版本大概率应该是最简陋的，能让我最快的搞清楚代码的大体结构。第一个版本的 `.py` [文件](https://github.com/simonw/simonw/commit/d2b5e8ba30b0d2b1a867e0bfafa1215a2b5ef287#diff-b8502c56279bd4ac52ccb69f70e81a13) 139 行，就从这里开始吧。
+查看仓库现成的 `build_readme.py` 文件，一眼扫下来有 218 行，有点晕。一遍看下来 GitHub GraphQL API 和 Datasette API 相关的占了较大篇幅，这说明通过 RSS 获取博客内容的代码较少。这时候我选择找到第一个版本的文件，我觉得最初的版本大概率应该是最简陋的，能让我最快的搞清楚代码的大体结构。第一个版本的 [build_readme.py](https://github.com/simonw/simonw/commit/d2b5e8ba30b0d2b1a867e0bfafa1215a2b5ef287#diff-b8502c56279bd4ac52ccb69f70e81a13) L139，就从这里开始吧。
 
 
 <details><summary><strong>从零开始学 Copy</strong></summary><br />
 
 
-从 107 行 `if __name__ == "__main__"` 处开始读，截取在下面第 1 行。这相当于 C 语言的 `int main()`，以前尝试白嫖腾讯云无服务器环境的时候，从它的环境设置学到的。
+从 L107 `if __name__ == "__main__"` 处开始读，截取在下面 L1。这句相当于 C 语言的 `int main()`（尝试白嫖腾讯云无服务器环境的时候从环境设置里学到的。
 
 ```python
 if __name__ == "__main__":
@@ -110,13 +110,13 @@ def fetch_blog_entries():
 </details><br />
 
 
-下面是正式的面向谷歌编程，也就是学习用轮子（作者用到的那些库 pathlib、re、feedparser）：pathlib 库看起来没有需要谷歌的，一个能获取文件路径的库。re 库用到了正则表达式，结合作者在仓库第一版 README.md 中写的 `<!-- blog starts -->` `<!-- blog ends -->` 这样的标记，不难理解是将结果通过正则匹配找到位置，然后进行替换。feedparser 库从一个 Atom 链接获取了包含文章信息的数组，是「源头」，便从这开始。
+下面是正式的面向谷歌编程，也就是学习用轮子（作者用到的那些库 pathlib、re、feedparser）：pathlib 库看起来没有需要谷歌的，一个能获取文件路径的库。re 库用到了正则表达式，结合作者在仓库第一版 `README.md` 中写的 `<!-- blog starts -->` `<!-- blog ends -->` 这样的标记，不难理解是将结果通过正则匹配找到位置，然后进行替换。feedparser 库从一个 Atom 链接获取了包含文章信息的数组，是为「源头」。
 
 ### feedparser 解析 RSS
 
-《[在 Python 中使用 Feedparser 解析 RSS - 纯净天空](https://vimsky.com/article/4399.html)》一篇足矣，或者看英文版《[Using Feedparser in Python - PythonForBeginners](https://www.pythonforbeginners.com/feedparser/using-feedparser-in-python)》。当然，RSS 文件也要有一丢丢了解。XML 格式由 HTML 触类旁通不难理解，可以试着戳 [这里](https://blog.monsterx.cn/feed.xml) 看看本站的 RSS 源格式。在每个 `<item>` 中包含了 `<title>` `<link>` `<pubDate>`，用来输出到 README.md 够了。
+《[在 Python 中使用 Feedparser 解析 RSS - 纯净天空](https://vimsky.com/article/4399.html)》一篇足矣，或者看英文版《[Using Feedparser in Python - PythonForBeginners](https://www.pythonforbeginners.com/feedparser/using-feedparser-in-python)》。当然，RSS 文件也要有一丢丢了解。XML 格式由 HTML 触类旁通不难理解，可以试着戳 [这里](https://blog.monsterx.cn/feed.xml) 看看本站的 RSS 源格式。在每个 `<item>` 中包含了 `<title>` `<link>` `<pubDate>`，用来输出到 `README.md` 够了。
 
-参考链接文章用的是 `dic['feed']` 这种格式，我在本地用起来和 `dic.feed` 是一样的，就用后面这种短一点的写个示例。
+参考链接文章用的是 `dic['feed']` 这种格式，用起来和 `dic.feed` 是一样的，就用后面这种短一点的写个示例。
 
 ```python
 import feedparser
@@ -171,7 +171,7 @@ RSS 数据较多时 `print(dic)` 可能让人头皮发麻，自行体会吧。�
 解析后：
 
 
-<details><summary><strong>Freeparser JSON 解析结果</strong></summary><br />
+<details><summary><strong>Freeparser 解析结构</strong></summary><br />
 
 
 ```json
@@ -286,11 +286,11 @@ RSS 数据较多时 `print(dic)` 可能让人头皮发麻，自行体会吧。�
 </details><br />
 
 
-可以看到解析出来是 JSON 格式，而且不仅仅包含 XML 文件可见内容，HTTP Header 信息也在其中。值得注意的地方： `<item><pubDate>` 并不是通过形如 `items[0].pubDate` 获取，而是 `items[0].published` 。根据这个结构更加灵活的运用 feedparser 吧！实现 README 自动更新最近博文并不需要这些，我给的示例足够用了。
+可以看到解析出来像是 JSON 格式，而且不仅仅包含 XML 文件可见内容，HTTP Header 信息也在其中。值得注意的地方： `<item><pubDate>` 并不是通过形如 `items[0].pubDate` 获取，而是 `items[0].published` 。根据这个结构更加灵活的运用 feedparser 吧！实现 README 自动更新最近博文并不需要这些，我给的示例足够用了。
 
 ### re 正则表达式替换
 
-学 re 库从 Python 官方文档开始：[re --- 正则表达式操作 - Python 3 中文文档](https://docs.python.org/zh-cn/3/library/re.html)。不过最重要的还是学会写正则表达式，多写一些多搜一搜，时间久了自然就会了，我是这么想的。这里给出用于匹配 **指定字符串之间所有内容且不包含指定字符串** 的正则表达式。
+学 re 库从 Python 官方文档开始：《[re --- 正则表达式操作 - Python 3 中文文档](https://docs.python.org/zh-cn/3/library/re.html)》。不过最重要的还是学会写正则表达式，多写一些多搜一搜，时间久了自然就会了，我是这么想的。这里给出用于匹配 **指定字符串之间所有内容且不包含指定字符串** 的正则表达式。
 
  - `(?<=MARK)` 指定以 `MARK` 开头，遇到 `MARK` 后开始匹配
  - `(?=MARK)` 指定 `MARK` 结尾，遇到 `MARK` 前停止匹配
@@ -309,12 +309,12 @@ pattern = re.compile(
 )
 ```
 
-`re.compile()` 将正则表达式的样式编译为一个正则表达式对象（正则对象），如果需要多次使用这个正则表达式的话，使用 `re.compile()` 和保存这个正则对象以便复用，可以让程序更加高效。参数：`re.compile(pattern, flags=0)`，参考官方文档给出介绍如下：
+`re.compile()` 将正则表达式的样式编译为一个正则表达式对象（正则对象），如果需要多次使用一个正则表达式的话，使用 `re.compile()` 保存这个正则对象以便复用，可以让程序更加高效。参数：`re.compile(pattern, flags=0)`，参考官方文档给出介绍如下：
 
-> **re.sub(pattern, repl, string, count=0, flags=0)** <br />
+> **re.sub(pattern, repl, string, count=0, flags=0)** [^1] <br />
 > 返回通过使用 `repl` 替换在 `string` 最左边非重叠出现的 `pattern` 匹配的字符串。
 
- - `pattern` 可以是一个字符串或者一个 *样式对象* ，在无匹配到时原样返回 `string`
+ - `pattern` 可以是字符串或对象，在无匹配到时原样返回 `string`
  - `repl` 可以是字符串或函数。`pattern` 为字符串时 `repl` 中任何反斜杠转义序列都会被处理，如 `\n` 会被转换为换行符、`\r` 会被转换为回车符。ASCII 字符的未知转义符会被保留供将来使用并被视为错误。其他未知转义符例如 `\&` 会保持原样。反向引用（Backreferences）例如 `\6` 将被替换为 `pattern` 所匹配到的第 6 组的子字符串
  - `repl` 是字符串时，对所述的转义符和反向引用（Backreferences）中有几处特殊需要说明
    + 形如 `\g<name>` 用作 `(?P<name>…)` 语法定义的 `name` 组的匹配到的子字符串
@@ -367,7 +367,7 @@ C 语言文件读写 `fopen()` 后还有 `fclose()` 的，作者的代码里没�
 
 ## 整理整套代码
 
-以上所有学习途径自以为都交代清楚了，最后整合时用了 `for` 循环和数组的 `[start:end:step]` 分割（像数学上的区间表示法）来获取最近的固定篇数，完整实现这个「从 RSS 获取最近更新并以 Markdown 格式写入 README.md」的功能需要的代码篇幅很短，Python 真有趣！
+以上所有学习途径自以为都交代清楚了，最后整合时用了 `for` 循环和数组的 `[start:end:step]` 分割（像数学上的区间表示法）来获取最近的固定篇数，完整实现这个「从 RSS 获取最近更新并以 Markdown 格式写入 README」的功能需要的代码篇幅很短，Python 真有趣！
 
 ```python
 import feedparser
@@ -410,4 +410,8 @@ if __name__ == "__main__":
 
 按需小小修改一下，执行 `python this.py` 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置自己点 Star 触发和定时执行即可。给出我的工作流配置 [new.yml](https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml)，和之前打卡项目相同的原理。看到这里的你也许有兴趣读读我之前编写这种定时工作流的文章 🤣
 
-另外我的 README.md 使用了 [@anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats) 展示 GitHub 账号的统计信息，使用了 [Shields.io](https://shields.io) 和 [Simple Icons](https://simpleicons.org) 生成精致的图标。快来给自己也安排一个吧！
+另外我的 README 使用了 [@anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats) 展示 GitHub 账号的统计信息，使用了 [Shields.io](https://shields.io) 和 [Simple Icons](https://simpleicons.org) 生成精致的图标。快来给自己也安排一个吧！
+
+GitHub 仓库地址 [@monsterxcn/monsterxcn](https://github.com/monsterxcn/monsterxcn)。
+
+[^1]: 《[re --- 正则表达式操作 --- re.sub - Python 3 中文文档](https://docs.python.org/zh-cn/3/library/re.html#re.sub)》
