@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Wed, 19 Aug 2020 03:06:17 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2020 07:30:46 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -13,26 +13,26 @@
             <link>https://blog.monsterx.cn/code/update-your-posts-in-readme/</link>
             <guid>https://blog.monsterx.cn/code/update-your-posts-in-readme/</guid>
             <pubDate>Tue, 18 Aug 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 README.md 就可以在 GitHub 个人主页上看到其内容。比起单纯的 Pin 仓库和 Gist 在个人主页，我觉得这让 GitHub 主页变得多姿多彩，戳官方 <a href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">文档</a> 了解更多。可惜，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也只是满足下自己的虚荣心而已，能力提升微乎其微。</p>
-<p>这段时间看了很多个人介绍仓库之后，发现我想多了：GitHub 是什么? <del>全球最大的同性交友网站啊！</del> 又不是世纪佳缘，写得漂亮能找着对象吗?开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 README.md 就达标辣！（靠 GitHub 找工作的话那当我没说</p>
-<p>单单写 READMD.md 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作 README.md 同步最近博文功能的经过吧，毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。</p>
+            <content:encoded><![CDATA[<p>今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 README.md 就可以在 GitHub 个人主页上看到其内容。比起单纯的固定仓库或 Gist 在个人主页，我觉得这会让 GitHub 主页变得更多姿多彩，戳官方 <a href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">文档</a> 了解更多。然而，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也只是满足下自己的虚荣心而已，能力提升微乎其微。</p>
+<p>这段时间看了很多个人介绍仓库之后，发现我想多了：GitHub 是什么？<del>全球最大的同性交友网站啊！</del> 又不是世纪佳缘，写得漂亮能找着对象吗？开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 README.md 就达标辣！（靠 GitHub 找工作的话那当我没说。</p>
+<p>单单写 READMD.md 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作「从 RSS 获取最近更新并以 Markdown 格式写入 README.md」功能的经过吧。毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。</p>
 <blockquote>
 <p>写着写着就变成了幼儿读物的感觉，请不要笑话我了，毕竟我是个萌新，阿巴阿巴 🤪</p>
 </blockquote>
 <h2 id="从文章中学习">从文章中学习</h2>
 <p>一切是从这里开始的：《<a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">Building a self-updating profile README for GitHub - Simon Willison’s Weblog</a>》，这位作者的 README 仓库 <a href="https://github.com/simonw/simonw">@simonw/simonw</a> 显示了三栏自动更新的内容，包括 GitHub 上的打包发布、博客文章和另外一个站点 T(hings) I L(earned) 的条目。这三栏分别使用了三种途径获取最新内容的，均由 Python 实现：</p>
 <ul>
-<li><code>GitHub GraphQL API -&gt; python_graphql_client -&gt; Latest Release</code></li>
-<li><code>RSS Atom feed -&gt; feedparser -&gt; Latest posts</code></li>
-<li><code>Datasette API -&gt; SQL query -&gt; Latest entries</code></li>
+<li>「GitHub GraphQL API -&gt; python_graphql_client -&gt; Latest Release」</li>
+<li>「RSS Atom feed -&gt; feedparser -&gt; Latest posts」</li>
+<li>「Datasette API -&gt; SQL query -&gt; Latest entries」</li>
 </ul>
 <p>第一个和第三个我都不了解，只有 RSS 的格式稍微懂一点，巧的是这正好能用来获取博客最新的文章。动手开始！</p>
 <h2 id="面向谷歌编程">面向谷歌编程</h2>
-<p>查看仓库现成的 build_readme.py 文件，一眼扫下来 218 行，有点晕。一遍看下来 GitHub GraphQL API 和 Datasette API 相关的占了较大篇幅，这说明通过 RSS 获取博客内容的代码较少。这时候我选择找到第一个版本的文件，我觉得最初的版本大概率应该是最简陋的，能让我最快的搞清楚代码的大体结构。第一个版本的 <code>.py</code> <a href="https://github.com/simonw/simonw/commit/d2b5e8ba30b0d2b1a867e0bfafa1215a2b5ef287#diff-b8502c56279bd4ac52ccb69f70e81a13">文件</a> 139 行，就从这里开始吧。</p>
+<p>查看仓库现成的 <code>build_readme.py</code> 文件，一眼扫下来有 218 行，有点晕。一遍看下来 GitHub GraphQL API 和 Datasette API 相关的占了较大篇幅，这说明通过 RSS 获取博客内容的代码较少。这时候我选择找到第一个版本的文件，我觉得最初的版本大概率应该是最简陋的，能让我最快的搞清楚代码的大体结构。第一个版本的 <code>.py</code> <a href="https://github.com/simonw/simonw/commit/d2b5e8ba30b0d2b1a867e0bfafa1215a2b5ef287#diff-b8502c56279bd4ac52ccb69f70e81a13">文件</a> L139，就从这里开始吧。</p>
 <details><summary><strong>从零开始学 Copy</strong></summary><br />
 
 
-<p>从 107 行 <code>if __name__ == &quot;__main__&quot;</code> 处开始读，截取在下面第 1 行。这相当于 C 语言的 <code>int main()</code>，以前尝试白嫖腾讯云无服务器环境的时候，从它的环境设置学到的。</p>
+<p>从 L107 <code>if __name__ == &quot;__main__&quot;</code> 处开始读，截取在下面 L1。这句相当于 C 语言的 <code>int main()</code>（尝试白嫖腾讯云无服务器环境的时候从环境设置里学到的。</p>
 <pre><code class="language-python">if __name__ == &quot;__main__&quot;:
     readme = root / &quot;README.md&quot;
     releases = fetch_releases(TOKEN)
@@ -96,10 +96,10 @@ def fetch_blog_entries():
 </details><br />
 
 
-<p>下面是正式的面向谷歌编程，也就是学习用轮子（作者用到的那些库 pathlib、re、feedparser）：pathlib 库看起来没有需要谷歌的，一个能获取文件路径的库。re 库用到了正则表达式，结合作者在仓库第一版 README.md 中写的 <code>&lt;!-- blog starts --&gt;</code> <code>&lt;!-- blog ends --&gt;</code> 这样的标记，不难理解是将结果通过正则匹配找到位置，然后进行替换。feedparser 库从一个 Atom 链接获取了包含文章信息的数组，是「源头」，便从这开始。</p>
+<p>下面是正式的面向谷歌编程，也就是学习用轮子（作者用到的那些库 pathlib、re、feedparser）：pathlib 库看起来没有需要谷歌的，一个能获取文件路径的库。re 库用到了正则表达式，结合作者在仓库第一版 README.md 中写的 <code>&lt;!-- blog starts --&gt;</code> <code>&lt;!-- blog ends --&gt;</code> 这样的标记，不难理解是将结果通过正则匹配找到位置，然后进行替换。feedparser 库从一个 Atom 链接获取了包含文章信息的数组，是为「源头」。</p>
 <h3 id="feedparser-解析-rss">feedparser 解析 RSS</h3>
 <p>《<a href="https://vimsky.com/article/4399.html">在 Python 中使用 Feedparser 解析 RSS - 纯净天空</a>》一篇足矣，或者看英文版《<a href="https://www.pythonforbeginners.com/feedparser/using-feedparser-in-python">Using Feedparser in Python - PythonForBeginners</a>》。当然，RSS 文件也要有一丢丢了解。XML 格式由 HTML 触类旁通不难理解，可以试着戳 <a href="https://blog.monsterx.cn/feed.xml">这里</a> 看看本站的 RSS 源格式。在每个 <code>&lt;item&gt;</code> 中包含了 <code>&lt;title&gt;</code> <code>&lt;link&gt;</code> <code>&lt;pubDate&gt;</code>，用来输出到 README.md 够了。</p>
-<p>参考链接文章用的是 <code>dic[&#39;feed&#39;]</code> 这种格式，我在本地用起来和 <code>dic.feed</code> 是一样的，就用后面这种短一点的写个示例。</p>
+<p>参考链接文章用的是 <code>dic[&#39;feed&#39;]</code> 这种格式，用起来和 <code>dic.feed</code> 是一样的，就用后面这种短一点的写个示例。</p>
 <pre><code class="language-python">import feedparser
 
 # 解析本站的 RSS 源
@@ -144,7 +144,7 @@ print(sitetitle)</code></pre>
     &lt;/channel&gt;
 &lt;/rss&gt;</code></pre>
 <p>解析后：</p>
-<details><summary><strong>Freeparser JSON 解析结果</strong></summary><br />
+<details><summary><strong>Freeparser 解析结构</strong></summary><br />
 
 
 <pre><code class="language-json">{
@@ -255,9 +255,9 @@ print(sitetitle)</code></pre>
 </details><br />
 
 
-<p>可以看到解析出来是 JSON 格式，而且不仅仅包含 XML 文件可见内容，HTTP Header 信息也在其中。值得注意的地方： <code>&lt;item&gt;&lt;pubDate&gt;</code> 并不是通过形如 <code>items[0].pubDate</code> 获取，而是 <code>items[0].published</code> 。根据这个结构更加灵活的运用 feedparser 吧！实现 README 自动更新最近博文并不需要这些，我给的示例足够用了。</p>
+<p>可以看到解析出来像是 JSON 格式，而且不仅仅包含 XML 文件可见内容，HTTP Header 信息也在其中。值得注意的地方： <code>&lt;item&gt;&lt;pubDate&gt;</code> 并不是通过形如 <code>items[0].pubDate</code> 获取，而是 <code>items[0].published</code> 。根据这个结构更加灵活的运用 feedparser 吧！实现 README 自动更新最近博文并不需要这些，我给的示例足够用了。</p>
 <h3 id="re-正则表达式替换">re 正则表达式替换</h3>
-<p>学 re 库从 Python 官方文档开始：<a href="https://docs.python.org/zh-cn/3/library/re.html">re --- 正则表达式操作 - Python 3 中文文档</a>。不过最重要的还是学会写正则表达式，多写一些多搜一搜，时间久了自然就会了，我是这么想的。这里给出用于匹配 <strong>指定字符串之间所有内容且不包含指定字符串</strong> 的正则表达式。</p>
+<p>学 re 库从 Python 官方文档开始：《<a href="https://docs.python.org/zh-cn/3/library/re.html">re --- 正则表达式操作 - Python 3 中文文档</a>》。不过最重要的还是学会写正则表达式，多写一些多搜一搜，时间久了自然就会了，我是这么想的。这里给出用于匹配 <strong>指定字符串之间所有内容且不包含指定字符串</strong> 的正则表达式。</p>
 <ul>
 <li><code>(?&lt;=MARK)</code> 指定以 <code>MARK</code> 开头，遇到 <code>MARK</code> 后开始匹配</li>
 <li><code>(?=MARK)</code> 指定 <code>MARK</code> 结尾，遇到 <code>MARK</code> 前停止匹配</li>
@@ -273,13 +273,13 @@ pattern = re.compile(
     r&quot;(?&lt;=(&quot; + start + r&quot;)).*(?=(&quot; + end + r&quot;))&quot;,
     re.DOTALL,
 )</code></pre>
-<p><code>re.compile()</code> 将正则表达式的样式编译为一个正则表达式对象（正则对象），如果需要多次使用这个正则表达式的话，使用 <code>re.compile()</code> 和保存这个正则对象以便复用，可以让程序更加高效。参数：<code>re.compile(pattern, flags=0)</code>，参考官方文档给出介绍如下：</p>
+<p><code>re.compile()</code> 将正则表达式的样式编译为一个正则表达式对象（正则对象），如果需要多次使用一个正则表达式的话，使用 <code>re.compile()</code> 保存这个正则对象以便复用，可以让程序更加高效。参数：<code>re.compile(pattern, flags=0)</code>，参考官方文档给出介绍如下：</p>
 <blockquote>
-<p><strong>re.sub(pattern, repl, string, count=0, flags=0)</strong> <br />
+<p><strong>re.sub(pattern, repl, string, count=0, flags=0)</strong> [^1] <br />
 返回通过使用 <code>repl</code> 替换在 <code>string</code> 最左边非重叠出现的 <code>pattern</code> 匹配的字符串。</p>
 </blockquote>
 <ul>
-<li><code>pattern</code> 可以是一个字符串或者一个 <em>样式对象</em> ，在无匹配到时原样返回 <code>string</code></li>
+<li><code>pattern</code> 可以是字符串或对象，在无匹配到时原样返回 <code>string</code></li>
 <li><code>repl</code> 可以是字符串或函数。<code>pattern</code> 为字符串时 <code>repl</code> 中任何反斜杠转义序列都会被处理，如 <code>\n</code> 会被转换为换行符、<code>\r</code> 会被转换为回车符。ASCII 字符的未知转义符会被保留供将来使用并被视为错误。其他未知转义符例如 <code>\&amp;</code> 会保持原样。反向引用（Backreferences）例如 <code>\6</code> 将被替换为 <code>pattern</code> 所匹配到的第 6 组的子字符串</li>
 <li><code>repl</code> 是字符串时，对所述的转义符和反向引用（Backreferences）中有几处特殊需要说明<ul>
 <li>形如 <code>\g&lt;name&gt;</code> 用作 <code>(?P&lt;name&gt;…)</code> 语法定义的 <code>name</code> 组的匹配到的子字符串</li>
@@ -360,16 +360,66 @@ if __name__ == &quot;__main__&quot;:
     update_readme(startMark, endMark, postsNew)</code></pre>
 <p>按需小小修改一下，执行 <code>python this.py</code> 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置自己点 Star 触发和定时执行即可。给出我的工作流配置 <a href="https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml">new.yml</a>，和之前打卡项目相同的原理。看到这里的你也许有兴趣读读我之前编写这种定时工作流的文章 🤣</p>
 <p>另外我的 README.md 使用了 <a href="https://github.com/anuraghazra/github-readme-stats">@anuraghazra/github-readme-stats</a> 展示 GitHub 账号的统计信息，使用了 <a href="https://shields.io">Shields.io</a> 和 <a href="https://simpleicons.org">Simple Icons</a> 生成精致的图标。快来给自己也安排一个吧！</p>
+<p>[^1]: 《<a href="https://docs.python.org/zh-cn/3/library/re.html#re.sub">re --- 正则表达式操作 --- re.sub - Python 3 中文文档</a>》</p>
 ]]></content:encoded>
         </item>
         <item>
-            <title><![CDATA[New Start]]></title>
+            <title><![CDATA[新起点 × 博客中文排版]]></title>
             <link>https://blog.monsterx.cn/life/new-start-with-gridsome/</link>
             <guid>https://blog.monsterx.cn/life/new-start-with-gridsome/</guid>
             <pubDate>Sat, 15 Aug 2020 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<p>在这普通的一天，我穿着普通的鞋，很普通地呆在这普通的家，掏出普通的耳机，找点普通的感觉，来一首我最爱的普通音乐，踩着普通的鼓点，世界随着我旋转，这让我普通地单曲循环，跟着普通的节奏，手腕普通地抖动，这普通的一切，都变得不同……</p>
-<p>博客稳定两周年之际，我正式从动态博客迁移至静态博客，如你所见这个博客正由 <a href="https://gridsome.org">Gridsome</a> 驱动着。“Gridsome 是一个免费、开源、基于 Vue.js 构建的框架，用 Gridsome 创建的网站和应用程序具有天然的速度优势”，官网如是说，这确实是我选择她的一个理由，另外一个理由是身边用 <a href="https://hexo.io">Hexo</a> 的人似乎太多了，我想玩点花的。</p>
-<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@SpencerWooo</a> <a href="https://blog.jalenchuh.cn">@JalenChuh</a> 仓库修改，基于 Gridsome 主题 <a href="https://github.com/gridsome/gridsome-starter-blog">gridsome-starter-blog</a> 。中国境内部署于阿里云 OSS -&gt; 全站加速，境外部署于 Vercel -&gt; Cloudflare。</p>
+<h2 id="新的平台">新的平台</h2>
+<p>博客稳定两周年之际，我正式从动态博客迁移至静态博客，如你所见这个博客正由 <a href="https://gridsome.org">Gridsome</a> 驱动着。「Gridsome 是一个免费、开源、基于 Vue.js 构建的框架，用 Gridsome 创建的网站和应用程序具有天然的速度优势」，身边用 <a href="https://hexo.io">Hexo</a> 的人似乎太多了，喜欢尝试小众作品的我选择了 Gridsome。除此之外，似乎是从给旧站点加了 Statusbot <a href="https://status.monsterx.cn">状态监控</a> 开始站内垃圾评论数量陡增，一直在用 Typecho 原生评论的我实在顶不住，评论拦截插件虽然也有，但都不太能满足我的需求，索性换个评论系统加入大家都说好的 Disqus 大家族了。</p>
+<p>使用 Disqus 的痛处其一是评论数据同步，手动导入了两篇文章的数据之后发现评论区头像都无法显示，网上的解决方案似乎得购买 Disqus 商业套餐。其二是国内用户上网环境不佳便无法评论，向来冷清的本站雪上加霜，以后可能会考虑在国内服务器上继续部署 <a href="https://lab.mocurio.com/artalk.html">Artalk</a> 评论系统以供 <del>小部分人的需求</del> 自娱自乐。</p>
+<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@Spencer&#39;s Blog</a> 和 <a href="https://blog.jalenchuh.cn">@Jalen&#39;s Blog</a> 的仓库修改，基于 Gridsome 主题 <a href="https://github.com/gridsome/gridsome-starter-blog">gridsome-starter-blog</a>。静态博客可以自由部署在很多地方，目前这个博客通过 GitHub Actions 自动构建静态文件发布到私有仓库的分支和阿里云 OSS，配合阿里云全站加速供中国境内访问，同时还利用 Vercel 部署并加持 Cloudflare CDN 供境外访问。以前将域名的境内境外解析拆分，是考虑国外可能会有人访问，现在想明白了，这其实是为了国内日常科学上网的同志们。就算在墙外访问本站应该也能获取较快的体验。</p>
+<h2 id="文章排版">文章排版</h2>
+<p>格式工整的文章让人阅读的欲望更强烈。参照众多中文博客排版、GitHub 热门项目文档排版、GitHub 仓库 <a href="https://github.com/sparanoid/chinese-copywriting-guidelines">@sparanoid/chinese-copywriting-guidelines</a> 以及我的个人偏好，将本博客的 Markdown 文件书写规则做一点说明，有冲突时优先考虑下文的规则。</p>
+<ul>
+<li>标点符号<ul>
+<li>中文内容不掺杂半角标点符号，英文内容不掺杂全角标点符号</li>
+<li>中文内容使用全角直角引号代替全角双引号</li>
+<li>数字内容使用半角字符</li>
+<li>不使用重复的标点符号，「...」除外</li>
+<li>内容必须以标点符号结尾，表格、列表、代码除外</li>
+</ul>
+</li>
+<li>空格<ul>
+<li>中英文之间留空格，（按照官方格式书写）</li>
+<li>中文与数字、数字与单位（<code>°</code> <code>℃</code> <code>%</code> 除外）之间留空格</li>
+<li>全角标点符号前后不留空格</li>
+<li>省略号「……」后留一个空格</li>
+</ul>
+</li>
+<li>名词<ul>
+<li>「豆瓣FM」等同时包含中英文的产品名词按照官方格式书写</li>
+<li>专有名词使用官方格式的大小写和缩写</li>
+</ul>
+</li>
+<li>Markdown<ul>
+<li>Markdown 语法优先于 HTML 标签</li>
+<li>Markdown 标题从 <code>##</code> 开始，按内容相关度分段</li>
+<li>Markdown 语法与前后正文内容之间留一个空格，全角标点符号除外</li>
+</ul>
+</li>
+<li>其他<ul>
+<li>指示流程的内容按「Step A -&gt; Step B -&gt; Step C」格式书写</li>
+<li>指示代码行号的内容按「LNum [-EndNumber]」格式书写</li>
+<li>引用 GitHub 的用户和仓库名称按「@<user> [/<repo>]」格式书写</li>
+<li>引用文献的名称按「原标题 - 来源」格式书写并将链接包含在全角书名号之内</li>
+<li>段落中阐述代码用到的「变量名称」「函数名称」等按行内代码块格式书写</li>
+<li>段落中非阐述代码用到的且需要强调的内容使用直角引号包围</li>
+<li>段落中文件名、文件路径、文件名后缀等内容按行内代码块格式书写</li>
+<li>文章正文内各级标题要意义明确、格式一致、保持简洁，不多于两层标题嵌套</li>
+<li>文章中表示个人想法、从别处摘抄的内容按照引用格式书写</li>
+<li>文章直接引用到正文的内容不符合本站规则的地方需要进行适当调整</li>
+<li>文章中引用的、可能存在争议的内容在脚注中进行说明</li>
+</ul>
+</li>
+</ul>
+<p>除去这些规定，在文章的分类和标签上我也相较原来的 Typecho 博客做了些精简。分类目前想法是只保留「life」「code」「tech」三类，分别用来保留筛选后关于「记录生活的手帐、站点杂务」「写代码的探索和思考」「学习某些技术、使用轮子的日志」的内容。每篇文章的标签保持精简，写完整篇文章后提取两到三个关键词作为标签。</p>
+<p>做完这些剩下的就是提升自身水平了……</p>
+<h2 id="keep-moving">Keep moving...</h2>
 ]]></content:encoded>
         </item>
         <item>
@@ -378,13 +428,13 @@ if __name__ == &quot;__main__&quot;:
             <guid>https://blog.monsterx.cn/tech/auto-download-bangumi-with-aria2-rss/</guid>
             <pubDate>Tue, 28 Jul 2020 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<p>最近觉得为了偶尔看看电影动漫而续费腾讯视频会员太吃亏了，一个月四集的《斗罗大陆》水得不行啊喂！哔哩哔哩大会员也是如此，有的时候我在这头，想看的番剧在那头，每次都要科学上网才能解锁，属实费劲。</p>
-<p>想了想自己闲置的服务器和最近开通的 Microsoft 365 E5 开发者订阅，我决定自己动手，部署一套更省钱的追番流程。最初是这样一套笨笨的追番流程：「bangumi.moe 等种子站找资源 -&gt; 服务器 Aria2 下载 -&gt; Rclone + Aria2 联动将内容转移到云盘 -&gt; 云盘网页下载」。但是这样一来科学上网工具的流量开销比较大，而且也完全称不上自动。后来我发现 Windows 系统打开 OneDrive 文件夹同步就可以免去手动登录网页下载，于是我从之前的 Google Drive 迁移到 OneDrive，这样一来流程的后两步就合并了。如何让前两步合并呢?一番搜索之后我找到了 Flexget 这个 Python 编写的工具，众多插件使得 Flexget 在 RSS 订阅下载上大放异彩。本文便记录这一部署过程。</p>
+<p>想了想自己闲置的服务器和最近开通的 Microsoft 365 E5 开发者订阅，我决定自己动手，部署一套更省钱的追番流程。最初是这样一套笨笨的追番流程：「bangumi.moe 等种子站找资源 -&gt; 服务器 Aria2 下载 -&gt; Rclone + Aria2 联动将内容转移到云盘 -&gt; 云盘网页下载」。但是这样一来科学上网工具的流量开销比较大，而且也完全称不上自动。后来我发现 Windows 系统打开 OneDrive 文件夹同步就可以免去手动登录网页下载，于是我从之前的 Google Drive 迁移到 OneDrive，这样一来流程的后两步就合并了。如何让前两步合并呢？一番搜索之后我找到了 FlexGet 这个 Python 编写的工具，众多插件使得 FlexGet 在 RSS 订阅下载上大放异彩。本文便记录这一部署过程。</p>
 <h2 id="rclone">Rclone</h2>
-<p>Rclone 用于网盘挂载，从 <a href="https://rclone.org/downloads/">官方</a> 下载安装，按照命令行提示输入后得到配置文件 rclone.conf（后续使用），路径一般为 <code>~/.config/rclone/rclone.conf</code> 。</p>
-<p>注意使用自己的 Secret ID &amp; Key，据说能极大的提高文件传输速率。公用的 API 想想就知道肯定比不过自建。参考文档 <a href="https://rclone.org/drive/#making-your-own-client-id">GoogleDrive: Making your own client_id</a> 和 <a href="https://rclone.org/onedrive/#getting-your-own-client-id-and-key">OneDrive: Getting your own Client ID and Key</a> 创建即可。</p>
+<p>Rclone 用于网盘挂载，从 <a href="https://rclone.org/downloads/">官方</a> 下载安装，按照命令行提示输入后得到配置文件 <code>rclone.conf</code>（后续使用），路径一般为 <code>~/.config/rclone/rclone.conf</code>。</p>
+<p>注意使用自己的 Secret ID &amp; Key，据说能极大的提高文件传输速率。公用的 API 想想就知道肯定比不过自建。参考文档《<a href="https://rclone.org/drive/#making-your-own-client-id">GoogleDrive: Making your own client_id - rclone.org</a>》《<a href="https://rclone.org/onedrive/#getting-your-own-client-id-and-key">OneDrive: Getting your own Client ID and Key - rclone.org</a>》创建即可。</p>
 <p>Rclone 挂载 OneDrive 时需要在运行图形界面的系统上完成。Linux 服务器由于一般不带图形界面，所以需要配合本地机器：在 Windows 中下载 Rclone 相应版本文件，Power Shell 进入解压后的文件夹中键入下面命令后复制 <code>Paste the following into your remote machine ---&gt;</code> 和 <code>&lt;---End paste</code> 之间的 <code>SECRET_TOKEN</code> 到远程服务器命令行中。</p>
 <pre><code class="language-powershell">.\rclone authorize &quot;onedrive&quot; &quot;Client_ID&quot; &quot;Client_secret&quot;</code></pre>
-<p>OneDrive 更详细挂载过程可参考文章《<a href="https://p3terx.com/archives/rclone-connect-onedrive-with-selfbuilt-api.html">Rclone 进阶使用教程 - 自建私有 API 挂载 OneDrive - P3TERX</a>》。<strong>后面均使用 OneDrive 部署</strong></p>
+<p>OneDrive 更详细挂载过程可参考文章《<a href="https://p3terx.com/archives/rclone-connect-onedrive-with-selfbuilt-api.html">Rclone 进阶使用教程 - 自建私有 API 挂载 OneDrive - P3TERX</a>》。<strong>后面均使用 OneDrive 部署</strong>。</p>
 <h2 id="aria2">Aria2</h2>
 <p>Aria2 是一个强大的下载工具，这里使用 Docker 部署 Aria2 后端服务和 AriaNG 前端页面。参考文章《<a href="https://p3terx.com/archives/docker-aria2-pro.html">Aria2 Pro - 更好用的 Aria2 Docker 容器镜像 - P3TERX</a>》。</p>
 <pre><code class="language-bash"># 建立 Docker 映射文件夹
@@ -431,7 +481,7 @@ docker restart ariapro</code></pre>
 <h2 id="nginx">Nginx</h2>
 <p>由于使用 IP 登录不太方便，所以继续部署 Nginx 服务反向代理 RPC 端口、绑定自己的域名。简便起见，直接使用 Ubuntu 仓库中的 nginx 包。如果服务器中已安装 Nginx，则直接新建配置文件。</p>
 <pre><code class="language-bash">apt install -y nginx</code></pre>
-<p>安装好后 Nginx 配置文件位于 <code>/etc/nginx</code>，于 <code>/etc/nginx/conf.d</code> 文件夹下新建 <code>.conf</code> 文件。</p>
+<p>安装好后 Nginx 配置文件位于 <code>/etc/nginx</code>，于 <code>/etc/nginx/conf.d</code> 文件夹下新建 <code>.conf</code> 文件：</p>
 <details><summary><strong>Nginx 配置文件</strong></summary><br />
 
 
@@ -501,19 +551,19 @@ docker restart ariapro</code></pre>
 <pre><code class="language-bash">service nginx restart
 # nginx -s reload</code></pre>
 <h2 id="rss">RSS</h2>
-<p>部署 flexget 之前当然是先找支持 RSS 订阅的站点！目前我个人觉得萌番组的体验还不错！<a href="https://bangumi.moe">萌番组官网</a> / <a href="https://bangumi.moe/lite">萌番组 Lite 版官网</a> / <a href="https://bgm.ptr.moe">萌番组 Material Design 版</a>。点击搜索图标添加 Tags 搜索后 RSS 图标链接地址即为可用订阅地址，切换标题搜索同理。</p>
-<p>比如 添加标签 <code>Lilith-Raws</code> <code>租借女友</code> <code>1080p</code> 和 搜索标题 “Lilith 賢者時間 1080p” 分别可以得到这两种 RSS 订阅地址：</p>
+<p>部署 FlexGet 之前当然是先找支持 RSS 订阅的站点！目前我个人觉得萌番组的体验还不错！<a href="https://bangumi.moe">萌番组官网</a> / <a href="https://bangumi.moe/lite">萌番组 Lite 版官网</a> / <a href="https://bgm.ptr.moe">萌番组 Material Design 版</a>。点击搜索图标添加 Tags 搜索后 RSS 图标链接地址即为可用订阅地址，切换标题搜索同理。</p>
+<p>比如 添加标签「Lilith-Raws」「租借女友」「1080p」和搜索标题「Lilith 賢者時間 1080p」分别可以得到这两种 RSS 订阅地址：</p>
 <pre><code>https://bangumi.moe/rss/tags/5d8b3245306f1a0007bd7aca+548ee2ce4ab7379536f56358+5efffb4f3d656e43622cacc9
 https://bangumi.moe/rss/search/Lilith%20%E8%B3%A2%E8%80%85%E6%99%82%E9%96%93%201080p</code></pre><p>除了 bangumi.moe 之外还有很多平台，部分资源相同，罗列一些包括但不限于二次元的资源站：</p>
 <ul>
 <li>BT RSS 订阅<ul>
 <li><a href="https://share.dmhy.org">動漫花園資源網</a> 动漫、日剧、游戏、特摄等</li>
 <li><a href="https://acg.rip">ACG.RIP</a> 动画、日剧、综艺、音乐等</li>
-<li><a href="https://bt.xfsub.org">旋风动漫分享站</a> 漫画！</li>
+<li><a href="https://bt.xfsub.org">旋风动漫分享站</a> 漫画</li>
 <li><a href="https://nyaa.si">Nyaa</a> 侧重于东亚（中日韩）多媒体资源，被日本政府确定为主要的数字盗版网站</li>
 <li><a href="https://yts.mx">YIFY</a> 以 BitTorrent 分发大量免费下载的电影而闻名，国内很多电影资源源头</li>
-<li><a href="https://eztv.io">EZTV</a> 国外电视节目等，“TV Torrents Online Series Download”</li>
-<li><a href="https://thepiratebay10.org/">The Pirate Bay 10</a> 据称是“the galaxy&#39;s most resilient BitTorrent site”</li>
+<li><a href="https://eztv.io">EZTV</a> 国外电视节目等，「TV Torrents Online Series Download」</li>
+<li><a href="https://thepiratebay10.org/">The Pirate Bay 10</a> 据称是「the galaxy&#39;s most resilient BitTorrent site」</li>
 <li><a href="http://f.cili001.com/home.html">MAG 磁力站</a> 侧重影视剧集，可以搜人人影视专用链接</li>
 </ul>
 </li>
@@ -531,8 +581,8 @@ https://bangumi.moe/rss/search/Lilith%20%E8%B3%A2%E8%80%85%E6%99%82%E9%96%93%201
 </ul>
 </li>
 </ul>
-<h2 id="flexget">Flexget</h2>
-<p>以上部分搭建了基础的下载环境，接下来利用 Flexget 实现 aria2 的 RSS 订阅下载。</p>
+<h2 id="flexget">FlexGet</h2>
+<p>以上部分搭建了基础的下载环境，接下来利用 FlexGet 实现 Aria2 的 RSS 订阅下载。</p>
 <blockquote>
 <p>FlexGet is a multipurpose automation tool for all of your media <br />
 Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and more. <br />
@@ -542,10 +592,10 @@ Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and mo
 <pre><code class="language-bash">apt install python3 python3-pip
 pip3 install --upgrade pip setuptools
 pip3 install flexget</code></pre>
-<p>安装完成后新建 Flexget 配置文件夹并编写 Flexget 配置文件。</p>
+<p>安装完成后新建 FlexGet 配置文件夹并编写配置文件。</p>
 <pre><code class="language-bash">mkdir -p ~/.config/flexget
 nano ~/.config/flexget/config.yml</code></pre>
-<details><summary><strong>Flexget 配置文件</strong></summary><br />
+<details><summary><strong>FlexGet 配置文件</strong></summary><br />
 
 
 <pre><code class="language-yaml">schedules:
@@ -606,13 +656,13 @@ crontab -e
 */30 * * * * /usr/local/bin/flexget --cron execute</code></pre>
 <p>关于定时任务，上方示例中开头 L1-4 的配置使用了 scheduler 插件，只有在 Daemon 模式下才可用。使用 crontab 定时任务不需要该配置。</p>
 <h2 id="local">Local</h2>
-<p>最后一步，在本地登录 OneDrive 账号设置同步文件夹。右键将本地文件夹标记为“始终在此设备上保留”即可，当云端存入新的文件时本地就会自动下载同步。删除本地文件夹时，默认会将 OneDrive 云端文件一同删除，只删除本地需要右键选择“释放空间”。</p>
+<p>最后一步，在本地登录 OneDrive 账号设置同步文件夹。右键将本地文件夹标记为「始终在此设备上保留」即可，当云端存入新的文件时本地就会自动下载同步。删除本地文件夹时，默认会将 OneDrive 云端文件一同删除，只删除本地需要右键选择「释放空间」。</p>
 <p>白嫖的开发者订阅 OneDrive 服务器位于境外，从服务器 Rclone 上传文件速度很好，但是有人说本地下载速度太慢，这无法避免。如果使用世纪互联版 OneDrive 本地下载速度肯定会好很多，但服务器上传想必会慢些，自行权衡吧。我使用几周以来尚且满意，睡一觉起来想要看的东西就会自己出现在那里，宅の生活质量提升了，人也变得精神了呢！</p>
 <h2 id="end">End</h2>
-<p>关于部署上面流程的服务器强烈推荐使用国外的，国内的服务器网络带宽、Docker 部署、BT 下载环境一言难尽。我用的是 Digital Ocean 新加坡服务器，体验良好。如果就看看新番、一集一集下硬盘需求不是很高，20-40GB 应该就可以了，要拿来正儿八经下东西硬盘还得越大越好的，这几天下的紫罗兰 4K 版全集就有 43GB 了。本想着部署“省钱”的追番流程，结果下载服务器一个月就花了几十刀，害，钱还是得花！</p>
+<p>关于部署上面流程的服务器强烈推荐使用国外的，国内的服务器网络带宽、Docker 部署、BT 下载环境一言难尽。我用的是 Digital Ocean 新加坡服务器，体验良好。如果就看看新番、一集一集下硬盘需求不是很高，20-40 GB 应该就可以了，要拿来正儿八经下东西硬盘还得越大越好的，这几天下的紫罗兰 4K 版全集就有 43 GB 了。本想着部署「省钱」的追番流程，结果下载服务器一个月就花了几十刀，害，钱还是得花！</p>
 <p>另外安利一个微软收购的文件转移工具：<a href="https://mover.io/">Mover</a> 安全、强大、快速的文件转移工具，Microsoft 365 用户福音，可以实现 Box，Dropbox，Google，Amazon，Office 365（原 Microsoft 365） 向 Microsoft 365 转移文件，并且支持定时任务！</p>
 <ul>
-<li>现成的 OneDrive 文件：<a href="https://monstx-my.sharepoint.com/:f:/g/personal/storage_tingle_dev/EkM5OfD1nrZBr_214_JmLtgBNz05mQMNqIEFsZOb9FIMBg?e=EM2tX5">Anime</a> / <a href="https://monstx-my.sharepoint.com/:f:/g/personal/storage_tingle_dev/EozDcDrM7edEpnZmeL1dDQABZg0xhZNUvnj7IvBlHKM6YA?e=M944ih">Movies</a> / <a href="https://monstx-my.sharepoint.com/:f:/g/personal/storage_tingle_dev/ErcXo0q92thGqrbkpzurmI8BOXwGMJgP0AiwB5lZa_cvuw?e=SM2cWU">Series</a></li>
+<li>现成的 OneDrive 文件：<a href="https://monstx-my.sharepoint.com/:f:/g/personal/storage_tingle_dev/EkM5OfD1nrZBr_214_JmLtgBNz05mQMNqIEFsZOb9FIMBg%EF%BC%9Fe=EM2tX5">Anime</a> / <a href="https://monstx-my.sharepoint.com/:f:/g/personal/storage_tingle_dev/EozDcDrM7edEpnZmeL1dDQABZg0xhZNUvnj7IvBlHKM6YA%EF%BC%9Fe=M944ih">Movies</a> / <a href="https://monstx-my.sharepoint.com/:f:/g/personal/storage_tingle_dev/ErcXo0q92thGqrbkpzurmI8BOXwGMJgP0AiwB5lZa_cvuw%EF%BC%9Fe=SM2cWU">Series</a></li>
 <li>部分境外服务器可能禁止 BT 服务，选购前请仔细阅读用户条例</li>
 <li>有条件的话下载完毕后请做种一段时间</li>
 </ul>
@@ -626,14 +676,14 @@ crontab -e
             <pubDate>Tue, 30 Jun 2020 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<p>昨天逛博客看到了使用 GitHub Actions 定时调用 Microsoft 365 E5 API 以帮助续订的文章，我转念一想这是不是也可以用来跑定时任务打卡呢？说干就干我开了一个小的坑：用 GitHub Actions 跑之前写的 Python 打卡脚本。无意薅羊毛，只是希望通过一点学习将自己的想法实现。</p>
 <h2 id="照葫芦环节">照葫芦环节</h2>
-<p>参考项目 <a href="https://github.com/wangziyingwen/AutoApiSecret">@wangziyingwen/AutoApiSecret</a> 的 <a href="https://github.com/wangziyingwen/AutoApiSecret/blob/master/.github/workflows/autoapi.yml">工作流</a>，搞懂了这一流程：</p>
+<p>参考项目 <a href="https://github.com/wangziyingwen/AutoApiSecret">@wangziyingwen/AutoApiSecret</a> 的 <code>autoapi.yml</code> <a href="https://github.com/wangziyingwen/AutoApiSecret/blob/master/.github/workflows/autoapi.yml">文件</a>，搞懂了这一流程：</p>
 <ol>
 <li>将私密信息存于仓库 Secrets，以 <code>name=value</code> 的赋值语句格式定义</li>
 <li>将 Secrets 内容写入脚本复制来的临时文件</li>
 <li>执行填入了 Serects 的临时文件</li>
 <li>删除所有临时文件并提交历史记录</li>
 </ol>
-<p>“定时”这一特性是 GitHub Actions 提供的，在触发条件中定义 <code>on.schedule.cron</code> 即可！呐噜吼多！将 Secrets 写入文件是通过 Linux 命令 <code>sed</code> 实现的，比如使用 <code>sed -i &#39;10 r tmp.txt&#39; tmp.py</code> 可以将 <code>tmp.txt</code> 的内容写入了 <code>tmp.py</code> 的指定行 <code>10</code> 的下一行。对 Linux 命令的认知水平停留在 rm -rf 的我大吃一惊，呀，又学到了新知识！</p>
+<p>「定时」这一特性是 GitHub Actions 提供的，在触发条件中定义 <code>on.schedule.cron</code> 即可！呐噜吼多！将 Secrets 写入文件是通过 Linux 命令 <code>sed</code> 实现的，比如使用 <code>sed -i &#39;10 r tmp.txt&#39; tmp.py</code> 可以将 <code>tmp.txt</code> 的内容写入了 <code>tmp.py</code> 的指定行 <code>10</code> 的下一行。对 Linux 命令的认知水平停留在 <code>rm -rf</code> 的我大吃一惊，呀，又学到了新知识！</p>
 <h2 id="画瓢环节">画瓢环节</h2>
 <p>此刻，白嫖是第一生产力。了解了这样的流程部署自己的自动打卡（让 GitHub 定时执行 <code>python checkin.py</code>）就不是什么难事了。</p>
 <details><summary><strong>照葫芦画瓢 python.yml 第一版</strong></summary><br />
@@ -717,14 +767,14 @@ jobs:
 
 <p>第一版的工作流程看起来有点臃肿，不过管他呢，能用。</p>
 <h2 id="润色">润色</h2>
-<p>写完第一份工作流文件之后，我开心地将文件提交到了 GitHub 仓库，又煞有介事地写了份文档。但是坐下来反复看自己的代码之后，我越发觉得这过于粗糙。在博客的文章收到了大佬的指导，于是我有了新的思路并开始不断地给自己的代码“润色”。</p>
+<p>写完第一份工作流文件之后，我开心地将文件提交到了 GitHub 仓库，又煞有介事地写了份文档。但是坐下来反复看自己的代码之后，我越发觉得这过于粗糙。在博客的文章收到了大佬的指导，于是我有了新的思路并开始不断地给自己的代码「润色」。</p>
 <h3 id="round-1">Round 1</h3>
 <p>简单地实现定时任务似乎并不值得记录，于是我顺便给这个工作流引入了 pip 模块缓存、发布日志文件到分支这两个小功能，算是补上了之前折腾工作流学到的。</p>
 <ul>
 <li><p><strong>pip 模块缓存</strong></p>
-<p>这是从苏卡大大在 Cloudflare Workers Sites 部署 Hexo 博客的 <a href="https://blog.skk.moe/post/deploy-blog-to-cf-workers-site">文章</a> 中学到的。Node.js 项目构建时需要的依赖挺多，没有缓存的话每次 GitHub Action 得跑很长分钟，于是他给出了缓存 node_modules 的办法： <code>uses: actions/cache@v2</code> ，通过检查缓存特征 Key 是否存在，比如 Node.js 就检测是否存在 package-lock.json 文件，进而处理缓存。</p>
+<p>这是从苏卡大大《<a href="https://blog.skk.moe/post/deploy-blog-to-cf-workers-site">将 Hexo 部署到 Cloudflare Workers Site 上的趟坑记录 - Sukka&#39;s Blog</a>》中学到的。Node.js 项目构建时需要的依赖挺多，没有缓存的话每次 GitHub Action 得跑很长分钟，于是他给出了缓存 node_modules 的办法： <code>uses: actions/cache@v2</code> ，通过检查缓存特征 Key 是否存在，比如 Node.js 就检测是否存在 <code>package-lock.json</code> 文件，进而处理缓存。</p>
 <p>GitHub Actions 使用这一特性其实很简单，只要按照 <a href="https://github.com/actions/cache">@actions/cache</a> 中需要缓存的类型确定好监测的特定路径和文件，编写类似上方 L26-31 的步骤在安装依赖前即可。之前尝试是能将用于构建并发布站点的 2 mins 工作流优化到 1 min 多，提升还是蛮大的。</p>
-<p>在这个项目中缓存 pip 模块需要做的就是照葫芦画瓢检查 <code>~/.cache/pip</code> 目录下 requirements.txt 文件。</p>
+<p>在这个项目中缓存 pip 模块需要做的就是照葫芦画瓢检查 <code>~/.cache/pip</code> 目录下 <code>requirements.txt</code> 文件。</p>
 </li>
 <li><p><strong>发布 log 记录文件到分支</strong></p>
 <p>这是从 Typecho-Theme-VOID 二次开发过程中学到的。它的 Actions 将编译好的文件存放在 build 文件夹然后发布到 nightly 分支。仅需在 workflows 中给 <code>uses: docker://peaceiris/gh-pages:v2</code> 添加两个环境变量 <code>PUBLISH_BRANCH</code> 和 <code>PUBLISH_DIR</code> 即可，v3 版本这一配置从 <code>env</code> 改为了 <code>with</code> 字段，具体可以看 <a href="https://github.com/peaceiris/actions-gh-pages">@peaceiris/actions-gh-pages</a>。</p>
@@ -749,7 +799,7 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
   run: python checkin.py | tee -a checkin-python.log</code></pre>
 <p>心情顿时舒畅了不少！</p>
 <h3 id="round-3">Round 3</h3>
-<p>上次那篇关于调试 Python 打卡的 <a href="https://blog.monsterx.cn/code/HEU-Auto-Checkin-COVID19.html">文章</a> 下 <a href="https://xyenon.bid">XYenon</a> 给出了仅需用户名和密码的 Ruby 版本 <a href="https://gist.github.com/XYenon/79317d63e7f769e5bdff5b595d709b65">代码</a>。</p>
+<p>上次那篇关于调试 Python 打卡的《<a href="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/">Mark 并调试 HEU 自动打卡代码</a>》下 <a href="https://xyenon.bid">XYenon</a> 给出了仅需用户名和密码的 Ruby 版本 <a href="https://gist.github.com/XYenon/79317d63e7f769e5bdff5b595d709b65">@XYenon/checkin.rb</a>。</p>
 <p>代码仅 60 行，第一次看完我觉得很赞，看起来只要脚本代替人执行「确认信息 -&gt; 提交表单」两步就完事了。现有的 Python 打卡每次都将事先定义的表单数据提交一遍，不考虑打卡系统中表单在服务器的缓存。如果表单数据在服务器上一直都有缓存，那部署这个 Ruby 版本我觉得似乎会更好，毕竟仓库里可以少写两个 Secrets。</p>
 <blockquote>
 <p>与 Python 类似，Ruby 也可以在代码中使用 <code>ENV[&#39;SECRET_ID&#39;]</code> 这样的语句直接获取环境变量。</p>
@@ -795,12 +845,12 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 <p>也许 Ruby 版本的打卡程序更适合写成 JavaScript 用户脚本交给浏览器插件执行。</p>
 </blockquote>
 <h2 id="结语">结语</h2>
-<p>GitHub <a href="https://github.com/monsterxcn/HEU-Checkin-COVID-19">@monsterxcn/HEU-Checkin-COVID-19</a></p>
+<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/HEU-Checkin-COVID-19">@monsterxcn/HEU-Checkin-COVID-19</a></p>
 <p>我原以为在 GitHub Actions 中实现定时任务要很复杂的配置，毕竟每次工作流都是相当于在一个全新的服务器上执行。现在发现原来定时任务只需要在工作流的触发事件中写入 <code>schedule</code> 即可。在查找文档时我发现这点在官方文档中有详细说明，害，都是不会看文档惹的祸。</p>
-<p>榆木脑袋的我在看到别人的代码之前总是从没想过可以这样实现。比如：将私密信息以赋值语句形式写入仓库设置，执行 Actions 时将赋值语句插进文件头部继续执行。甚是高明（虽然到后面我发现这也挺笨的）。剖析了我的不足之处，浅层来看最重要的两点估计就是：</p>
+<p>榆木脑袋的我在看到别人的代码之前总是从没想过可以这样实现。比如：将私密信息以赋值语句形式写入仓库设置，执行 GitHub Actions 时将赋值语句插进文件头部继续执行。甚是高明（虽然到后面我发现这也挺笨的）。剖析了我的不足之处，浅层来看最重要的两点估计就是：</p>
 <ul>
-<li>我对仓库 Secrets 设置的认识是死板的，我一直将其当作 Actions 执行时传递普通变量值的纽带，仅此而已</li>
-<li>不熟悉 Linux命令，虽然日常 Copy 到命令行的 Linux 命令中也有用到过 <code>sed</code> ，但我并没有积极的学习</li>
+<li>我对仓库 Secrets 设置的认识是死板的，我一直将其当作 GitHub Actions 执行时传递普通变量值的纽带，仅此而已</li>
+<li>不熟悉 Linux命令，虽然日常 Copy 到命令行的 Linux 命令中也有用到过 <code>sed</code>，但我并没有积极的学习</li>
 </ul>
 <p>深层次的原因嘛，大概是怠惰吧！</p>
 <p>GitHub Actions 妙用多多，之前关注过一个博客 <a href="https://p3terx.com/">P3TERX ZONE</a> 里写了挺多关于 GitHub Actions 的文章，有时间的话要去学习学习！</p>
@@ -814,29 +864,29 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
             <content:encoded><![CDATA[<p>最近的日子过得忙碌，五味杂陈。这种状态持续了多久呢……</p>
 <h2 id="生活">生活</h2>
 <p>大概疫情开始后我的生活就变了吧，刚开始时是铺天盖地的谣言与辟谣，以及每日新增的新闻，我想：像我这种从不门、连屋子都懒得出去的人来说唯一能让我动弹的只有快递和外卖，而现在只剩快递。心里默默计划的返校从 4 月拖到 5 月，眼下看来还要继续拖到 6 月，而原本计划返校再做的一些事不得不在家里完成，比如补考。嗯，在家学习的感觉不算太差也不算太好，前半句是因为我不再需要从众，没必要做样子给谁看；后半句则是因为在家也免不了走神，课上着上着就想到了浏览器，今天 Feedly 的朋友们又整什么活了吗 / GayHub 的朋友们又发现了什么新奇玩意儿吗？</p>
-<p>也许让疫情背锅也不对，从安卓换到苹果之后生活改变了许多。自从一加 5 不再工作，我换上了一年前买给妈妈备用的 iPhone 6s，在这个三摄四摄呼风唤雨、苹果华为针尖麦芒的时代，手里握着这轻巧的 6s 可谓复古了。折腾了许久，翻越高墙的梦想还是不能在 6s 上实现，想了想被我刷成白苹果的 i7 我还是不再考虑瞎折腾了，翻什么翻？憋着！用惯了 Android 的我看来 iOS 还是不适合我，最让我头疼的是复制文件居然还必须走 iTunes，啊这？也许正是这些不习惯，让我戒掉了对手机的过度依赖，然后，转向了对电脑的过度依赖。在家有网有电，不像在宿舍玩到正尽兴时断网断电了，我的电脑也渐渐开始像一台服务器一样工作，白天网课、浏览器、VSCode，夜晚下载、挂机、自动更新，只有我哪天突然心疼本本了才会选择让他重启。原来花在手机游戏上的时间开始成为我瞎折腾的资本，这段时间除了上网课的时间我几乎都花在了浏览网页和写 Bug 上。重拾 C 语言，看看 Python，学学 CSS 和 JavaScript，想干啥就干啥，不像在宿舍。在宿舍里写代码有一种异类的感觉，我更希望大家在寝室一起联机快乐，而不是我在做着他们都不理解的事情然后他们发出不明所以的吹捧“牛逼啊”。</p>
-<p>又或者这一切既不是因为疫情，也不是因为手机电脑，而是因为身边的人和事。今年过年的时候格外冷清，我觉得似乎上了大学之后这样的年就成为常态了，不像以前叔伯姨舅都会回家团聚，今年刚好就着疫情的由头谁也不回了，大年夜只剩一家五口围着咕嘟嘟冒泡的清汤火锅抿一口健康的王老吉，清心寡欲。二姑走了很多年了，家里人一直瞒着爷爷，刚开始的时候我看着父母亲朋在饭桌上编理由糊弄老人，现在爷爷似乎也不再问起，我对这事感觉很微妙。现在二姑爷也病的不轻了，我不敢想象以后的事。最近呢，舅舅也不知道什么情况住院了，从县里转到市里，妈妈不跟我说，但是我看着她时常精神不振就知道舅舅一定病得不轻。想想舅舅那么爽朗乐观的人，现在也不得不戴着呼吸机躺在病床上，这种感觉也很 <del>微妙</del> 不妙。妈妈就这件事时常警告我不要熬夜，要我早睡早起吃早饭。我也想过啊，可是有的事情成为习惯就不想改了，夜晚宁静得有种与世隔绝的感觉，做什么都不会被人打扰，没有 QQ 消息，没有微信通知，群聊变得安静，整个世界都变得清净了。这个时候开始，无论是突击作业还是敲击键盘写博文修代码，总是感觉十分舒适。哦，唯一让我头疼的就是妈妈的催促“几点啦？赶快睡觉啊”……</p>
-<p>谈及生命的时候我总会想自己的未来。不知不觉大二也已经快过完了，曾经幻想中的步入社会就在眼前，可是当我走到这一步的时候却发现，我为了这一切做的事这么傻。我在父母的监督下学习，在大学的宽松下放肆，以前每天的学习就为了考一个像样的大学离开家乡，现在每天的学习就为了及格万岁。大一的时候认为这些数学物理学了又有什么用处呢？不学！现在接触了专业课才懂得什么叫“数理基础”，原来一切需要这些基础。那些年少无知的想法让现在的自己追悔莫及，一种 多年的义务教育都将葬送在大学四年 的想法在心底滋生。刚进入大学的时候我以自己接触了博客而自豪，现在却觉得这么多年了我的长进是那么微不足道，我总是三分钟热度学个皮毛就弃坑，而别人自学一周也许就能比我更懂 Web。身边的人就像这样默默的超越了我，只有我还活在从前。我觉得迷茫，我的人生漫无目的：未来会成为硕士吗？可是我的专业课学的一言难尽；未来会成为电气工程师吗？可是我似乎连电路仿真都做不明白；未来会成为程序员吗？可是我连前端三件套都没熟练掌握。当我否定掉这三个规划的时候，我便恐慌起来，我的人生就此失去目标了。一旦毕业我连找父母要钱的理由都没有，我从来没有考虑过如何生活。小的时候我觉得生活不过就是毕业了找份工作拿着几千一月的薪水，找个住的地方日复一日。现在看来那样的话真是糟糕透了：几千一月糊弄自己还差不多，父母呢？我有什么脸面让父母继续卖命？爱情呢？这样糟糕的糙汉子只有梦里才配拥有爱情吧？</p>
+<p>也许让疫情背锅也不对，从安卓换到苹果之后生活改变了许多。自从一加 5 不再工作，我换上了一年前买给妈妈备用的 iPhone 6s，在这个三摄四摄呼风唤雨、苹果华为针尖麦芒的时代，手里握着这轻巧的 6s 可谓复古了。折腾了许久，翻越高墙的梦想还是不能在 6s 上实现，想了想被我刷成白苹果的 i7 我还是不再考虑瞎折腾了，翻什么翻？憋着！用惯了 Android 的我看来 iOS 还是不适合我，最让我头疼的是复制文件居然还必须走 iTunes，啊这？也许正是这些不习惯，让我戒掉了对手机的过度依赖，然后，转向了对电脑的过度依赖。在家有网有电，不像在宿舍玩到正尽兴时断网断电了，我的电脑也渐渐开始像一台服务器一样工作，白天网课、浏览器、VSCode，夜晚下载、挂机、自动更新，只有我哪天突然心疼本本了才会选择让他重启。原来花在手机游戏上的时间开始成为我瞎折腾的资本，这段时间除了上网课的时间我几乎都花在了浏览网页和写 Bug 上。重拾 C 语言，看看 Python，学学 CSS 和 JavaScript，想干啥就干啥，不像在宿舍。在宿舍里写代码有一种异类的感觉，我更希望大家在寝室一起联机快乐，而不是我在做着他们都不理解的事情然后他们发出不明所以的吹捧「牛逼啊」。</p>
+<p>又或者这一切既不是因为疫情，也不是因为手机电脑，而是因为身边的人和事。今年过年的时候格外冷清，我觉得似乎上了大学之后这样的年就成为常态了，不像以前叔伯姨舅都会回家团聚，今年刚好就着疫情的由头谁也不回了，大年夜只剩一家五口围着咕嘟嘟冒泡的清汤火锅抿一口健康的王老吉，清心寡欲。二姑走了很多年了，家里人一直瞒着爷爷，刚开始的时候我看着父母亲朋在饭桌上编理由糊弄老人，现在爷爷似乎也不再问起，我对这事感觉很微妙。现在二姑爷也病的不轻了，我不敢想象以后的事。最近呢，舅舅也不知道什么情况住院了，从县里转到市里，妈妈不跟我说，但是我看着她时常精神不振就知道舅舅一定病得不轻。想想舅舅那么爽朗乐观的人，现在也不得不戴着呼吸机躺在病床上，这种感觉也很 <del>微妙</del> 不妙。妈妈就这件事时常警告我不要熬夜，要我早睡早起吃早饭。我也想过啊，可是有的事情成为习惯就不想改了，夜晚宁静得有种与世隔绝的感觉，做什么都不会被人打扰，没有 QQ 消息，没有微信通知，群聊变得安静，整个世界都变得清净了。这个时候开始，无论是突击作业还是敲击键盘写博文修代码，总是感觉十分舒适。哦，唯一让我头疼的就是妈妈的催促「几点啦？赶快睡觉啊」……</p>
+<p>谈及生命的时候我总会想自己的未来。不知不觉大二也已经快过完了，曾经幻想中的步入社会就在眼前，可是当我走到这一步的时候却发现，我为了这一切做的事这么傻。我在父母的监督下学习，在大学的宽松下放肆，以前每天的学习就为了考一个像样的大学离开家乡，现在每天的学习就为了及格万岁。大一的时候认为这些数学物理学了又有什么用处呢？不学！现在接触了专业课才懂得什么叫「数理基础」，原来一切需要这些基础。那些年少无知的想法让现在的自己追悔莫及，一种 <em>多年的义务教育都将葬送在大学四年</em> 的想法在心底滋生。刚进入大学的时候我以自己接触了博客而自豪，现在却觉得这么多年了我的长进是那么微不足道，我总是三分钟热度学个皮毛就弃坑，而别人自学一周也许就能比我更懂 Web。身边的人就像这样默默的超越了我，只有我还活在从前。我觉得迷茫，我的人生漫无目的：未来会成为硕士吗？可是我的专业课学的一言难尽；未来会成为电气工程师吗？可是我似乎连电路仿真都做不明白；未来会成为程序员吗？可是我连前端三件套都没熟练掌握。当我否定掉这三个规划的时候，我便恐慌起来，我的人生就此失去目标了。一旦毕业我连找父母要钱的理由都没有，我从来没有考虑过如何生活。小的时候我觉得生活不过就是毕业了找份工作拿着几千一月的薪水，找个住的地方日复一日。现在看来那样的话真是糟糕透了：几千一月糊弄自己还差不多，父母呢？我有什么脸面让父母继续卖命？爱情呢？这样糟糕的糙汉子只有梦里才配拥有爱情吧？</p>
 <h2 id="代码">代码</h2>
-<p>太糟糕了，还是谈谈现在吧。学习之余便是代码，这一段是最近在 GitHub 上的“工作”。大约一两个月前我突然对吃灰已久的 GitHub 账号产生了想法：让 Contributions 绿起来！一直以来 GitHub 是我找资源的首选地，各种 Gist 和仓库，总是有相关的资源可以借鉴，前段时间折腾 WSL 的时候 Github issue 和 wiki 区一度成为我反复翻阅的地方，和 Stack Overflow 类似的，这里能找到大部分合适的答案。回到“工作”上来，最近做的事就是修改 VOID 主题了（顺便的还对 AlanDecode 大大的主题配套插件也动了刀，目前自己用起来是舒服了），虽然博客挺长时间没有更新了，但是对 VOID 的二次开发却一直未间断，甚至还像模像样的发布了两个小 Release。Git 的基本操作也学会一些，至少 clone commit push 一条龙算是熟练了。可惜，JavaScript 和 PHP 方面我一直都是萌新，甚至从未仔细学过他们的语法，这导致我的二次开发效率蛮低的，很多地方都是仿写，想做到没有冗余代码的地步我觉得我还有很长的路要走。本来是以为二次开发不久我就能在博客开心的宣布：VOID Done! 快来 Star 吧！结果随着二次开发的进行我越来越觉得我的代码写的实在太差劲了，为什么这个功能我做不出来？为什么这个功能要插件？现在，我连在 Alan 大佬的博客评论的勇气都没有了。（Alan：啊这？我原来写的这么工整规范的代码你给我改出个这玩意儿？）每每想到这我就一咬牙，绝对不能把这东西发博客，太 der 了！</p>
-<p>真正自己做着主题维护的事情的时候，我就开始看开一些事情了。为什么开发者不回答我这个问题？我给你 5 块你把这个功能加到主题上好不好？博主博主你这个页面是怎么设置的啊？这个代码直接替换吗？换友链吗？在？……每天逛博客逛 GitHub 逛主题售后唠嗑群，我都能看见各种问题，至少 QQ 群里的问题层次其实都比较低，有的连问题是什么都描述不清楚。这大概是为什么 QQ 联系在程序员界算是被嫌弃的一个原因吧。被提问的人是什么感觉这因人而异，但是对我而言，我就觉得：这个问题很难吗？你自己动手试一下不好吗？同样打字的时间，你花在搜索引擎上效果比在这一两百人群只有几十个活人的地方效果更差吗？还有对于在主题售后群里聊 DD、cc、翻越高墙、散布链接的行为我更是深恶痛绝，几乎我加的每一个 QQ 主题群（从最初的 Material 到 Handsome 再到泽泽社长的群）都免不了这些。恶意攻击也偶有发生，但是链接还是会继续散布。主题售后群里时不时就丢链接的博客质量参差不齐，毫无意义的搬运不在少数。用点心思在文章上自然有人爱看，这道理很难懂吗？在这里只想借用 Alan 大佬发布 VOID 主题时的一段话：</p>
+<p>太糟糕了，还是谈谈现在吧。学习之余便是代码，这一段是最近在 GitHub 上的「工作」。大约一两个月前我突然对吃灰已久的 GitHub 账号产生了想法：让 Contributions 绿起来！一直以来 GitHub 是我找资源的首选地，各种 Gist 和仓库，总是有相关的资源可以借鉴，前段时间折腾 WSL 的时候 Github issue 和 wiki 区一度成为我反复翻阅的地方，和 Stack Overflow 类似的，这里能找到大部分合适的答案。回到「工作」上来，最近做的事就是修改 VOID 主题了（顺便的还对 AlanDecode 大大的主题配套插件也动了刀，目前自己用起来是舒服了），虽然博客挺长时间没有更新了，但是对 VOID 的二次开发却一直未间断，甚至还像模像样的发布了两个小 Release。Git 的基本操作也学会一些，至少 clone commit push 一条龙算是熟练了。可惜，JavaScript 和 PHP 方面我一直都是萌新，甚至从未仔细学过他们的语法，这导致我的二次开发效率蛮低的，很多地方都是仿写，想做到没有冗余代码的地步我觉得我还有很长的路要走。本来是以为二次开发不久我就能在博客开心的宣布：VOID Done! 快来 Star 吧！结果随着二次开发的进行我越来越觉得我的代码写的实在太差劲了，为什么这个功能我做不出来？为什么这个功能要插件？现在，我连在 Alan 大佬的博客评论的勇气都没有了。（Alan：啊这？我原来写的这么工整规范的代码你给我改出个这玩意儿？）每每想到这我就一咬牙，绝对不能把这东西发博客，太 der 了！</p>
+<p>真正自己做着主题维护的事情的时候，我就开始看开一些事情了。为什么开发者不回答我这个问题？我给你 5 块你把这个功能加到主题上好不好？博主博主你这个页面是怎么设置的啊？这个代码直接替换吗？换友链吗？在？…… 每天逛博客逛 GitHub 逛主题售后唠嗑群，我都能看见各种问题，至少 QQ 群里的问题层次其实都比较低，有的连问题是什么都描述不清楚。这大概是为什么 QQ 联系在程序员界算是被嫌弃的一个原因吧。被提问的人是什么感觉这因人而异，但是对我而言，我就觉得：这个问题很难吗？你自己动手试一下不好吗？同样打字的时间，你花在搜索引擎上效果比在这一两百人群只有几十个活人的地方效果更差吗？还有对于在主题售后群里聊 DD、cc、翻越高墙、散布链接的行为我更是深恶痛绝，几乎我加的每一个 QQ 主题群（从最初的 Material 到 Handsome 再到泽泽社长的群）都免不了这些。恶意攻击也偶有发生，但是链接还是会继续散布。主题售后群里时不时就丢链接的博客质量参差不齐，毫无意义的搬运不在少数。用点心思在文章上自然有人爱看，这道理很难懂吗？在这里只想借用 Alan 大佬发布 VOID 主题时的一段话：</p>
 <blockquote>
-<p>我希望使用这些主题的博主，能认真地多写几篇正经文章，这才是独立博客的精髓。一两句话的牢骚，大可以去微博与 Twit­ter 上说；花花绿绿的代刷广告与盗版采集还是免了吧。
-《<a href="https://blog.imalan.cn/archives/247/">VOID：现在可以公开的情报 - 无文字|三无计划</a>》</p>
+<p>我希望使用这些主题的博主，能认真地多写几篇正经文章，这才是独立博客的精髓。一两句话的牢骚，大可以去微博与 Twit­ter 上说；花花绿绿的代刷广告与盗版采集还是免了吧。 [^1]</p>
 </blockquote>
-<p>当然，我也并不是一个优秀的博主，翻看我的归档就知道其实文章都是一些大佬看不上眼的东西，有的时候文章不删反而更容易激励自己，大概类似“反面教材”的效果。到 2024 年，如果这个博客还继续产出的话，我想必会回顾这十年的历程，从最初到当下审视博客的变化。说到十年我又想到了一个叫做“ <a href="https://foreverblog.cn/">十年之约</a> ”的项目，“从加入这个活动起，我们的博客十年不关闭，保持更新和活力”。对我而言，不需要任何“约定”、“承诺”，我也会保持这份写博客的热情。实在是很难想象我这样一个三分钟热度的人居然坚持做博客这么多年几乎未间断！我十分期待有一天不再需要谷歌、不再需要过滤脚本，在地址栏输入中文，大家就能轻松获得详尽的中文资料。（记录一些最近发现的我觉得很棒的博客 [^1] ）</p>
+<p>当然，我也并不是一个优秀的博主，翻看我的归档就知道其实文章都是一些大佬看不上眼的东西，有的时候文章不删反而更容易激励自己，大概类似「反面教材」的效果。到 2024 年，如果这个博客还继续产出的话，我想必会回顾这十年的历程，从最初到当下审视博客的变化。说到十年我又想到了一个叫做「<a href="https://foreverblog.cn/">十年之约</a>」的项目，「从加入这个活动起，我们的博客十年不关闭，保持更新和活力」。对我而言，不需要任何「约定」「承诺」，我也会保持这份写博客的热情。实在是很难想象我这样一个三分钟热度的人居然坚持做博客这么多年几乎未间断！我十分期待有一天不再需要谷歌、不再需要过滤脚本，在地址栏输入中文，大家就能轻松获得详尽的中文资料。（记录一些最近发现的我觉得很棒的博客 [^2]）</p>
 <h2 id="网络">网络</h2>
-<p>谈及互联网内容，最近的瓜真是令人无语。什么 AO3、罗志祥、papi 酱……我真是搞不懂了，疫情期间闲着没事干是吗？有的事情确实挺令人恶心的，但是吃瓜归吃瓜，拿关注明星污点、翻黑料、瞎打拳的时间花在改善自己生活上不香吗？明星终究是明星，就算我拿着相机怼到人家脸上拍到了照片，咱们的世界也是截然不同的两个世界，非要说有点联系也是虚无缥缈的。</p>
+<p>谈及互联网内容，最近的瓜真是令人无语。什么 AO3、罗志祥、papi 酱…… 我真是搞不懂了，疫情期间闲着没事干是吗？有的事情确实挺令人恶心的，但是吃瓜归吃瓜，拿关注明星污点、翻黑料、瞎打拳的时间花在改善自己生活上不香吗？明星终究是明星，就算我拿着相机怼到人家脸上拍到了照片，咱们的世界也是截然不同的两个世界，非要说有点联系也是虚无缥缈的。</p>
 <p>以前，这些明星黑料的生产商是微博，和我的世界很远；后来 QQ 有了看点，不过还好，可以关闭；现在，连哔哩哔哩也变味了。<del>我不知道是我的个人原因还是怎么了，</del> 我的哔哩哔哩她十分不像从前了。不谈每天推荐的某某正式入驻辣，连每天热门的榜单也五花八门，有的时候我刷新半天又半天都找不到一个对胃口的视频。我甚至下载了以前不屑一顾的抖音来消遣刷不到哔哩哔哩趣味的时间。</p>
 <p>就我个人来看，哔哩哔哩开始走上一条悄悄远离二次元的路了，不管是公司高层的战略决策还是国家的隐形政策，她的确开始「变化」了。要说从什么时候开始有这种端倪，我觉得是央视表扬哔哩哔哩之后。舆论让哔哩哔哩越来越意识到自己其实有潜力做一个不只局限在二次元的公司，于是「变化」产生了。怎么说呢，我并没有觉得这样不好，但是就我自己看到的内容质量而言我觉得情况不太乐观。</p>
 <p>说到这，我想到了哔哩哔哩弹幕的问题。弹幕弥补了视频中的不足，也拉进制作者与看官的距离，实在是高明的设计。但是低质弹幕却让人头疼，试问人们对二次元负面的一些刻板印象是从何而来？我觉得低质弹幕难辞其咎。关键词屏蔽能解决一些，但我还是希望从根源、从用户意愿上解决问题。随着社区规模的扩大，如何界定和规范用户行为，也应该成为视频平台用心考虑的问题。B 站风纪委员会希望能做得更好。哔哩哔哩的变化我觉得很大一部分都是因为涌入这个社区的人，规模扩大但不应该降低门槛，降低门槛不应该下限太低，如何找到一个平衡点让用户质量和社区热度都得到保证是一个难题。</p>
 <blockquote>
 <p>破案了，哔哩哔哩还是从前那个哔哩哔哩，我不是从前那个我了。</p>
 </blockquote>
-<h2 id="">……</h2>
+<h2 id="end">End</h2>
 <p>写写停停，一篇普通的日记花了三个多小时，又是一次无意义的写作。</p>
 <p>写完再看一遍觉得结构实在是糟糕，但是又不知道从何理出一条线索来，索性就着 Markdown 标题简单提炼了一下。脑袋里装的稀奇古怪的想法没有什么人值得我倾诉，家人亦是如此，所以还是写到博客里痛快。以前手写日记的感觉很难再找到了，敲击键盘比拿出纸笔似乎更加容易，尽管如此我还是不知道下一次日记会写在什么时候。一切随缘吧！</p>
-<p>[^1]:《<a href="https://beyondstars.xyz/">探索子</a>》《<a href="https://www.mina.moe/">MiNa!</a>》《<a href="https://blog.ichr.me/">ChrAlpha 的幻想乡</a>》</p>
+<p>[^1]: 《<a href="https://blog.imalan.cn/archives/247/">VOID：现在可以公开的情报 - 无文字|三无计划</a>》
+[^2]: <a href="https://beyondstars.xyz/">探索子</a> <a href="https://www.mina.moe/">MiNa!</a> <a href="https://blog.ichr.me/">ChrAlpha 的幻想乡</a></p>
 ]]></content:encoded>
         </item>
         <item>
@@ -859,7 +909,7 @@ pip install requests lxml</code></pre>
 <h2 id="调试">调试</h2>
 <p>表单数据有了，开始调试 Python 。</p>
 <h3 id="邮件提醒">邮件提醒</h3>
-<p>源代码最后的发送邮件部分需要自行引用发送邮件的 <code>.py</code> 文件，但是谷歌找到的好几个 sendmail.py 补上去之后都有奇怪的报错，比如 <code>if</code> 条件右括号报语法错误，我明明是直接复制的啊 QaQ ，看了好几遍也不应该有错啊（后来发觉可能是 Python 版本问题）。最终我索性直接搜 Python SMTP 的用法，找了一段代码补上去。</p>
+<p>源代码最后的发送邮件部分需要自行引用发送邮件的 <code>.py</code> 文件，但是谷歌找到的好几个 <code>sendmail.py</code> 补上去之后都有奇怪的报错，比如 <code>if</code> 条件右括号报语法错误，我明明是直接复制的啊 QaQ ，看了好几遍也不应该有错啊（后来发觉可能是 Python 版本问题）。最终我索性直接搜 Python SMTP 的用法，找了一段代码补上去。</p>
 <p>在 Linux 下试运行的时候发现打卡段没问题，但是后面邮件发送这段报错：</p>
 <pre><code class="language-powershell">Traceback (most recent call last):
   File &quot;checkin.py&quot;, line 151, in &lt;module&gt;
@@ -875,7 +925,7 @@ pip install requests lxml</code></pre>
 TimeoutError: [Errno 110] Connection timed out</code></pre>
 <p>搜索了一圈发现 Linux 下 SMTP 发信加密程度要求更高，所以得加密发信，将原来的发信替换为 SSL 加密发信：</p>
 <pre><code class="language-python">smtpObj = smtplib.SMTP_SSL() 
-smtpObj.connect(mail_host, 465)                        # 一般加密发信 smtp 端口号为 465</code></pre>
+smtpObj.connect(mail_host, 465)      # 一般加密发信 smtp 端口号为 465</code></pre>
 <p>在 3.7 版本以上的 Python 中需要此脚本时必须使用 <code>smtpObj = smtplib.SMTP_SSL(mail_host)</code> ，否则邮件发信会报错 ValueError 如下：</p>
 <pre><code class="language-powershell">Traceback (most recent call last):
   File &quot;/home/Project/Python/HEUCheckin-2018041015.py&quot;, line 170, in &lt;module&gt;
@@ -949,7 +999,7 @@ requests.exceptions.ProxyError: HTTPConnectionPool(host=&#39;127.0.0.1&#39;, por
 <p>尝试了在运行前用 <code>export</code> 或者 <code>set</code> 命令设置 <code>http_proxy</code> <code>https_proxy</code> 代理，也一样无法使用。</p>
 </blockquote>
 <h3 id="结果判定">结果判定</h3>
-<p>调试时还发现个问题，原代码打卡出错的判定有缺陷，只报 Python 脚本出 Exception 时的错，而提交表单时可能成功提交，但是返回的不是打卡成功，而是打卡失败。那么如何判断打卡提交正常但是打卡失败呢，这里关注返回的数据 <code>response_end</code> ，用 requests 库转换成 text 后的 <code>response_end.text</code> 长这个样子：</p>
+<p>调试时还发现个问题，原代码打卡出错的判定有缺陷，只报 Python 脚本出 Exception 时的错，而提交表单时可能成功提交，但是返回的不是打卡成功，而是打卡失败。那么如何判断打卡提交正常但是打卡失败呢，这里关注返回的数据 <code>response_end</code> ，用 requests 库转换成 text 后的 <code>response_end.text</code> 缩进一下长这个样子：</p>
 <pre><code class="language-json"># 成功时
 {
   &quot;errno&quot;:0,
@@ -968,7 +1018,7 @@ requests.exceptions.ProxyError: HTTPConnectionPool(host=&#39;127.0.0.1&#39;, por
   &quot;error&quot;:&quot;发生异常\n\njava.lang.reflect.InvocationTargetException\n\tat sun.reflect.GeneratedMethodAccessor457.invoke(Unknown Source)\n\t...\n&quot;,
   &quot;entities&quot;:[]
 }</code></pre>
-<p>可以看到返回的字段中 <code>errno</code> 为 <code>0</code> 代表成功提交，剩下的 <code>ecode</code> 显示 <code>str</code> 型的状态，<code>error</code> 只有出现错误时才有，包含了所有的错误信息，这个错误是在学校服务器上报的，不是本地脚本的问题。<code>entities</code> 包含成功提交后的一些数据。那么这就用 <code>errno</code> 来判定远程提交后返回是否成功。先使用 <code>json.loads()</code> 将其转换为 Json 格式，注意在返回的数据中 <code>errno</code> 字段为 <code>int</code> 类型，<code>entities</code> 字段为 <code>list</code> 类型，发信的 <code>msg</code> 要用 <code>str()</code> 转换这两个数据。</p>
+<p>可以看到返回的字段中 <code>errno</code> 为 <code>0</code> 代表成功提交，剩下的 <code>ecode</code> 显示 <code>str</code> 型的状态，<code>error</code> 只有出现错误时才有，包含了所有的错误信息，这个错误是在学校服务器上报的，不是本地脚本的问题。<code>entities</code> 包含成功提交后的一些数据。那么这就用 <code>errno</code> 来判定远程提交后返回是否成功。先使用 <code>json.loads()</code> 将其转换为 JSON 格式，注意在返回的数据中 <code>errno</code> 字段为 <code>int</code> 类型，<code>entities</code> 字段为 <code>list</code> 类型，发信的 <code>msg</code> 要用 <code>str()</code> 转换这两个数据。</p>
 <p>实现代码如下：</p>
 <pre><code class="language-python">try:
     # ......
@@ -1184,7 +1234,7 @@ finally:
 
 <p>合理地偷个懒，需要修改的地方都在代码注释里了。</p>
 <h2 id="定时任务">定时任务</h2>
-<p>要想让代码实现自动打卡，还需要另外设置定时任务，Linux 可以用 <strong>crontab</strong> ，Windows 可以用 <strong>任务计划程序</strong> 。</p>
+<p>要想让代码实现自动打卡，还需要另外设置定时任务，Linux 可以用 <strong>crontab</strong>，Windows 可以用 <strong>任务计划程序</strong>。</p>
 <pre><code class="language-bash"># Linux 下添加 crontab 定时命令，每天 8:00 执行打卡并输出日志到 .log 文件
 # 建议先运行测试是否可行
 # python3 auto-checkin.py
