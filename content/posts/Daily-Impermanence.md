@@ -1,12 +1,12 @@
 ---
-title: 日记 · 常
+title: 手帐 · 常
 date: 2020-05-18
 published: true
 slug: Daily-Impermanence
 cat: life
-tags: ['日记', '思考', 'COVID-19']
+tags: ['手帐', '思考', 'COVID-19']
 canonical_url: false
-description: "久违的日记更新，再不写一篇都快忘记这是个生活博客了。翻了翻归档，上一篇正儿八经发布的日记是一年前了，断断续续的日记草稿质量堪忧。"
+description: "久违的手帐（日记）更新，再不写一篇都快忘记这是个生活博客了。翻了翻归档，上一篇正儿八经发布的日记是一年前了，断断续续的日记草稿质量堪忧。"
 ---
 
 最近的日子过得忙碌，五味杂陈。这种状态持续了多久呢……
