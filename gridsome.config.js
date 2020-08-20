@@ -30,6 +30,10 @@ module.exports = {
             typeName: 'Tag',
             create: true,
           },
+          cat: {
+            typeName: 'Category',
+            create: true,
+          },
         },
       },
     },
