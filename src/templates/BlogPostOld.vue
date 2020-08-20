@@ -52,36 +52,8 @@
       </div>
     </div>
 
-    <div class="artalk-cards">
-      <div
-        class="admonition admonition-warning"
-        style="margin: 0 auto 18px; text-align: center"
-      >
-        <div class="admonition-heading">
-          <h5 style="text-transform: none">
-            <div class="admonition-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="16"
-                viewBox="0 0 12 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"
-                ></path>
-              </svg>
-            </div>
-            Monstx's Blog 评论政策
-          </h5>
-        </div>
-        <div class="admonition-content">
-          <p>
-            评论如无特殊原因均不会被删除，提交前请三思。<br />你应该懂得如何发表适当的观点，请对自己的言论负责。
-          </p>
-        </div>
-      </div>
-      <div id="LetsArtalk"></div>
+    <div class="post-comments">
+      <div id="disqus_thread" />
     </div>
 
     <transition name="fade">
@@ -101,8 +73,8 @@
 <script>
 import PostMeta from '~/components/PostMeta'
 import PostTags from '~/components/PostTags'
-import Author from '~/components/Author'
-let Artalk = {}
+import Author from '~/components/Author.vue'
+import DisqusJS from 'disqusjs'
 export default {
   components: {
     Author,
@@ -151,19 +123,16 @@ export default {
       (today - publishTime) / (1000 * 60 * 60 * 24)
     )
     this.publishedDays = publishedDays
-    // Initialize post comment by Artalk
+    // Initialize post comment by DisqusJS
     if (process.env.NODE_ENV === 'production') {
-      Artalk = require('artalk')
-      var artalk = new Artalk({
-        el: '#LetsArtalk',
-        placeholder: '说点什么 (づ￣ 3￣)づ',
-        defaultAvatar: 'mp',
-        pageKey: this.$page.post.path,
-        serverUrl: 'https://lab.mocurio.com/artalk/',
-        readMore: {
-          pageSize: 15,
-          autoLoad: true,
-        },
+      const disqusjs = new DisqusJS({
+        shortname: 'msxblog',
+        siteName: "Monstx's Blog",
+        identifier: this.$page.post.path,
+        apikey:
+          'nnWvERGRgCp61HgRxkILYfkUAaWnPDcuqfmoE4ZVJt9C8Tys4abmOcLRdOzEFLti',
+        admin: 'monstx',
+        adminLabel: '萌新',
       })
     }
   },
@@ -203,17 +172,6 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
 </page-query>
 
 <style lang="scss">
-.artalk-cards {
-  background: var(--at-bg-main);
-  border-radius: var(--radius);
-  padding: 20px;
-  padding: 20px;
-  max-width: var(--content-width);
-  margin: 0 auto;
-  margin-top: 20px;
-  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.02),
-    1px 1px 15px 0 rgba(0, 0, 0, 0.03);
-}
 .post-title {
   padding: var(--space) 0 var(--space);
   text-align: center;
