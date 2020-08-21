@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-21T06:53:02.255Z</updated>
+    <updated>2020-08-21T07:21:11.650Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -17,7 +17,7 @@
 <h2 id="选择-artalk-的理由">选择 Artalk 的理由</h2>
 <p>由于水平不足，我是没法自己写一个评论系统的，于是我决定在友链 <a href="https://qwqaq.com/">@QWQAQ</a> 和 <a href="https://www.ouorz.com/">@TonyHe</a> 两位大佬的两个评论系统里选一个，要知道缝合代码、借用轮子这种事我最擅长了。那么是用 <a href="https://github.com/qwqcode/Artalk">@qwqcode/Artalk</a> 还是 <a href="https://github.com/HelipengTony/nexment">@HelipengTony/nexment</a> 呢？</p>
 <p>外行人看热闹，我以一个前端菜鸟的水平不足以在架构上对两个评论系统做出优劣比较，所以以下只是我个人选择的理由。</p>
-<p>Nexment 是 React.js 编写的基于 LeanCloud 实现 Serverless 的评论系统，官方另外提供了 Vue.js 示例，有自己的文档（虽然 Tony 好像还没有写详细，但至少有一个站点在那）。官方示例站点 <a href="https://nexment-demo.ouorz.com/">Nextment for React Demo</a> / <a href="https://nexment-vue-demo.ouorz.com/">Nextment for Vue Demo</a>，我觉得新颖的点在弹窗显示多级评论上，在我逛的博客圈子里比较少见。部署的话需要提前配置 LeanCloud 的数据库，这让我停止了思考（我的数据库放在别人那里想想就不靠谱啊喂）。Nexment 诞生于最近一月，截至本文发布前最后一次提交在三天前，作者 TonyHe 感觉是个努力 Coding 的巨佬，毕竟即将出国留学了。</p>
+<p>Nexment 是 <del>React.js 编写</del> 「计划全平台、全框架适配」的基于 LeanCloud 实现 Serverless 的评论系统，官方提供了 React.js 和 Vue.js 示例，有自己的文档（虽然 Tony 好像还没有写详细，但至少有一个站点在那）。官方示例站点 <a href="https://nexment-demo.ouorz.com/">Nextment for React Demo</a> / <a href="https://nexment-vue-demo.ouorz.com/">Nextment for Vue Demo</a>，我觉得新颖的点在弹窗显示多级评论上，在我逛的博客圈子里比较少见。部署的话需要提前配置 LeanCloud 的数据库，这让我停止了思考（我的数据库放在别人那里想想就不靠谱啊喂）。Nexment 诞生于最近一月，截至本文发布前最后一次提交在三天前，作者 TonyHe 感觉是个努力 Coding 的巨佬，毕竟即将出国留学了。</p>
 <p>Artalk 是 TypeScript 编写的需要自行部署后端的「一款简洁有趣的自托管评论系统」，数据存放在 JSON 文件中，后续听说也计划增加 MySQL 的支持（我：那样听起来就不太简洁了呢）。需要自行搭建后端估计劝退了很多人，而且目前只支持 PHP 后端，README 里写的 Go、Node.js、Python 后端均迟迟未上线。官方给的示例只有几个 HTML，相当的「简洁」，基本都是在 HTML 引入 <code>Artalk.css</code> <code>Artalk.js</code> 后一些简单的配置。官方示例站点 <a href="https://artalk.js.org/">Artalk DEMO</a>，听说在这里可以观察到开发者立 Flag 现场。Artalk 诞生于 2018 年 10 月，截至本文发布前最后一次提交在今年 5 月，考虑到作者 QWQAQ 的学业繁忙，摸鱼也是可以理解的。</p>
 <p>简单了解两个评论系统之后，再看自身的 Gridsome 平台，基于 Vue.js。怎么看我都应该选择 Nexment，但是我却选择了 Artalk。原因嘛，自然是图个简单。Artalk 之前就搭建了自己的后端使用过一段时间，官方搭配的滑稽表情包在别的评论系统一众阿鲁表情包、贴吧表情包中独树一帜。更重要的是 Artalk 的代码我能看懂一些，进行自定义修改很方便。Nexment 虽好，但是外观相比 Artalk 我还是更喜欢后者，弹窗多级评论显示对我来说也需求不高，要我看 React.js 项目代码更是劝退。</p>
 <h2 id="对-artalk-的修改">对 Artalk 的修改</h2>
