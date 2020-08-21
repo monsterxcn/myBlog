@@ -1,0 +1,99 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Aliyun_OSS-CDN:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Cache Modules
+        uses: actions/cache@v1
+        env:
+          cache-name: blog-oss-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+      - name: Install Modules
+        run: npm install
+      - name: Build Statics
+        run: npm run build
+      - name: Setup OSSUtil
+        uses: manyuanrong/setup-ossutil@v1.0
+        with:
+          endpoint: "oss-cn-shanghai.aliyuncs.com"
+          access-key-id: ${{ secrets.ALIOSS_ACCESSKEYID }}
+          access-key-secret: ${{ secrets.ALIOSS_ACCESSKEYSECRET }}
+      - name: Deploy Statics
+        run: |
+          ossutil rm -r -f oss://msxblog/
+          ossutil cp -r -u dist oss://msxblog
+
+  Branch_gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Cache
+        uses: actions/cache@v1
+        env:
+          cache-name: blog-gh-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./dist
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
+  Cloudflare_Workers-Sites:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Cache gridsome modules
+        uses: actions/cache@v1
+        env:
+          cache-name: blog-worker-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+      - name: Cache workers-site modules
+        uses: actions/cache@v1
+        env:
+          cache-name: workers-node-modules
+        with:
+          path: workers-site/node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('workers-site/package-lock.json') }}
+      - name: Install modules
+        run: npm install
+      - name: Build statics
+        run: npm run build
+      - name: Deploy statics
+        uses: cloudflare/wrangler-action@1.1.0
+        with:
+          apiToken: ${{ secrets.CF_WORKERS_TOKEN }}

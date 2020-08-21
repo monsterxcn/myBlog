@@ -1,13 +1,8 @@
-name: Update README
+name: README
 
 on:
-  # 直接使用 push 触发可能无法获取最新状态
-  # 这里设为在发布工作流执行完毕之后触发
-  # push:
-  #   branches:
-  #     - master
   workflow_run:
-    workflows: ["Deploy to OSS"]      # 修改为你的站点发布工作流 name
+    workflows: ["Deploy"]
     types: 
       - completed
 
@@ -19,8 +14,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.UPDATE_README }}   # 修改为自定义的 Secrets 名
-          repository: monsterxcn/monsterxcn     # 修改为 README 仓库地址
+          token: ${{ secrets.UPDATE_README }}
+          repository: monsterxcn/monsterxcn
 
       - name: Setup
         uses: actions/setup-python@v2
