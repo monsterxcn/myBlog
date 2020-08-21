@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html data-html-server-rendered="true" lang="zh-Hans" data-vue-tag="%7B%22lang%22:%7B%22ssr%22:%22zh-Hans%22%7D%7D">
+  <head>
+    <title>为 Gridsome 添加 Artalk 自托管评论系统 - Monstx&#x27;s Blog</title><meta name="gridsome:hash" content="a0ea351d52d1f41584767f462a1539f2010d182a"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.20"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" name="theme-color" content="#fafafa"><meta data-vue-tag="ssr" name="apple-mobile-web-app-capable" content="yes"><meta data-vue-tag="ssr" name="apple-mobile-web-app-status-bar-style" content="default"><meta data-vue-tag="ssr" name="apple-mobile-web-app-title" content="Monstx&#x27;s Blog"><meta data-vue-tag="ssr" name="application-name" content="Monstx&#x27;s Blog"><meta data-vue-tag="ssr" name="msapplication-TileColor" content="#fafafa"><meta data-vue-tag="ssr" name="msapplication-TileImage" content="/assets/static/favicon.png-144x144.png"><meta data-vue-tag="ssr" name="description" content="考虑到小站的访客还不是人均科学上网的水平，我折腾了一天从 Disqus 换到了友链写的自托管评论系统 Artalk，数据迁移啥就以后再说吧，咕咕咕.."><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.31c137b0500c19ff7232c36417527311.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.31c137b0500c19ff7232c36417527311.png"><link data-vue-tag="ssr" rel="manifest" href="/manifest.json"><link data-vue-tag="ssr" rel="icon" type="image/svg+xml" href="./src/assets/images/favicon.svg"><link data-vue-tag="ssr" rel="alternate icon" href="favicon.ico"><link data-vue-tag="ssr" rel="mask-icon" href="./src/assets/images/favicon.svg" color="#fafafa"><link rel="preload" href="/assets/css/0.styles.4de60c18.css" as="style"><link rel="preload" href="/assets/js/app.e047c264.js" as="script"><link rel="preload" href="/assets/js/page--src--templates--blog-post-vue.58ca2702.js" as="script"><link rel="prefetch" href="/assets/js/page--src--pages--404-vue.9aadb5a5.js"><link rel="prefetch" href="/assets/js/page--src--pages--about-vue.585e7ca5.js"><link rel="prefetch" href="/assets/js/page--src--pages--archives-vue.ee3262e6.js"><link rel="prefetch" href="/assets/js/page--src--pages--friends-vue.d5d31487.js"><link rel="prefetch" href="/assets/js/page--src--pages--index-vue.9b730657.js"><link rel="prefetch" href="/assets/js/page--src--pages--watch-vue.19de5454.js"><link rel="prefetch" href="/assets/js/page--src--templates--tag-vue.ed750bd1.js"><link rel="prefetch" href="/assets/js/vendors~page--src--pages--about-vue~page--src--pages--watch-vue~page--src--templates--blog-post-vue.46e4b402.js"><link rel="stylesheet" href="/assets/css/0.styles.4de60c18.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+  </head>
+  <body >
+    <script>
+      // Add dark / light detection that runs before Vue.js load. Borrowed from overreacted.io
+      ;(function() {
+        window.__onThemeChange = function() {}
+        function setTheme(newTheme) {
+          window.__theme = newTheme
+          preferredTheme = newTheme
+          document.body.setAttribute('data-theme', newTheme)
+          window.__onThemeChange(newTheme)
+        }
+
+        var preferredTheme
+        try {
+          preferredTheme = localStorage.getItem('theme')
+        } catch (err) {}
+
+        window.__setPreferredTheme = function(newTheme) {
+          setTheme(newTheme)
+          try {
+            localStorage.setItem('theme', newTheme)
+          } catch (err) {}
+        }
+
+        var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+        darkQuery.addListener(function(e) {
+          window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+        })
+
+        setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+      })()
+    </script>
+
+    <div id="app" data-server-rendered="true"><header class="header"><div class="header__left"><div><a href="/" class="logo active"><span class="logo__text">
+      ⟁   Monstx's Blog
+    </span></a></div></div><div class="header__right"><button role="button" aria-label="Toggle dark/light" class="toggle-theme"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button></div></header><main class="main"><div><div class="post-title"><h1 class="post-title__text">
+      为 Gridsome 添加 Artalk 自托管评论系统
+      <!----></h1><div class="post-meta">
+  August 21, 2020 ·
+  
+    2479 words ·
+    <strong> 11 min read</strong></div></div><div class="post content-box"><div class="post__header"><img alt="Cover image" src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 1280 400' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-1bb0cf23d13033bfc2c81c6932a8a519'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='10'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-1bb0cf23d13033bfc2c81c6932a8a519)' width='1280' height='400' xlink:href='data:image/png%3bbase64%2ciVBORw0KGgoAAAANSUhEUgAAAEAAAAAUCAIAAACyFKxoAAAACXBIWXMAAAsSAAALEgHS3X78AAAGPElEQVRIx%2b1WaVBTVxS%2bCQRUpK64VDu1dawbrRtCq9iKiiKoYBFQBLHsSwJ5hKySsMoukAgoqyBkeS8bBAgBKpuQhCWBEAgJCIr6wy5/%2b6P/%2bgK4O4P%2bceqMM2fuvLx7ct/5zjn3fB8AvPhP2z4D%2bF8CwKArFwJc4puGbvFJ73B%2bD8N8PABcCMuFbBAaaqvFiZukKWtEicsRmi1CtxKQQV3c685E85s5bK8bNGcvz5xz%2bygAMDwSpBaLjYNNk8PKR6aRpzOdMwaBQQ0b1JVj93c1ZoG6WCxahzq0JtBaCWt7U%2bYGaTJ2Pkrzaj4Ex09YhtAAjzQf/SpR4k/tnC%2bE9Dkk0Fspe49AudDiAMxh1cZ%2b35TdNjnaqhvWTT4Ym5rRmqba9TreYF%2bNuqdtbIQ11DiXS2hFPSt4EIFnhxue6sWPdfgB8QohA/DjsXACqMEfuVecoJGtQOjgbhy4S9ivyOfPanc0ZQEeEdvAeBlTrfkogJDn0wHuxpofXoQ0367zW2IqeKt73wmAcFCe3zk5pjFODkyYGrSDvIG%2bu/091eruClWnSKtO1TSjACzFtL05sfXaPtpYy6FWduSItPKZ7ocONiiLWsaOsO3I2JIRfig52rY1bWkj01rCcFQU1j/R71TkguIwC5/DFuYiQDgxfXVLGtqcICfIsuGalYi2Wp62XMbECim4SDdwMwxEuWGqY1c1peAQCiB4gLJogGZnUQA/KgpGZx8OG6ea9VquRsnXqgRaFbryNSrF%2bEiaRg5qYja3Z5%2bIvuJbmbG0Hs06ZJkdtDHC064S%2bjYleOuhfRelNx2gK%2b7V1%2b0Ko3bj/SLhYs60snF21FVd5cgM379nj30%2bcYM83bmYFnT7%2bikmHrv3mz3s%2bKuSYmda2C/ZUJRW4hp88UBl4ooLP0cq4StVORE9vC/POAN2MEZIebPf3gZwpI0z%2bfSJyjCRJ29MESNVrW235S15soY7Le2KvoGaCSVa920d%2bd5QxIGCeFBPX1IYdsT3LPNW/l4vV88c6jE/r2NIdrgaLtXc2%2bdyOLW65GhNWvGMsvvP6YDe2l9jQkIrcrcEnEaLduzc6a1EP99C1j6P48n3kCp1%2b4nU2NNnPLzL0l0IQekKwVFCED0v4ygtXP7XlHdoEOCEYEXvAcC5lT3%2b%2bFH32Fh0aWngjYLUai7rTi2xtJxUUFoukImmhix5pHWtGS7RgXjh7Y1DRYDq%2bdVxx1SkMoCT7F%2be6UQOtuq6fq6zgv9QE8xJ8ySEgGhX545ixd/TTrfpmxx2n40PX3dgR3av7GRkIIDjt/GYXnHhwn9nA1gkO6L3mfBAO4b/5qvuZb3yg16n9jk54O/VVf2h88ugWlfg0RbCLH4HWvKV08ZOvT6/sYHOr0sSClioIfxMoQhu6yrRd6G3CteYuP6yaxQB75KMd8olHg29mMmrPFFIDZXc2u95EqRf8lHWVuvvowCg60k7/d1vPLg/8M8zxxh/H04SZ0ZFz067lEH1pxDcW4qoSvGR8x4JSOm5kMtr486f%2bc1/c9LVraFeRR31bnEhRTLY3teN0i/1uJkIKmKA4D3uAAqgzajr1I/2GMYbdEMCjQrRqJpHtejPAZMpa1hhHgtwgkVJxK48fPSd/AptR5aqaQvjCkjxu6CqO1mRApJ9HH/nRPQjtqmBbmxGgb4jc6KDMSLfU5vEGGmufToS3StYXxF/uaWs3KRkT/dtLyE5FFEutVcuo1zwrsv9TpRiz0sK6%2bV9XU2jGRTp3RJ6n2h3FQNU4zEC0uJj1N48RnVynVY9YRwwmtDLoDZMDBlNXWP6PqMhcVBm5gF0wMMJllL62ubUTbLUlZJEXP01IKLg%2bOQlUgYQkS34JCuYgpXQbBuT1khY1gIyTkDGIOQlCHWdmIVuAQHJSkhdLWYuhamov7WUYYVQsVL6cinTEibjhBRrhGr%2bBD9hvSzFRkQHSMLiY/QFkcUoYdjQLzUOdc6Mq2YnlbOmtgejYuPQrdGu7bIMdIxi%2baTn/DqvMl6hJ7MGeU5P3PgFhwVufqFQnlOeeQta%2bDv3ub3k8rmHOdr5IC0EYbjEZTDVBqatFF1bL02ykzBRHWGDUFF%2bfVNKfLjIwXxEMfeqnlvIDeaddfwspz8D%2bGTtP6u6N7Wa%2bMTxAAAAAElFTkSuQmCC' /%3e%3c/svg%3e" width="1280" data-src="/assets/static/gridsome-artalk.a209973.7111a5ea162c336715a3a8768910baf5.png" data-srcset="/assets/static/gridsome-artalk.a67b0b2.7111a5ea162c336715a3a8768910baf5.png 480w, /assets/static/gridsome-artalk.a209973.7111a5ea162c336715a3a8768910baf5.png 1280w" data-sizes="(max-width: 1280px) 100vw, 1280px" class="g-image g-image--lazy g-image--loading"><noscript><img src="/assets/static/gridsome-artalk.a209973.7111a5ea162c336715a3a8768910baf5.png" class="g-image g-image--loaded" width="1280" alt="Cover image"></noscript></div><!----><div class="post__content"><p>本文介绍在 Gridsome 博客中启用 Artalk 自托管评论系统的方法。欢迎尝试这款小众的、漂亮的评论系统！</p>
+<p>刚开这个小站时打算一劳永逸吃上 Disqus 这块香饽饽，结果没两天我的宝贝室友就跟我说：你站怎么没法评论啊？我深思熟虑之后决定还是不用 Disqus 了。换 Gitalk？不行不行，Gitalk 虽好但是每一个新站点都需要 GitHub 账号授权一次，而且国内访问也体验不佳。Valine 之流我不太喜欢，其他的评论系统我都不甚了解。那该何去何从呢？</p>
+<h2 id="选择-artalk-的理由"><a href="#%E9%80%89%E6%8B%A9-artalk-%E7%9A%84%E7%90%86%E7%94%B1" aria-hidden="true"><span class="icon icon-link"></span></a>选择 Artalk 的理由</h2>
+<p>由于水平不足，我是没法自己写一个评论系统的，于是我决定在友链 <a href="https://qwqaq.com/" target="_blank" rel="nofollow noopener noreferrer">@QWQAQ</a> 和 <a href="https://www.ouorz.com/" target="_blank" rel="nofollow noopener noreferrer">@TonyHe</a> 两位大佬的两个评论系统里选一个，要知道缝合代码、借用轮子这种事我最擅长了。那么是用 <a href="https://github.com/qwqcode/Artalk" target="_blank" rel="nofollow noopener noreferrer">@qwqcode/Artalk</a> 还是 <a href="https://github.com/HelipengTony/nexment" target="_blank" rel="nofollow noopener noreferrer">@HelipengTony/nexment</a> 呢？</p>
+<p>外行人看热闹，我以一个前端菜鸟的水平不足以在架构上对两个评论系统做出优劣比较，所以以下只是我个人选择的理由。</p>
+<p>Nexment 是 React.js 编写的基于 LeanCloud 实现 Serverless 的评论系统，官方另外提供了 Vue.js 示例，有自己的文档（虽然 Tony 好像还没有写详细，但至少有一个站点在那）。官方示例站点 <a href="https://nexment-demo.ouorz.com/" target="_blank" rel="nofollow noopener noreferrer">Nextment for React Demo</a> / <a href="https://nexment-vue-demo.ouorz.com/" target="_blank" rel="nofollow noopener noreferrer">Nextment for Vue Demo</a>，我觉得新颖的点在弹窗显示多级评论上，在我逛的博客圈子里比较少见。部署的话需要提前配置 LeanCloud 的数据库，这让我停止了思考（我的数据库放在别人那里想想就不靠谱啊喂）。Nexment 诞生于最近一月，截至本文发布前最后一次提交在三天前，作者 TonyHe 感觉是个努力 Coding 的巨佬，毕竟即将出国留学了。</p>
+<p>Artalk 是 TypeScript 编写的需要自行部署后端的「一款简洁有趣的自托管评论系统」，数据存放在 JSON 文件中，后续听说也计划增加 MySQL 的支持（我：那样听起来就不太简洁了呢）。需要自行搭建后端估计劝退了很多人，而且目前只支持 PHP 后端，README 里写的 Go、Node.js、Python 后端均迟迟未上线。官方给的示例只有几个 HTML，相当的「简洁」，基本都是在 HTML 引入 <code>Artalk.css</code> <code>Artalk.js</code> 后一些简单的配置。官方示例站点 <a href="https://artalk.js.org/" target="_blank" rel="nofollow noopener noreferrer">Artalk DEMO</a>，听说在这里可以观察到开发者立 Flag 现场。Artalk 诞生于 2018 年 10 月，截至本文发布前最后一次提交在今年 5 月，考虑到作者 QWQAQ 的学业繁忙，摸鱼也是可以理解的。</p>
+<p>简单了解两个评论系统之后，再看自身的 Gridsome 平台，基于 Vue.js。怎么看我都应该选择 Nexment，但是我却选择了 Artalk。原因嘛，自然是图个简单。Artalk 之前就搭建了自己的后端使用过一段时间，官方搭配的滑稽表情包在别的评论系统一众阿鲁表情包、贴吧表情包中独树一帜。更重要的是 Artalk 的代码我能看懂一些，进行自定义修改很方便。Nexment 虽好，但是外观相比 Artalk 我还是更喜欢后者，弹窗多级评论显示对我来说也需求不高，要我看 React.js 项目代码更是劝退。</p>
+<h2 id="对-artalk-的修改"><a href="#%E5%AF%B9-artalk-%E7%9A%84%E4%BF%AE%E6%94%B9" aria-hidden="true"><span class="icon icon-link"></span></a>对 Artalk 的修改</h2>
+<p>Artalk 目前还没有支持夜间模式，原本的样式和本站也不太搭。于是我 Fork 了一份代码针对这两个问题进行修改。</p>
+<p>夜间模式主要按照当前主题的配色和 Disqus 样式进行调整。其实之前也尝试配过一个夜间模式，用在自己修改后的 <a href="https://github.com/monsterxcn/Typecho-Theme-VOID" target="_blank" rel="nofollow noopener noreferrer">@monsterxcn/Typecho-Theme-VOID</a> 上，但是代码过于粗糙。我调整颜色的方法甚至是直接将原版压缩后的 <code>.css</code> 打开后按 <code>Ctrl</code> <code>F2</code> 全部替换！剩下的样式代码压缩后即使找工具美化也看的我云里雾里。这次直接克隆仓库安装依赖从源头编译，方便那不是一星半点！</p>
+<p>到目前为止，我共进行了 10 次提交，主要对以下这些地方进行了修改：</p>
+<ul>
+<li>夜间模式</li>
+<li>小屏幕样式部分适配</li>
+<li>控制台版权去除</li>
+<li>「Power By Artalk」 调整</li>
+<li>侧边栏通知中心细节调整</li>
+</ul>
+<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/Artalk" target="_blank" rel="nofollow noopener noreferrer">@monsterxcn/Artalk</a>，其他细节可以看本站下方的评论区。</p>
+<h2 id="在-gridsome-上调试"><a href="#%E5%9C%A8-gridsome-%E4%B8%8A%E8%B0%83%E8%AF%95" aria-hidden="true"><span class="icon icon-link"></span></a>在 Gridsome 上调试</h2>
+<p>刚使用 Gridsome 大约一周，对它的了解很少，Vue.js 水平连门都入不了。但是这样的我还是花了几个小时将 Artalk 成功适配到了博客。中间踩了几个坑在这里提一下解决方法。</p>
+<details><summary><strong>还是叠上吧</strong></summary><br />
+<h3 id="安装-artalk"><a href="#%E5%AE%89%E8%A3%85-artalk" aria-hidden="true"><span class="icon icon-link"></span></a>安装 Artalk</h3>
+<p>Artalk 提供了 npm 包，所以可以直接在命令行安装</p>
+<pre class="language-bash line-numbers"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> artalk --save<span class="line-numbers-rows" aria-hidden="true"><span></span></span></code></pre>
+<p>如果需要安装我修改之后的版本则需要在 <code>package.json</code> 中手动写入仓库地址：</p>
+<pre class="language-diff line-numbers"><code class="language-diff">{
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> "name": "gridsome-starter-blog",
+</span><span class="token prefix unchanged"> </span><span class="token line"> "private": true,
+</span><span class="token prefix unchanged"> </span><span class="token line"> "scripts": {
+</span><span class="token prefix unchanged"> </span><span class="token line">   "build": "gridsome build",
+</span><span class="token prefix unchanged"> </span><span class="token line">   "develop": "gridsome develop",
+</span><span class="token prefix unchanged"> </span><span class="token line">   "explore": "gridsome explore"
+</span><span class="token prefix unchanged"> </span><span class="token line"> },
+</span><span class="token prefix unchanged"> </span><span class="token line"> "dependencies": {
+</span><span class="token prefix unchanged"> </span><span class="token line">   "@gridsome/plugin-google-analytics": "^0.1.0",
+</span><span class="token prefix unchanged"> </span><span class="token line">   "@gridsome/remark-prismjs": "^0.2.0",
+</span><span class="token prefix unchanged"> </span><span class="token line">   "@gridsome/source-filesystem": "^0.6.0",
+</span><span class="token prefix unchanged"> </span><span class="token line">   "@gridsome/transformer-remark": "^0.3.0",
+</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "gridsome": "^0.7.0"
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "gridsome": "^0.7.0",
+</span><span class="token prefix inserted">+</span><span class="token line">   "artalk": "https://github.com/monsterxcn/Artalk.git",
+</span></span><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> },
+</span><span class="token prefix unchanged"> </span><span class="token line"> "devDependencies": {
+</span><span class="token prefix unchanged"> </span><span class="token line">   "node-sass": "^4.12.0",
+</span><span class="token prefix unchanged"> </span><span class="token line">   "sass-loader": "^8.0.0"
+</span><span class="token prefix unchanged"> </span><span class="token line"> }
+</span></span>}<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="引入-artalkcss"><a href="#%E5%BC%95%E5%85%A5-artalkcss" aria-hidden="true"><span class="icon icon-link"></span></a>引入 <code>Artalk.css</code></h3>
+<p>接下来引用 <code>Artalk.css</code> 和 <code>Artalk.js</code>，可以单独新建 ArtalkCards.vue 文件存放关于 Artalk 的代码提高代码整洁性，只在该文件中引入 <code>Artalk.css</code> 即可。</p>
+<pre class="language-javascript line-numbers"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token string">'artalk/dist/Artalk.css'</span><span class="line-numbers-rows" aria-hidden="true"><span></span></span></code></pre>
+<p>话说主题在 <code>main.js</code> 就引入了 <code>disqusjs.scss</code> <code>katex.css</code> 我觉得也不理智，于是将它们统统改到了文章页的模板中，效果应该不错。 </p>
+<h3 id="引入-artalkjs"><a href="#%E5%BC%95%E5%85%A5-artalkjs" aria-hidden="true"><span class="icon icon-link"></span></a>引入 <code>Artalk.js</code></h3>
+<p>最初引入 <code>Artalk.js</code> 时，我参考主题使用 DisqusJS 的方法在 <code>.vue</code> 模板文件的 <code>&#x3C;script></code> 标签中这样写：</p>
+<pre class="language-javascript line-numbers"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token string">'artalk/dist/Artalk.css'</span>
+<span class="token keyword module">import</span> <span class="token maybe-class-name">Artalk</span> <span class="token keyword module">from</span> <span class="token string">'artalk'</span>
+
+<span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// ...</span>
+
+  <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Initialize post comment by Artalk</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span><span class="token property-access">env</span><span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'production'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> artalk <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Artalk</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        el<span class="token operator">:</span> <span class="token string">'#artalkcomments'</span><span class="token punctuation">,</span>
+        placeholder<span class="token operator">:</span> <span class="token string">'说点什么 (づ￣ 3￣)づ'</span><span class="token punctuation">,</span>
+        defaultAvatar<span class="token operator">:</span> <span class="token string">'mp'</span><span class="token punctuation">,</span>
+        pageKey<span class="token operator">:</span> <span class="token string">'https://blog.monsterx.cn/some-page/'</span><span class="token punctuation">,</span>
+        serverUrl<span class="token operator">:</span> <span class="token string">'https://lab.mocurio.com/artalk/'</span><span class="token punctuation">,</span>
+        readMore<span class="token operator">:</span> <span class="token punctuation">{</span>
+          pageSize<span class="token operator">:</span> <span class="token number">15</span><span class="token punctuation">,</span>
+          autoLoad<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>gridsome develop</code> 预览正常，但是发布时遇到「ReferenceError: window is not defined」，提示的报错信息都来自 <code>node_modules/artalk/dist/Artalk.js</code>，我以为是自己修改 Artalk 出的问题，于是又回去修改 Artalk 代码，将网上用来解决这个问题的几个方法都试了一遍依旧报错。正当我迷惑时，突然想到了 Gridsome 的源头 Vue.js 本身，于是我一拍脑袋在搜索时加了关键词 <code>gridsome</code>，这才发现原来和「Client API」有关。</p>
+<p>这是几个讨论这件事的链接《<a href="https://stackoverflow.com/questions/40707481/window-is-not-defined-in-vue-js-2" target="_blank" rel="nofollow noopener noreferrer">javascript - 'window' is not defined in Vue.js 2 - Stack Overflow</a>》《<a href="https://github.com/gridsome/gridsome/issues/646" target="_blank" rel="nofollow noopener noreferrer">Failed to render / ReferenceError: window is not defined (vue2-leaflet) - issue #646 - GitHub @gridsome/gridsome</a>》《<a href="https://gridsome.org/docs/client-api/#isclient" target="_blank" rel="nofollow noopener noreferrer">Client API - Gridsome</a>》</p>
+<p>虽然不知道这是个什么东西，但是大概说的是有些代码只能在客户端跑，服务端无法 <del>执行</del>「渲染」，比如 <code>window</code> 的操作。要说专业点，应该是关乎 S(erver) S(ide) R(ender)「服务器端渲染」这种机制。根据上面第二个链接中 <a href="https://github.com/gridsome/gridsome/issues/646#issuecomment-578367659" target="_blank" rel="nofollow noopener noreferrer">IHIutch 的回答</a>，成功找到了解决方案：</p>
+<pre class="language-diff line-numbers"><code class="language-diff">import 'artalk/dist/Artalk.css'
+<span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">import Artalk from 'artalk'
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">let Artalk = {}
+</span></span>
+export default {
+
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> // ...
+</span></span>
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> mounted() {
+</span><span class="token prefix unchanged"> </span><span class="token line">   // Initialize post comment by Artalk
+</span><span class="token prefix unchanged"> </span><span class="token line">   if (process.env.NODE_ENV === 'production') {
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">     Artalk = require('artalk')
+</span></span><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line">     var artalk = new Artalk({
+</span><span class="token prefix unchanged"> </span><span class="token line">       el: '#artalkcomments',
+</span><span class="token prefix unchanged"> </span><span class="token line">       placeholder: '说点什么 (づ￣ 3￣)づ',
+</span><span class="token prefix unchanged"> </span><span class="token line">       defaultAvatar: 'mp',
+</span><span class="token prefix unchanged"> </span><span class="token line">       pageKey: 'https://blog.monsterx.cn/some-page/',
+</span><span class="token prefix unchanged"> </span><span class="token line">       serverUrl: 'https://lab.mocurio.com/artalk/',
+</span><span class="token prefix unchanged"> </span><span class="token line">       readMore: {
+</span><span class="token prefix unchanged"> </span><span class="token line">         pageSize: 15,
+</span><span class="token prefix unchanged"> </span><span class="token line">         autoLoad: true,
+</span><span class="token prefix unchanged"> </span><span class="token line">       },
+</span><span class="token prefix unchanged"> </span><span class="token line">     })
+</span><span class="token prefix unchanged"> </span><span class="token line">   }
+</span><span class="token prefix unchanged"> </span><span class="token line"> },
+</span></span>}<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>L10 的<code>process.env.NODE_ENV === 'production'</code> 和 <code>process.isClient</code> 实际效果应该都差不多。</p>
+</details><br />
+<h2 id="最终模板"><a href="#%E6%9C%80%E7%BB%88%E6%A8%A1%E6%9D%BF" aria-hidden="true"><span class="icon icon-link"></span></a>最终模板</h2>
+<p>在 <code>/src/components</code> 新建 <code>ArtalkCards.vue</code> 作为 Artalk 评论区模板</p>
+<pre class="language-html line-numbers"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>artalk-cards<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>admonition admonition-warning<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>admonition-heading<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h5</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">text-transform</span><span class="token punctuation">:</span> none</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+          Blog 评论政策
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h5</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>admonition-content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+          评论如无特殊原因均不会被删除，提交前请三思。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/></span></span>
+          你应该懂得如何发表适当的观点，请对自己的言论负责。
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>LetsArtalk<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword module">import</span> <span class="token string">'artalk/dist/Artalk.css'</span>
+<span class="token keyword">let</span> <span class="token maybe-class-name">Artalk</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token punctuation">{</span>
+  <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Initialize post comment by Artalk</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span><span class="token property-access">env</span><span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'production'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token maybe-class-name">Artalk</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'artalk'</span><span class="token punctuation">)</span>
+      <span class="token keyword">var</span> artalk <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Artalk</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        el<span class="token operator">:</span> <span class="token string">'#LetsArtalk'</span><span class="token punctuation">,</span>
+        placeholder<span class="token operator">:</span> <span class="token string">'说点什么 (づ￣ 3￣)づ'</span><span class="token punctuation">,</span>
+        defaultAvatar<span class="token operator">:</span> <span class="token string">'mp'</span><span class="token punctuation">,</span>
+        pageKey<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">$page</span><span class="token punctuation">.</span><span class="token property-access">post</span><span class="token punctuation">.</span><span class="token property-access">path</span><span class="token punctuation">,</span>
+        serverUrl<span class="token operator">:</span> <span class="token string">'https://lab.mocurio.com/artalk/'</span><span class="token punctuation">,</span>
+        readMore<span class="token operator">:</span> <span class="token punctuation">{</span>
+          pageSize<span class="token operator">:</span> <span class="token number">15</span><span class="token punctuation">,</span>
+          autoLoad<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>page-query</span><span class="token punctuation">></span></span>
+query Post ($id: ID!) {
+  post: post (id: $id) {
+    path
+  }
+}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>page-query</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>scss<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+<span class="token selector"><span class="token class">.artalk-cards</span></span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--at-bg-main</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--radius</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">max-width</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--content-width</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token unit">px</span> auto <span class="token number">100</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token unit">px</span> <span class="token number">1</span><span class="token unit">px</span> <span class="token number">5</span><span class="token unit">px</span> <span class="token number">0</span> <span class="token color"><span class="token function">rgba</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.02</span><span class="token punctuation">)</span></span><span class="token punctuation">,</span>
+    <span class="token number">1</span><span class="token unit">px</span> <span class="token number">1</span><span class="token unit">px</span> <span class="token number">15</span><span class="token unit">px</span> <span class="token number">0</span> <span class="token color"><span class="token function">rgba</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.03</span><span class="token punctuation">)</span></span><span class="token selector">;
+  <span class="token class">.admonition</span><span class="token class">.admonition-warning</span></span> <span class="token punctuation">{</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span> auto<span class="token punctuation">;</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+    <span class="token property">border-top-left-radius</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--radius</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">border-top-right-radius</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--radius</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector"><span class="token id">#LetsArtalk</span></span> <span class="token punctuation">{</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token atrule"><span class="token rule">@media</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> <span class="token number">768</span><span class="token unit">px</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+    <span class="token selector"><span class="token id">#LetsArtalk</span></span> <span class="token punctuation">{</span>
+      <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token unit">px</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span><span class="token selector">;
+      &amp;<span class="token class">.artalk</span> <span class="token combinator">></span> <span class="token class">.artalk-editor</span></span> <span class="token punctuation">{</span>
+        <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token property">margin-bottom</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token unit">px</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token selector">&amp;<span class="token class">.artalk</span>
+        <span class="token combinator">></span> <span class="token class">.artalk-list</span>
+        <span class="token combinator">></span> <span class="token class">.artalk-list-header</span>
+        <span class="token combinator">></span> <span class="token class">.artalk-right-action</span>
+        <span class="token combinator">></span> span<span class="token class">.artalk-on</span></span> <span class="token punctuation">{</span>
+        <span class="token property">max-width</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">px</span><span class="token punctuation">;</span>
+        <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+        <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+        <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面根据需要自己修改下 <code>&#x3C;template></code> 的内容，保证内容包含在一个「主标签」内即可，比如我的是 <code>&#x3C;div class="artalk-cards"></code>。修改 L29-37 为自己的 Artalk 参数即可，设置参考 <a href="https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts" target="_blank" rel="nofollow noopener noreferrer">artalk-config.d.ts</a>。<code>&#x3C;style></code> 是我针对这个主题做的一点适配。</p>
+<p>在需要开放评论区的地方这样引用：</p>
+<pre class="language-html line-numbers"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+  &lt; >
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ArtalkCards</span> <span class="token punctuation">/></span></span>
+  &lt;/>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword module">import</span> <span class="token maybe-class-name">ArtalkCards</span> <span class="token keyword module">from</span> <span class="token string">'~/components/ArtalkCards'</span>
+<span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token punctuation">{</span>
+  components<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token maybe-class-name">ArtalkCards</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句不介意大家使用我搭的 Artalk PHP 后端，它运行在阿里云学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大。将 Artalk 配置中的 <code>serverUrl</code> 字段填写为 <code>https://lab.mocurio.com/artalk/</code> 即可，跨域访问是允许的，不必向我申请。</p>
+<p>其实自己搭建 Artalk PHP 后端也十分简单，QWQAQ 已经将其写成可通过 phpcomposer 安装。如果有问题欢迎留言。 </p>
+</div><div class="post__footer"><div class="post-tags"><a href="/tag/Gridsome/" class="post-tags__link"><span>#</span> Gridsome
+  </a><a href="/tag/Artalk/" class="post-tags__link"><span>#</span> Artalk
+  </a><a href="/tag/Vue.js/" class="post-tags__link"><span>#</span> Vue.js
+  </a></div></div><div class="post__navigation"><!----><a href="/code/update-your-posts-in-readme/" class="navlink" style="float: right;">GitHub README.md 显示博文并自动更新 ▶</a></div></div><div class="artalk-cards"><div class="admonition admonition-warning"><div class="admonition-heading"><h5 style="text-transform: none"><div class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></div>
+          Monstx's Blog 评论政策
+        </h5></div><div class="admonition-content"><p>
+          评论如无特殊原因均不会被删除，提交前请三思。<br>你应该懂得如何发表适当的观点，请对自己的言论负责。
+        </p></div></div><div id="LetsArtalk"></div></div><!----><div class="author post-author"><a href="/" class="logo active"><img alt="Author image" src="https://blog.monsterx.cn/assets/static/favicon-180x180.png" class="author__image g-image"></a><!----><p class="author__intro">
+    阿巴阿巴，歪比巴布 (づ￣ 3￣)づ
+  </p><p class="author__links"><a href="//blog.monsterx.cn/feed.xml" target="_blank" rel="noopener" style="color:#F5A623;"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-rss fa-w-14"><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg></a><a href="/archives" style="color:var(--title-color);"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="archive" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-archive fa-w-16"><path fill="currentColor" d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"></path></svg></a><a href="/watch" style="color:#06a878;"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="dragon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-dragon fa-w-20"><path fill="currentColor" d="M18.32 255.78L192 223.96l-91.28 68.69c-10.08 10.08-2.94 27.31 11.31 27.31h222.7c-9.44-26.4-14.73-54.47-14.73-83.38v-42.27l-119.73-87.6c-23.82-15.88-55.29-14.01-77.06 4.59L5.81 227.64c-12.38 10.33-3.45 30.42 12.51 28.14zm556.87 34.1l-100.66-50.31A47.992 47.992 0 0 1 448 196.65v-36.69h64l28.09 22.63c6 6 14.14 9.37 22.63 9.37h30.97a32 32 0 0 0 28.62-17.69l14.31-28.62a32.005 32.005 0 0 0-3.02-33.51l-74.53-99.38C553.02 4.7 543.54 0 533.47 0H296.02c-7.13 0-10.7 8.57-5.66 13.61L352 63.96 292.42 88.8c-5.9 2.95-5.9 11.36 0 14.31L352 127.96v108.62c0 72.08 36.03 139.39 96 179.38-195.59 6.81-344.56 41.01-434.1 60.91C5.78 478.67 0 485.88 0 494.2 0 504 7.95 512 17.76 512h499.08c63.29.01 119.61-47.56 122.99-110.76 2.52-47.28-22.73-90.4-64.64-111.36zM489.18 66.25l45.65 11.41c-2.75 10.91-12.47 18.89-24.13 18.26-12.96-.71-25.85-12.53-21.52-29.67z"></path></svg></a><a href="/friends" style="color:#ff0000;"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-heart fa-w-16"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg></a><a href="/about"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="id-badge" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="svg-inline--fa fa-id-badge fa-w-12"><path fill="currentColor" d="M336 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM144 32h96c8.8 0 16 7.2 16 16s-7.2 16-16 16h-96c-8.8 0-16-7.2-16-16s7.2-16 16-16zm48 128c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64zm112 236.8c0 10.6-10 19.2-22.4 19.2H102.4C90 416 80 407.4 80 396.8v-19.2c0-31.8 30.1-57.6 67.2-57.6h5c12.3 5.1 25.7 8 39.8 8s27.6-2.9 39.8-8h5c37.1 0 67.2 25.8 67.2 57.6v19.2z"></path></svg></a></p></div></div></main><footer class="footer"><div class="footer__copyright"><a href="http://www.beian.miit.gov.cn/" target="_blank" style="text-decoration: none; cursor: default;">皖 ICP 备 18021272 号 - 1</a>
+      © 2014 - 2020
+    </div><div class="footer__links"><a href="https://gridsome.org" target="_blank">Gridsome</a> ×
+      <a href="https://github.com/spencerwooo" target="_blank">SpencerWoo</a>
+      ×
+      <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=ztik1iwq&utm_source=ztik1iwq" target="_blank">Aliyun</a>
+      ×
+      <a href="https://www.dogedoge.com" target="_blank">DogeDoge</a></div><div class="footer__links"><a href="//github.com/monsterxcn" target="_blank" style="color: var(--title-color);font-size: 1.3em;margin: 0 .5em;"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="svg-inline--fa fa-github fa-w-16"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a><a href="//t.me/monsterxcn" target="_blank" style="color: #179CDE;font-size: 1.3em;margin: 0 .5em;"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="telegram" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="svg-inline--fa fa-telegram fa-w-16"><path fill="currentColor" d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"></path></svg></a><a href="//twitter.com/mo_curio" target="_blank" style="color: #1da1f2;font-size: 1.3em;margin: 0 .5em;"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-twitter fa-w-16"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></a><a href="//weibo.com/u/3978619198" target="_blank" style="color: #E6162D;font-size: 1.3em;margin: 0 .5em;"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="weibo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-weibo fa-w-16"><path fill="currentColor" d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></path></svg></a><a href="//steamcommunity.com/id/monsterxcn" target="_blank" style="color: var(--social-steam-color);font-size: 1.3em;margin: 0 .5em;"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="steam" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="svg-inline--fa fa-steam fa-w-16"><path fill="currentColor" d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"></path></svg></a></div></footer></div> <script src="/assets/js/app.e047c264.js" defer></script><script src="/assets/js/page--src--templates--blog-post-vue.58ca2702.js" defer></script>
+  </body>
+</html>
