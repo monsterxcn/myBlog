@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Fri, 21 Aug 2020 05:59:38 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 21 Aug 2020 06:13:38 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -32,7 +32,7 @@
 <li>「Power By Artalk」 调整</li>
 <li>侧边栏通知中心细节调整</li>
 </ul>
-<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/Artalk">@monsterxcn/Artalk</a>，其他细节可以看本站下方的评论区。</p>
+<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/Artalk">@monsterxcn/Artalk</a>，搭了个示例站点 <a href="https://artalk.vercel.app">Artalk ♂</a>。</p>
 <h2 id="在-gridsome-上调试">在 Gridsome 上调试</h2>
 <p>刚使用 Gridsome 大约一周，对它的了解很少，Vue.js 水平连门都入不了。但是这样的我还是花了几个小时将 Artalk 成功适配到了博客。中间踩了几个坑在这里提一下解决方法。</p>
 <details><summary><strong>还是叠上吧</strong></summary><br />
@@ -65,7 +65,7 @@
   }
 }</code></pre>
 <h3 id="引入-artalkcss">引入 <code>Artalk.css</code></h3>
-<p>接下来引用 <code>Artalk.css</code> 和 <code>Artalk.js</code>，可以单独新建 ArtalkCards.vue 文件存放关于 Artalk 的代码提高代码整洁性，只在该文件中引入 <code>Artalk.css</code> 即可。</p>
+<p>接下来引用 <code>Artalk.css</code> 和 <code>Artalk.js</code>，可以单独新建 <code>ArtalkCards.vue</code> 文件存放关于 Artalk 的代码提高代码整洁性，只在该文件中引入 <code>Artalk.css</code> 即可。</p>
 <pre><code class="language-javascript">import &#39;artalk/dist/Artalk.css&#39;</code></pre>
 <p>话说主题在 <code>main.js</code> 就引入了 <code>disqusjs.scss</code> <code>katex.css</code> 我觉得也不理智，于是将它们统统改到了文章页的模板中，效果应该不错。 </p>
 <h3 id="引入-artalkjs">引入 <code>Artalk.js</code></h3>
@@ -123,7 +123,7 @@ export default {
     }
   },
 }</code></pre>
-<p>L10 的<code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际效果应该都差不多。</p>
+<p>L11 的<code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际效果应该都差不多。</p>
 </details><br />
 
 
@@ -218,7 +218,7 @@ query Post ($id: ID!) {
   }
 }
 &lt;/style&gt;</code></pre>
-<p>上面根据需要自己修改下 <code>&lt;template&gt;</code> 的内容，保证内容包含在一个「主标签」内即可，比如我的是 <code>&lt;div class=&quot;artalk-cards&quot;&gt;</code>。修改 L29-37 为自己的 Artalk 参数即可，设置参考 <a href="https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts">artalk-config.d.ts</a>。<code>&lt;style&gt;</code> 是我针对这个主题做的一点适配。</p>
+<p>上面根据需要自己修改下 <code>&lt;template&gt;</code> 的内容，注意保证只存在一个「主标签」，比如我的是 <code>&lt;div class=&quot;artalk-cards&quot;&gt;</code>。修改 L29-37 为自己的 Artalk 参数，设置参考 <a href="https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts">artalk-config.d.ts</a>。<code>&lt;style&gt;</code> 是我针对这个主题做的一点适配。</p>
 <p>在需要开放评论区的地方这样引用：</p>
 <pre><code class="language-html">&lt;/template&gt;
   &lt; &gt;
