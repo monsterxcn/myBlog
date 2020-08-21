@@ -30,10 +30,10 @@ module.exports = {
             typeName: 'Tag',
             create: true,
           },
-          cat: {
-            typeName: 'Category',
-            create: true,
-          },
+          // cat: {
+          //   typeName: 'Category',
+          //   create: true,
+          // },
         },
       },
     },
@@ -72,7 +72,7 @@ module.exports = {
         // Service Worker Options
         disableServiceWorker: false,
         serviceWorkerPath: 'service-worker.js',
-        cachedFileTypes: 'js,json,css,svg',
+        cachedFileTypes: 'js,css,ico,svg,jpg,png,webp',
 
         // Manifest Options (https://developer.mozilla.org/en-US/docs/Web/Manifest)
         manifestPath: 'manifest.json',
