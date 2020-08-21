@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-21T11:26:58.831Z</updated>
+    <updated>2020-08-21T11:50:09.424Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -34,9 +34,6 @@
 <p>夜间模式的配色均在 <a href="https://github.com/monsterxcn/Artalk/blob/master/src/css/_variables.less">_variables.less</a> 中定义，以 <code>--at-</code> 为前缀。GitHub 仓库地址 <a href="https://github.com/monsterxcn/Artalk">@monsterxcn/Artalk</a>，搭了个示例站点 <a href="https://artalk.vercel.app">Artalk ♂</a>。</p>
 <h2 id="在-gridsome-上调试">在 Gridsome 上调试</h2>
 <p>刚使用 Gridsome 大约一周，对它的了解很少，Vue.js 水平连门都入不了。但是这样的我还是花了几个小时将 Artalk 成功适配到了博客。中间踩了几个坑在这里提一下解决方法。</p>
-<details><summary><strong>还是叠上吧</strong></summary><br />
-
-
 <h3 id="安装-artalk">安装 Artalk</h3>
 <p>Artalk 提供了 npm 包，所以可以直接在命令行安装</p>
 <pre><code class="language-bash">npm install artalk --save</code></pre>
@@ -125,9 +122,6 @@ export default {
   },
 }</code></pre>
 <p>L11 <code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际效果应该都差不多。</p>
-</details><br />
-
-
 <h2 id="最终模板">最终模板</h2>
 <p>在 <code>/src/components</code> 新建 <code>ArtalkCards.vue</code> 作为 Artalk 评论区模板</p>
 <pre><code class="language-html">&lt;template&gt;
