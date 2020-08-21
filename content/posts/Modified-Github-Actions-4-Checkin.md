@@ -6,8 +6,8 @@ slug: Modified-Github-Actions-4-HEU-Checkin
 cat: tech
 tags: ['GitHub Actions', '定时任务', 'webdrivers']
 cover_image: "./images/github-actions-checkin.png"
-canonical_url: false
-description: "赶在上半年的最后半小时发布了 6 月唯一一篇更新：利用 GitHub Actions 定时执行 Python / Ruby 打卡代码"
+canonical_url: "https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/"
+description: "赶在上半年的最后半小时发布了 6 月唯一一篇更新：利用 GitHub Actions 定时执行 Python / Ruby 打卡代码。"
 ---
 
 昨天逛博客看到了使用 GitHub Actions 定时调用 Microsoft 365 E5 API 以帮助续订的文章，我转念一想这是不是也可以用来跑定时任务打卡呢？说干就干我开了一个小的坑：用 GitHub Actions 跑之前写的 Python 打卡脚本。无意薅羊毛，只是希望通过一点学习将自己的想法实现。

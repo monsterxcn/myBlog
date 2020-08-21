@@ -5,7 +5,7 @@ published: true
 slug: Daily-Impermanence
 cat: life
 tags: ['手帐', '思考', 'COVID-19']
-canonical_url: false
+canonical_url: "https://blog.monsterx.cn/life/daily-impermanence/"
 description: "久违的手帐（日记）更新，再不写一篇都快忘记这是个生活博客了。翻了翻归档，上一篇正儿八经发布的日记是一年前了，断断续续的日记草稿质量堪忧。"
 ---
 

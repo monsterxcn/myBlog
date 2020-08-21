@@ -6,8 +6,8 @@ slug: Auto-Download-Bangumi-with-Aria2-Rss
 cat: tech
 tags: ['Aria2', 'FlexGet', 'RSS']
 cover_image: "./images/aria-rss-bangumi.png"
-canonical_url: false
-description: "使用 FlexGet 实现服务器 Aria2 RSS 订阅，自动下载番剧到 OneDrive，在本地通过 Windows OneDrive 文件夹同步实现追番「自动化」流程"
+canonical_url: "https://blog.monsterx.cn/tech/auto-download-bangumi-with-aria2-rss/"
+description: "使用 FlexGet 实现服务器 Aria2 RSS 订阅，自动下载番剧到 OneDrive，在本地通过 Windows OneDrive 文件夹同步实现追番「自动化」流程。"
 ---
 
 最近觉得为了偶尔看看电影动漫而续费腾讯视频会员太吃亏了，一个月四集的《斗罗大陆》水得不行啊喂！哔哩哔哩大会员也是如此，有的时候我在这头，想看的番剧在那头，每次都要科学上网才能解锁，属实费劲。

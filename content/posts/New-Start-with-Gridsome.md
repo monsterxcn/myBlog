@@ -6,7 +6,7 @@ slug: New-Start-with-Gridsome
 cat: life
 tags: ['Gridsome', 'Blog', 'Markdown']
 cover_image: "./images/new-start.png"
-canonical_url: false
+canonical_url: "https://blog.monsterx.cn/life/new-start-with-gridsome/"
 description: "在这普通的一天，这个普通的博客诞生 / 重生了。本文简单介绍下目前的情况、新的中文格式排版和 Markdown 规则以及从旧的 Typecho 手动迁移时一些琐碎的记录。"
 ---
 
@@ -18,7 +18,7 @@ description: "在这普通的一天，这个普通的博客诞生 / 重生了。
 
 使用 Disqus 的痛处其一是评论数据同步，手动导入了两篇文章的数据之后发现评论区头像都无法显示，网上的解决方案似乎得购买 Disqus 商业套餐。其二是国内用户上网环境不佳便无法评论，向来冷清的本站雪上加霜，以后可能会考虑在国内服务器上继续部署 [Artalk](https://lab.mocurio.com/artalk.html) 评论系统以供 ~~小部分人的需求~~ 自娱自乐。
 
-本站的主题参考 [@Spencer's Blog](https://blog.spencerwoo.com) 和 [@Jalen's Blog](https://blog.jalenchuh.cn) 的仓库修改，基于 [@gridsome/gridsome-starter-blog](https://github.com/gridsome/gridsome-starter-blog)。静态博客可以自由部署在很多地方，目前这个博客通过 GitHub Actions 自动构建静态文件发布到私有仓库的分支和阿里云 OSS，配合阿里云全站加速供中国境内访问，同时部署到 Cloudflare Workers Sites 供境外访问。以前将域名的境内境外解析拆分，是考虑国外可能会有人访问，现在想明白了，这其实是为了国内日常科学上网的同志们。就算在墙外访问本站应该也能获取稍快的体验。
+本站的主题参考 [@Spencer's Blog](https://blog.spencerwoo.com) 和 [@Jalen's Blog](https://blog.jalenchuh.cn) 的仓库修改，基于 [@gridsome/gridsome-starter-blog](https://github.com/gridsome/gridsome-starter-blog)。静态博客可以自由部署在很多地方，目前这个博客通过 GitHub Actions 自动构建静态文件发布到私有仓库的分支和阿里云 OSS，配合阿里云全站加速供中国境内访问，同时部署到 Cloudflare Workers Sites 供境外访问。以前将域名的境内境外解析拆分，是考虑国外可能会有人访问，现在想明白了，这其实是为了国内日常科学上网的同志们。就算是「人在纽约」访问本站应该也能获取稍快的体验。
 
 ## 文章排版
 
