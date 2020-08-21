@@ -4,7 +4,7 @@ date: 2020-06-30
 published: true
 slug: Modified-Github-Actions-4-HEU-Checkin
 cat: tech
-tags: ['GitHub Actions', '定时任务', 'webdrivers']
+tags: ['GitHub Actions', 'webdrivers', '定时任务']
 cover_image: "./images/github-actions-checkin.png"
 canonical_url: "https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/"
 description: "赶在上半年的最后半小时发布了 6 月唯一一篇更新：利用 GitHub Actions 定时执行 Python / Ruby 打卡代码。"

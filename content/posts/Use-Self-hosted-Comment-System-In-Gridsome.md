@@ -4,7 +4,7 @@ date: 2020-08-21
 published: true
 slug: Use-Self-hosted-Comment-System-In-Gridsome
 cat: code
-tags: ['Gridsome', 'Artalk', 'Vue.js']
+tags: ['Gridsome', 'Vue.js', 'Artalk', 'Blog']
 cover_image: "./images/gridsome-artalk.png"
 canonical_url: 'https://blog.monsterx.cn/code/use-self-hosted-comment-system-in-gridsome/'
 description: "考虑到小站的访客还不是人均科学上网的水平，我折腾了一天从 Disqus 换到了友链写的自托管评论系统 Artalk，数据迁移啥就以后再说吧，咕咕咕.."
@@ -46,10 +46,6 @@ Artalk 目前还没有支持夜间模式，原本的样式和本站也不太搭�
 
 刚使用 Gridsome 大约一周，对它的了解很少，Vue.js 水平连门都入不了。但是这样的我还是花了几个小时将 Artalk 成功适配到了博客。中间踩了几个坑在这里提一下解决方法。
 
-
-<details><summary><strong>还是叠上吧</strong></summary><br />
-
-
 ### 安装 Artalk
 
 Artalk 提供了 npm 包，所以可以直接在命令行安装
@@ -87,13 +83,13 @@ npm install artalk --save
 
 ### 引入 `Artalk.css`
 
-接下来引用 `Artalk.css` 和 `Artalk.js`，可以单独新建 `ArtalkCards.vue` 文件存放关于 Artalk 的代码提高代码整洁性，只在该文件中引入 `Artalk.css` 即可。
+接下来引用 `Artalk.css` 和 `Artalk.js`，建议单独新建 `ArtalkCards.vue` 文件存放 Artalk 评论组件的代码，只在该模板中引入 `Artalk.css` 即可。
 
 ```javascript
 import 'artalk/dist/Artalk.css'
 ```
 
-话说主题在 `main.js` 就引入了 `disqusjs.scss` `katex.css` 我觉得也不理智，于是将它们统统改到了文章页的模板中，效果应该不错。 
+> 话说主题在 `main.js` 就引入了 `disqusjs.scss` `katex.css` 我觉得也不理智，于是将它们统统改到了文章页的模板中，效果应该不错。 
 
 ### 引入 `Artalk.js`
 
@@ -163,10 +159,6 @@ export default {
 
 L11 `process.env.NODE_ENV === 'production'` 和 `process.isClient` 实际效果应该都差不多。
 
-
-</details><br />
-
-
 ## 最终模板
 
 在 `/src/components` 新建 `ArtalkCards.vue` 作为 Artalk 评论区模板
@@ -174,19 +166,15 @@ L11 `process.env.NODE_ENV === 'production'` 和 `process.isClient` 实际效果�
 ```html
 <template>
   <div class="artalk-cards">
-    <div class="admonition admonition-warning">
-      <div class="admonition-heading">
-        <h5 style="text-transform: none">
-          Blog 评论政策
-        </h5>
-      </div>
-      <div class="admonition-content">
-        <p>
-          评论如无特殊原因均不会被删除，提交前请三思。<br />
-          你应该懂得如何发表适当的观点，请对自己的言论负责。
-        </p>
-      </div>
-    </div>
+    <details class="admonition admonition-warning">
+      <summary>
+        Comment on this blog
+      </summary>
+      <p>
+        评论如无特殊原因均不会被删除，提交前请三思。<br />
+        你应该懂得如何发表适当的观点，请对自己的言论负责。
+      </p>
+    </details>
     <div id="LetsArtalk"></div>
   </div>
 </template>
@@ -231,16 +219,38 @@ query Post ($id: ID!) {
   margin: 20px auto 100px;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.02),
     1px 1px 15px 0 rgba(0, 0, 0, 0.03);
-  .admonition.admonition-warning {
+  details {
     margin: 0 auto;
     text-align: center;
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
+    outline: none;
+    summary {
+      list-style: none;
+      margin: 4px auto !important;
+      color: var(--cb-admonition-icon-color) !important;
+      margin: 2.75rem 0 1rem;
+      font-family: var(--title-font-family);
+      font-weight: 600;
+      line-height: 1.5;
+      outline: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    p {
+      color: var(--at-font-color);
+      font-weight: 500;
+      margin-bottom: 0;
+    }
   }
   #LetsArtalk {
     padding: 20px;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767.5px) {
+    details > p {
+      text-align: left;
+    }
     #LetsArtalk {
       padding: 20px 0 0 0;
       &.artalk > .artalk-editor {
