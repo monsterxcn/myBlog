@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-21T06:31:19.706Z</updated>
+    <updated>2020-08-21T06:53:02.255Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -31,7 +31,7 @@
 <li>「Power By Artalk」 调整</li>
 <li>侧边栏通知中心细节调整</li>
 </ul>
-<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/Artalk">@monsterxcn/Artalk</a>，搭了个示例站点 <a href="https://artalk.vercel.app">Artalk ♂</a>。</p>
+<p>夜间模式的配色均在 <a href="https://github.com/monsterxcn/Artalk/blob/master/src/css/_variables.less">_variables.less</a> 中定义，以 <code>--at-</code> 为前缀。GitHub 仓库地址 <a href="https://github.com/monsterxcn/Artalk">@monsterxcn/Artalk</a>，搭了个示例站点 <a href="https://artalk.vercel.app">Artalk ♂</a>。</p>
 <h2 id="在-gridsome-上调试">在 Gridsome 上调试</h2>
 <p>刚使用 Gridsome 大约一周，对它的了解很少，Vue.js 水平连门都入不了。但是这样的我还是花了几个小时将 Artalk 成功适配到了博客。中间踩了几个坑在这里提一下解决方法。</p>
 <details><summary><strong>还是叠上吧</strong></summary><br />
@@ -94,8 +94,8 @@ export default {
   },
 }</code></pre>
 <p><code>gridsome develop</code> 预览正常，但是发布时遇到「ReferenceError: window is not defined」，提示的报错信息都来自 <code>node_modules/artalk/dist/Artalk.js</code>，我以为是自己修改 Artalk 出的问题，于是又回去修改 Artalk 代码，将网上用来解决这个问题的几个方法都试了一遍依旧报错。正当我迷惑时，突然想到了 Gridsome 的源头 Vue.js 本身，于是我一拍脑袋在搜索时加了关键词 <code>gridsome</code>，这才发现原来和「Client API」有关。</p>
-<p>这是几个讨论这件事的链接《<a href="https://stackoverflow.com/questions/40707481/window-is-not-defined-in-vue-js-2">javascript - &#39;window&#39; is not defined in Vue.js 2 - Stack Overflow</a>》《<a href="https://github.com/gridsome/gridsome/issues/646">Failed to render / ReferenceError: window is not defined (vue2-leaflet) - issue #646 - GitHub @gridsome/gridsome</a>》《<a href="https://gridsome.org/docs/client-api/#isclient">Client API - Gridsome</a>》</p>
-<p>虽然不知道这是个什么东西，但是大概说的是有些代码只能在客户端跑，服务端无法 <del>执行</del>「渲染」，比如 <code>window</code> 的操作。要说专业点，应该是关乎 S(erver) S(ide) R(ender)「服务器端渲染」这种机制。根据上面第二个链接中 <a href="https://github.com/gridsome/gridsome/issues/646#issuecomment-578367659">IHIutch 的回答</a>，成功找到了解决方案：</p>
+<p>几个参考链接《<a href="https://stackoverflow.com/questions/40707481/window-is-not-defined-in-vue-js-2">javascript - &#39;window&#39; is not defined in Vue.js 2 - Stack Overflow</a>》《<a href="https://github.com/gridsome/gridsome/issues/646">Failed to render / ReferenceError: window is not defined (vue2-leaflet) - issue #646 - GitHub @gridsome/gridsome</a>》《<a href="https://gridsome.org/docs/client-api/#isclient">Client API - Gridsome</a>》</p>
+<p>虽然不知道这是个什么东西，但是大概说的是有些代码只能在客户端跑，服务端无法 <del>执行</del>「渲染」，比如 <code>window</code> 的操作。要说专业点，应该是关乎 S(erver) S(ide) R(ender)「服务器端渲染」的机制。根据上面第二个链接中 <a href="https://github.com/gridsome/gridsome/issues/646#issuecomment-578367659">IHIutch 的回答</a>，成功找到了解决方案：</p>
 <pre><code class="language-diff">import &#39;artalk/dist/Artalk.css&#39;
 -import Artalk from &#39;artalk&#39;
 +let Artalk = {}
@@ -122,7 +122,7 @@ export default {
     }
   },
 }</code></pre>
-<p>L11 的<code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际效果应该都差不多。</p>
+<p>L11 <code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际效果应该都差不多。</p>
 </details><br />
 
 
@@ -217,7 +217,7 @@ query Post ($id: ID!) {
   }
 }
 &lt;/style&gt;</code></pre>
-<p>上面根据需要自己修改下 <code>&lt;template&gt;</code> 的内容，注意保证只存在一个「主标签」，比如我的是 <code>&lt;div class=&quot;artalk-cards&quot;&gt;</code>。修改 L29-37 为自己的 Artalk 参数，设置参考 <a href="https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts">artalk-config.d.ts</a>。<code>&lt;style&gt;</code> 是我针对这个主题做的一点适配。</p>
+<p>根据需要自己修改下 <code>&lt;template&gt;</code> 的内容，注意保证只存在一个「主标签」，比如我的是 <code>&lt;div class=&quot;artalk-cards&quot;&gt;</code>。修改 L29-37 为自己的 Artalk 参数，设置参考 <a href="https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts">artalk-config.d.ts</a>。<code>&lt;style&gt;</code> 是我针对当前主题做的一点适配。</p>
 <p>在需要开放评论区的地方这样引用：</p>
 <pre><code class="language-html">&lt;/template&gt;
   &lt; &gt;
@@ -233,8 +233,10 @@ export default {
   },
 }
 &lt;/script&gt;</code></pre>
-<p>考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句不介意大家使用我搭的 Artalk PHP 后端，它运行在阿里云学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大。将 Artalk 配置中的 <code>serverUrl</code> 字段填写为 <code>https://lab.mocurio.com/artalk/</code> 即可，跨域访问是允许的，不必向我申请。</p>
-<p>其实自己搭建 Artalk PHP 后端也十分简单，QWQAQ 已经将其写成可通过 phpcomposer 安装。如果有问题欢迎留言。 </p>
+<p>考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句不介意大家使用我搭的 Artalk PHP 后端，它运行在阿里云学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大。将 Artalk 配置中的 <code>serverUrl</code> 字段填写为 <code>https://lab.mocurio.com/artalk/</code> 来使用本站后端，跨域访问目前是允许的，不必向我申请。</p>
+<blockquote>
+<p>其实通过 phpcomposer 安装搭建 Artalk PHP 后端也十分简单，担心引用本站后端存在数据安全问题或其他问题可以尝试自行搭建。如果有问题欢迎留言。</p>
+</blockquote>
 ]]></content>
     </entry>
     <entry>
@@ -661,7 +663,7 @@ jobs:
 <h2 id="新的平台">新的平台</h2>
 <p>博客稳定两周年之际，我正式从动态博客迁移至静态博客，如你所见这个博客正由 <a href="https://gridsome.org">Gridsome</a> 驱动着。「Gridsome 是一个免费、开源、基于 Vue.js 构建的框架，用 Gridsome 创建的网站和应用程序具有天然的速度优势」，身边用 <a href="https://hexo.io">Hexo</a> 的人似乎太多了，喜欢尝试小众作品的我选择了 Gridsome。除此之外，似乎是从给旧站点加了 Statusbot <a href="https://status.monsterx.cn">状态监控</a> 开始站内垃圾评论数量陡增，一直在用 Typecho 原生评论的我实在顶不住，评论拦截插件虽然也有，但都不太能满足我的需求，索性换个评论系统加入大家都说好的 Disqus 大家族了。</p>
 <p>使用 Disqus 的痛处其一是评论数据同步，手动导入了两篇文章的数据之后发现评论区头像都无法显示，网上的解决方案似乎得购买 Disqus 商业套餐。其二是国内用户上网环境不佳便无法评论，向来冷清的本站雪上加霜，以后可能会考虑在国内服务器上继续部署 <a href="https://lab.mocurio.com/artalk.html">Artalk</a> 评论系统以供 <del>小部分人的需求</del> 自娱自乐。</p>
-<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@Spencer&#39;s Blog</a> 和 <a href="https://blog.jalenchuh.cn">@Jalen&#39;s Blog</a> 的仓库修改，基于 <a href="https://github.com/gridsome/gridsome-starter-blog">@gridsome/gridsome-starter-blog</a>。静态博客可以自由部署在很多地方，目前这个博客通过 GitHub Actions 自动构建静态文件发布到私有仓库的分支和阿里云 OSS，配合阿里云全站加速供中国境内访问，同时部署到 Cloudflare Workers Sites 供境外访问。以前将域名的境内境外解析拆分，是考虑国外可能会有人访问，现在想明白了，这其实是为了国内日常科学上网的同志们。就算在「人在纽约」访问本站应该也能获取稍快的体验。</p>
+<p>本站的主题参考 <a href="https://blog.spencerwoo.com">@Spencer&#39;s Blog</a> 和 <a href="https://blog.jalenchuh.cn">@Jalen&#39;s Blog</a> 的仓库修改，基于 <a href="https://github.com/gridsome/gridsome-starter-blog">@gridsome/gridsome-starter-blog</a>。静态博客可以自由部署在很多地方，目前这个博客通过 GitHub Actions 自动构建静态文件发布到私有仓库的分支和阿里云 OSS，配合阿里云全站加速供中国境内访问，同时部署到 Cloudflare Workers Sites 供境外访问。以前将域名的境内境外解析拆分，是考虑国外可能会有人访问，现在想明白了，这其实是为了国内日常科学上网的同志们。就算是「人在纽约」访问本站应该也能获取稍快的体验。</p>
 <h2 id="文章排版">文章排版</h2>
 <p>格式工整的文章让人阅读的欲望更强烈。参照众多中文博客排版、GitHub 热门项目文档排版、GitHub 仓库 <a href="https://github.com/sparanoid/chinese-copywriting-guidelines">@sparanoid/chinese-copywriting-guidelines</a> 以及我的个人偏好，将本博客的 Markdown 文件书写规则做一点说明，有冲突时优先考虑下文的规则。</p>
 <ul>
