@@ -1413,10 +1413,7 @@
     </div>
 
     <div class="artalk-cards">
-      <div
-        class="admonition admonition-warning"
-        style="margin: 0 auto 18px; text-align: center"
-      >
+      <div class="admonition admonition-warning">
         <div class="admonition-heading">
           <h5 style="text-transform: none">
             <div class="admonition-icon">
@@ -1459,6 +1456,7 @@
 </template>
 
 <script>
+import 'artalk/dist/Artalk.css'
 import Author from '~/components/Author.vue'
 let Artalk = {}
 export default {
@@ -1579,13 +1577,38 @@ export default {
 .artalk-cards {
   background: var(--at-bg-main);
   border-radius: var(--radius);
-  padding: 20px;
-  padding: 20px;
   max-width: var(--content-width);
-  margin: 0 auto;
-  margin-top: 20px;
+  margin: 20px auto 100px;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.02),
     1px 1px 15px 0 rgba(0, 0, 0, 0.03);
+  .admonition.admonition-warning {
+    margin: 0 auto;
+    text-align: center;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+  }
+  #LetsArtalk {
+    padding: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    #LetsArtalk {
+      padding: 20px 0 0 0;
+      &.artalk > .artalk-editor {
+        border-radius: 0;
+        margin-bottom: 20px;
+      }
+      &.artalk
+        > .artalk-list
+        > .artalk-list-header
+        > .artalk-right-action
+        > span.artalk-on {
+        max-width: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 }
 .watch-collection {
   margin: 0 auto;

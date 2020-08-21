@@ -25,6 +25,16 @@
       </p>
     </div>
 
+    <transition name="fade">
+      <div
+        id="back-to-top"
+        v-scroll-to="{ el: '#app' }"
+        v-if="scrolledDist > 400"
+      >
+        <font-awesome id="back-to-top-icon" :icon="['fas', 'arrow-up']" />
+      </div>
+    </transition>
+
     <Author class="post-author" />
   </div>
 </template>
@@ -299,5 +309,23 @@ export default {
   margin-top: 5em;
   font-size: 0.9em;
   opacity: 0.9;
+}
+#back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  z-index: 100;
+  cursor: pointer;
+}
+#back-to-top-icon {
+  font-size: 1.1em;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -8,7 +8,7 @@ import '~/assets/style/index.scss'
 
 // Disqus
 // import '~/assets/style/disqusjs.scss'
-import 'artalk/dist/Artalk.css'
+// import 'artalk/dist/Artalk.css'
 
 // Pagination
 import { Pager } from 'gridsome'
@@ -78,7 +78,7 @@ import '~/assets/style/nprogress.scss'
 import '~/assets/style/container.scss'
 
 // katex
-import 'katex/dist/katex.min.css'
+// import 'katex/dist/katex.min.css'
 
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 export default function(Vue, { router, head, isClient }) {
