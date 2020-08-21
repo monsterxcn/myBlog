@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Fri, 21 Aug 2020 09:37:13 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 21 Aug 2020 11:26:58 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -65,9 +65,11 @@
   }
 }</code></pre>
 <h3 id="引入-artalkcss">引入 <code>Artalk.css</code></h3>
-<p>接下来引用 <code>Artalk.css</code> 和 <code>Artalk.js</code>，可以单独新建 <code>ArtalkCards.vue</code> 文件存放关于 Artalk 的代码提高代码整洁性，只在该文件中引入 <code>Artalk.css</code> 即可。</p>
+<p>接下来引用 <code>Artalk.css</code> 和 <code>Artalk.js</code>，建议单独新建 <code>ArtalkCards.vue</code> 文件存放 Artalk 评论组件的代码，只在该模板中引入 <code>Artalk.css</code> 即可。</p>
 <pre><code class="language-javascript">import &#39;artalk/dist/Artalk.css&#39;</code></pre>
+<blockquote>
 <p>话说主题在 <code>main.js</code> 就引入了 <code>disqusjs.scss</code> <code>katex.css</code> 我觉得也不理智，于是将它们统统改到了文章页的模板中，效果应该不错。 </p>
+</blockquote>
 <h3 id="引入-artalkjs">引入 <code>Artalk.js</code></h3>
 <p>最初引入 <code>Artalk.js</code> 时，我参考主题使用 DisqusJS 的方法在 <code>.vue</code> 模板文件的 <code>&lt;script&gt;</code> 标签中这样写：</p>
 <pre><code class="language-javascript">import &#39;artalk/dist/Artalk.css&#39;
@@ -131,19 +133,15 @@ export default {
 <p>在 <code>/src/components</code> 新建 <code>ArtalkCards.vue</code> 作为 Artalk 评论区模板</p>
 <pre><code class="language-html">&lt;template&gt;
   &lt;div class=&quot;artalk-cards&quot;&gt;
-    &lt;div class=&quot;admonition admonition-warning&quot;&gt;
-      &lt;div class=&quot;admonition-heading&quot;&gt;
-        &lt;h5 style=&quot;text-transform: none&quot;&gt;
-          Blog 评论政策
-        &lt;/h5&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;admonition-content&quot;&gt;
-        &lt;p&gt;
-          评论如无特殊原因均不会被删除，提交前请三思。&lt;br /&gt;
-          你应该懂得如何发表适当的观点，请对自己的言论负责。
-        &lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+    &lt;details class=&quot;admonition admonition-warning&quot;&gt;
+      &lt;summary&gt;
+        Comment on this blog
+      &lt;/summary&gt;
+      &lt;p&gt;
+        评论如无特殊原因均不会被删除，提交前请三思。&lt;br /&gt;
+        你应该懂得如何发表适当的观点，请对自己的言论负责。
+      &lt;/p&gt;
+    &lt;/details&gt;
     &lt;div id=&quot;LetsArtalk&quot;&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/template&gt;
@@ -188,16 +186,38 @@ query Post ($id: ID!) {
   margin: 20px auto 100px;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.02),
     1px 1px 15px 0 rgba(0, 0, 0, 0.03);
-  .admonition.admonition-warning {
+  details {
     margin: 0 auto;
     text-align: center;
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
+    outline: none;
+    summary {
+      list-style: none;
+      margin: 4px auto !important;
+      color: var(--cb-admonition-icon-color) !important;
+      margin: 2.75rem 0 1rem;
+      font-family: var(--title-font-family);
+      font-weight: 600;
+      line-height: 1.5;
+      outline: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    p {
+      color: var(--at-font-color);
+      font-weight: 500;
+      margin-bottom: 0;
+    }
   }
   #LetsArtalk {
     padding: 20px;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767.5px) {
+    details &gt; p {
+      text-align: left;
+    }
     #LetsArtalk {
       padding: 20px 0 0 0;
       &amp;.artalk &gt; .artalk-editor {
