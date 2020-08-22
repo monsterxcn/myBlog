@@ -1560,9 +1560,9 @@ export default {
         placeholder: '说点什么 (づ￣ 3￣)づ',
         defaultAvatar: 'mp',
         pageKey: 'https://blog.monsterx.cn/watch/',
-        serverUrl: 'https://lab.mocurio.com/artalk/',
+        serverUrl: 'https://lab.monsterx.cn/ArtalkAPI',
         readMore: {
-          pageSize: 15,
+          pageSize: 10,
           autoLoad: true,
         },
       })
@@ -1613,20 +1613,6 @@ export default {
     }
     #LetsArtalk {
       padding: 20px 0 0 0;
-      &.artalk > .artalk-editor {
-        border-radius: 0;
-        margin-bottom: 20px;
-      }
-      &.artalk
-        > .artalk-list
-        > .artalk-list-header
-        > .artalk-right-action
-        > span.artalk-on {
-        max-width: 50px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
     }
   }
 }

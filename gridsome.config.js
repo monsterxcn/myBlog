@@ -15,6 +15,7 @@ module.exports = {
   templates: {
     Post: '/:cat/:slug',
     Tag: '/tag/:id',
+    // Category: '/Category/:id',
   },
 
   plugins: [

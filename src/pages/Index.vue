@@ -100,8 +100,9 @@ nav {
   a {
     margin: 0 10px;
     padding: 3px 10px;
-    border: 2px var(--link-color);
+    border: 1.5px var(--link-color);
     border-style: dashed;
+    text-decoration: none;
   }
 }
 #back-to-top {

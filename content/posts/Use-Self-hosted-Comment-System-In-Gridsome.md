@@ -40,7 +40,7 @@ Artalk 目前还没有支持夜间模式，原本的样式和本站也不太搭�
  - 「Power By Artalk」 调整
  - 侧边栏通知中心细节调整
 
-夜间模式的配色均在 [_variables.less](https://github.com/monsterxcn/Artalk/blob/master/src/css/_variables.less) 中定义，以 `--at-` 为前缀。GitHub 仓库地址 [@monsterxcn/Artalk](https://github.com/monsterxcn/Artalk)，搭了个示例站点 [Artalk ♂](https://artalk.vercel.app)。
+夜间模式的配色均在 [_variables.less](https://github.com/monsterxcn/Artalk/blob/master/src/css/_variables.less) 中定义，以 `--at-` 为前缀。GitHub 仓库地址 [@monsterxcn/Artalk](https://github.com/monsterxcn/Artalk)，我搭了个示例站点 [Artalk ♂](https://artalk.vercel.app)。
 
 ## 在 Gridsome 上调试
 
@@ -84,7 +84,7 @@ npm install artalk --save
 这里 L16 会直接引用我修改后的最新开发版，但是如果用于自动构建发布站点的 GitHub Actions 中使用了依赖缓存，则总是使用第一次执行工作流时安装的版本，无法获得后续更新。为了解决这一问题，将 Git 链接修改为指定 commit 时刻的地址即可。当前推荐版本为：
 
 ```
-https://github.com/monsterxcn/Artalk.git#baf66b9e64b1fb8cc566ce05931fc4b2d258c681
+https://github.com/monsterxcn/Artalk.git#53234915564517ee5d5f7bfe3553fdba1b6f6a5f
 ```
 
 ### 引入 `Artalk.css`
@@ -95,7 +95,7 @@ https://github.com/monsterxcn/Artalk.git#baf66b9e64b1fb8cc566ce05931fc4b2d258c68
 import 'artalk/dist/Artalk.css'
 ```
 
-> 话说主题在 `main.js` 就引入了 `disqusjs.scss` `katex.css` 我觉得也不理智，于是将它们统统改到了文章页的模板中，效果应该不错。 
+当前不必要的 `.css` 文件我们都让它在不得不引入时再加载
 
 ### 引入 `Artalk.js`
 
@@ -167,10 +167,13 @@ L11 `process.env.NODE_ENV === 'production'` 和 `process.isClient` 实际效果�
 
 ## 最终模板
 
-在 `/src/components` 新建 `ArtalkCards.vue` 作为 Artalk 评论区模板
+~~在 `/src/components` 新建 `ArtalkCards.vue` 作为 Artalk 评论区模板~~ 我对 Gridsome 的模板还不太熟悉，总之直接在需要引入评论区的页面直接加好了：
 
 ```html
 <template>
+
+  <!-- -->
+
   <div class="artalk-cards">
     <details class="admonition admonition-warning">
       <summary>
@@ -183,13 +186,24 @@ L11 `process.env.NODE_ENV === 'production'` 和 `process.isClient` 实际效果�
     </details>
     <div id="LetsArtalk"></div>
   </div>
+
+  <!-- -->
+
 </template>
 
 <script>
+// ...
+
 import 'artalk/dist/Artalk.css'
 let Artalk = {}
 export default {
+
+  // ...
+
   mounted() {
+
+    // ...
+
     // Initialize post comment by Artalk
     if (process.env.NODE_ENV === 'production') {
       Artalk = require('artalk')
@@ -211,6 +225,9 @@ export default {
 
 <page-query>
 query Post ($id: ID!) {
+
+  // ...
+
   post: post (id: $id) {
     path
   }
@@ -259,47 +276,16 @@ query Post ($id: ID!) {
     }
     #LetsArtalk {
       padding: 20px 0 0 0;
-      &.artalk > .artalk-editor {
-        border-radius: 0;
-        margin-bottom: 20px;
-      }
-      &.artalk
-        > .artalk-list
-        > .artalk-list-header
-        > .artalk-right-action
-        > span.artalk-on {
-        max-width: 50px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
     }
   }
 }
+
+/** */
 </style>
 ```
 
-根据需要自己修改下 `<template>` 的内容，注意保证只存在一个「主标签」，比如我的是 `<div class="artalk-cards">`。修改 L29-37 为自己的 Artalk 参数，设置参考 [artalk-config.d.ts](https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts)。`<style>` 是我针对当前主题做的一点适配。
+根据需要自己修改下 `<template>` 的内容，注意保证只存在一个「主标签」，比如我的是 `<div class="artalk-cards">`。修改 L29-37 为自己的 Artalk 参数，`pageKey` 需要自行拼接为页面 URL，否则后端发送的邮件中「查看回复」按钮可能链接到奇怪的地方导致体验极差，其他参数查阅 [artalk-config.d.ts](https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts)。`<style>` 是我针对当前主题做的一点适配。
 
-在需要开放评论区的地方这样引用：
+考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句大家可以使用我搭的 Artalk PHP 后端做做测试，它运行在阿里云 ~~北京~~ 上海学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大，给大家玩玩还是可以的。将配置中的 `serverUrl` 字段填写为 `https://lab.monsterx.cn/ArtalkAPI` 来使用本站后端，跨域访问目前是允许的，不必向我申请。
 
-```html
-</template>
-  < >
-    <ArtalkCards />
-  </>
-</template>
-
-<script>
-import ArtalkCards from '~/components/ArtalkCards'
-export default {
-  components: {
-    ArtalkCards,
-  },
-}
-</script>
-```
-
-考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句不介意大家使用我搭的 Artalk PHP 后端，它运行在阿里云北京学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大。将 Artalk 配置中的 `serverUrl` 字段填写为 `https://lab.mocurio.com/artalk/` 来使用本站后端，跨域访问目前是允许的，不必向我申请。
-
-> 其实通过 phpcomposer 安装搭建 Artalk PHP 后端也十分简单，担心引用本站后端存在数据安全问题或其他问题可以尝试自行搭建。如果有问题欢迎留言。
+> 其实通过 phpcomposer 安装搭建 Artalk PHP 后端也十分简单，担心引用本站后端存在数据安全或其他问题可以尝试自行搭建。以后有空可能写一篇 Docker Artalk PHP 后端的文。如果对上述内容有问题欢迎留言。
