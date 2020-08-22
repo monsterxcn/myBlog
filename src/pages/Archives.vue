@@ -40,7 +40,10 @@
           </h5>
         </div>
         <div class="admonition-content">
-          (*/ω＼*) 2018 年起，我在博客的「life」「code」「tech」三个分类下共写作
+          (*/ω＼*) 2018 年起，我在博客
+          <g-link to="/category/life">life</g-link> ·
+          <g-link to="/category/code">code</g-link> ·
+          <g-link to="/category/tech">tech</g-link> 三个分类下共写作
           {{ totalPosts }} 篇 {{ totalWords }} 字。继续努力！
         </div>
       </div>

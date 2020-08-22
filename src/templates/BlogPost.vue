@@ -181,6 +181,11 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
       title
       path
     }
+    cate {
+      id
+      title
+      path
+    }
     description
     published
     content
@@ -212,6 +217,7 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
     text-align: center;
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
+    font-weight: 600;
     outline: none;
     summary {
       list-style: none;
@@ -219,7 +225,6 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
       color: var(--cb-admonition-icon-color) !important;
       margin: 2.75rem 0 1rem;
       font-family: var(--title-font-family);
-      font-weight: 600;
       line-height: 1.5;
       outline: none;
     }
@@ -228,7 +233,6 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
     }
     p {
       color: var(--at-font-color);
-      font-weight: 500;
       margin-bottom: 0;
     }
   }

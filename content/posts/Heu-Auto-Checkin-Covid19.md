@@ -3,7 +3,7 @@ title: Mark 并调试 HEU 自动打卡代码
 date: 2020-04-05
 published: true
 slug: Heu-Auto-Checkin-Covid19
-cat: code
+cate: code
 tags: ['Python', 'COVID-19']
 cover_image: "./images/auto-checkin-covid19.png"
 canonical_url: "https://blog.monsterx.cn/code/heu-auto-checkin-covid19/"

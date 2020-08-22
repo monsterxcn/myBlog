@@ -1584,6 +1584,7 @@ export default {
     text-align: center;
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
+    font-weight: 600;
     outline: none;
     summary {
       list-style: none;
@@ -1591,7 +1592,6 @@ export default {
       color: var(--cb-admonition-icon-color) !important;
       margin: 2.75rem 0 1rem;
       font-family: var(--title-font-family);
-      font-weight: 600;
       line-height: 1.5;
       outline: none;
     }
@@ -1600,7 +1600,6 @@ export default {
     }
     p {
       color: var(--at-font-color);
-      font-weight: 500;
       margin-bottom: 0;
     }
   }

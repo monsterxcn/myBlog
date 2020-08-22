@@ -3,8 +3,8 @@ title: 为 Gridsome 添加 Artalk 自托管评论系统
 date: 2020-08-21
 published: true
 slug: Use-Self-hosted-Comment-System-In-Gridsome
-cat: code
-tags: ['Gridsome', 'Vue.js', 'Artalk', 'Blog']
+cate: code
+tags: ['Gridsome', 'Vue.js', 'Artalk']
 cover_image: "./images/gridsome-artalk.png"
 canonical_url: 'https://blog.monsterx.cn/code/use-self-hosted-comment-system-in-gridsome/'
 description: "考虑到小站的访客还不是人均科学上网的水平，我折腾了一天从 Disqus 换到了友链写的自托管评论系统 Artalk，数据迁移啥就以后再说吧，咕咕咕.."
@@ -247,6 +247,7 @@ query Post ($id: ID!) {
     text-align: center;
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
+    font-weight: 600;
     outline: none;
     summary {
       list-style: none;
@@ -254,7 +255,6 @@ query Post ($id: ID!) {
       color: var(--cb-admonition-icon-color) !important;
       margin: 2.75rem 0 1rem;
       font-family: var(--title-font-family);
-      font-weight: 600;
       line-height: 1.5;
       outline: none;
     }
@@ -263,7 +263,6 @@ query Post ($id: ID!) {
     }
     p {
       color: var(--at-font-color);
-      font-weight: 500;
       margin-bottom: 0;
     }
   }

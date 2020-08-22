@@ -3,7 +3,7 @@ title: 从零开始的追番生活
 date: 2020-07-28
 published: true
 slug: Auto-Download-Bangumi-with-Aria2-Rss
-cat: tech
+cate: tech
 tags: ['Aria2', 'FlexGet', 'RSS']
 cover_image: "./images/aria-rss-bangumi.png"
 canonical_url: "https://blog.monsterx.cn/tech/auto-download-bangumi-with-aria2-rss/"

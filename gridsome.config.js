@@ -13,9 +13,9 @@ module.exports = {
   siteDescription: '学生 / 前端 / 电气',
 
   templates: {
-    Post: '/:cat/:slug',
+    Post: '/:cate/:slug',
     Tag: '/tag/:id',
-    // Category: '/Category/:id',
+    Category: '/category/:id',
   },
 
   plugins: [
@@ -26,15 +26,15 @@ module.exports = {
         typeName: 'Post',
         path: 'content/posts/*.md',
         refs: {
-          // Creates a GraphQL collection from 'tags' in front-matter and adds a reference.
+          // Creates GraphQL collection from symbols in front-matter and adds a reference.
           tags: {
             typeName: 'Tag',
             create: true,
           },
-          // cat: {
-          //   typeName: 'Category',
-          //   create: true,
-          // },
+          cate: {
+            typeName: 'Category',
+            create: true,
+          },
         },
       },
     },
@@ -116,11 +116,6 @@ module.exports = {
       config: {
         footnotes: true,
       },
-      // grayMatter: {
-      //   engines: {
-      //     yaml: s => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }),
-      //   },
-      // },
     },
   },
 }

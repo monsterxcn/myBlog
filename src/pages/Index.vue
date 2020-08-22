@@ -29,7 +29,7 @@
 
 <page-query>
 query ($page: Int) {
-  posts: allPost(filter: { published: { eq: true }}, perPage: 6, page: $page) @paginate {
+  posts: allPost(filter: { published: { eq: true }}, perPage: 7, page: $page) @paginate {
     pageInfo {
       totalPages
       currentPage
@@ -46,6 +46,11 @@ query ($page: Int) {
         cover_image (width: 1280, height: 400, blur: 10)
         path
         tags {
+          id
+          title
+          path
+        }
+        cate {
           id
           title
           path

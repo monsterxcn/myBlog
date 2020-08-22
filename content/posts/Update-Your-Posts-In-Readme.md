@@ -3,8 +3,8 @@ title: GitHub README.md 显示博文并自动更新
 date: 2020-08-18
 published: true
 slug: Update-Your-Posts-In-Readme
-cat: code
-tags: ['GitHub Actions', 'README', 'RSS']
+cate: code
+tags: ['GitHub Actions', 'Python', 'RSS']
 cover_image: "./images/readme-update-posts.png"
 canonical_url: "https://blog.monsterx.cn/code/update-your-posts-in-readme/"
 description: "看见别人的 GitHub 主页都换上了 README，我就也安排上了。顺便网上冲浪现学 Python 做了个通过 RSS 获取最近博文并自动更新到 README 的小玩意。"
