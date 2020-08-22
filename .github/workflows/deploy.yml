@@ -18,7 +18,7 @@ jobs:
       - name: Cache Modules
         uses: actions/cache@v1
         env:
-          cache-name: blog-oss-cache
+          cache-name: blog-oss-cache-1
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
@@ -49,7 +49,7 @@ jobs:
       - name: Cache
         uses: actions/cache@v1
         env:
-          cache-name: blog-branch-cache
+          cache-name: blog-branch-cache-1
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
@@ -78,7 +78,7 @@ jobs:
       - name: Cache gridsome modules
         uses: actions/cache@v1
         env:
-          cache-name: blog-worker-cache
+          cache-name: blog-worker-cache-1
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
