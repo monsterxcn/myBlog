@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-23T08:18:40.423Z</updated>
+    <updated>2020-08-23T08:29:50.670Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -119,7 +119,7 @@ export default {
     }
   },
 }</code></pre>
-<p>L11 <code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际体验应该都差不多。</p>
+<p>L10 <code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际体验应该都差不多。</p>
 <h2 id="最终模板">最终模板</h2>
 <p><del>在 <code>/src/components</code> 新建 <code>ArtalkCards.vue</code> 作为 Artalk 评论区模板</del> 我对 Gridsome 的模板还不太熟悉，总之直接在需要引入评论区的页面直接加好了：</p>
 <pre><code class="language-html">&lt;template&gt;
@@ -234,7 +234,7 @@ query Post ($id: ID!) {
 /** */
 &lt;/style&gt;</code></pre>
 <p>根据需要自己修改下 <code>&lt;template&gt;</code> 的内容，注意保证只存在一个「主标签」，比如我的是 <code>&lt;div class=&quot;artalk-cards&quot;&gt;</code>。修改 L29-37 为自己的 Artalk 参数，<code>pageKey</code> 需要自行拼接为页面 URL，否则后端发送的邮件中「查看回复」按钮可能链接到奇怪的地方导致体验极差，其他参数查阅 <a href="https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts">artalk-config.d.ts</a>。<code>&lt;style&gt;</code> 是我针对当前主题做的一点适配。</p>
-<p>考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句大家可以使用我搭的 Artalk PHP 后端做做测试，它运行在阿里云 <del>北京</del> 上海学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大，给大家玩玩还是可以的。将配置中的 <code>serverUrl</code> 字段填写为 <code>https://lab.monsterx.cn/ArtalkAPI</code> 来使用本站后端，跨域访问目前是允许的，不必向我申请。</p>
+<p>考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句大家可以使用我搭的 Artalk PHP 后端尝尝鲜吖，它运行在阿里云 <del>北京</del> 上海学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大，给大家玩玩还是可以的。将配置中的 <code>serverUrl</code> 字段填写为 <code>https://lab.monsterx.cn/ArtalkAPI</code> 来使用本站后端，跨域访问目前允许，不必向我申请。</p>
 <blockquote>
 <p>其实通过 phpcomposer 安装搭建 Artalk PHP 后端也十分简单。目前发现需要注意的是 PHP 得开启 GD 库和 FreeType 支持，否则无法生成图形验证码。<br />
 担心引用本站后端存在数据安全或其他问题可以尝试自行搭建。<del>以后有空可能写一篇 Docker Artalk PHP 后端的文。</del> 如果对上述内容有问题欢迎留言。</p>
