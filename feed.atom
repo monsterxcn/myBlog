@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-22T22:59:10.912Z</updated>
+    <updated>2020-08-23T01:46:21.968Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -200,6 +200,7 @@ query Post ($id: ID!) {
     text-align: center;
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
+    font-weight: 600;
     outline: none;
     summary {
       list-style: none;
@@ -207,7 +208,6 @@ query Post ($id: ID!) {
       color: var(--cb-admonition-icon-color) !important;
       margin: 2.75rem 0 1rem;
       font-family: var(--title-font-family);
-      font-weight: 600;
       line-height: 1.5;
       outline: none;
     }
@@ -216,7 +216,6 @@ query Post ($id: ID!) {
     }
     p {
       color: var(--at-font-color);
-      font-weight: 500;
       margin-bottom: 0;
     }
   }

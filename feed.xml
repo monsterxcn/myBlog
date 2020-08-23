@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Sat, 22 Aug 2020 22:59:10 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 23 Aug 2020 01:46:21 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -201,6 +201,7 @@ query Post ($id: ID!) {
     text-align: center;
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
+    font-weight: 600;
     outline: none;
     summary {
       list-style: none;
@@ -208,7 +209,6 @@ query Post ($id: ID!) {
       color: var(--cb-admonition-icon-color) !important;
       margin: 2.75rem 0 1rem;
       font-family: var(--title-font-family);
-      font-weight: 600;
       line-height: 1.5;
       outline: none;
     }
@@ -217,7 +217,6 @@ query Post ($id: ID!) {
     }
     p {
       color: var(--at-font-color);
-      font-weight: 500;
       margin-bottom: 0;
     }
   }
