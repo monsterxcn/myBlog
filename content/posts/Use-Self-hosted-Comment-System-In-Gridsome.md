@@ -81,11 +81,7 @@ npm install artalk --save
 }
 ```
 
-这里 L16 会直接引用我修改后的最新开发版，但是如果用于自动构建发布站点的 GitHub Actions 中使用了依赖缓存，则总是使用第一次执行工作流时安装的版本，无法获得后续更新。为了解决这一问题，将 Git 链接修改为指定 commit 时刻的地址即可。当前推荐版本为：
-
-```
-https://github.com/monsterxcn/Artalk.git#53234915564517ee5d5f7bfe3553fdba1b6f6a5f
-```
+这里 L16 会直接引用我修改后的最新开发版，但是如果用于自动构建发布站点的 GitHub Actions 中使用了依赖缓存，则总是使用第一次执行工作流时安装的版本，无法获得后续更新。~~为了解决这一问题，将 Git 链接修改为指定 commit 时刻的地址即可~~ 这好像也不可行。
 
 ### 引入 `Artalk.css`
 
@@ -117,7 +113,7 @@ export default {
         placeholder: '说点什么 (づ￣ 3￣)づ',
         defaultAvatar: 'mp',
         pageKey: 'https://blog.monsterx.cn/some-page/',
-        serverUrl: 'https://lab.mocurio.com/artalk/',
+        serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
         readMore: {
           pageSize: 15,
           autoLoad: true,
@@ -137,7 +133,6 @@ export default {
 ```diff
 import 'artalk/dist/Artalk.css'
 -import Artalk from 'artalk'
-+let Artalk = {}
 
 export default {
 
@@ -146,7 +141,7 @@ export default {
   mounted() {
     // Initialize post comment by Artalk
     if (process.env.NODE_ENV === 'production') {
-+     Artalk = require('artalk')
++     let Artalk = require('artalk')
       var artalk = new Artalk({
         el: '#artalkcomments',
         placeholder: '说点什么 (づ￣ 3￣)づ',
@@ -163,7 +158,7 @@ export default {
 }
 ```
 
-L11 `process.env.NODE_ENV === 'production'` 和 `process.isClient` 实际效果应该都差不多。
+L10 `process.env.NODE_ENV === 'production'` 和 `process.isClient` 实际体验应该都差不多。
 
 ## 最终模板
 
@@ -195,7 +190,7 @@ L11 `process.env.NODE_ENV === 'production'` 和 `process.isClient` 实际效果�
 // ...
 
 import 'artalk/dist/Artalk.css'
-let Artalk = {}
+
 export default {
 
   // ...
@@ -206,13 +201,13 @@ export default {
 
     // Initialize post comment by Artalk
     if (process.env.NODE_ENV === 'production') {
-      Artalk = require('artalk')
+      let Artalk = require('artalk')
       var artalk = new Artalk({
         el: '#LetsArtalk',
         placeholder: '说点什么 (づ￣ 3￣)づ',
         defaultAvatar: 'mp',
         pageKey: this.$page.post.path,
-        serverUrl: 'https://lab.mocurio.com/artalk/',
+        serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
         readMore: {
           pageSize: 15,
           autoLoad: true,
@@ -287,4 +282,4 @@ query Post ($id: ID!) {
 
 考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句大家可以使用我搭的 Artalk PHP 后端做做测试，它运行在阿里云 ~~北京~~ 上海学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大，给大家玩玩还是可以的。将配置中的 `serverUrl` 字段填写为 `https://lab.monsterx.cn/ArtalkAPI` 来使用本站后端，跨域访问目前是允许的，不必向我申请。
 
-> 其实通过 phpcomposer 安装搭建 Artalk PHP 后端也十分简单，担心引用本站后端存在数据安全或其他问题可以尝试自行搭建。以后有空可能写一篇 Docker Artalk PHP 后端的文。如果对上述内容有问题欢迎留言。
+> 其实通过 phpcomposer 安装搭建 Artalk PHP 后端也十分简单，担心引用本站后端存在数据安全或其他问题可以尝试自行搭建。~~以后有空可能写一篇 Docker Artalk PHP 后端的文。~~ 如果对上述内容有问题欢迎留言。

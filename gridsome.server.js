@@ -15,7 +15,7 @@ module.exports = function(api) {
   api.onCreateNode(options => {
     if (options.internal.typeName === 'Post') {
       const postContent = options.content.replace(/<\/?[^>]+(>|$)/g, '')
-      const wpm = 230
+      const wpm = 330
 
       const cjkWordCount = count(postContent)
       const cjkReadTime = Math.ceil(cjkWordCount / wpm)

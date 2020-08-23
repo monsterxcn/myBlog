@@ -1428,7 +1428,7 @@
               ></path>
             </svg>
           </div>
-          Comment on Monstx's Blog
+          <!-- Comment on Monstx's Blog -->评论区施工中...
         </summary>
         <p>
           评论发表后 UA 信息、IP
@@ -1456,7 +1456,6 @@
 <script>
 import 'artalk/dist/Artalk.css'
 import Author from '~/components/Author.vue'
-let Artalk = {}
 export default {
   components: {
     Author,
@@ -1554,13 +1553,13 @@ export default {
   mounted() {
     // Initialize post comment by Artalk
     if (process.env.NODE_ENV === 'production') {
-      Artalk = require('artalk')
+      let Artalk = require('artalk')
       var artalk = new Artalk({
         el: '#LetsArtalk',
         placeholder: '说点什么 (づ￣ 3￣)づ',
         defaultAvatar: 'mp',
         pageKey: 'https://blog.monsterx.cn/watch/',
-        serverUrl: 'https://lab.monsterx.cn/ArtalkAPI',
+        serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
         readMore: {
           pageSize: 10,
           autoLoad: true,

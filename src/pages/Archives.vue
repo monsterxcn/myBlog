@@ -80,7 +80,7 @@ query {
 </page-query>
 
 <script>
-import Author from '~/components/Author.vue'
+import Author from '~/components/Author'
 export default {
   components: {
     Author,

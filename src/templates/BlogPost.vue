@@ -68,7 +68,7 @@
               ></path>
             </svg>
           </div>
-          Comment on Monstx's Blog
+          <!-- Comment on Monstx's Blog -->评论区施工中...
         </summary>
         <p>
           评论发表后 UA 信息、IP
@@ -99,7 +99,6 @@ import 'katex/dist/katex.min.css'
 import PostMeta from '~/components/PostMeta'
 import PostTags from '~/components/PostTags'
 import Author from '~/components/Author'
-let Artalk = {}
 export default {
   components: {
     Author,
@@ -150,13 +149,13 @@ export default {
     this.publishedDays = publishedDays
     // Initialize post comment by Artalk
     if (process.env.NODE_ENV === 'production') {
-      Artalk = require('artalk')
+      let Artalk = require('artalk')
       var artalk = new Artalk({
         el: '#LetsArtalk',
         placeholder: '说点什么 (づ￣ 3￣)づ',
         defaultAvatar: 'mp',
         pageKey: 'https://blog.monsterx.cn' + this.$page.post.path,
-        serverUrl: 'https://lab.monsterx.cn/ArtalkAPI',
+        serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
         readMore: {
           pageSize: 10,
           autoLoad: true,

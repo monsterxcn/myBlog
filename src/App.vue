@@ -80,8 +80,8 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import ToggleTheme from '~/components/ToggleTheme.vue'
+import Logo from '~/components/Logo'
+import ToggleTheme from '~/components/ToggleTheme'
 export default {
   metaInfo: {
     script: [
