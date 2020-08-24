@@ -4,7 +4,7 @@
       ><g-image
         alt="Author image"
         class="author__image"
-        src="https://blog.monsterx.cn/assets/static/favicon-180x180.png"
+        src="../assets/images/favicon.png"
         width="180"
         height="180"
         blur="5"

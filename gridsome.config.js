@@ -68,40 +68,64 @@ module.exports = {
       use: '@gridsome/plugin-sitemap',
     },
     {
-      use: 'gridsome-plugin-pwa',
+      use: '@allanchain/gridsome-plugin-pwa',
       options: {
-        // Service Worker Options
-        disableServiceWorker: false,
-        serviceWorkerPath: 'service-worker.js',
-        cachedFileTypes: 'js,css,html,ico,svg,png',
-
-        // Manifest Options (https://developer.mozilla.org/en-US/docs/Web/Manifest)
         manifestPath: 'manifest.json',
-        title: "Monstx's Blog",
-        startUrl: 'https://blog.monsterx.cn/',
-        display: 'standalone',
-        statusBarStyle: 'default',
-        themeColor: '#fafafa',
-        backgroundColor: '#ffffff',
-        icon: './src/assets/images/favicon.png',
-        shortName: 'monstxBlog',
-        description: 'Monsterx CN - 学生 / 前端 / 电气',
-        lang: 'en-GB',
-        // Standard Meta Tags
-        svgFavicon: './src/assets/images/favicon.svg',
-        // Microsoft Windows Meta Tags
+        name: "Monstx's Blog",
+        themeColor: '#0070f3',
+        scope: '.',
+        icon: {
+          androidChrome: {
+            src: './src/favicon.png',
+            name: 'android-chrome',
+            sizes: [512, 384, 192, 144, 96, 72, 48],
+            maskable: true,
+            urls: null,
+          },
+          msTileImage: {
+            src: './src/favicon.png',
+            name: 'msapplication-icon',
+            size: 144,
+            url: null,
+          },
+          appleMaskIcon: {
+            url: './src/favicon.svg',
+          },
+        },
+        maskableIcon: true,
         msTileColor: '#fafafa',
-        // Apple MacOS Meta Tags
-        appleMaskIcon: './src/assets/images/favicon.svg',
         appleMaskIconColor: '#fafafa',
+        appleMobileWebAppCapable: 'yes',
+        appleMobileWebAppStatusBarStyle: 'default',
+        manifestOptions: {
+          short_name: 'MonstxBlog',
+          description: 'Monsterx CN - 学生 / 前端 / 电气',
+          start_url: 'https://blog.monsterx.cn/',
+          display: 'minimal-ui',
+          orientation: 'landscape',
+          background_color: '#ffffff',
+          lang: 'zh-Hans',
+          dir: 'ltr',
+        },
+        workboxOptions: {
+          cacheId: 'msx-pwa-cache',
+          skipWaiting: true,
+          globPatterns: [
+            'assets/@(js|css|static)/*',
+            'index.html',
+            '**/index.html',
+          ],
+        },
+        // workboxPluginMode: 'injectManifest',
+        // workboxOptions: {
+        //   swSrc: './src/service-worker.js',
+        //   globPatterns: [
+        //     '**/index.html',
+        //     'assets/@(js|css|static)/*',
+        //     'assets/data/**/index.json',
+        //   ],
+        // },
       },
-
-      // // Workbox Options
-      // workboxPluginMode: 'injectManifest',
-      // workboxOptions: {
-      //   swSrc: 'service-worker.js',
-      //   globPatterns: ['assets/@(js|css)/*', 'assets/data/**/index.json'],
-      // },
     },
   ],
 

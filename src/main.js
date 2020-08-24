@@ -75,6 +75,9 @@ import NProgress from 'nprogress'
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 export default function(Vue, { router, head, isClient }) {
   head.htmlAttrs = { lang: 'zh-Hans' }
+  if (isClient && process.env.NODE_ENV === 'production') {
+    require('./registerServiceWorker')
+  }
   NProgress.configure({
     easing: 'ease',
     speed: 500,
