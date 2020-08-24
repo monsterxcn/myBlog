@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-24T03:06:39.158Z</updated>
+    <updated>2020-08-24T03:18:15.943Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -82,7 +82,7 @@ export default {
         el: &#39;#artalkcomments&#39;,
         placeholder: &#39;说点什么 (づ￣ 3￣)づ&#39;,
         defaultAvatar: &#39;mp&#39;,
-        // maxNested: 2,
+        // maxNest: 2,
         pageKey: &#39;https://blog.monsterx.cn/some-page/&#39;,
         serverUrl: &#39;https://lab.monsterx.cn/ArtalkServer&#39;,
         readMore: {
@@ -111,7 +111,7 @@ export default {
         el: &#39;#artalkcomments&#39;,
         placeholder: &#39;说点什么 (づ￣ 3￣)づ&#39;,
         defaultAvatar: &#39;mp&#39;,
-        // maxNested: 2,
+        // maxNest: 2,
         pageKey: &#39;https://blog.monsterx.cn/some-page/&#39;,
         serverUrl: &#39;https://lab.mocurio.com/artalk/&#39;,
         readMore: {
@@ -122,7 +122,7 @@ export default {
     }
   },
 }</code></pre>
-<p>L10 <code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际体验应该都差不多。上面两处注释掉的 <code>maxNested</code> 是我修改后具有的功能，原版开启后不会有效果，该项不设置时默认显示三层嵌套。</p>
+<p>L10 <code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际体验应该都差不多。上面两处注释掉的 <code>maxNest</code> 是我修改后具有的功能，原版开启后不会有效果，该项不设置时默认显示三层嵌套。</p>
 <h2 id="最终模板">最终模板</h2>
 <p><del>在 <code>/src/components</code> 新建 <code>ArtalkCards.vue</code> 作为 Artalk 评论区模板</del> 我对 Gridsome 的模板还不太熟悉，总之直接在需要引入评论区的页面直接加好了：</p>
 <pre><code class="language-html">&lt;template&gt;
@@ -166,7 +166,7 @@ export default {
         el: &#39;#LetsArtalk&#39;,
         placeholder: &#39;说点什么 (づ￣ 3￣)づ&#39;,
         defaultAvatar: &#39;mp&#39;,
-        // maxNested: 2,
+        // maxNest: 2,
         pageKey: &#39;https://blog.monsterx.cn&#39; + this.$page.post.path,
         serverUrl: &#39;https://lab.monsterx.cn/ArtalkServer&#39;,
         readMore: {
