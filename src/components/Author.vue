@@ -19,10 +19,7 @@
     </p>
 
     <p class="author__links">
-      <g-link
-        href="//blog.monsterx.cn/feed.xml"
-        target="_blank"
-        style="color: #F5A623;"
+      <g-link to="/feed.xml" target="_blank" style="color: #F5A623;"
         ><font-awesome :icon="['fas', 'rss']"/></g-link
       ><g-link to="/archives" style="color: var(--title-color);"
         ><font-awesome :icon="['fas', 'archive']"/></g-link

@@ -24,53 +24,76 @@
         <a
           href="http://www.beian.miit.gov.cn/"
           target="_blank"
+          rel="nofollow noopener noreferrer"
           style="text-decoration: none; cursor: default;"
           >皖 ICP 备 18021272 号 - 1</a
         >
         © 2014 - {{ new Date().getFullYear() }}
       </div>
       <div class="footer__links">
-        <a href="https://gridsome.org" target="_blank">Gridsome</a> ×
-        <a href="https://github.com/spencerwooo" target="_blank">SpencerWoo</a>
+        <a
+          href="https://gridsome.org"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          >Gridsome</a
+        >
+        ×
+        <a
+          href="https://github.com/spencerwooo"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          >SpencerWoo</a
+        >
         ×
         <a
           href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=ztik1iwq&utm_source=ztik1iwq"
           target="_blank"
+          rel="nofollow noopener noreferrer"
           >Aliyun</a
         >
         ×
-        <a href="https://www.dogedoge.com" target="_blank">DogeDoge</a>
+        <a
+          href="https://www.dogedoge.com"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          >DogeDoge</a
+        >
         <!-- ×
-        <a href="https://github.com/JalenChuh" target="_blank">Jalen</a>-->
+        <a href="https://github.com/JalenChuh" target="_blank"  rel="nofollow noopener noreferrer">Jalen</a>-->
       </div>
       <div class="footer__links">
         <a
           href="//github.com/monsterxcn"
           target="_blank"
+          rel="nofollow noopener noreferrer"
           style="color: var(--title-color);font-size: 1.3em;margin: 0 .5em;"
           ><font-awesome :icon="['fab', 'github']"
         /></a>
         <a
           href="//t.me/monsterxcn"
           target="_blank"
+          rel="nofollow noopener noreferrer"
           style="color: #179CDE;font-size: 1.3em;margin: 0 .5em;"
           ><font-awesome :icon="['fab', 'telegram']"
         /></a>
         <a
           href="//twitter.com/mo_curio"
           target="_blank"
+          rel="nofollow noopener noreferrer"
           style="color: #1da1f2;font-size: 1.3em;margin: 0 .5em;"
           ><font-awesome :icon="['fab', 'twitter']"
         /></a>
         <a
           href="//weibo.com/u/3978619198"
           target="_blank"
+          rel="nofollow noopener noreferrer"
           style="color: #E6162D;font-size: 1.3em;margin: 0 .5em;"
           ><font-awesome :icon="['fab', 'weibo']"
         /></a>
         <a
           href="//steamcommunity.com/id/monsterxcn"
           target="_blank"
+          rel="nofollow noopener noreferrer"
           style="color: var(--social-steam-color);font-size: 1.3em;margin: 0 .5em;"
           ><font-awesome :icon="['fab', 'steam']"
         /></a>

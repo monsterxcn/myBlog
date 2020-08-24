@@ -63,7 +63,7 @@ registerRoute(
 )
 registerRoute(
   new RegExp(
-    'https://(cdn.jsdelivr.net|rmt.dogedoge.com|fonts.(gstatic|googleapis|dogedoge).com)/.*'
+    'https://(rmt.dogedoge.com|fonts.(gstatic|googleapis|dogedoge).com)/.*'
   ),
   new CacheFirst({ cacheName: 'msx-cdn-cache' })
 )
