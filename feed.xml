@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Mon, 24 Aug 2020 01:43:38 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 24 Aug 2020 02:58:19 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -23,16 +23,17 @@
 <p>简单了解两个评论系统之后，再看自身的 Gridsome 平台，基于 Vue.js。怎么看我都应该选择 Nexment，但是我却选择了 Artalk。原因嘛，自然是图个简单。Artalk 之前就搭建了自己的后端使用过一段时间，官方搭配的滑稽表情包在别的评论系统一众阿鲁表情包、贴吧表情包中独树一帜。更重要的是 Artalk 的代码我能看懂一些，进行自定义修改很方便。Nexment 虽好，但是外观相比 Artalk 我还是更喜欢后者，弹窗多级评论显示对我来说也需求不高，要我看 React.js 项目代码更是劝退。</p>
 <h2 id="对-artalk-的修改">对 Artalk 的修改</h2>
 <p>Artalk 目前还没有支持夜间模式，原本的样式和本站也不太搭。于是我 Fork 了一份代码针对这两个问题进行修改。</p>
-<p>夜间模式主要按照当前主题和 Disqus 的配色、样式进行调整。其实之前也尝试配过一个夜间模式，用在自己修改后的 Typecho 主题上，但是代码过于粗糙。我调整颜色的方法甚至是直接将原版压缩后的 <code>.css</code> 打开后按 <code>Ctrl</code> <code>F2</code> 全部替换！剩下的样式代码压缩后即使找工具美化也看的我云里雾里。这次直接克隆仓库安装依赖从源头编译，方便那不是一星半点！</p>
+<p>夜间模式主要按照当前主题和部分 Disqus 的配色、样式进行调整。其实之前也尝试配过一个夜间模式，用在自己修改后的 Typecho 主题上，但是代码过于粗糙。我调整颜色的方法甚至是直接将原版压缩后的 <code>.css</code> 打开后按 <code>Ctrl</code> <code>F2</code> 全部替换！剩下的样式代码压缩后即使找工具美化也看的我云里雾里。这次直接克隆仓库安装依赖从源头编译，方便那不是一星半点！</p>
 <p>到本文发布为止，我共进行了十余次提交，主要对以下这些地方进行了修改：</p>
 <ul>
 <li>夜间模式</li>
 <li>小屏幕样式部分适配</li>
+<li>评论显示效果嵌套层数自定义</li>
 <li>控制台版权去除</li>
 <li>「Power By Artalk」 调整</li>
 <li>侧边栏通知中心细节调整</li>
 </ul>
-<p>夜间模式的配色均在 <a href="https://github.com/monsterxcn/Artalk/blob/master/src/css/_variables.less">_variables.less</a> 中定义，以 <code>--at-</code> 为前缀。GitHub 仓库地址 <a href="https://github.com/monsterxcn/Artalk">@monsterxcn/Artalk</a>，我搭了个示例站点 <a href="https://artalk.vercel.app">Artalk ♂</a>。我没有系统学过 CSS 写法，所以让本应简洁的代码变得不简洁了，希望各位多发挥才智、创作自己的二次开发版 Artalk！今天发现评论区的 <code>&lt;pre&gt;</code> 代码块样式还存在问题，探索中 😣……</p>
+<p>夜间模式的配色均在 <a href="https://github.com/monsterxcn/Artalk/blob/master/src/css/_variables.less">_variables.less</a> 中定义，以 <code>--at-</code> 为前缀。GitHub 仓库地址 <a href="https://github.com/monsterxcn/Artalk">@monsterxcn/Artalk</a>，我搭了个示例站点 <a href="https://artalk.vercel.app">Artalk ♂</a>。我没有系统学过 CSS 写法，所以让本应简洁的代码变得不简洁了，希望各位多发挥才智、创作自己的二次开发版 Artalk！<del>今天发现评论区的 <code>&lt;pre&gt;</code> 代码块样式还存在问题，</del> 探索中 😣……</p>
 <h2 id="在-gridsome-上调试">在 Gridsome 上调试</h2>
 <p>刚使用 Gridsome 大约一周，对它的了解很少，Vue.js 水平连门都入不了。但是这样的我还是花了几个小时将 Artalk 成功适配到了博客。中间踩了几个坑在这里提一下解决方法。</p>
 <h3 id="安装-artalk">安装 Artalk</h3>
@@ -82,6 +83,7 @@ export default {
         el: &#39;#artalkcomments&#39;,
         placeholder: &#39;说点什么 (づ￣ 3￣)づ&#39;,
         defaultAvatar: &#39;mp&#39;,
+        // maxNested: 2,
         pageKey: &#39;https://blog.monsterx.cn/some-page/&#39;,
         serverUrl: &#39;https://lab.monsterx.cn/ArtalkServer&#39;,
         readMore: {
@@ -110,6 +112,7 @@ export default {
         el: &#39;#artalkcomments&#39;,
         placeholder: &#39;说点什么 (づ￣ 3￣)づ&#39;,
         defaultAvatar: &#39;mp&#39;,
+        // maxNested: 2,
         pageKey: &#39;https://blog.monsterx.cn/some-page/&#39;,
         serverUrl: &#39;https://lab.mocurio.com/artalk/&#39;,
         readMore: {
@@ -120,7 +123,7 @@ export default {
     }
   },
 }</code></pre>
-<p>L10 <code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际体验应该都差不多。</p>
+<p>L10 <code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际体验应该都差不多。上面两处注释掉的 <code>maxNested</code> 是我修改后具有的功能，原版开启后不会有效果，该项不设置时默认显示三层嵌套。</p>
 <h2 id="最终模板">最终模板</h2>
 <p><del>在 <code>/src/components</code> 新建 <code>ArtalkCards.vue</code> 作为 Artalk 评论区模板</del> 我对 Gridsome 的模板还不太熟悉，总之直接在需要引入评论区的页面直接加好了：</p>
 <pre><code class="language-html">&lt;template&gt;
@@ -164,6 +167,7 @@ export default {
         el: &#39;#LetsArtalk&#39;,
         placeholder: &#39;说点什么 (づ￣ 3￣)づ&#39;,
         defaultAvatar: &#39;mp&#39;,
+        // maxNested: 2,
         pageKey: &#39;https://blog.monsterx.cn&#39; + this.$page.post.path,
         serverUrl: &#39;https://lab.monsterx.cn/ArtalkServer&#39;,
         readMore: {
