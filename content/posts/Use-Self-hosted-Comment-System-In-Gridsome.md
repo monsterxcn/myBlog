@@ -113,7 +113,7 @@ export default {
         el: '#artalkcomments',
         placeholder: '说点什么 (づ￣ 3￣)づ',
         defaultAvatar: 'mp',
-        // maxNested: 2,
+        // maxNest: 2,
         pageKey: 'https://blog.monsterx.cn/some-page/',
         serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
         readMore: {
@@ -148,7 +148,7 @@ export default {
         el: '#artalkcomments',
         placeholder: '说点什么 (づ￣ 3￣)づ',
         defaultAvatar: 'mp',
-        // maxNested: 2,
+        // maxNest: 2,
         pageKey: 'https://blog.monsterx.cn/some-page/',
         serverUrl: 'https://lab.mocurio.com/artalk/',
         readMore: {
@@ -161,7 +161,7 @@ export default {
 }
 ```
 
-L10 `process.env.NODE_ENV === 'production'` 和 `process.isClient` 实际体验应该都差不多。上面两处注释掉的 `maxNested` 是我修改后具有的功能，原版开启后不会有效果，该项不设置时默认显示三层嵌套。
+L10 `process.env.NODE_ENV === 'production'` 和 `process.isClient` 实际体验应该都差不多。上面两处注释掉的 `maxNest` 是我修改后具有的功能，原版开启后不会有效果，该项不设置时默认显示三层嵌套。
 
 ## 最终模板
 
@@ -209,7 +209,7 @@ export default {
         el: '#LetsArtalk',
         placeholder: '说点什么 (づ￣ 3￣)づ',
         defaultAvatar: 'mp',
-        // maxNested: 2,
+        // maxNest: 2,
         pageKey: 'https://blog.monsterx.cn' + this.$page.post.path,
         serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
         readMore: {
