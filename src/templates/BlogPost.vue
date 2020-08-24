@@ -154,6 +154,7 @@ export default {
         el: '#LetsArtalk',
         placeholder: '说点什么 (づ￣ 3￣)づ',
         defaultAvatar: 'mp',
+        maxNested: 2,
         pageKey: 'https://blog.monsterx.cn' + this.$page.post.path,
         serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
         readMore: {

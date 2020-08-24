@@ -73,7 +73,7 @@ module.exports = {
         // Service Worker Options
         disableServiceWorker: false,
         serviceWorkerPath: 'service-worker.js',
-        cachedFileTypes: 'js,css,ico,svg,jpg,png,webp',
+        cachedFileTypes: 'js,css,ico,svg',
 
         // Manifest Options (https://developer.mozilla.org/en-US/docs/Web/Manifest)
         manifestPath: 'manifest.json',
@@ -94,6 +94,13 @@ module.exports = {
         // Apple MacOS Meta Tags
         appleMaskIcon: './src/assets/images/favicon.svg',
         appleMaskIconColor: '#fafafa',
+      },
+
+      // Workbox Options
+      workboxPluginMode: 'injectManifest',
+      workboxOptions: {
+        swSrc: 'service-worker.js',
+        globPatterns: ['assets/@(js|css)/*', 'assets/data/**/index.json'],
       },
     },
   ],
