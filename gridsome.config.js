@@ -67,42 +67,42 @@ module.exports = {
     {
       use: '@gridsome/plugin-sitemap',
     },
-    // {
-    //   use: 'gridsome-plugin-pwa',
-    //   options: {
-    //     // Service Worker Options
-    //     disableServiceWorker: false,
-    //     serviceWorkerPath: 'service-worker.js',
-    //     cachedFileTypes: 'js,css,ico,svg',
+    {
+      use: 'gridsome-plugin-pwa',
+      options: {
+        // Service Worker Options
+        disableServiceWorker: false,
+        serviceWorkerPath: 'service-worker.js',
+        cachedFileTypes: 'js,css,html,ico,svg,png',
 
-    //     // Manifest Options (https://developer.mozilla.org/en-US/docs/Web/Manifest)
-    //     manifestPath: 'manifest.json',
-    //     title: "Monstx's Blog",
-    //     startUrl: 'https://blog.monsterx.cn/',
-    //     display: 'standalone',
-    //     statusBarStyle: 'default',
-    //     themeColor: '#fafafa',
-    //     backgroundColor: '#ffffff',
-    //     icon: './src/assets/images/favicon.png',
-    //     shortName: 'monstxBlog',
-    //     description: 'Monsterx CN - 学生 / 前端 / 电气',
-    //     lang: 'en-GB',
-    //     // Standard Meta Tags
-    //     svgFavicon: './src/assets/images/favicon.svg',
-    //     // Microsoft Windows Meta Tags
-    //     msTileColor: '#fafafa',
-    //     // Apple MacOS Meta Tags
-    //     appleMaskIcon: './src/assets/images/favicon.svg',
-    //     appleMaskIconColor: '#fafafa',
-    //   },
+        // Manifest Options (https://developer.mozilla.org/en-US/docs/Web/Manifest)
+        manifestPath: 'manifest.json',
+        title: "Monstx's Blog",
+        startUrl: 'https://blog.monsterx.cn/',
+        display: 'standalone',
+        statusBarStyle: 'default',
+        themeColor: '#fafafa',
+        backgroundColor: '#ffffff',
+        icon: './src/assets/images/favicon.png',
+        shortName: 'monstxBlog',
+        description: 'Monsterx CN - 学生 / 前端 / 电气',
+        lang: 'en-GB',
+        // Standard Meta Tags
+        svgFavicon: './src/assets/images/favicon.svg',
+        // Microsoft Windows Meta Tags
+        msTileColor: '#fafafa',
+        // Apple MacOS Meta Tags
+        appleMaskIcon: './src/assets/images/favicon.svg',
+        appleMaskIconColor: '#fafafa',
+      },
 
-    //   // Workbox Options
-    //   workboxPluginMode: 'injectManifest',
-    //   workboxOptions: {
-    //     swSrc: 'service-worker.js',
-    //     globPatterns: ['assets/@(js|css)/*', 'assets/data/**/index.json'],
-    //   },
-    // },
+      // // Workbox Options
+      // workboxPluginMode: 'injectManifest',
+      // workboxOptions: {
+      //   swSrc: 'service-worker.js',
+      //   globPatterns: ['assets/@(js|css)/*', 'assets/data/**/index.json'],
+      // },
+    },
   ],
 
   transformers: {
