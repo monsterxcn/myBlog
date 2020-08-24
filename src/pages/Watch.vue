@@ -394,6 +394,20 @@
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
             <a
+              class="watch good"
+              href="https://movie.douban.com/subject/26754233/"
+              target="_blank"
+              >八佰</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/30207919/"
+              target="_blank"
+              >安娜贝尔 3：回家</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch"
               href="https://movie.douban.com/subject/4301224/"
               target="_blank"
