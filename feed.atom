@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2020-08-25T06:03:36.403Z</updated>
+    <updated>2020-08-25T10:16:21.871Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -683,7 +683,7 @@ jobs:
 </li>
 <li>空格<ul>
 <li>中英文之间留空格，（按照官方格式书写）</li>
-<li>中文与数字、数字与单位（「°」「℃」「%」除外）之间留空格</li>
+<li>中文与数字、数字与单位（「°」「℃」「%」等除外）之间留空格</li>
 <li>全角标点符号前后不留空格</li>
 <li>省略号「……」后留一个空格</li>
 </ul>
@@ -715,7 +715,7 @@ jobs:
 </ul>
 </li>
 </ul>
-<p>除去这些规定，在文章的分类和标签上我也相较原来的 Typecho 博客做了些精简。分类目前想法是只保留 <a href="https://blog.monsterx.cn/Category/life">life</a> <a href="https://blog.monsterx.cn/Category/code">code</a> <a href="https://blog.monsterx.cn/Category/tech">tech</a> 三类，分别用来保留筛选后关于「记录生活的手帐、站点杂务」「写代码的探索和思考」「学习某些技术、使用轮子的日志」的内容。每篇文章的标签保持精简，写完整篇文章后提取两到三个关键词作为标签。</p>
+<p>除去这些规定，在文章的分类和标签上我也相较原来的 Typecho 博客做了些精简。分类目前想法是只保留 <a href="https://blog.monsterx.cn/category/life">life</a> <a href="https://blog.monsterx.cn/category/code">code</a> <a href="https://blog.monsterx.cn/category/tech">tech</a> 三类，分别用来保留筛选后关于「记录生活的手帐、站点杂务」「写代码的探索和思考」「学习某些技术、使用轮子的日志」的内容。每篇文章的标签保持精简，写完整篇文章后提取两到三个关键词作为标签。</p>
 <p>做完这些剩下的就是提升自身水平了……</p>
 <h2 id="keep-moving">Keep moving...</h2>
 ]]></content>
