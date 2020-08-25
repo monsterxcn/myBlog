@@ -149,4 +149,8 @@ module.exports = {
       },
     },
   },
+
+  css: {
+    split: true,
+  },
 }

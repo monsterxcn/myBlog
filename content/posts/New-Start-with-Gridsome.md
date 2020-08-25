@@ -6,6 +6,7 @@ slug: New-Start-with-Gridsome
 cate: life
 tags: ['Gridsome', 'Markdown']
 cover_image: "./images/new-start.png"
+ogimage: 'https://blog.monsterx.cn/OG/new-start.png'
 canonical_url: "https://blog.monsterx.cn/life/new-start-with-gridsome/"
 description: "在这普通的一天，这个普通的博客诞生 / 重生了。本文简单介绍下目前的情况、新的中文格式排版和 Markdown 规则以及从旧的 Typecho 手动迁移时一些琐碎的记录。"
 ---

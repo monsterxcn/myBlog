@@ -6,6 +6,7 @@ slug: Modified-Github-Actions-4-HEU-Checkin
 cate: tech
 tags: ['GitHub Actions', 'webdrivers', 'cron']
 cover_image: "./images/github-actions-checkin.png"
+ogimage: 'https://blog.monsterx.cn/OG/github-actions-checkin.png'
 canonical_url: "https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/"
 description: "赶在上半年的最后半小时发布了 6 月唯一一篇更新：利用 GitHub Actions 定时执行 Python / Ruby 打卡代码。"
 ---

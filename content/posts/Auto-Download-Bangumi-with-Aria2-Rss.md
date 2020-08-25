@@ -6,6 +6,7 @@ slug: Auto-Download-Bangumi-with-Aria2-Rss
 cate: tech
 tags: ['Aria2', 'FlexGet', 'RSS']
 cover_image: "./images/aria-rss-bangumi.png"
+ogimage: 'https://blog.monsterx.cn/OG/aria-rss-bangumi.png'
 canonical_url: "https://blog.monsterx.cn/tech/auto-download-bangumi-with-aria2-rss/"
 description: "使用 FlexGet 实现服务器 Aria2 RSS 订阅，自动下载番剧到 OneDrive，在本地通过 Windows OneDrive 文件夹同步实现追番「自动化」流程。"
 ---

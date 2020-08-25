@@ -6,6 +6,7 @@ slug: Use-Self-hosted-Comment-System-In-Gridsome
 cate: code
 tags: ['Gridsome', 'Vue.js', 'Artalk']
 cover_image: "./images/gridsome-artalk.png"
+ogimage: 'https://blog.monsterx.cn/OG/gridsome-artalk.png'
 canonical_url: 'https://blog.monsterx.cn/code/use-self-hosted-comment-system-in-gridsome/'
 description: "考虑到小站的访客还不是人均科学上网的水平，我折腾了一天从 Disqus 换到了友链写的自托管评论系统 Artalk，数据迁移啥就以后再说吧，咕咕咕.."
 ---

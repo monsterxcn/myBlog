@@ -58,6 +58,12 @@ query ($page: Int) {
       }
     }
   }
+
+  metadata {
+    siteName
+    siteUrl
+    siteDescription
+  }
 }
 </page-query>
 
@@ -69,8 +75,85 @@ export default {
     Author,
     PostCard,
   },
-  metaInfo: {
-    title: 'Home',
+  metaInfo() {
+    return {
+      title: 'Home',
+      meta: [
+        { key: 'og:type', property: 'og:type', content: 'website' },
+        {
+          key: 'og:title',
+          property: 'og:title',
+          content: this.$page.metadata.siteName,
+        },
+        {
+          key: 'og:description',
+          property: 'og:description',
+          content: this.$page.metadata.siteDescription,
+        },
+        {
+          key: 'og:url',
+          property: 'og:url',
+          content: this.$page.metadata.siteUrl,
+        },
+        {
+          key: 'og:image',
+          property: 'og:image',
+          content: 'https://blog.monsterx.cn/screen.png',
+        },
+        { key: 'twitter:card', name: 'twitter:card', content: 'summary' },
+        { key: 'twitter:site', name: 'twitter:site', content: '@monsterxcn' },
+        {
+          key: 'twitter:creator',
+          name: 'twitter:creator',
+          content: '@monsterxcn',
+        },
+        {
+          key: 'twitter:title',
+          name: 'twitter:title',
+          content: this.$page.metadata.siteName,
+        },
+        {
+          key: 'twitter:description',
+          name: 'twitter:description',
+          content: this.$page.metadata.siteDescription,
+        },
+        {
+          key: 'twitter:image',
+          name: 'twitter:image',
+          content: 'https://blog.monsterx.cn/screen.png',
+        },
+        {
+          key: 'description',
+          name: 'description',
+          itemprop: 'description',
+          content: this.$page.metadata.siteDescription,
+        },
+        {
+          key: 'name',
+          itemprop: 'name',
+          content: this.$page.metadata.siteName,
+        },
+        {
+          key: 'image',
+          itemprop: 'image',
+          content: 'https://blog.monsterx.cn/screen.png',
+        },
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          json: {
+            '@context': 'http://schema.org',
+            '@type': 'Blog',
+            description: this.$page.metadata.siteDescription,
+            datePublished: '2020-08-15',
+            author: { name: 'monsterxcn' },
+            headline: this.$page.metadata.siteName,
+            image: 'https://blog.monsterx.cn/screen.png',
+          },
+        },
+      ],
+    }
   },
   data() {
     return {

@@ -105,13 +105,82 @@ export default {
     PostMeta,
     PostTags,
   },
+  computed: {
+    cardsImageUrl() {
+      let postCover = this.$page.post.ogimage
+      return postCover
+        ? this.$page.post.ogimage
+        : 'https://blog.monsterx.cn/screen.png'
+    },
+  },
   metaInfo() {
     return {
       title: this.$page.post.title,
       meta: [
+        { key: 'og:type', property: 'og:type', content: 'website' },
         {
-          name: 'description',
+          key: 'og:title',
+          property: 'og:title',
+          content: this.$page.post.title,
+        },
+        {
+          key: 'og:description',
+          property: 'og:description',
           content: this.$page.post.description,
+        },
+        {
+          key: 'og:url',
+          property: 'og:url',
+          content: `${this.$page.metadata.siteUrl}${this.$page.post.path}`,
+        },
+        { key: 'og:image', property: 'og:image', content: this.cardsImageUrl },
+        {
+          key: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        { key: 'twitter:site', name: 'twitter:site', content: '@monsterxcn' },
+        {
+          key: 'twitter:creator',
+          name: 'twitter:creator',
+          content: '@monsterxcn',
+        },
+        {
+          key: 'twitter:title',
+          name: 'twitter:title',
+          content: this.$page.post.title,
+        },
+        {
+          key: 'twitter:description',
+          name: 'twitter:description',
+          content: this.$page.post.description,
+        },
+        {
+          key: 'twitter:image',
+          name: 'twitter:image',
+          content: this.cardsImageUrl,
+        },
+        {
+          key: 'description',
+          name: 'description',
+          itemprop: 'description',
+          content: this.$page.post.description,
+        },
+        { key: 'name', itemprop: 'name', content: this.$page.post.title },
+        { key: 'image', itemprop: 'image', content: this.cardsImageUrl },
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          json: {
+            '@context': 'http://schema.org',
+            '@type': 'BlogPosting',
+            description: this.$page.post.description,
+            datePublished: this.$page.post.date,
+            author: { name: 'monsterxcn' },
+            headline: this.$page.post.title,
+            image: this.cardsImageUrl,
+          },
         },
       ],
     }
@@ -187,6 +256,7 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
       path
     }
     description
+    ogimage
     published
     content
     cover_image (width: 1280, blur: 10)
@@ -200,6 +270,10 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
   next: post(id: $nextElement) {
     title
     path
+  }
+
+  metadata {
+    siteUrl
   }
 }
 </page-query>

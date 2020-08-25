@@ -6,6 +6,7 @@ slug: Heu-Auto-Checkin-Covid19
 cate: code
 tags: ['Python', 'COVID-19']
 cover_image: "./images/auto-checkin-covid19.png"
+ogimage: 'https://blog.monsterx.cn/OG/auto-checkin-covid19.png'
 canonical_url: "https://blog.monsterx.cn/code/heu-auto-checkin-covid19/"
 description: "找资料逛博客的时候碰巧进入了一个学长的博客，发现了懒人福音的自动打卡 Python 脚本。本文记录 Python 萌新的调试过程（造轮子不行，用轮子一流.."
 ---

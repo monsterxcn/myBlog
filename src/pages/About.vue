@@ -248,8 +248,74 @@ export default {
     return {
       title: '己',
       meta: [
+        { key: 'og:type', property: 'og:type', content: 'website' },
         {
-          name: '关于这个站点的一些情报',
+          key: 'og:title',
+          property: 'og:title',
+          content: "己 - Monstx's Blog",
+        },
+        {
+          key: 'og:description',
+          property: 'og:description',
+          content: '关于这个站点的一些情报',
+        },
+        {
+          key: 'og:url',
+          property: 'og:url',
+          content: 'https://blog.monsterx.cn/about',
+        },
+        {
+          key: 'og:image',
+          property: 'og:image',
+          content: 'https://blog.monsterx.cn/screen.png',
+        },
+        { key: 'twitter:card', name: 'twitter:card', content: 'summary' },
+        { key: 'twitter:site', name: 'twitter:site', content: '@monsterxcn' },
+        {
+          key: 'twitter:creator',
+          name: 'twitter:creator',
+          content: '@monsterxcn',
+        },
+        {
+          key: 'twitter:title',
+          name: 'twitter:title',
+          content: "己 - Monstx's Blog",
+        },
+        {
+          key: 'twitter:description',
+          name: 'twitter:description',
+          content: '关于这个站点的一些情报',
+        },
+        {
+          key: 'twitter:image',
+          name: 'twitter:image',
+          content: 'https://blog.monsterx.cn/screen.png',
+        },
+        {
+          key: 'description',
+          name: 'description',
+          itemprop: 'description',
+          content: '关于这个站点的一些情报',
+        },
+        { key: 'name', itemprop: 'name', content: "己 - Monstx's Blog" },
+        {
+          key: 'image',
+          itemprop: 'image',
+          content: 'https://blog.monsterx.cn/screen.png',
+        },
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          json: {
+            '@context': 'http://schema.org',
+            '@type': 'AboutPage',
+            description: '关于这个站点的一些情报',
+            datePublished: '2020-08-15',
+            author: { name: 'monsterxcn' },
+            headline: "己 - Monstx's Blog",
+            image: 'https://blog.monsterx.cn/screen.png',
+          },
         },
       ],
     }
