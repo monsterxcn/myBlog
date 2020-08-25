@@ -72,7 +72,7 @@ module.exports = {
       options: {
         manifestPath: 'manifest.json',
         name: "Monstx's Blog",
-        themeColor: '#0070f3',
+        themeColor: '#dee1e6',
         scope: '.',
         icon: {
           androidChrome: {
@@ -102,8 +102,8 @@ module.exports = {
           description: 'Monsterx CN - 学生 / 前端 / 电气',
           start_url: 'https://blog.monsterx.cn/',
           display: 'minimal-ui',
-          orientation: 'landscape',
-          background_color: '#ffffff',
+          // orientation: 'landscape',
+          background_color: '#fafafa',
           lang: 'zh-Hans',
           dir: 'ltr',
         },
