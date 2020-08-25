@@ -32,9 +32,16 @@
           <p>
             <a
               class="watch good"
-              href="http://bangumi.tv/subject/29648"
+              href="https://bgm.tv/subject/29648"
               target="_blank"
               >中二病也要谈恋爱！</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/305515"
+              target="_blank"
+              >雾山五行</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -1495,18 +1502,18 @@ export default {
             'background-image:url(https://lain.bgm.tv/pic/cover/l/7a/37/296076_Saapf.jpg)',
         },
         {
-          name: 'やはり俺の青春ラブコメはまちがっている。完',
-          namecn: '我的青春恋爱物语果然有问题 完',
-          url: 'https://bgm.tv/subject/277954',
-          style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/ba/69/277954_s8qHA.jpg)',
-        },
-        {
           name: '魔王学院の不適合者',
           namecn: '魔王学院的不适任者',
           url: 'https://bgm.tv/subject/292222',
           style:
             'background-image:url(https://lain.bgm.tv/pic/cover/l/3b/ad/292222_Seh7t.jpg)',
+        },
+        {
+          name: 'やはり俺の青春ラブコメはまちがっている。完',
+          namecn: '我的青春恋爱物语果然有问题 完',
+          url: 'https://bgm.tv/subject/277954',
+          style:
+            'background-image:url(https://lain.bgm.tv/pic/cover/l/ba/69/277954_s8qHA.jpg)',
         },
         {
           name: 'モンスター娘のお医者さん',

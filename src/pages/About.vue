@@ -65,8 +65,8 @@
               <tr>
                 <td align="center">Twitter</td>
                 <td align="left">
-                  <a href="https://twitter.com/mo_curio" target="_blank"
-                    >@mo_curio</a
+                  <a href="https://twitter.com/monsterxcn" target="_blank"
+                    >@monsterxcn</a
                   >
                 </td>
                 <td align="center">Steam</td>
@@ -132,7 +132,7 @@
                 >@monsterxcn/myBlog</a
               ></s
             >
-            。
+            计划 10 月变更仓库可见性，目前尚不稳定。
           </p>
           <div>
             <h4>History</h4>

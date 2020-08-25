@@ -73,7 +73,7 @@ import NProgress from 'nprogress'
 // import 'katex/dist/katex.min.css'
 
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
-export default function(Vue, { router, head, isClient }) {
+export default function(Vue, { router, head, to, isClient }) {
   head.htmlAttrs = { lang: 'zh-Hans' }
   if (isClient && process.env.NODE_ENV === 'production') {
     require('./registerServiceWorker')

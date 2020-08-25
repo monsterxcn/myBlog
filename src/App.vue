@@ -77,7 +77,7 @@
           ><font-awesome :icon="['fab', 'telegram']"
         /></a>
         <a
-          href="//twitter.com/mo_curio"
+          href="//twitter.com/monsterxcn"
           target="_blank"
           rel="nofollow noopener noreferrer"
           style="color: #1da1f2;font-size: 1.3em;margin: 0 .5em;"
