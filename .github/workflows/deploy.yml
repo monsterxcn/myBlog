@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
+    ref: refs/heads/master
 
 jobs:
   Aliyun_OSS-CDN:
