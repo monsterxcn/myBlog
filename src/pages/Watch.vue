@@ -402,6 +402,13 @@
           <p>
             <a
               class="watch good"
+              href="https://movie.douban.com/subject/3569911/"
+              target="_blank"
+              >全面回忆 2012</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
               href="https://movie.douban.com/subject/26754233/"
               target="_blank"
               >八佰</a
@@ -479,6 +486,13 @@
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch"
+              href="https://movie.douban.com/subject/3543318/"
+              target="_blank"
+              >傲慢与偏见与僵尸</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
               href="https://movie.douban.com/subject/1329950/"
               target="_blank"
               >达·芬奇密码</a
@@ -510,6 +524,13 @@
               href="https://movie.douban.com/subject/27611498/"
               target="_blank"
               >王者天下</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1479864/"
+              target="_blank"
+              >灵幻至尊</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -579,7 +600,7 @@
               class="watch cinema"
               href="https://movie.douban.com/subject/30176393/"
               target="_blank"
-              >误杀</a
+              >误杀 2019</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -884,6 +905,13 @@
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
+              class="watch"
+              href="https://movie.douban.com/subject/26816076/"
+              target="_blank"
+              >“大”人物</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch good"
               href="https://movie.douban.com/subject/30282387/"
               target="_blank"
@@ -927,13 +955,6 @@
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch good"
-              href="https://movie.douban.com/subject/26641716/"
-              target="_blank"
-              >大群 × 3</a
-            >
-            &nbsp;&nbsp;/&nbsp;&nbsp;
-            <a
-              class="watch good"
               href="https://movie.douban.com/subject/26794435/"
               target="_blank"
               >哪吒之魔童降世</a
@@ -958,6 +979,20 @@
               href="https://movie.douban.com/subject/26100958/"
               target="_blank"
               >复仇者联盟 4：终局之战</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/27663742/"
+              target="_blank"
+              >老师·好</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/25865815/"
+              target="_blank"
+              >倚天屠龙记 2019</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -996,10 +1031,24 @@
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
+              class="watch"
+              href="https://movie.douban.com/subject/26662193/"
+              target="_blank"
+              >前任 3：再见前任</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch good"
               href="https://movie.douban.com/subject/30331149/"
               target="_blank"
               >白蛇：缘起</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/4840388/"
+              target="_blank"
+              >新喜剧之王</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -1136,6 +1185,13 @@
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
+              class="watch good"
+              href="https://movie.douban.com/subject/26641716/"
+              target="_blank"
+              >大群 × 3</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch"
               href="https://movie.douban.com/subject/1306809/"
               target="_blank"
@@ -1161,6 +1217,27 @@
               href="https://movie.douban.com/subject/27180959/"
               target="_blank"
               >猎毒人</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/25884801/"
+              target="_blank"
+              >记忆大师</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26606743/"
+              target="_blank"
+              >嫌疑人 X 的献身</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26667056/"
+              target="_blank"
+              >逆时营救</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -1273,6 +1350,13 @@
               href="https://movie.douban.com/subject/25723907/"
               target="_blank"
               >捉妖记</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1304624/"
+              target="_blank"
+              >旺角卡门</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a

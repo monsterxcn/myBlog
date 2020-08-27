@@ -17,9 +17,9 @@
             <span>坐标</span>合肥 / 哈尔滨 <br />
             <span>爱好</span>烧烤 / 动漫 / Marvel DC Disney / 博客写作 / 代码
             <br />
-            <span>入门</span>Clang / JavaScript / PHP <br />
+            <span>入门</span>C Language / JavaScript / PHP <br />
             <span>想学</span>Cpp / Python / Vue.js / React.js <br />
-            <span>习惯</span>VSCode / 4 spaces / Windows / Linux <br />
+            <span>习惯</span>VS Code / 4 spaces / Windows / Linux <br />
             <span>人格</span>ISFP-A Adventurer 冒险家 / 实用主义属性
             平等・人权・社会主义 / 前网络话痨
           </p>
