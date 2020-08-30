@@ -285,7 +285,8 @@ query Post ($id: ID!) {
 
 根据需要自己修改下 `<template>` 的内容，注意保证只存在一个「主标签」，比如我的是 `<div class="artalk-cards">`。修改 L29-37 为自己的 Artalk 参数，`pageKey` 需要自行拼接为页面 URL，否则后端发送的邮件中「查看回复」按钮可能链接到奇怪的地方导致体验极差，其他参数查阅 [artalk-config.d.ts](https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts)。`<style>` 是我针对当前主题做的一点适配。
 
-考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句大家可以使用我搭的 Artalk PHP 后端尝尝鲜吖，它运行在阿里云 ~~北京~~ 上海学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大，给大家玩玩还是可以的。将配置中的 `serverUrl` 字段填写为 `https://lab.monsterx.cn/ArtalkAPI` 来使用本站后端，跨域访问目前允许，不必向我申请。
+考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句大家可以使用我搭的 Artalk PHP 后端尝尝鲜吖，它运行在阿里云 ~~北京~~ 上海学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大，给大家玩玩还是可以的。将配置中的 `serverUrl` 字段填写为 `https://lab.monsterx.cn/ArtalkServer` 来使用本站后端，跨域访问目前允许，不必向我申请。
 
 > 其实通过 phpcomposer 安装搭建 Artalk PHP 后端也十分简单。目前发现需要注意的是 PHP 得开启 GD 库和 FreeType 支持，否则无法生成图形验证码。<br />
+> 使用别人的后端存在一些不足之处：邮件模板、发信设置只能使用搭建者的，目前 Artalk 对多站点的支持尚不完整。<br />
 > 担心引用本站后端存在数据安全或其他问题可以尝试自行搭建。~~以后有空可能写一篇 Docker Artalk PHP 后端的文。~~ 如果对上述内容有问题欢迎留言。

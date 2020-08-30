@@ -61,43 +61,6 @@
         <!-- ×
         <a href="https://github.com/JalenChuh" target="_blank"  rel="nofollow noopener noreferrer">Jalen</a>-->
       </div>
-      <div class="footer__links">
-        <a
-          href="//github.com/monsterxcn"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          style="color: var(--title-color);font-size: 1.3em;margin: 0 .5em;"
-          ><font-awesome :icon="['fab', 'github']"
-        /></a>
-        <a
-          href="//t.me/monsterxcn"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          style="color: #179CDE;font-size: 1.3em;margin: 0 .5em;"
-          ><font-awesome :icon="['fab', 'telegram']"
-        /></a>
-        <a
-          href="//twitter.com/monsterxcn"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          style="color: #1da1f2;font-size: 1.3em;margin: 0 .5em;"
-          ><font-awesome :icon="['fab', 'twitter']"
-        /></a>
-        <a
-          href="//weibo.com/u/3978619198"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          style="color: #E6162D;font-size: 1.3em;margin: 0 .5em;"
-          ><font-awesome :icon="['fab', 'weibo']"
-        /></a>
-        <a
-          href="//steamcommunity.com/id/monsterxcn"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          style="color: var(--social-steam-color);font-size: 1.3em;margin: 0 .5em;"
-          ><font-awesome :icon="['fab', 'steam']"
-        /></a>
-      </div>
     </footer>
   </div>
 </template>

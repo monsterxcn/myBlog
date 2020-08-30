@@ -15,7 +15,7 @@
     </h1>
 
     <p class="author__intro">
-      阿巴阿巴，歪比巴布 (づ￣ 3￣)づ
+      一只怠惰的臭弟弟 つ﹏⊂
     </p>
 
     <p class="author__links">

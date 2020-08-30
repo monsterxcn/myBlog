@@ -401,7 +401,21 @@
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
             <a
+              class="watch"
+              href="https://movie.douban.com/subject/1309115/"
+              target="_blank"
+              >帝国的毁灭</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch good"
+              href="https://movie.douban.com/subject/30318116/"
+              target="_blank"
+              >利刃出鞘</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
               href="https://movie.douban.com/subject/3569911/"
               target="_blank"
               >全面回忆 2012</a
@@ -989,7 +1003,7 @@
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
-              class="watch good"
+              class="watch"
               href="https://movie.douban.com/subject/25865815/"
               target="_blank"
               >倚天屠龙记 2019</a
@@ -1146,7 +1160,7 @@
               class="watch"
               href="https://movie.douban.com/subject/27605698/"
               target="_blank"
-              >西红柿首富</a
+              >西虹市首富</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -1666,11 +1680,11 @@ export default {
             'background-image:url(https://lain.bgm.tv/pic/cover/l/ba/69/277954_s8qHA.jpg)',
         },
         {
-          name: 'モンスター娘のお医者さん',
-          namecn: '魔物娘的医生',
-          url: 'https://bgm.tv/subject/294654',
+          name: 'ピーター・グリルと賢者の時間',
+          namecn: '彼得·格里尔的贤者时间',
+          url: 'https://bgm.tv/subject/291195',
           style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/dd/0d/294654_ca6tM.jpg)',
+            'background-image:url(https://lain.bgm.tv/pic/cover/l/87/f4/291195_7t8QW.jpg)',
         },
         {
           name: 'ド級編隊エグゼロス',
@@ -1680,11 +1694,11 @@ export default {
             'background-image:url(https://lain.bgm.tv/pic/cover/l/be/48/293648_CMRc5.jpg)',
         },
         {
-          name: 'ピーター・グリルと賢者の時間',
-          namecn: '彼得·格里尔的贤者时间',
-          url: 'https://bgm.tv/subject/291195',
+          name: 'モンスター娘のお医者さん',
+          namecn: '魔物娘的医生',
+          url: 'https://bgm.tv/subject/294654',
           style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/87/f4/291195_7t8QW.jpg)',
+            'background-image:url(https://lain.bgm.tv/pic/cover/l/dd/0d/294654_ca6tM.jpg)',
         },
         {
           name: '中二病でも恋がしたい！戀',

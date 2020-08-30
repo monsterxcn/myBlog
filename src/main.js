@@ -26,22 +26,22 @@ import {
   faRocket,
   faRss,
 } from '@fortawesome/free-solid-svg-icons'
-import {
-  faGithub,
-  faTwitter,
-  faTelegram,
-  faSteam,
-  faWeibo,
-} from '@fortawesome/free-brands-svg-icons'
+// import {
+//   faGithub,
+//   faTwitter,
+//   faTelegram,
+//   faSteam,
+//   faWeibo,
+// } from '@fortawesome/free-brands-svg-icons'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 config.autoAddCss = false
 library.add(
-  faGithub,
-  faTwitter,
-  faTelegram,
-  faSteam,
-  faWeibo,
+  // faGithub,
+  // faTwitter,
+  // faTelegram,
+  // faSteam,
+  // faWeibo,
   faArchive,
   faArrowUp,
   faCaretSquareUp,
