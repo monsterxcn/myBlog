@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Sun, 30 Aug 2020 13:39:37 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 08 Sep 2020 01:07:52 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -1084,6 +1084,9 @@ jobs:
 <li><p><strong>邮件</strong></p>
 <p>启用 GitHub Actions 后我将 Python 中的 SMTP 配置删除了，这原本是用来在服务器部署时完成任务后发送提醒的。我想只要开启 GitHub 工作流的运行提醒就好啦，后来意识到虽然 GitHub Actions 自身有邮件提醒，但它提醒的是工作流执行状况，并不能等价于打卡脚本的执行状态。这一点还有待优化。毕竟配置起来如果像上面一样一条一条添加 Secrets 的话就太繁琐了。</p>
 </li>
+<li><p><strong>微信提醒</strong></p>
+<p>由于 GitHub Actions 部署邮件提醒不方便，我找到了微信提醒的工具 Server 酱，在 Python 中使用 requests 库发送请求即可触发微信提醒，结合程序执行结果可以更加完美的推送打卡提醒；Ruby 不会写，我就直接从 Actions 执行时由命令行 <code>curl</code> 发送请求了，这些代码十分粗糙，放在了仓库 personal 分支下。</p>
+</li>
 </ul>
 <h3 id="round-2">Round 2</h3>
 <p>也许看官早就想说了：为什么引用 Secrets 而已，又是设置环境变量、又是将环境变量 <code>echo</code> 到 <code>.txt</code> 文件、又是将 <code>.txt</code> <code>sed</code> 写入 <code>.py</code> 的，不能简单点吗？确实，在朋友 <a href="https://xyenon.bid">@XYenon</a> 的指导下我得知 Python 可以通过 <code>os.environ</code> 读取环境变量，所以简单的办法来了，将 Python 脚本中原来的赋值改写成下面的格式直接读环境变量</p>
@@ -1147,7 +1150,7 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 <p>也许 Ruby 版本的打卡程序更适合写成 JavaScript 用户脚本交给浏览器插件执行。</p>
 </blockquote>
 <h2 id="结语">结语</h2>
-<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/HEU-Checkin-COVID-19">@monsterxcn/HEU-Checkin-COVID-19</a>。</p>
+<p>GitHub 仓库地址 <a href="https://github.com/monsterxcn/HEU-Checkin-COVID-19">@monsterxcn/HEU-Checkin-COVID-19</a>。如果仓库说明仍未找到你需要的部署过程，可以参考以下我的另外一篇文章《<a href="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/">Mark 并调试 HEU 自动打卡代码</a>》</p>
 <p>我原以为在 GitHub Actions 中实现定时任务要很复杂的配置，毕竟每次工作流都是相当于在一个全新的服务器上执行。现在发现原来定时任务只需要在工作流的触发事件中写入 <code>schedule</code> 即可。在查找文档时我发现这点在官方文档中有详细说明，害，都是不会看文档惹的祸。</p>
 <p>榆木脑袋的我在看到别人的代码之前总是从没想过可以这样实现。比如：将私密信息以赋值语句形式写入仓库设置，执行 GitHub Actions 时将赋值语句插进文件头部继续执行。甚是高明（虽然到后面我发现这也挺笨的）。剖析了我的不足之处，浅层来看最重要的两点估计就是：</p>
 <ul>
@@ -1205,7 +1208,7 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 pip install requests lxml</code></pre>
 <h2 id="获取-form-data">获取 form Data</h2>
 <p>今天早上起来的出奇的早（7 点半我就醒了），一想到学校的打卡十点前就要完成，我突然想到了那个自动打卡、表单数据的事情。于是我点开了浏览器开始尝试。</p>
-<p>打开 <a href="http://one.hrbeu.edu.cn/infoplus/form/JKXXSB/start">网上办事中心 - 平安行动</a> ，虽然不知道是啥，但 F12 肯定会告诉我的。选择 Network 栏，网页从打开这个菜单后加载的所有请求都会在这里显示，先刷新一遍网页，找了一遍好像什么也没有（一开始我以为表单数据是缓存下来的什么东西），Emmm，提交一遍试试，点完确认提交之后 Network 最下面显示了一个新的名叫 <code>doAction</code> 资源，那一定就是你了！</p>
+<p>打开 <a href="http://one.hrbeu.edu.cn/infoplus/form/JKXXSB/start">网上办事中心 - 平安行动</a> ，虽然不知道是啥，但 F12 肯定会告诉我的。选择 Network 栏，网页从打开这个菜单后加载的所有请求都会在这里显示，先刷新一遍网页，找了一遍好像什么也没有（一开始我以为表单数据是缓存下来的什么东西），Emmm，提交一遍试试，点完确认提交之后 Network 最下面显示了一个新的名叫 <code>doAction</code> 资源，那一定就是你了！<strong>注意此时不要点确定，点确定之后该资源会被刷新掉。</strong></p>
 <p>好的，<code>Form Data</code> Get√ 。选择 <code>view parsed</code> <code>view decoded</code> 就能看到这个表单的所有数据，也就是之前 Python 自动打卡需要自定义的。完整存好 <code>formData</code> <code>boundFields</code> 的内容。</p>
 <p><img src="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/images/post/heu-checkin1.png" alt="Network"><img src="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/images/post/heu-checkin2.png" alt="doAction - Form Data"></p>
 <h2 id="调试">调试</h2>
@@ -1547,6 +1550,9 @@ crontab -e
 <p>Windows 下按 <code>win</code> 搜索“任务计划程序”调出菜单，然后在右栏选择创建基础任务。跟着创建基本任务向导的指示一步一步来就好了，「触发器 -&gt; 每日」设置时间推荐避开 6:00 腐败街预约打卡的高峰，8:00 就不错。「操作 -&gt; 启动程序」的程序或脚本项按下面格式填写。</p>
 <p><img src="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/images/post/heu-autotask.png" alt="Windows 定时任务设置"></p>
 <p>Okay，睡个回笼觉庆祝一下 🥳..</p>
+<blockquote>
+<p>查看《<a href="https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/">照葫芦画瓢 · 编写 Actions 打卡工作流</a>》了解 GitHub Actions 版本。</p>
+</blockquote>
 ]]></content:encoded>
         </item>
     </channel>
