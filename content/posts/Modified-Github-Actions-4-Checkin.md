@@ -138,6 +138,10 @@ jobs:
 
    启用 GitHub Actions 后我将 Python 中的 SMTP 配置删除了，这原本是用来在服务器部署时完成任务后发送提醒的。我想只要开启 GitHub 工作流的运行提醒就好啦，后来意识到虽然 GitHub Actions 自身有邮件提醒，但它提醒的是工作流执行状况，并不能等价于打卡脚本的执行状态。这一点还有待优化。毕竟配置起来如果像上面一样一条一条添加 Secrets 的话就太繁琐了。
 
+ - **微信提醒**
+
+   由于 GitHub Actions 部署邮件提醒不方便，我找到了微信提醒的工具 Server 酱，在 Python 中使用 requests 库发送请求即可触发微信提醒，结合程序执行结果可以更加完美的推送打卡提醒；Ruby 不会写，我就直接从 Actions 执行时由命令行 `curl` 发送请求了，这些代码十分粗糙，放在了仓库 personal 分支下。
+
 ### Round 2
 
 也许看官早就想说了：为什么引用 Secrets 而已，又是设置环境变量、又是将环境变量 `echo` 到 `.txt` 文件、又是将 `.txt` `sed` 写入 `.py` 的，不能简单点吗？确实，在朋友 [@XYenon](https://xyenon.bid) 的指导下我得知 Python 可以通过 `os.environ` 读取环境变量，所以简单的办法来了，将 Python 脚本中原来的赋值改写成下面的格式直接读环境变量
@@ -217,7 +221,7 @@ jobs:
 
 ## 结语
 
-GitHub 仓库地址 [@monsterxcn/HEU-Checkin-COVID-19](https://github.com/monsterxcn/HEU-Checkin-COVID-19)。
+GitHub 仓库地址 [@monsterxcn/HEU-Checkin-COVID-19](https://github.com/monsterxcn/HEU-Checkin-COVID-19)。如果仓库说明仍未找到你需要的部署过程，可以参考以下我的另外一篇文章《[Mark 并调试 HEU 自动打卡代码](https://blog.monsterx.cn/code/heu-auto-checkin-covid19/)》
 
 我原以为在 GitHub Actions 中实现定时任务要很复杂的配置，毕竟每次工作流都是相当于在一个全新的服务器上执行。现在发现原来定时任务只需要在工作流的触发事件中写入 `schedule` 即可。在查找文档时我发现这点在官方文档中有详细说明，害，都是不会看文档惹的祸。
 
