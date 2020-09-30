@@ -69,6 +69,18 @@ sup {
   }
 }
 
+hr {
+  text-align: center;
+  border: none;
+  margin: calc(var(--space) / 2) 0;
+}
+
+hr:before {
+  content: '...';
+  letter-spacing: 0.6em;
+  font-size: 1.2em;
+}
+
 ::-webkit-scrollbar {
   width: .49rem!important;
   height: .36rem!important;
