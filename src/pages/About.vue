@@ -20,7 +20,7 @@
             <span>入门</span>C Language / JavaScript / PHP <br />
             <span>想学</span>Cpp / Python / Vue.js / React.js <br />
             <span>习惯</span>VS Code / 4 spaces / Windows / Linux <br />
-            <span>人格</span>ISFP-A Adventurer 冒险家 / 实用主义属性
+            <span>人格</span>ISFJ-A Defender 守卫者 / 实用主义属性
             平等・人权・社会主义 / 前网络话痨
           </p>
           <p>
@@ -125,14 +125,10 @@
             <a href="https://blog.jalenchuh.cn/" target="_blank"
               >@Jalen's Blog</a
             >
-            进行了一丁点修改
-            <s
-              >，代码开源于 GitHub
-              <a href="https://github.com/monsterxcn/myBlog" target="_blank"
-                >@monsterxcn/myBlog</a
-              ></s
+            进行了一丁点修改，代码开源于 GitHub
+            <a href="https://github.com/monsterxcn/myBlog" target="_blank"
+              >@monsterxcn/myBlog</a
             >
-            计划 10 月变更仓库可见性，目前尚不稳定。
           </p>
           <div>
             <h4>History</h4>
@@ -157,6 +153,7 @@
             <p><span>2020 May.21</span>VOID No, myVOID Yes</p>
             <p><span>2020 Aug.15</span>Typecho No, Gridsome Yes</p>
             <p><span>2020 Aug.19</span>规范 Markdown 源文件书写格式</p>
+            <p><span>2020 Sep.30</span>GitHub 仓库开源</p>
             <p><span>Keep moving...</span></p>
           </div>
 
