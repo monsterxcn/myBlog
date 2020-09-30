@@ -28,8 +28,53 @@
             </a>
           </div>
 
+          <h3 id="次元碰撞の壹"><a href="#次元碰撞の壹"></a>次元碰撞の壹</h3>
+          <p>
+            <a
+              class="watch"
+              href="https://book.douban.com/subject/3066477/"
+              target="_blank"
+              >三体II：黑暗森林</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://book.douban.com/subject/2567698/"
+              target="_blank"
+              >三体</a
+            >
+          </p>
+
           <h3 id="次元碰撞の贰"><a href="#次元碰撞の贰"></a>次元碰撞の贰</h3>
           <p>
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/292222"
+              target="_blank"
+              >魔王学院的不适任者</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/291195"
+              target="_blank"
+              >&#5074; 彼得·格里尔的贤者时间</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/277954"
+              target="_blank"
+              >我的青春恋爱物语果然有问题。完</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/296076"
+              target="_blank"
+              >租借女友</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch good"
               href="https://bgm.tv/subject/29648"
@@ -1581,13 +1626,13 @@ export default {
   },
   metaInfo() {
     return {
-      title: '剧',
+      title: '观',
       meta: [
         { key: 'og:type', property: 'og:type', content: 'website' },
         {
           key: 'og:title',
           property: 'og:title',
-          content: "剧 - Monstx's Blog",
+          content: "观 - Monstx's Blog",
         },
         {
           key: 'og:description',
@@ -1614,7 +1659,7 @@ export default {
         {
           key: 'twitter:title',
           name: 'twitter:title',
-          content: "剧 - Monstx's Blog",
+          content: "观 - Monstx's Blog",
         },
         {
           key: 'twitter:description',
@@ -1632,7 +1677,7 @@ export default {
           itemprop: 'description',
           content: '异次元什么的实在令人无法自拔',
         },
-        { key: 'name', itemprop: 'name', content: "剧 - Monstx's Blog" },
+        { key: 'name', itemprop: 'name', content: "观 - Monstx's Blog" },
         {
           key: 'image',
           itemprop: 'image',
@@ -1648,7 +1693,7 @@ export default {
             description: '异次元什么的实在令人无法自拔',
             datePublished: '2020-08-15',
             author: { name: 'monsterxcn' },
-            headline: "剧 - Monstx's Blog",
+            headline: "观 - Monstx's Blog",
             image: 'https://blog.monsterx.cn/screen.png',
           },
         },
@@ -1658,34 +1703,6 @@ export default {
   data() {
     return {
       wow: [
-        {
-          name: '彼女、お借りします',
-          namecn: '租借女友',
-          url: 'https://bgm.tv/subject/296076',
-          style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/7a/37/296076_Saapf.jpg)',
-        },
-        {
-          name: '魔王学院の不適合者',
-          namecn: '魔王学院的不适任者',
-          url: 'https://bgm.tv/subject/292222',
-          style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/3b/ad/292222_Seh7t.jpg)',
-        },
-        {
-          name: 'やはり俺の青春ラブコメはまちがっている。完',
-          namecn: '我的青春恋爱物语果然有问题 完',
-          url: 'https://bgm.tv/subject/277954',
-          style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/ba/69/277954_s8qHA.jpg)',
-        },
-        {
-          name: 'ピーター・グリルと賢者の時間',
-          namecn: '彼得·格里尔的贤者时间',
-          url: 'https://bgm.tv/subject/291195',
-          style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/87/f4/291195_7t8QW.jpg)',
-        },
         {
           name: 'ド級編隊エグゼロス',
           namecn: '弩级战队HXEROS',
@@ -1713,6 +1730,27 @@ export default {
           url: 'https://bgm.tv/subject/204027',
           style:
             'background-image:url(https://lain.bgm.tv/pic/cover/l/37/08/204027_irnYl.jpg)',
+        },
+        {
+          name: 'A Song of Ice and Fire',
+          namecn: '冰与火之歌 卷一',
+          url: 'https://book.douban.com/subject/27059272/',
+          style:
+            'background-image:url(https://img9.doubanio.com/view/subject/l/public/s29465204.jpg)',
+        },
+        {
+          name: 'The King in Yellow',
+          namecn: '黄衣王',
+          url: 'https://book.douban.com/subject/25872258/',
+          style:
+            'background-image:url(https://img9.doubanio.com/view/subject/l/public/s27265874.jpg)',
+        },
+        {
+          name: 'Die Traumdeutung',
+          namecn: '梦的解析',
+          url: 'https://book.douban.com/subject/26823033/',
+          style:
+            'background-image:url(https://img9.doubanio.com/view/subject/l/public/s28888375.jpg)',
         },
       ],
       scrolledDist: 0,
