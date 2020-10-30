@@ -32,9 +32,23 @@
           <p>
             <a
               class="watch"
+              href="https://book.douban.com/subject/26831786/"
+              target="_blank"
+              >中国震撼：一个「文明型国家」的崛起</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://book.douban.com/subject/5363767/"
+              target="_blank"
+              >三体 III：死神永生</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
               href="https://book.douban.com/subject/3066477/"
               target="_blank"
-              >三体II：黑暗森林</a
+              >三体 II：黑暗森林</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -1704,53 +1718,60 @@ export default {
     return {
       wow: [
         {
-          name: 'ド級編隊エグゼロス',
-          namecn: '弩级战队HXEROS',
-          url: 'https://bgm.tv/subject/293648',
+          name: '呪術廻戦',
+          namecn: '咒术回战',
+          url: 'https://bgm.tv/subject/294993',
           style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/be/48/293648_CMRc5.jpg)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/294993_JrrzK.jpg?w=1280&fmt=webp)',
         },
         {
-          name: 'モンスター娘のお医者さん',
-          namecn: '魔物娘的医生',
-          url: 'https://bgm.tv/subject/294654',
+          name: 'トニカクカワイイ',
+          namecn: '总之就是非常可爱',
+          url: 'https://bgm.tv/subject/301541',
           style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/dd/0d/294654_ca6tM.jpg)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/301541_p2z4K.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '中二病でも恋がしたい！戀',
-          namecn: '中二病也要谈恋爱！恋',
-          url: 'https://bgm.tv/subject/72942',
+          name: '魔王城でおやすみ',
+          namecn: '在魔王城说晚安',
+          url: 'https://bgm.tv/subject/290426',
           style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/c8/e4/72942_VniXv.jpg)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/290426_z4GRp.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '斉木楠雄のΨ難 第2期',
-          namecn: '齐木楠雄的灾难 第二季',
-          url: 'https://bgm.tv/subject/204027',
+          name: '神様になった日',
+          namecn: '成神之日',
+          url: 'https://bgm.tv/subject/306429',
           style:
-            'background-image:url(https://lain.bgm.tv/pic/cover/l/37/08/204027_irnYl.jpg)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/306429_aIAux.jpg?w=1280&fmt=webp)',
         },
         {
-          name: 'A Song of Ice and Fire',
-          namecn: '冰与火之歌 卷一',
-          url: 'https://book.douban.com/subject/27059272/',
+          name: 'ひぐらしのなく頃に 業',
+          namecn: '寒蝉鸣泣之时 业',
+          url: 'https://bgm.tv/subject/297969',
           style:
-            'background-image:url(https://img9.doubanio.com/view/subject/l/public/s29465204.jpg)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/297969_Cn5jJ.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: 'アンナチュラル',
+          namecn: '非自然死亡',
+          url: 'https://book.douban.com/subject/27140017/',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/p2510604929.jpg?w=1280&fmt=webp)',
         },
         {
           name: 'The King in Yellow',
-          namecn: '黄衣王',
-          url: 'https://book.douban.com/subject/25872258/',
+          namecn: '与神对话 第一卷',
+          url: 'https://book.douban.com/subject/3834938/',
           style:
-            'background-image:url(https://img9.doubanio.com/view/subject/l/public/s27265874.jpg)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/s3869558.jpg?w=1280&fmt=webp)',
         },
         {
           name: 'Die Traumdeutung',
           namecn: '梦的解析',
           url: 'https://book.douban.com/subject/26823033/',
           style:
-            'background-image:url(https://img9.doubanio.com/view/subject/l/public/s28888375.jpg)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/s28888375.jpg?w=1280&fmt=webp)',
         },
       ],
       scrolledDist: 0,
