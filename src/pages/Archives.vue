@@ -224,4 +224,22 @@ export default {
     }
   }
 }
+#back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  z-index: 100;
+  cursor: pointer;
+}
+#back-to-top-icon {
+  font-size: 1.1em;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

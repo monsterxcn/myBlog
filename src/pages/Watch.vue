@@ -1760,7 +1760,7 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/p2510604929.jpg?w=1280&fmt=webp)',
         },
         {
-          name: 'The King in Yellow',
+          name: 'Conversations with God Book One',
           namecn: '与神对话 第一卷',
           url: 'https://book.douban.com/subject/3834938/',
           style:

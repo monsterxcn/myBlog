@@ -6,7 +6,6 @@ on:
   #   types: 
   #     - completed
   workflow_dispatch:
-    ref: refs/heads/master
 
 jobs:
   README:
