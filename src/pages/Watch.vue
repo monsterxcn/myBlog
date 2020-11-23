@@ -32,6 +32,13 @@
           <p>
             <a
               class="watch"
+              href="https://book.douban.com/subject/26352270/"
+              target="_blank"
+              >「三体」中的物理学</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
               href="https://book.douban.com/subject/26831786/"
               target="_blank"
               >中国震撼：一个「文明型国家」的崛起</a
@@ -61,6 +68,27 @@
 
           <h3 id="次元碰撞の贰"><a href="#次元碰撞の贰"></a>次元碰撞の贰</h3>
           <p>
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/185762"
+              target="_blank"
+              >政宗君的复仇</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://bgm.tv/subject/291286"
+              target="_blank"
+              >姜子牙</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/168891"
+              target="_blank"
+              >漫画 鬼灭之刃</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch"
               href="https://bgm.tv/subject/292222"
@@ -204,6 +232,13 @@
               href="https://bgm.tv/subject/200704"
               target="_blank"
               >烟花</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://bgm.tv/subject/231261"
+              target="_blank"
+              >哪吒之魔童降世</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -1028,13 +1063,6 @@
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch good"
-              href="https://movie.douban.com/subject/26794435/"
-              target="_blank"
-              >哪吒之魔童降世</a
-            >
-            &nbsp;&nbsp;/&nbsp;&nbsp;
-            <a
-              class="watch good"
               href="https://movie.douban.com/subject/1295038/"
               target="_blank"
               >哈利·波特 × 8</a
@@ -1746,11 +1774,25 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/306429_aIAux.jpg?w=1280&fmt=webp)',
         },
         {
-          name: 'ひぐらしのなく頃に 業',
-          namecn: '寒蝉鸣泣之时 业',
-          url: 'https://bgm.tv/subject/297969',
+          name: '進撃の巨人',
+          namecn: '进击的巨人漫画',
+          url: 'https://bgm.tv/subject/8491',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/297969_Cn5jJ.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/8491_cwCVC.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '呪術廻戦',
+          namecn: '咒术回战漫画',
+          url: 'https://bgm.tv/subject/238887',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/238887_mohh8.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '彼女、お借りします',
+          namecn: '租借女友漫画',
+          url: 'https://bgm.tv/subject/217598',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/217598_HJ7jJ.jpg?w=1280&fmt=webp)',
         },
         {
           name: 'アンナチュラル',
