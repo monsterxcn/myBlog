@@ -27,16 +27,13 @@ jobs:
         run: npm install
       - name: Build Statics
         run: npm run build
-      - name: Setup OSSUtil
-        uses: manyuanrong/setup-ossutil@v1.0
-        with:
-          endpoint: "oss-cn-shanghai.aliyuncs.com"
-          access-key-id: ${{ secrets.ALIOSS_ACCESSKEYID }}
-          access-key-secret: ${{ secrets.ALIOSS_ACCESSKEYSECRET }}
       - name: Deploy Statics
-        run: |
-          ossutil rm -r -f oss://msxblog/
-          ossutil cp -r -u dist oss://msxblog
+        uses: go-choppy/ossutil-github-action@master
+        with:
+          ossArgs: 'cp -r -u dist oss://msxblog'
+          accessKey: ${{ secrets.ALIOSS_ACCESSKEYID }}
+          accessSecret: ${{ secrets.ALIOSS_ACCESSKEYSECRET }}
+          endpoint: oss-cn-shanghai.aliyuncs.com
 
   Branch_gh-pages:
     runs-on: ubuntu-latest

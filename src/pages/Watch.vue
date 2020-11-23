@@ -76,7 +76,7 @@
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
-              class="watch good"
+              class="watch"
               href="https://bgm.tv/subject/291286"
               target="_blank"
               >姜子牙</a
