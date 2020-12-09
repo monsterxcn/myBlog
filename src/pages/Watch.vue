@@ -495,6 +495,13 @@
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
             <a
+              class="watch good"
+              href="https://movie.douban.com/subject/30444960/"
+              target="_blank"
+              >信条</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch"
               href="https://movie.douban.com/subject/1309115/"
               target="_blank"
@@ -1746,18 +1753,18 @@ export default {
     return {
       wow: [
         {
+          name: '進撃の巨人 The Final Season',
+          namecn: '进击的巨人 最终季',
+          url: 'https://bgm.tv/subject/285666',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/285666_q9f05.jpg?w=1280&fmt=webp)',
+        },
+        {
           name: '呪術廻戦',
           namecn: '咒术回战',
           url: 'https://bgm.tv/subject/294993',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/294993_JrrzK.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: 'トニカクカワイイ',
-          namecn: '总之就是非常可爱',
-          url: 'https://bgm.tv/subject/301541',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/301541_p2z4K.jpg?w=1280&fmt=webp)',
         },
         {
           name: '魔王城でおやすみ',
@@ -1772,6 +1779,13 @@ export default {
           url: 'https://bgm.tv/subject/306429',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/306429_aIAux.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: 'トニカクカワイイ',
+          namecn: '总之就是非常可爱',
+          url: 'https://bgm.tv/subject/301541',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/301541_p2z4K.jpg?w=1280&fmt=webp)',
         },
         {
           name: '進撃の巨人',
@@ -1800,6 +1814,13 @@ export default {
           url: 'https://book.douban.com/subject/27140017/',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/p2510604929.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '带上她的眼睛',
+          namecn: '带上她的眼睛',
+          url: 'https://book.douban.com/subject/26990639/',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/s29384843.jpg?w=1280&fmt=webp)',
         },
         {
           name: 'Conversations with God Book One',
