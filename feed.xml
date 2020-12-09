@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Monstx's Blog</title>
-        <link>https://blog.monsterx.cn/</link>
-        <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Mon, 23 Nov 2020 12:26:10 GMT</lastBuildDate>
-        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-        <generator>Gridsome Feed Plugin</generator>
-        <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
-        <item>
-            <title><![CDATA[手帐 · 封锁之下]]></title>
-            <link>https://blog.monsterx.cn/life/heu-in-amazing-walls/</link>
-            <guid>https://blog.monsterx.cn/life/heu-in-amazing-walls/</guid>
-            <pubDate>Wed, 30 Sep 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>本来 22 日打算就学校疫情防控下某一奇幻行为发表批评的声音，结果由于一些个人原因稿子写了一半放弃了。今天看到自己冷清的博客心里有点失落，索性将旧的手稿改写成一篇手帐。</p>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.monsterx.cn/</id>
+    <title>Monstx's Blog</title>
+    <updated>2020-12-09T03:44:27.370Z</updated>
+    <generator>Gridsome Feed Plugin</generator>
+    <link rel="alternate" href="https://blog.monsterx.cn/"/>
+    <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
+    <subtitle>Monsterx CN - 学生 / 前端 / 电气</subtitle>
+    <entry>
+        <title type="html"><![CDATA[手帐 · 封锁之下]]></title>
+        <id>https://blog.monsterx.cn/life/heu-in-amazing-walls/</id>
+        <link href="https://blog.monsterx.cn/life/heu-in-amazing-walls/"/>
+        <updated>2020-09-30T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>本来 22 日打算就学校疫情防控下某一奇幻行为发表批评的声音，结果由于一些个人原因稿子写了一半放弃了。今天看到自己冷清的博客心里有点失落，索性将旧的手稿改写成一篇手帐。</p>
 <h2 id="生活">生活</h2>
 <p>开学接近一个月，我正逐渐习惯在学校尚未解封的情况下生活。</p>
 <p>封校对我而言其实并没有什么太大的影响，网购的东西依旧能送到菜鸟驿站，衣食住行基本都有解决的办法。只不过点外卖变麻烦了、不能和朋友出校聚餐、看热门电影了。乐观点，这些封锁倒是让我省下了不少生活费，在学习上花的功夫也前所未有的多了（当然也不排除我想到毕业时的焦虑情绪影响）。一个月的时间，我需要准备因疫情延误的上学期期末考试，其中的后两个月备考同时还需要学麻烦的专业课程。室友说考研大概就是这种感觉吧，每天都要在崩溃边缘挣扎。于我而言倒也没有那么夸张，因为一些实在是难懂的专业选修课我干脆抛开了。我每天不用考虑吃什么、去哪里，早晨起床就去食堂喝一碗朴素的粥，接着在图书馆、教学楼找位置看书。上午结束了就再去食堂找个人少的窗口打点饭菜，狼吞虎咽吃完回寝室休息一会，又接着开始一下午的耕耘。晚饭也是和中午一样，但是会换个窗口换个口味。晚上接着去白天学习的位置，9 点多回寝室唠唠嗑、看看稀奇古怪的应用推送，洗脚睡觉！当然这是最理想的情况，实际我还有一些时间花在了睡觉和发呆上。</p>
@@ -33,14 +32,14 @@
 <p>借到三体第一部之后一天我把所有的复习工作都推了，一心读三体，驰骋在浩瀚宇宙中希望有一天自己也能到达那里。第一部读完之后我立刻去借了第二部并且以更甚的热情读完了，罗辑的那句「我对三体世界说话」真是太震撼了！最后一章，人类面对比自己强大无数倍的三体世界几乎没有丝毫战胜的希望，唯一的面壁人罗辑作为最后希望也失去了人类的信任，但即使这样被人类驱逐的罗辑还是扭转了局势建立「威慑」。这一部中刘大对宇宙文明法则的思考我觉得堪比阿西莫夫机器人三大定律，太神了！如我在众多日漫中力推《进击的巨人》一样，《三体》也将是我在科幻文学的前排推荐。</p>
 <p>第三部在图书馆没有借到，我便借了另外一些书，比如《冰与火之歌》《梦的解析》《黄衣王》。《冰与火之歌》是 HBO 权游的原著，《梦的解析》大概是每个心理学学者必读书籍，《黄衣王》大概是和「克苏鲁」一个范畴的小说。其实还打算借猫腻的《庆余年》和紫金陈的《长夜难明》，但这两本都借不到，估计是改编电视剧热播带动的吧。</p>
 <p>我真恨，为什么前两年花了那么多时间在看无意义的视频上？</p>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[为 Gridsome 添加 Artalk 自托管评论系统]]></title>
-            <link>https://blog.monsterx.cn/code/use-self-hosted-comment-system-in-gridsome/</link>
-            <guid>https://blog.monsterx.cn/code/use-self-hosted-comment-system-in-gridsome/</guid>
-            <pubDate>Fri, 21 Aug 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>本文介绍在 Gridsome 博客中启用 Artalk 自托管评论系统的方法。欢迎尝试这款小众的、漂亮的评论系统！</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[为 Gridsome 添加 Artalk 自托管评论系统]]></title>
+        <id>https://blog.monsterx.cn/code/use-self-hosted-comment-system-in-gridsome/</id>
+        <link href="https://blog.monsterx.cn/code/use-self-hosted-comment-system-in-gridsome/"/>
+        <updated>2020-08-21T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>本文介绍在 Gridsome 博客中启用 Artalk 自托管评论系统的方法。欢迎尝试这款小众的、漂亮的评论系统！</p>
 <p>刚开这个小站时打算一劳永逸吃上 Disqus 这块香饽饽，结果没两天我的宝贝室友就跟我说：你站怎么没法评论啊？我深思熟虑之后决定还是不用 Disqus 了。换 Gitalk？不行不行，Gitalk 虽好但是每一个新站点都需要 GitHub 账号授权一次，而且国内访问也体验不佳。Valine 之流我不太喜欢，其他的评论系统我都不甚了解。那该何去何从呢？</p>
 <h2 id="选择-artalk-的理由">选择 Artalk 的理由</h2>
 <p>由于水平不足，我是没法自己写一个评论系统的，于是我决定在友链 <a href="https://qwqaq.com/">@QWQAQ</a> 和 <a href="https://www.ouorz.com/">@TonyHe</a> 两位大佬的两个评论系统里选一个，要知道缝合代码、借用轮子这种事我最擅长了。那么是用 <a href="https://github.com/qwqcode/Artalk">@qwqcode/Artalk</a> 还是 <a href="https://github.com/HelipengTony/nexment">@HelipengTony/nexment</a> 呢？</p>
@@ -272,14 +271,14 @@ query Post ($id: ID!) {
 使用别人的后端存在一些不足之处：邮件模板、发信设置只能使用搭建者的，目前 Artalk 对多站点的支持尚不完整。<br />
 担心引用本站后端存在数据安全或其他问题可以尝试自行搭建。<del>以后有空可能写一篇 Docker Artalk PHP 后端的文。</del> 如果对上述内容有问题欢迎留言。</p>
 </blockquote>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[GitHub README.md 显示博文并自动更新]]></title>
-            <link>https://blog.monsterx.cn/code/update-your-posts-in-readme/</link>
-            <guid>https://blog.monsterx.cn/code/update-your-posts-in-readme/</guid>
-            <pubDate>Tue, 18 Aug 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 <code>README.md</code> 就可以在 GitHub 个人主页上看到其内容。比起单纯的固定仓库或 Gist 在个人主页，我觉得这会让 GitHub 主页变得更多姿多彩，戳官方 <a href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">文档</a> 了解更多。然而，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也只是满足下自己的虚荣心而已，能力提升微乎其微。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GitHub README.md 显示博文并自动更新]]></title>
+        <id>https://blog.monsterx.cn/code/update-your-posts-in-readme/</id>
+        <link href="https://blog.monsterx.cn/code/update-your-posts-in-readme/"/>
+        <updated>2020-08-18T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>今年 GitHub 推出了 profile-level README 的新特性，只要新建与用户名同名仓库并创建 <code>README.md</code> 就可以在 GitHub 个人主页上看到其内容。比起单纯的固定仓库或 Gist 在个人主页，我觉得这会让 GitHub 主页变得更多姿多彩，戳官方 <a href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">文档</a> 了解更多。然而，像我这种菜鸟想了很久都没有想清楚在个人主页上到底写点什么，拿得出手的项目是不存在的，刷 commit 也只是满足下自己的虚荣心而已，能力提升微乎其微。</p>
 <p>这段时间看了很多个人介绍仓库之后，发现我想多了：GitHub 是什么？<del>全球最大的同性交友网站啊！</del> 又不是世纪佳缘，写得漂亮能找着对象吗？开心就好，介绍下自己，放张关于自己仓库的小卡片，留点 E-mail Twitter 之外更丰富的社交链接，这个 <code>README.md</code> 就达标辣！（靠 GitHub 找工作的话那当我没说。</p>
 <p>单单写 READMD 没什么好记录的，本文就记录一下自己为了让 README 稍稍有点逼格，制作「从 RSS 获取最近更新并以 Markdown 格式写入 README」功能的经过吧。毕竟对于萌新我来说，做出点有意思的东西是很有成就感的。</p>
 <blockquote>
@@ -687,14 +686,14 @@ jobs:
 </blockquote>
 <p>[^1]: 《<a href="https://docs.python.org/zh-cn/3/library/re.html#re.sub">re --- 正则表达式操作 --- re.sub - Python 3 中文文档</a>》
 [^2]: GitHub 仓库地址 <a href="https://github.com/monsterxcn/monsterxcn">@monsterxcn/monsterxcn</a></p>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[新起点 × 博客中文排版]]></title>
-            <link>https://blog.monsterx.cn/life/new-start-with-gridsome/</link>
-            <guid>https://blog.monsterx.cn/life/new-start-with-gridsome/</guid>
-            <pubDate>Sat, 15 Aug 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>在这普通的一天，我穿着普通的鞋，很普通地呆在这普通的家，掏出普通的耳机，找点普通的感觉，来一首我最爱的普通音乐，踩着普通的鼓点，世界随着我旋转，这让我普通地单曲循环，跟着普通的节奏，手腕普通地抖动，这普通的一切，都变得不同……</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[新起点 × 博客中文排版]]></title>
+        <id>https://blog.monsterx.cn/life/new-start-with-gridsome/</id>
+        <link href="https://blog.monsterx.cn/life/new-start-with-gridsome/"/>
+        <updated>2020-08-15T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>在这普通的一天，我穿着普通的鞋，很普通地呆在这普通的家，掏出普通的耳机，找点普通的感觉，来一首我最爱的普通音乐，踩着普通的鼓点，世界随着我旋转，这让我普通地单曲循环，跟着普通的节奏，手腕普通地抖动，这普通的一切，都变得不同……</p>
 <h2 id="新的平台">新的平台</h2>
 <p>博客稳定两周年之际，我正式从动态博客迁移至静态博客，如你所见这个博客正由 <a href="https://gridsome.org">Gridsome</a> 驱动着。「Gridsome 是一个免费、开源、基于 Vue.js 构建的框架，用 Gridsome 创建的网站和应用程序具有天然的速度优势」，身边用 <a href="https://hexo.io">Hexo</a> 的人似乎太多了，喜欢尝试小众作品的我选择了 Gridsome。除此之外，似乎是从给旧站点加了 Statusbot <a href="https://status.monsterx.cn">状态监控</a> 开始站内垃圾评论数量陡增，一直在用 Typecho 原生评论的我实在顶不住，评论拦截插件虽然也有，但都不太能满足我的需求，索性换个评论系统加入大家都说好的 Disqus 大家族了。</p>
 <p>使用 Disqus 的痛处其一是评论数据同步，手动导入了两篇文章的数据之后发现评论区头像都无法显示，网上的解决方案似乎得购买 Disqus 商业套餐。其二是国内用户上网环境不佳便无法评论，向来冷清的本站雪上加霜，以后可能会考虑在国内服务器上继续部署 <a href="https://lab.mocurio.com/artalk.html">Artalk</a> 评论系统以供 <del>小部分人的需求</del> 自娱自乐。</p>
@@ -747,14 +746,14 @@ jobs:
 <p>除去这些规定，在文章的分类和标签上我也相较原来的 Typecho 博客做了些精简。分类目前想法是只保留 <a href="https://blog.monsterx.cn/category/life">life</a> <a href="https://blog.monsterx.cn/category/code">code</a> <a href="https://blog.monsterx.cn/category/tech">tech</a> 三类，分别用来保留筛选后关于「记录生活的手帐、站点杂务」「写代码的探索和思考」「学习某些技术、使用轮子的日志」的内容。每篇文章的标签保持精简，写完整篇文章后提取两到三个关键词作为标签。</p>
 <p>做完这些剩下的就是提升自身水平了……</p>
 <h2 id="keep-moving">Keep moving...</h2>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[从零开始的追番生活]]></title>
-            <link>https://blog.monsterx.cn/tech/auto-download-bangumi-with-aria2-rss/</link>
-            <guid>https://blog.monsterx.cn/tech/auto-download-bangumi-with-aria2-rss/</guid>
-            <pubDate>Tue, 28 Jul 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>最近觉得为了偶尔看看电影动漫而续费腾讯视频会员太吃亏了，一个月四集的《斗罗大陆》水得不行啊喂！哔哩哔哩大会员也是如此，有的时候我在这头，想看的番剧在那头，每次都要科学上网才能解锁，属实费劲。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[从零开始的追番生活]]></title>
+        <id>https://blog.monsterx.cn/tech/auto-download-bangumi-with-aria2-rss/</id>
+        <link href="https://blog.monsterx.cn/tech/auto-download-bangumi-with-aria2-rss/"/>
+        <updated>2020-07-28T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>最近觉得为了偶尔看看电影动漫而续费腾讯视频会员太吃亏了，一个月四集的《斗罗大陆》水得不行啊喂！哔哩哔哩大会员也是如此，有的时候我在这头，想看的番剧在那头，每次都要科学上网才能解锁，属实费劲。</p>
 <p>想了想自己闲置的服务器和最近开通的 Microsoft 365 E5 开发者订阅，我决定自己动手，部署一套更省钱的追番流程。最初是这样一套笨笨的追番流程：「bangumi.moe 等种子站找资源 -&gt; 服务器 Aria2 下载 -&gt; Rclone + Aria2 联动将内容转移到云盘 -&gt; 云盘网页下载」。但是这样一来科学上网工具的流量开销比较大，而且也完全称不上自动。后来我发现 Windows 系统打开 OneDrive 文件夹同步就可以免去手动登录网页下载，于是我从之前的 Google Drive 迁移到 OneDrive，这样一来流程的后两步就合并了。如何让前两步合并呢？一番搜索之后我找到了 FlexGet 这个 Python 编写的工具，众多插件使得 FlexGet 在 RSS 订阅下载上大放异彩。本文便记录这一部署过程。</p>
 <h2 id="rclone">Rclone</h2>
 <p>Rclone 用于网盘挂载，从 <a href="https://rclone.org/downloads/">官方</a> 下载安装，按照命令行提示输入后得到配置文件 <code>rclone.conf</code>（后续使用），路径一般为 <code>~/.config/rclone/rclone.conf</code>。</p>
@@ -996,14 +995,14 @@ crontab -e
 
 
 <p>[^1]: <a href="https://flexget.com/">FlexGet Official website</a></p>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[照葫芦画瓢 · 编写 Actions 打卡工作流]]></title>
-            <link>https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/</link>
-            <guid>https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/</guid>
-            <pubDate>Tue, 30 Jun 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>昨天逛博客看到了使用 GitHub Actions 定时调用 Microsoft 365 E5 API 以帮助续订的文章，我转念一想这是不是也可以用来跑定时任务打卡呢？说干就干我开了一个小的坑：用 GitHub Actions 跑之前写的 Python 打卡脚本。无意薅羊毛，只是希望通过一点学习将自己的想法实现。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[照葫芦画瓢 · 编写 Actions 打卡工作流]]></title>
+        <id>https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/</id>
+        <link href="https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/"/>
+        <updated>2020-06-30T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>昨天逛博客看到了使用 GitHub Actions 定时调用 Microsoft 365 E5 API 以帮助续订的文章，我转念一想这是不是也可以用来跑定时任务打卡呢？说干就干我开了一个小的坑：用 GitHub Actions 跑之前写的 Python 打卡脚本。无意薅羊毛，只是希望通过一点学习将自己的想法实现。</p>
 <h2 id="照葫芦环节">照葫芦环节</h2>
 <p>参考项目 <a href="https://github.com/wangziyingwen/AutoApiSecret">@wangziyingwen/AutoApiSecret</a> 的 <a href="https://github.com/wangziyingwen/AutoApiSecret/blob/master/.github/workflows/autoapi.yml">autoapi.yml</a>，搞懂了这一流程：</p>
 <ol>
@@ -1186,14 +1185,14 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 </ul>
 <p>深层次的原因嘛，大概是怠惰吧！</p>
 <p>GitHub Actions 妙用多多，之前关注过一个博客 <a href="https://p3terx.com/">@P3TERX ZONE</a> 里写了挺多关于 GitHub Actions 的文章，有时间的话要去学习学习！</p>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[手帐 · 常]]></title>
-            <link>https://blog.monsterx.cn/life/daily-impermanence/</link>
-            <guid>https://blog.monsterx.cn/life/daily-impermanence/</guid>
-            <pubDate>Mon, 18 May 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>最近的日子过得忙碌，五味杂陈。这种状态持续了多久呢……</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[手帐 · 常]]></title>
+        <id>https://blog.monsterx.cn/life/daily-impermanence/</id>
+        <link href="https://blog.monsterx.cn/life/daily-impermanence/"/>
+        <updated>2020-05-18T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>最近的日子过得忙碌，五味杂陈。这种状态持续了多久呢……</p>
 <h2 id="生活">生活</h2>
 <p>大概疫情开始后我的生活就变了吧，刚开始时是铺天盖地的谣言与辟谣，以及每日新增的新闻，我想：像我这种从不门、连屋子都懒得出去的人来说唯一能让我动弹的只有快递和外卖，而现在只剩快递。心里默默计划的返校从 4 月拖到 5 月，眼下看来还要继续拖到 6 月，而原本计划返校再做的一些事不得不在家里完成，比如补考。嗯，在家学习的感觉不算太差也不算太好，前半句是因为我不再需要从众，没必要做样子给谁看；后半句则是因为在家也免不了走神，课上着上着就想到了浏览器，今天 Feedly 的朋友们又整什么活了吗 / GayHub 的朋友们又发现了什么新奇玩意儿吗？</p>
 <p>也许让疫情背锅也不对，从安卓换到苹果之后生活改变了许多。自从一加 5 不再工作，我换上了一年前买给妈妈备用的 iPhone 6s，在这个三摄四摄呼风唤雨、苹果华为针尖麦芒的时代，手里握着这轻巧的 6s 可谓复古了。折腾了许久，翻越高墙的梦想还是不能在 6s 上实现，想了想被我刷成白苹果的 i7 我还是不再考虑瞎折腾了，翻什么翻？憋着！用惯了 Android 的我看来 iOS 还是不适合我，最让我头疼的是复制文件居然还必须走 iTunes，啊这？也许正是这些不习惯，让我戒掉了对手机的过度依赖，然后，转向了对电脑的过度依赖。在家有网有电，不像在宿舍玩到正尽兴时断网断电了，我的电脑也渐渐开始像一台服务器一样工作，白天网课、浏览器、VSCode，夜晚下载、挂机、自动更新，只有我哪天突然心疼本本了才会选择让他重启。原来花在手机游戏上的时间开始成为我瞎折腾的资本，这段时间除了上网课的时间我几乎都花在了浏览网页和写 Bug 上。重拾 C 语言，看看 Python，学学 CSS 和 JavaScript，想干啥就干啥，不像在宿舍。在宿舍里写代码有一种异类的感觉，我更希望大家在寝室一起联机快乐，而不是我在做着他们都不理解的事情然后他们发出不明所以的吹捧「牛逼啊」。</p>
@@ -1219,14 +1218,14 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 <p>写完再看一遍觉得结构实在是糟糕，但是又不知道从何理出一条线索来，索性就着 Markdown 标题简单提炼了一下。脑袋里装的稀奇古怪的想法没有什么人值得我倾诉，家人亦是如此，所以还是写到博客里痛快。以前手写日记的感觉很难再找到了，敲击键盘比拿出纸笔似乎更加容易，尽管如此我还是不知道下一次日记会写在什么时候。一切随缘吧！</p>
 <p>[^1]: 《<a href="https://blog.imalan.cn/archives/247/">VOID：现在可以公开的情报 - 无文字|三无计划</a>》
 [^2]: <a href="https://beyondstars.xyz/">@探索子</a> <a href="https://www.mina.moe/">@MiNa!</a> <a href="https://blog.ichr.me/">@ChrAlpha 的幻想乡</a></p>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[Mark 并调试 HEU 自动打卡代码]]></title>
-            <link>https://blog.monsterx.cn/code/heu-auto-checkin-covid19/</link>
-            <guid>https://blog.monsterx.cn/code/heu-auto-checkin-covid19/</guid>
-            <pubDate>Sun, 05 Apr 2020 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<p>最近这几天又不知道干点啥，天天上课累死了，前面的还没掌握就又要接新的知识，真是太难了。心血来潮想好好学一下 JavaScript 什么的前端基础，找资料逛博客的时候碰巧发现了一个学长的博客，看到《<a href="https://zjw1.top/2020/03/10/auto_checkin_during_covid19_and_cas_sso_learning/">疫情期间自动健康打卡暨 CAS 单点登录认证实践 - SiteForZJW</a>》这篇文章，常年起不来床的我赶紧点开了，啊啊啊我为什么没有早点发现这种好东西啊，生气。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mark 并调试 HEU 自动打卡代码]]></title>
+        <id>https://blog.monsterx.cn/code/heu-auto-checkin-covid19/</id>
+        <link href="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/"/>
+        <updated>2020-04-05T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>最近这几天又不知道干点啥，天天上课累死了，前面的还没掌握就又要接新的知识，真是太难了。心血来潮想好好学一下 JavaScript 什么的前端基础，找资料逛博客的时候碰巧发现了一个学长的博客，看到《<a href="https://zjw1.top/2020/03/10/auto_checkin_during_covid19_and_cas_sso_learning/">疫情期间自动健康打卡暨 CAS 单点登录认证实践 - SiteForZJW</a>》这篇文章，常年起不来床的我赶紧点开了，啊啊啊我为什么没有早点发现这种好东西啊，生气。</p>
 <p>第一次看的时候了解到这个 Python 代码要自己先手动执行一边获取表单数据。Emmm，那是啥，好像不太了解呢，先 Mark 了！</p>
 <h2 id="python-和依赖">Python 和依赖</h2>
 <p>什么？你说这个年头还有人电脑上没装 Python？なんと！</p>
@@ -1576,6 +1575,13 @@ crontab -e
 # :wq 保存并退出</code></pre>
 <p>Windows 下按 <code>win</code> 搜索“任务计划程序”调出菜单，然后在右栏选择创建基础任务。跟着创建基本任务向导的指示一步一步来就好了，「触发器 -&gt; 每日」设置时间推荐避开 6:00 腐败街预约打卡的高峰，8:00 就不错。「操作 -&gt; 启动程序」的程序或脚本项按下面格式填写。</p>
 <p><img src="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/images/post/heu-autotask.png" alt="Windows 定时任务设置"></p>
+<p>Okay，睡个回笼觉庆祝一下 🥳..</p>
+<blockquote>
+<p>查看《<a href="https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/">照葫芦画瓢 · 编写 Actions 打卡工作流</a>》了解 GitHub Actions 版本。</p>
+</blockquote>
+]]></content>
+    </entry>
+</feed>/blog.monsterx.cn/code/heu-auto-checkin-covid19/images/post/heu-autotask.png" alt="Windows 定时任务设置"></p>
 <p>Okay，睡个回笼觉庆祝一下 🥳..</p>
 <blockquote>
 <p>查看《<a href="https://blog.monsterx.cn/tech/modified-github-actions-4-heu-checkin/">照葫芦画瓢 · 编写 Actions 打卡工作流</a>》了解 GitHub Actions 版本。</p>
