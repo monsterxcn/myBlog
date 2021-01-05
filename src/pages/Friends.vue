@@ -233,35 +233,17 @@ export default {
           style: 'color: #FFF; background-color: #bd6363',
         },
         {
-          id: '哔哩哔哩',
-          link: 'https://blog.csdn.net/qq_43690756',
-          avatar: 'https://cdn.monsterx.cn/logo.lhw.jpg.webp',
-          style: 'color: #FFF; background-color: #e33e33',
-        },
-        {
           id: 'Acetyl',
           link: 'https://blog.acetyl.me',
           avatar: 'https://cdn.monsterx.cn/logo.ylwsqq.jpg.webp',
           style: 'color: #FFF; background-color: #3f51b5',
         },
         {
-          id: '九猫',
-          link: 'https://hydrcat.github.io',
-          avatar: 'https://cdn.monsterx.cn/logo.mh.png.webp',
-          style: 'color: #FFF; background-color: #1e87f0',
-        },
-        {
           id: '独清独醒',
           link: 'https://www.foreverlong.cn',
           avatar: 'https://cdn.monsterx.cn/logo.dqfavicon.ico.webp',
           style: 'color: #FFF; background-color: #00a2ff',
-        },
-        {
-          id: 'Ste.Sun',
-          link: 'https://stevesun.cn',
-          avatar: 'https://cdn.monsterx.cn/logo.sunq.jpg.webp',
-          style: 'color: #FFF; background-color: #d274cd',
-        },
+        }
       ],
       scrolledDist: 0,
     }
