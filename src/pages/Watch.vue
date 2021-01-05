@@ -32,6 +32,20 @@
           <p>
             <a
               class="watch"
+              href="https://book.douban.com/subject/26990639/"
+              target="_blank"
+              >带上她的眼睛</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://book.douban.com/subject/3834938/"
+              target="_blank"
+              >与神对话 第一卷</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
               href="https://book.douban.com/subject/26352270/"
               target="_blank"
               >「三体」中的物理学</a
@@ -68,6 +82,55 @@
 
           <h3 id="次元碰撞の贰"><a href="#次元碰撞の贰"></a>次元碰撞の贰</h3>
           <p>
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/306429"
+              target="_blank"
+              >成神之日</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/301541"
+              target="_blank"
+              >总之就是非常可爱</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/289101"
+              target="_blank"
+              >天官赐福</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/218711"
+              target="_blank"
+              >DARLING in the FRANXX</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://bgm.tv/subject/290426"
+              target="_blank"
+              >在魔王城说晚安</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/94244"
+              target="_blank"
+              >斩·赤红之瞳！</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://bgm.tv/subject/291494"
+              target="_blank"
+              >鬼灭之刃 无限列车篇</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch"
               href="https://bgm.tv/subject/185762"
@@ -454,6 +517,13 @@
               href="https://bgm.tv/subject/120187"
               target="_blank"
               >干物妹！小埋 × 2</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://bgm.tv/subject/265554"
+              target="_blank"
+              >白蛇：缘起</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -1146,13 +1216,6 @@
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
-              class="watch good"
-              href="https://movie.douban.com/subject/30331149/"
-              target="_blank"
-              >白蛇：缘起</a
-            >
-            &nbsp;&nbsp;/&nbsp;&nbsp;
-            <a
               class="watch"
               href="https://movie.douban.com/subject/4840388/"
               target="_blank"
@@ -1767,25 +1830,25 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/294993_JrrzK.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '魔王城でおやすみ',
-          namecn: '在魔王城说晚安',
-          url: 'https://bgm.tv/subject/290426',
+          name: 'キミと僕の最後の戦場、あるいは世界が始まる聖戦',
+          namecn: '你与我最后的战场，亦或是世界起始的圣战',
+          url: 'https://bgm.tv/subject/292273',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/290426_z4GRp.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/292273_Nxf0x.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '神様になった日',
-          namecn: '成神之日',
-          url: 'https://bgm.tv/subject/306429',
+          name: '100万の命の上に俺は立っている',
+          namecn: '我立于百万生命之上',
+          url: 'https://bgm.tv/subject/301469',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/306429_aIAux.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/301469_cPTHi.jpg?w=1280&fmt=webp)',
         },
         {
-          name: 'トニカクカワイイ',
-          namecn: '总之就是非常可爱',
-          url: 'https://bgm.tv/subject/301541',
+          name: '魔女の旅々',
+          namecn: '魔女之旅',
+          url: 'https://bgm.tv/subject/292970',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/301541_p2z4K.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/292970_mxMxx.jpg?w=1280&fmt=webp)',
         },
         {
           name: '進撃の巨人',
@@ -1807,35 +1870,7 @@ export default {
           url: 'https://bgm.tv/subject/217598',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/217598_HJ7jJ.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: 'アンナチュラル',
-          namecn: '非自然死亡',
-          url: 'https://book.douban.com/subject/27140017/',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/p2510604929.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '带上她的眼睛',
-          namecn: '带上她的眼睛',
-          url: 'https://book.douban.com/subject/26990639/',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/s29384843.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: 'Conversations with God Book One',
-          namecn: '与神对话 第一卷',
-          url: 'https://book.douban.com/subject/3834938/',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/s3869558.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: 'Die Traumdeutung',
-          namecn: '梦的解析',
-          url: 'https://book.douban.com/subject/26823033/',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/s28888375.jpg?w=1280&fmt=webp)',
-        },
+        }
       ],
       scrolledDist: 0,
     }
