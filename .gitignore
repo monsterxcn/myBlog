@@ -5,5 +5,5 @@ src/.temp
 node_modules
 dist
 package-lock.json
-.env
-.env.*
+yarn.lock
+.env*

@@ -243,7 +243,7 @@ export default {
           link: 'https://www.foreverlong.cn',
           avatar: 'https://cdn.monsterx.cn/logo.dqfavicon.ico.webp',
           style: 'color: #FFF; background-color: #00a2ff',
-        }
+        },
       ],
       scrolledDist: 0,
     }

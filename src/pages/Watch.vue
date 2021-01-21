@@ -84,6 +84,13 @@
           <p>
             <a
               class="watch"
+              href="https://bgm.tv/subject/292970"
+              target="_blank"
+              >魔女之旅</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
               href="https://bgm.tv/subject/306429"
               target="_blank"
               >成神之日</a
@@ -117,10 +124,7 @@
               >在魔王城说晚安</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
-            <a
-              class="watch"
-              href="https://bgm.tv/subject/94244"
-              target="_blank"
+            <a class="watch" href="https://bgm.tv/subject/94244" target="_blank"
               >斩·赤红之瞳！</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
@@ -564,6 +568,13 @@
 
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1766086/"
+              target="_blank"
+              >太阳照常升起</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch good"
               href="https://movie.douban.com/subject/30444960/"
@@ -1830,11 +1841,32 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/294993_JrrzK.jpg?w=1280&fmt=webp)',
         },
         {
-          name: 'キミと僕の最後の戦場、あるいは世界が始まる聖戦',
-          namecn: '你与我最后的战场，亦或是世界起始的圣战',
-          url: 'https://bgm.tv/subject/292273',
+          name: '無職転生 ～異世界行ったら本気だす～',
+          namecn: '无职转生 ～在异世界认真地活下去～',
+          url: 'https://bgm.tv/subject/277554',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/292273_Nxf0x.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/277554_zkGha.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '回復術士のやり直し',
+          namecn: '回复术士的重来人生',
+          url: 'https://bgm.tv/subject/295017',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/295017_90As6.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '弱キャラ友崎くん',
+          namecn: '弱角友崎同学',
+          url: 'https://bgm.tv/subject/292527',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/292527_0G0zk.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '銀魂',
+          namecn: '银魂',
+          url: 'https://bgm.tv/subject/247',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/247_h3wfn.jpg?w=1280&fmt=webp)',
         },
         {
           name: '100万の命の上に俺は立っている',
@@ -1844,33 +1876,12 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/301469_cPTHi.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '魔女の旅々',
-          namecn: '魔女之旅',
-          url: 'https://bgm.tv/subject/292970',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/292970_mxMxx.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '進撃の巨人',
-          namecn: '进击的巨人漫画',
-          url: 'https://bgm.tv/subject/8491',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/8491_cwCVC.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '呪術廻戦',
-          namecn: '咒术回战漫画',
-          url: 'https://bgm.tv/subject/238887',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/238887_mohh8.jpg?w=1280&fmt=webp)',
-        },
-        {
           name: '彼女、お借りします',
           namecn: '租借女友漫画',
           url: 'https://bgm.tv/subject/217598',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/217598_HJ7jJ.jpg?w=1280&fmt=webp)',
-        }
+        },
       ],
       scrolledDist: 0,
     }
