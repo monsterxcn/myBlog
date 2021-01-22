@@ -1838,7 +1838,7 @@ export default {
           namecn: '咒术回战',
           url: 'https://bgm.tv/subject/294993',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/294993_JrrzK.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/294993_8o0Sa.jpg?w=1280&fmt=webp)',
         },
         {
           name: '無職転生 ～異世界行ったら本気だす～',
