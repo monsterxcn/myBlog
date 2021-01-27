@@ -84,6 +84,13 @@
           <p>
             <a
               class="watch"
+              href="https://bgm.tv/subject/301469"
+              target="_blank"
+              >我立于百万生命之上</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
               href="https://bgm.tv/subject/292970"
               target="_blank"
               >魔女之旅</a
@@ -568,6 +575,13 @@
 
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/33400537/"
+              target="_blank"
+              >我是大哥大！！剧场版</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch"
               href="https://movie.douban.com/subject/1766086/"
@@ -1848,11 +1862,11 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/277554_zkGha.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '回復術士のやり直し',
-          namecn: '回复术士的重来人生',
-          url: 'https://bgm.tv/subject/295017',
+          name: '転生したらスライムだった件 第2期',
+          namecn: '关于我转生变成史莱姆这档事 第二季',
+          url: 'https://bgm.tv/subject/278031',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/295017_90As6.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/278031_skvSD.jpg?w=1280&fmt=webp)',
         },
         {
           name: '弱キャラ友崎くん',
@@ -1862,18 +1876,18 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/292527_0G0zk.jpg?w=1280&fmt=webp)',
         },
         {
+          name: '回復術士のやり直し',
+          namecn: '回复术士的重来人生',
+          url: 'https://bgm.tv/subject/295017',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/295017_90As6.jpg?w=1280&fmt=webp)',
+        },
+        {
           name: '銀魂',
           namecn: '银魂',
           url: 'https://bgm.tv/subject/247',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/247_h3wfn.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '100万の命の上に俺は立っている',
-          namecn: '我立于百万生命之上',
-          url: 'https://bgm.tv/subject/301469',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/301469_cPTHi.jpg?w=1280&fmt=webp)',
         },
         {
           name: '彼女、お借りします',
