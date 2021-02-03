@@ -2,11 +2,186 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2021-01-27T14:07:21.386Z</updated>
+    <updated>2021-02-03T07:20:54.001Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
     <subtitle>Monsterx CN - 学生 / 前端 / 电气</subtitle>
+    <entry>
+        <title type="html"><![CDATA[猎户座 S10 5G 更新 Android 11 / Magisk / LSPosed 记录]]></title>
+        <id>https://blog.monsterx.cn/tech/flash-magisk-latest-4-sumsung-s10-5-g-exynos/</id>
+        <link href="https://blog.monsterx.cn/tech/flash-magisk-latest-4-sumsung-s10-5-g-exynos/"/>
+        <updated>2021-02-03T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>最近 <a href="https://github.com/ElderDrivers/EdXposed">@ElderDrivers/EdXposed</a> 的新分支 <a href="https://github.com/LSPosed/LSPosed">@LSPosed/LSPosed</a> 进入大众视野，听说修复了 EdXposed 随机重启的 Bug。不知道手头的 Sumsung S10 5G (Exynos 9820) 莫名其妙重启是不是相关问题，咱得先试试 LSPosed 才知道。为了在不支持直接升级 Magisk 的《<a href="http://aurorarom.cn/archives/450.html">AuroraROM Sumsung S10E/S10/S10+/5G G97XX-9820 - V17.0 Android-Q-TJA</a>》上使用 LSPosed，我需要自行集齐 Magisk v21+、Riru v23+。于是折腾了一下三星的刷机，本文介绍自用三星 S10 5G 的 Android 11 升级、Magisk in Recovery 安装、LSPosed 使用等。</p>
+<p>Android 11 的升级十分简单，刷最新的官方固件就成了。LSPosed 的安装只要解决了 Magisk 最新版本的需求也是小菜一碟。AuroraROM 不能直接在 Magisk Manager 中升级 Magisk，否则会无法开机，这一项只好自行解决。</p>
+<p>Magisk 作者 <a href="https://github.com/topjohnwu">@topjohnwu</a> 撰写了完整的安装指南在 <a href="https://topjohnwu.github.io/Magisk/install.html">这里</a>，包含了三星机型和华为机型的说明。以此文为主要参考资料进行尝试（我顺便翻译了一份简体中文的版本放在 <a href="https://github.com/monsterxcn/myBlog/wiki/Magisk-Install-zh_CN">Magisk Install zh_CN - @monsterxcn/myBlog Wiki</a>。还有一篇 XDA 论坛的参考文章是用来解决 Bootloader 解锁后开机警告信息的，《<a href="https://forum.xda-developers.com/t/boot-remove-boot-warning-all-exynos-devices-after-root-tutorial-14th-december-2020.4202627/">[BOOT] Remove Boot Warning - All Exynos Devices - After Root - Tutorial - 14th December 2020 - XDA Developers Forums</a>》。</p>
+<blockquote>
+<p>YOU are choosing to make these modifications, and if you point the finger at me for messing up your device, I will laugh at you.</p>
+</blockquote>
+<h2 id="准备">准备</h2>
+<p><strong>重要的资料务必先备份</strong>，如联系人、短信、相片、下载等。</p>
+<p>我手上这台机器是韩版使用猎户座 Exynos 9820 的 Sumsung Galaxy S10 5G，正在使用的 ROM 是 AuroraROM Sumsung G97XX-9820 v17.0，进入 Download 模式后部分输出如下：</p>
+<pre><code>PRODUCT NAME: SM-G977N
+CURRENT BINARY: Custom(0x30e)
+KG STATE: Checking
+FRP LOCK: OFF
+OEM LOCK: OFF(U)
+Secure Download: Enabled
+CARRIER_ID: KTC
+WARRANTY VOID: 1 (0x0400)
+RP SWREV: B:4 K:4 S:4
+</code></pre>
+<blockquote>
+<p>如果你之前曾刷过 AoruraROM 等定制 ROM，那么一般来说 Bootloader OEM 已处于解锁状态。存在刷入官方固件后锁定状态改变的情况，具体要如何确检查锁定状态，可以将手机关机按住「下载模式组合键」连接电脑进入 Download 模式查看。</p>
+</blockquote>
+<p>请留意设备的各项锁定状态，不过刷回官方固件的话应该都没什么问题。接下来准备此次刷机需要的软件和固件：</p>
+<ul>
+<li><a href="https://developer.samsung.com/mobile/android-usb-driver.html">Android USB Driver for Windows - Sumsung Developers</a>，不要连接手机提前安装三星驱动</li>
+<li><a href="https://developer.android.com/studio/command-line/adb">Android Debug Bridge</a>，参照《<a href="https://wiki.lineageos.org/adb_fastboot_guide.html#installing-adb-and-fastboot">Using ADB and fastboot - Lineage Wiki</a>》提前安装</li>
+<li><a href="https://forum.xda-developers.com/t/tool-frija-samsung-firmware-downloader-checker.3910594/">Frija</a>，查找并下载官方最新固件包</li>
+<li><a href="https://odindownload.com/Samsung-Odin/">Sumsung Odin</a>，三星专用刷机软件</li>
+<li><a href="https://github.com/topjohnwu/Magisk/releases">Magisk Manager APK</a>（Magisk Manager 与 Magisk 一同发布），修补镜像以安装 Magisk in Recovery</li>
+<li><a href="https://github.com/mcmilk/7-Zip-zstd">@mcmilk/7-Zip-zstd</a>，解压 BL 固件以移除 Bootloader 解锁警告</li>
+</ul>
+<h2 id="刷入官方固件">刷入官方固件</h2>
+<p>在三星设备上安装 Magisk 需要首先 <strong>删除所有启动镜像修改</strong>（boot image mods），由于 AuroraROM 已经预置 Root，所以需要用原厂镜像重新刷机。</p>
+<p>这里用 Frija 查找并下载固件。使用 Frija 前需要安装 <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=29">Microsoft Visual C++ 2008 Redistributable Package (x86)</a> 和 <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=5555">Microsoft Visual C++ 2010 Redistributable Package (x86)</a>。如果下载时卡在 <code>Checking CRC32</code> 可以尝试在 Settings 中关闭 CRC Check，下载完毕后另寻方式校验文件。</p>
+<pre><code>Model: SM-G977N    CSC: KTC    Method: Auto
+Version: G977NKSU4EUA4/G977NOKR4EUA4/G977NKOU4EUA4
+Size: 5194 MB
+OS: R(Android 11)
+Filename: SM-G977N_4_20210120142634_acqegd7bb2_fac.zip.enc4
+</code></pre>
+<blockquote>
+<p>如果 Frija 实在无法使用，可以尝试 <a href="https://github.com/nlscc/samloader">@nlscc/samloader</a>。网站 <a href="https://www.sammobile.com/samsung/galaxy-s10-5g/firmware/#SM-G977N">SamMobile</a> 和 <a href="https://samfw.com/firmware/SM-G977N">SamFw</a> 也提供三星固件查找下载服务。</p>
+</blockquote>
+<p>上方用 Frija 查找到的固件 <code>G977NKSU4EUA4</code> 为 Android 11 版本，是目前此系列机型的第一个 Android 11 版本推送，暂无国行 ROM 支持；Android 10 的最新固件型号应该为 <code>G977NKSU4DTJ8</code>。下面就用 Android 11 的第一份固件尝鲜。</p>
+<p>将压缩包解压后得到 <code>AP</code> <code>BL</code> <code>CP</code> <code>CSC</code> <code>HOME_CSC</code> <code>USERDATA</code> 文件。<code>USERDATA</code> 不会用到。</p>
+<p>将手机关机，按住 <code>Bixby</code>+<code>音量减</code> 插入数据线将手机连接至电脑，直至手机屏幕亮起松开按键，按一下音量加进入 Download 模式。</p>
+<p>打开 Odin 软件，此时应该看到界面中提示 <code>Added!</code>。接下来点击「AP」「BL」「CP」「CSC」依次选中对应的 <code>AP</code> <code>BL</code> <code>CP</code> <code>CSC</code> 文件。保证数据线连接可靠，点击「Start」开始刷入官方固件。</p>
+<blockquote>
+<p>如果点击 <code>AP</code> 包返回 Odin 后卡住，稍微多等一会就好了，这个包比较大。</p>
+</blockquote>
+<p><img src="https://rmt.dogedoge.com/fetch/tingle/storage/odin_fac.png?w=985&fmt=webp" alt="Odin 刷入官方固件"></p>
+<p>接下来手机会重新启动。由于之前刷 AuroraROM 时已经解锁了 Bootloader，此时开机会弹出警告信息，略过即可，我们后面来干掉它。按 <code>音量减</code> <code>音量加</code> 键上下移动，依次选择「wipe data/factory reset」和「wipe cache partition」，最后「reboot system now」进入官方固件的系统。</p>
+<h2 id="官方固件激活设置">官方固件激活设置</h2>
+<p>紧接着上一步，在几分钟的等待之后进入了系统激活界面。这次激活的设置 <strong>不会影响后续使用</strong>，因为待会刷入 Magisk in Recovery 时所有设置都会被抹除。</p>
+<p>从激活至进入系统设置启用开发者选项过程中如果始终未连接到网络，接下来你可能无法看见 OEM 解锁选项。可以在 <strong>无网络激活进入系统后</strong> 连接 WiFi，等待一会再进入开发者选项。OEM 解锁状态为 <strong>打开且灰色不可更改</strong> 时为正常状态，如果为可更改状态，那么可能需要另寻资料解锁 KG 锁（就是将系统时间调前 N 天解锁的那个玩意）。</p>
+<p>在设置中启用开发者选项时可以顺手打开开发者选项中的 <strong>USB 调试</strong>，方便后续使用 ADB。</p>
+<blockquote>
+<p>我自己使用的方法是在激活时将手机 SIM 卡拔出，连接到笔记本正在使用的同一无线网络，设置 WiFi 使用笔记本上的代理。因为一旦联网，激活时需要连接谷歌和三星服务器验证一些信息。</p>
+<ol>
+<li>我的笔记本连接到了一个 <code>TP-LINK_233</code> 的 WiFi，且本地使用 Clash 在 <code>7890</code> 端口全局代理。</li>
+<li>在 Clash 中打开「Allow LAN」选项，将鼠标放在该选项上可以看见「192.168.0.xxx  LAN」的字样</li>
+<li>在手机上同样连接 <code>TP-LINK_233</code> 的 WiFi，并在「高级设置 - 代理服务器」中填入代理主机名 <code>192.168.0.xxx</code> 和代理服务器端口 <code>7890</code>。</li>
+</ol>
+</blockquote>
+<h2 id="安装-magaisk-in-recovery">安装 Magaisk in Recovery</h2>
+<p>将手机连接至电脑，使用 ADB 将预先下载好的 Magisk Manager APK 文件和刚才刷入的官方固件 <code>AP</code> 包传输至手机。注意在手机弹出页面中进行 USB 调试授权。</p>
+<pre><code class="language-powershell">PS D:\Tools\platform-tools-r30.0.5&gt; .\adb --version
+Version 30.0.5-6877874
+PS D:\Tools\platform-tools-r30.0.5&gt; .\adb devices
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+R3CM50460DD     unauthorized
+PS D:\Tools\platform-tools-r30.0.5&gt; .\adb devices
+List of devices attached
+R3CM50460DD     device
+
+PS D:\Tools\platform-tools-r30.0.5&gt; .\adb push D:\SumsungFirmwarePath\AP_G977NKSU4EUA4_xxxxxxxxxx.tar.md5 /sdcard/Download/
+D:\SumsungFirmwarePath\AP_G977NKSU4EUA4_xxxxxxxxxx.tar.md5: 1 file pushed, 0 skipped. 35.3 MB/s (4825702590 bytes in 130.538s)
+</code></pre>
+<p>在手机上安装 Magisk Manager，进入应用查看手机信息：</p>
+<p><img src="https://rmt.dogedoge.com/fetch/tingle/storage/magisk-manager.jpg?w=600&fmt=webp" alt="Magisk Manager 检查手机信息"></p>
+<p>我正在用的这台三星启动镜像不包含 ramsidk，「SAR」状态为是，所以只能用 Magisk in Recovery 的方式刷入 Magisk。</p>
+<p>接下来要手动修补镜像，点击「Magisk」卡片上的「安装」，确保「安装到 Recovery」被勾选，点击下一步「选择并修补一个文件」，选中刚才复制的官方固件 AP 包，等待 Magisk Manager 完成修补。修补后的文件在 <code>/Download</code> 文件夹下，将其用 ADB 推送至电脑。</p>
+<pre><code class="language-powershell">PS D:\Tools\platform-tools-r30.0.5&gt; .\adb pull /sdcard/Download/magisk_patched_xxxxx.tar D:\SumsungFirmwarePath\
+# [ 71%] /sdcard/Download/magisk_patched_xxxxx.tar
+/sdcard/Download/magisk_patched_xxxxx.tar: 1 file pulled, 0 skipped. 43.3 MB/s (4891154944 bytes in 107.623s)
+</code></pre>
+<p>将手机关机再次进入 Download 模式，可以看到刷完官方固件后输出发生了一点变化：</p>
+<pre><code>PRODUCT NAME: SM-G977N
+CURRENT BINARY: Sumsung Official   # Custom(0x30e)
+KG STATE: Checking
+FRP LOCK: OFF
+OEM LOCK: OFF(U)
+Secure Download: Enabled
+CARRIER_ID: KTC
+WARRANTY VOID: 1 (0x0400)
+RP SWREV: B:4 K:4 S:4
+</code></pre>
+<p>打开 Odin 软件，将修补后的 <code>magisk_patched_xxxxx.tar</code> 文件作为 <code>AP</code> 包与官方固件中的另外 <code>BL</code> <code>CP</code> <code>CSC</code> 三个文件一同再次刷入。注意此处需要在 Odin「Options」中将「Auto Reboot」关闭。</p>
+<p>Odin 显示状态为绿色 PASS 后即可关闭 Odin 软件、将手机与电脑断开。</p>
+<h2 id="进入-magisk-in-recovery">进入 Magisk in Recovery</h2>
+<blockquote>
+<p><strong>下面的操作请多查看几篇文章再操作</strong>。我反复尝试了很多次，但 Magisk Manager 都无法检测到 Magisk 环境，刷入了几个型号的固件也都无法解决。这应该是个极易出现的问题，不必着急，继续操作。</p>
+</blockquote>
+<p>紧接着上一步，我们将刷入修补 <code>AP</code> 完毕的手机断开连接，此时手机仍停留在 Download 模式。接下来应该需要一些连贯的操作以进入 Magisk in Recovery。第一步是长按 <code>电源</code>+<code>音量减</code> 大于 7 秒退出 Download 模式。接下来错误的下一步就可能导致各种问题。</p>
+<p>一般来说，这一步应该是长按「恢复模式组合键」（对于 S10 5G 就是 <code>电源</code>+<code>Bixby</code>+<code>音量加</code>）至屏幕闪烁时立即松开所有按键。</p>
+<p>如果时机不当或其他原因可能导致 <strong>手机陷入启动循环</strong>，这时要解救手机的方法应该是：在手机黑屏时按住「恢复模式组合键」，屏幕亮起后立即松开 <code>电源</code>+<code>Bixby</code> 只保留 <code>音量加</code>，直至进入真实的 Recovery 模式，然后擦除数据进行一次出厂重置。按下 <code>电源</code> 键确认出厂重置后如果没有其它动作，手机可能会再次陷入无限重启，所以理论上应该是需要在确认操作后立即按住「恢复模式组合键」，屏幕再次亮起时松开所有按键。</p>
+<p>另一个最常见的问题就是进入系统后检测不到 Magisk（我认为此时 Magisk 应该已经成功安装，只是进入了无 Magisk 的系统）。原因应该就在于进入系统的操作失误。今天花了一整天不断地刷机、修补、重刷、激活，都没有搞明白自己到底是哪里的问题。晚上吃完饭我又尝试了几个小时，在一次重启尝试无果之后，我在 Windows ADB 上连接着 <strong>无 Magisk 的系统</strong> 调试，键入 <code>.\adb reboot recovery</code> 试图进入 Recovery 恢复出厂设置，接着手机重启像往常一样显示了 Bootloader 解锁的警告，然后 <del>我按下了电源键确认，</del> 等待了一会，手机成功进入了 Magisk in Recovery。在 Magisk Manager 中我终于看到了「当前 21.4(21400)」的字样。心情平复之后我将手机关机，按照官方说明按下「恢复模式组合键」，手机震动屏幕亮起时松开，手机也能正常进入 Magisk in Recovery。</p>
+<p>最终我多次尝试发现：</p>
+<ul>
+<li>只要打开 USB 调试，在 Windows 命令行中键入 <code>.\adb reboot recovery</code> 并回车，等待手机开机即可，过程中不需要按下任何组合键。</li>
+<li>如果没有笔记本可用，也可以先将手机关机，然后按下「恢复模式组合键」，在手机震动屏幕亮起时松开所有按键，等待手机开机即可。</li>
+</ul>
+<p><img src="https://rmt.dogedoge.com/fetch/tingle/storage/Screenshot_20210202-213410.jpg?w=600&fmt=webp" alt="成功进入 Magisk in Recovery"></p>
+<h2 id="移除-bootloader-解锁警告">移除 Bootloader 解锁警告</h2>
+<p>根据本文开头给出的 XDA 论坛 @Dante63 帖子，所有猎户座设备均可移除修改后 Bootloader 解锁的警告信息，方法为修改固件 <code>BL</code> 包中的图片再打包重新刷入。</p>
+<ol>
+<li>安装 7-Zip Zstandard Edition</li>
+<li>在刷机时固件解压后的 <code>BL</code> 包上右键使用 7-Zip ZS 打开压缩包</li>
+<li>解压其中的 <code>up_param.bin.lz4</code></li>
+<li>在解压出来的 <code>up_param.bin.lz4</code> 包上右键使用 7-Zip ZS 打开压缩包</li>
+<li>解压其中的 <code>up_param.bin</code></li>
+</ol>
+<p>接下来只需要用到这个压缩包中包中包 <code>up_param.bin</code>：</p>
+<ol>
+<li>使用 7-Zip ZS 打开压缩包 <code>up_param.bin</code></li>
+<li>修改其中的 <code>logo.jpg</code> <code>booting_warning.jpg</code>：<ul>
+<li>将 <code>booting_warning.jpg</code> 修改为全黑</li>
+<li>显示原有 Logo：将 <code>logo.jpg</code> 重命名为 <code>svb_orange.jpg</code></li>
+<li>展示自定义 Logo：修改 <code>logo.jpg</code> 为自定义 Logo 但不要调整大小和维度，复制一份名为 <code>svb_orange.jpg</code></li>
+</ul>
+</li>
+<li>将修改后的图片拖进原 <code>up_param.bin</code> 文件保存修改</li>
+<li>右键更新后的 <code>up_param.bin</code> 文件使用 7-Zip ZS 添加到压缩包，注意修改压缩格式为 <code>tar</code></li>
+</ol>
+<p>打开 Odin，将修改后的 <code>up_param.bin</code> tar 压缩包作为 <code>BL</code> 包 <strong>单独刷入</strong>。</p>
+<details><summary>懒人必备</summary><br />
+
+<p>我懒得修改，从旧的极光 ROM 包里找到了大佬修改好的 <code>up_param.bin</code> 文件，把它拖出来再单独压缩成 tar 包即可：</p>
+<p><img src="https://rmt.dogedoge.com/fetch/tingle/storage/lazyme.png?w=985&fmt=webp" alt="AuroraROM 中已经修改好的文件"></p>
+</details>
+
+<p>这里我刷完自动重启后也成功进入 Magisk in Recovery，如果你不幸进入了没有 Magisk 的系统，可以参考上一章节重新进入。</p>
+<h2 id="完工">完工</h2>
+<p>在 Magisk Manager 中搜索「Riru」和「Riru - LSPosed」安装，再到 <a href="https://github.com/LSPosed/LSPosed">@LSPosed/LSPosed</a> 仓库的 <a href="https://github.com/LSPosed/LSPosed/releases">Releases</a> 中下载 LSPosed Manager 安装。</p>
+<p>如果需要重启，直接在 Magisk Manager 中模块安装完成后点击重启按钮，貌似也可以不用任何组合键直接重新进入 Magisk in Recovery。如果失败了的话同样参考上上个章节重新进入，问题不大。</p>
+<p>折腾完这些，手头的三星终于可以吃上 LSPosed 了，顺带还享受起了 Android 11 和 OneUI 3.0。官方固件自带谷歌全家桶，略显臃肿。</p>
+<p><img src="https://rmt.dogedoge.com/fetch/tingle/storage/magisk-riru-lsposed.png?w=1280&fmt=webp" alt="Magisk Manager &amp; LSPosed Manager"></p>
+<p><img src="https://rmt.dogedoge.com/fetch/tingle/storage/mobile-desktop.png?w=1280&fmt=webp" alt="软件信息 &amp; 主屏幕 &amp; 一加天气组件"></p>
+<p>目前还没看到手上这个机型的国行 Android 11 ROM，所以暂时就继续用官方的了，这是一些我在用的感觉还蛮舒服的解决方案：</p>
+<ul>
+<li><p>三星支付因为 Magisk 修改无法使用</p>
+<p>三星支付，用处不大，直接卸载（逃</p>
+</li>
+<li><p>国内软件的指纹支付不可用</p>
+<p>在 Magisk Manager 中安装 Jason Eric 的「Riru - 指纹支付」系列插件</p>
+</li>
+<li><p>自带的天气组件定位不到我所在的村子位置</p>
+<p>在 Magisk Manager 中安装 MarcAnt01 的「Oxy-ify」，将一加的天气组件安装上去</p>
+</li>
+<li><p>听腻了三星铃声想换一个</p>
+<p>「Oxy-ify」可以顺带安装一加的铃声。Magisk Manager 中还有其他系统如 MIUI 的音效包</p>
+</li>
+</ul>
+<blockquote>
+<p>我还蛮喜欢一加 OnePlus tune 的调调的，嘿嘿🤣</p>
+</blockquote>
+<p>如果你对本文后续三星设备上安装 Magisk in Recovery 的步骤有任何建议欢迎留言，我只是将自己的操作记录了下来，仅供参考，未必适用于其他三星设备！</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[年度 · 2020]]></title>
         <id>https://blog.monsterx.cn/life/2020-annual-summary/</id>
@@ -101,7 +276,8 @@
 <p>刚使用 Gridsome 大约一周，对它的了解很少，Vue.js 水平连门都入不了。但是这样的我还是花了几个小时将 Artalk 成功适配到了博客。中间踩了几个坑在这里提一下解决方法。</p>
 <h3 id="安装-artalk">安装 Artalk</h3>
 <p>Artalk 提供了 npm 包，所以可以直接在命令行安装</p>
-<pre><code class="language-bash">npm install artalk --save</code></pre>
+<pre><code class="language-bash">npm install artalk --save
+</code></pre>
 <p>如果需要安装我修改之后的版本则需要在 <code>package.json</code> 中手动写入仓库地址：</p>
 <pre><code class="language-diff">{
   &quot;name&quot;: &quot;gridsome-starter-blog&quot;,
@@ -124,11 +300,13 @@
     &quot;node-sass&quot;: &quot;^4.12.0&quot;,
     &quot;sass-loader&quot;: &quot;^8.0.0&quot;
   }
-}</code></pre>
+}
+</code></pre>
 <p>这里 L16 会直接引用我修改后的最新开发版，但是如果用于自动构建发布站点的 GitHub Actions 中使用了依赖缓存，则总是使用第一次执行工作流时安装的版本，无法获得后续更新。<del>为了解决这一问题，将 Git 链接修改为指定 commit 时刻的地址即可</del> 这好像也不可行。</p>
 <h3 id="引入-artalkcss">引入 <code>Artalk.css</code></h3>
 <p>接下来引用 <code>Artalk.css</code> 和 <code>Artalk.js</code>，建议单独新建 <code>ArtalkCards.vue</code> 文件存放 Artalk 评论组件的代码，只在该模板中引入 <code>Artalk.css</code> 即可。</p>
-<pre><code class="language-javascript">import &#39;artalk/dist/Artalk.css&#39;</code></pre>
+<pre><code class="language-javascript">import &#39;artalk/dist/Artalk.css&#39;
+</code></pre>
 <p>当前不必要的 <code>.css</code> 文件我们都让它在不得不引入时再加载。</p>
 <h3 id="引入-artalkjs">引入 <code>Artalk.js</code></h3>
 <p>最初引入 <code>Artalk.js</code> 时，我参考主题使用 DisqusJS 的方法在 <code>.vue</code> 模板文件的 <code>&lt;script&gt;</code> 标签中这样写：</p>
@@ -156,7 +334,8 @@ export default {
       })
     }
   },
-}</code></pre>
+}
+</code></pre>
 <p><code>gridsome develop</code> 预览正常，但是发布时遇到「ReferenceError: window is not defined」，提示的报错信息都来自 <code>node_modules/artalk/dist/Artalk.js</code>，我以为是自己修改 Artalk 出的问题，于是又回去修改 Artalk 代码，将网上用来解决这个问题的几个方法都试了一遍依旧报错。正当我迷惑时，突然想到了 Gridsome 的源头 Vue.js 本身，于是我一拍脑袋在搜索时加了关键词 <code>gridsome</code>，这才发现原来和「Client API」有关。</p>
 <p>几个参考链接《<a href="https://stackoverflow.com/questions/40707481/window-is-not-defined-in-vue-js-2">javascript - &#39;window&#39; is not defined in Vue.js 2 - Stack Overflow</a>》《<a href="https://github.com/gridsome/gridsome/issues/646">Failed to render / ReferenceError: window is not defined (vue2-leaflet) - issue #646 - GitHub @gridsome/gridsome</a>》《<a href="https://gridsome.org/docs/client-api/#isclient">Client API - Gridsome</a>》</p>
 <p>虽然不知道这是个什么东西，但是大概说的是有些代码只能在客户端跑，服务端无法 <del>执行</del>「渲染」，比如 <code>window</code> 的操作。要说专业点，应该是关乎 S(erver) S(ide) R(ender)「服务器端渲染」的机制。根据上面第二个链接中 <a href="https://github.com/gridsome/gridsome/issues/646#issuecomment-578367659">IHIutch 的回答</a>，成功找到了解决方案：</p>
@@ -185,7 +364,8 @@ export default {
       })
     }
   },
-}</code></pre>
+}
+</code></pre>
 <p>L10 <code>process.env.NODE_ENV === &#39;production&#39;</code> 和 <code>process.isClient</code> 实际体验应该都差不多。上面两处注释掉的 <code>maxNest</code> 是我修改后具有的功能，原版开启后不会有效果，该项不设置时默认显示三层嵌套。</p>
 <h2 id="最终模板">最终模板</h2>
 <p><del>在 <code>/src/components</code> 新建 <code>ArtalkCards.vue</code> 作为 Artalk 评论区模板</del> 我对 Gridsome 的模板还不太熟悉，总之直接在需要引入评论区的页面直接加好了：</p>
@@ -300,7 +480,8 @@ query Post ($id: ID!) {
 }
 
 /** */
-&lt;/style&gt;</code></pre>
+&lt;/style&gt;
+</code></pre>
 <p>根据需要自己修改下 <code>&lt;template&gt;</code> 的内容，注意保证只存在一个「主标签」，比如我的是 <code>&lt;div class=&quot;artalk-cards&quot;&gt;</code>。修改 L29-37 为自己的 Artalk 参数，<code>pageKey</code> 需要自行拼接为页面 URL，否则后端发送的邮件中「查看回复」按钮可能链接到奇怪的地方导致体验极差，其他参数查阅 <a href="https://github.com/monsterxcn/Artalk/blob/master/types/artalk-config.d.ts">artalk-config.d.ts</a>。<code>&lt;style&gt;</code> 是我针对当前主题做的一点适配。</p>
 <p>考虑到能看到这里并且有意愿尝试 Artalk 的人应该极少，我悄悄说一句大家可以使用我搭的 Artalk PHP 后端尝尝鲜吖，它运行在阿里云 <del>北京</del> 上海学生机，并发访问除了我自己的站点应该就没了，而我自己的站点访问也很少，所以服务器压力不大，给大家玩玩还是可以的。将配置中的 <code>serverUrl</code> 字段填写为 <code>https://lab.monsterx.cn/ArtalkServer</code> 来使用本站后端，跨域访问目前允许，不必向我申请。</p>
 <blockquote>
@@ -368,7 +549,8 @@ query Post ($id: ID!) {
     )
     rewritten = replace_chunk(rewritten, &quot;blog&quot;, entries_md)
 
-    readme.open(&quot;w&quot;).write(rewritten)</code></pre>
+    readme.open(&quot;w&quot;).write(rewritten)
+</code></pre>
 <p><code>release</code> <code>til</code> 命名的很显然是获取 GitHub 和 TIL 最新内容相关，于是获取博客更新的主要代码就筛选出来了：L1-2 L27-33。L2 用到的变量 <code>root</code> 并没有出现定义，接下来找他的定义和用到的函数 <code>fetch_blog_entries()</code> <code>replace_chunk()</code>。</p>
 <pre><code class="language-python">root = pathlib.Path(__file__).parent.resolve()    # 库 pathlib
 
@@ -394,7 +576,8 @@ def fetch_blog_entries():
             &quot;published&quot;: entry[&quot;published&quot;].split(&quot;T&quot;)[0],
         }
         for entry in entries
-    ]</code></pre>
+    ]
+</code></pre>
 <p>看起来有些许复杂，此时应该提取出用到的 Python 库，实际调试的时候只要尝试单独运行这些代码块会得到未定义之类的错误，然后就能定位到缺失的库。在 Python 文件开头使用 <code>import</code> 导入。</p>
 </details><br />
 
@@ -416,7 +599,8 @@ posttitle = items[0].title         # 获取 &lt;item&gt;&lt;title&gt; 数据
 postlink = items[0].link           # 获取 &lt;item&gt;&lt;link&gt; 数据
 postdate = items[0].published      # 获取 &lt;item&gt;&lt;pubDate&gt; 数据
 
-print(sitetitle)</code></pre>
+print(sitetitle)
+</code></pre>
 <p>RSS 数据较多时 <code>print(dic)</code> 可能让人头皮发麻，自行体会吧。下面给出更直观的对比：</p>
 <pre><code class="language-html">&lt;rss xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:content=&quot;http://purl.org/rss/1.0/modules/content/&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot; version=&quot;2.0&quot;&gt;
     &lt;channel&gt;
@@ -445,7 +629,8 @@ print(sitetitle)</code></pre>
             &lt;!-- 另外一篇文章 --&gt;
         &lt;/item&gt;
     &lt;/channel&gt;
-&lt;/rss&gt;</code></pre>
+&lt;/rss&gt;
+</code></pre>
 <p>解析后：</p>
 <details><summary><strong>freeparser 解析结构</strong></summary><br />
 
@@ -554,7 +739,8 @@ print(sitetitle)</code></pre>
     &#39;content&#39;: &#39;http://purl.org/rss/1.0/modules/content/&#39;, 
     &#39;&#39;: &#39;http://www.w3.org/2005/Atom&#39;
   }
-}</code></pre>
+}
+</code></pre>
 </details><br />
 
 
@@ -575,7 +761,8 @@ end = &quot;&lt;!-- posts end --&gt;&quot;
 pattern = re.compile(
     r&quot;(?&lt;=(&quot; + start + r&quot;)).*(?=(&quot; + end + r&quot;))&quot;,
     re.DOTALL,
-)</code></pre>
+)
+</code></pre>
 <p><code>re.compile()</code> 将正则表达式的样式编译为一个正则表达式对象（正则对象），如果需要多次使用一个正则表达式的话，使用 <code>re.compile()</code> 保存这个正则对象以便复用，可以让程序更加高效。参数：<code>re.compile(pattern, flags=0)</code>，参考官方文档给出介绍如下：</p>
 <blockquote>
 <p><strong>re.sub(pattern, repl, string, count=0, flags=0)</strong> [^1] <br />
@@ -610,7 +797,8 @@ pattern = re.compile(
 )
 pattern.sub(repl, contents)
 
-print(contents)</code></pre>
+print(contents)
+</code></pre>
 <p>最终输出 <code>contents</code> 为 <code>text wait STARTMARKtext used to replaceENDMARK replaced</code>。</p>
 <h3 id="python-文件读写">Python 文件读写</h3>
 <p>懒得深究了，因为从之前作者的代码里找到了关于读写的:</p>
@@ -621,7 +809,8 @@ thisfile = thisdir / &quot;README.md&quot;
 # 取得 README 内容
 contents = thisfile.open().read()
 # 结合之前的 re 库示例实现替换
-readme.open(&quot;w&quot;).write(pattern.sub(repl, contents))</code></pre>
+readme.open(&quot;w&quot;).write(pattern.sub(repl, contents))
+</code></pre>
 <p>C 语言文件读写 <code>fopen()</code> 后还有 <code>fclose()</code> 的，作者的代码里没有找到 close 之类的。应该是程序结束默认关闭了吧，急于实现功能，此处没有留意。</p>
 <h2 id="整理整套代码">整理整套代码</h2>
 <p>以上所有学习途径自以为都交代清楚了，最后整合时用了 <code>for</code> 循环和数组的 <code>[start:end:step]</code> 分割（像数学上的区间表示法）来获取最近的固定篇数，完整实现这个「从 RSS 获取最近更新并以 Markdown 格式写入 README」的功能需要的代码篇幅很短，Python 真有趣！</p>
@@ -660,7 +849,8 @@ def fetch_posts(url):
 
 if __name__ == &quot;__main__&quot;:
     postsNew = fetch_posts(rssUrl)
-    update_readme(startMark, endMark, postsNew)</code></pre>
+    update_readme(startMark, endMark, postsNew)
+</code></pre>
 <p>按需小小修改一下，执行 <code>python this.py</code> 即可替换指定字符串之间内容为最新的博客文章。「自动」的事情依旧交给 GitHub Actions，设置自己点 Star 触发和定时执行即可。给出我的工作流配置 <a href="https://github.com/monsterxcn/monsterxcn/blob/master/.github/workflows/new.yml">new.yml</a>，和之前打卡项目相同的原理。（看到这里的你也许有兴趣读读我之前编写这种定时工作流的文章 🤣。</p>
 <p>上面的定时执行工作流也许对于像我这种更新缓慢的博客来说有点浪费，于是我又写了个从「博客」仓库执行的工作流，这样只要「博客」仓库有文章更新就会第一时间更新 README！使用前先根据《<a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token">Creating a personal access token - GitHub Docs</a>》创建一个 Personal Access Token，要有写入仓库的权限。然后将生成的 Token 作为 Secrets 写入「博客」仓库。最后在「博客」仓库新建 <code>readme.yml</code>。</p>
 <p>由于我的博客仓库暂时没有公开（想到稳定两周年那天再公开，整点仪式感），所以直接将仓库里的工作流贴在这里吧。只需要将自己的站点发布工作流名称、Token 在「博客」仓库中的 Secrets 名称、README 仓库地址修改到下面 L10 L22-23 即可。</p>
@@ -714,7 +904,8 @@ jobs:
           &quot;:beers: Update from BlogRepo at \
           $(date +&quot;%Y-%m-%d %H:%M&quot;) \
           &quot; --allow-empty
-          git push</code></pre>
+          git push
+</code></pre>
 </details><br />
 
 
@@ -796,7 +987,8 @@ jobs:
 <p>Rclone 用于网盘挂载，从 <a href="https://rclone.org/downloads/">官方</a> 下载安装，按照命令行提示输入后得到配置文件 <code>rclone.conf</code>（后续使用），路径一般为 <code>~/.config/rclone/rclone.conf</code>。</p>
 <p>注意使用自己的 Secret ID &amp; Key，据说能极大的提高文件传输速率。公用的 API 想想就知道肯定比不过自建。参考文档《<a href="https://rclone.org/drive/#making-your-own-client-id">GoogleDrive: Making your own client_id - rclone.org</a>》《<a href="https://rclone.org/onedrive/#getting-your-own-client-id-and-key">OneDrive: Getting your own Client ID and Key - rclone.org</a>》创建即可。</p>
 <p>Rclone 挂载 OneDrive 时需要在运行图形界面的系统上完成。Linux 服务器由于一般不带图形界面，所以需要配合本地机器：在 Windows 中下载 Rclone 相应版本文件，Power Shell 进入解压后的文件夹中键入下面命令后复制 <code>Paste the following into your remote machine ---&gt;</code> 和 <code>&lt;---End paste</code> 之间的 <code>SECRET_TOKEN</code> 到远程服务器命令行中。</p>
-<pre><code class="language-powershell">.\rclone authorize &quot;onedrive&quot; &quot;Client_ID&quot; &quot;Client_secret&quot;</code></pre>
+<pre><code class="language-powershell">.\rclone authorize &quot;onedrive&quot; &quot;Client_ID&quot; &quot;Client_secret&quot;
+</code></pre>
 <p>OneDrive 更详细挂载过程可参考文章《<a href="https://p3terx.com/archives/rclone-connect-onedrive-with-selfbuilt-api.html">Rclone 进阶使用教程 - 自建私有 API 挂载 OneDrive - P3TERX</a>》。<strong>后面均使用 OneDrive 部署</strong>。</p>
 <h2 id="aria2">Aria2</h2>
 <p>Aria2 是一个强大的下载工具，这里使用 Docker 部署 Aria2 后端服务和 AriaNG 前端页面。参考文章《<a href="https://p3terx.com/archives/docker-aria2-pro.html">Aria2 Pro - 更好用的 Aria2 Docker 容器镜像 - P3TERX</a>》。</p>
@@ -840,10 +1032,12 @@ nano /data/ariapro/config/script.conf
 nano /data/ariapro/config/aria2.conf
 
 # 重启 Aria2 容器
-docker restart ariapro</code></pre>
+docker restart ariapro
+</code></pre>
 <h2 id="nginx">Nginx</h2>
 <p>由于使用 IP 登录不太方便，所以继续部署 Nginx 服务反向代理 RPC 端口、绑定自己的域名。简便起见，直接使用 Ubuntu 仓库中的 nginx 包。如果服务器中已安装 Nginx，则直接新建配置文件。</p>
-<pre><code class="language-bash">apt install -y nginx</code></pre>
+<pre><code class="language-bash">apt install -y nginx
+</code></pre>
 <p>安装好后 Nginx 配置文件位于 <code>/etc/nginx</code>，于 <code>/etc/nginx/conf.d</code> 文件夹下新建 <code>.conf</code> 文件：</p>
 <details><summary><strong>Nginx 配置文件</strong></summary><br />
 
@@ -865,7 +1059,7 @@ docker restart ariapro</code></pre>
   server_name www.example.com;          # 域名
   access_log off;
   if ($ssl_protocol = &quot;&quot;) { return 301 https://$host$request_uri; }
-
+  
   location / {
     proxy_redirect off;
     proxy_pass http://localhost:6880;     # 修改为 ariang 端口
@@ -906,18 +1100,22 @@ docker restart ariapro</code></pre>
   #   proxy_pass http://localhost:6802/jsonrpc; # 修改
   #   proxy_pass_header X-Transmission-Session-Id;
   # }
-}</code></pre>
+}
+</code></pre>
 </details><br />
 
 
 <p>修改上方例子中的域名、端口即可。多个 Aria2 RPC 端口时可以参考注释掉的部分。最后重启 Nginx。</p>
 <pre><code class="language-bash">service nginx restart
-# nginx -s reload</code></pre>
+# nginx -s reload
+</code></pre>
 <h2 id="rss">RSS</h2>
 <p>部署 FlexGet 之前当然是先找支持 RSS 订阅的站点！目前我个人觉得萌番组的体验还不错！<a href="https://bangumi.moe">萌番组官网</a> / <a href="https://bangumi.moe/lite">萌番组 Lite 版官网</a> / <a href="https://bgm.ptr.moe">萌番组 Material Design 版</a>。点击搜索图标添加 Tags 搜索后 RSS 图标链接地址即为可用订阅地址，切换标题搜索同理。</p>
 <p>比如 添加标签「Lilith-Raws」「租借女友」「1080p」和搜索标题「Lilith 賢者時間 1080p」分别可以得到这两种 RSS 订阅地址：</p>
 <pre><code>https://bangumi.moe/rss/tags/5d8b3245306f1a0007bd7aca+548ee2ce4ab7379536f56358+5efffb4f3d656e43622cacc9
-https://bangumi.moe/rss/search/Lilith%20%E8%B3%A2%E8%80%85%E6%99%82%E9%96%93%201080p</code></pre><p>除了 bangumi.moe 之外还有很多平台，部分资源相同，罗列一些包括但不限于二次元的资源站：</p>
+https://bangumi.moe/rss/search/Lilith%20%E8%B3%A2%E8%80%85%E6%99%82%E9%96%93%201080p
+</code></pre>
+<p>除了 bangumi.moe 之外还有很多平台，部分资源相同，罗列一些包括但不限于二次元的资源站：</p>
 <ul>
 <li>BT RSS 订阅<ul>
 <li><a href="https://share.dmhy.org">動漫花園資源網</a> 动漫、日剧、游戏、特摄等</li>
@@ -953,10 +1151,12 @@ Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and mo
 <p>由于是 Python 编写，需要先安装 python3 pip3 包。</p>
 <pre><code class="language-bash">apt install python3 python3-pip
 pip3 install --upgrade pip setuptools
-pip3 install flexget</code></pre>
+pip3 install flexget
+</code></pre>
 <p>安装完成后新建 FlexGet 配置文件夹并编写配置文件。</p>
 <pre><code class="language-bash">mkdir -p ~/.config/flexget
-nano ~/.config/flexget/config.yml</code></pre>
+nano ~/.config/flexget/config.yml
+</code></pre>
 <details><summary><strong>FlexGet 配置文件</strong></summary><br />
 
 
@@ -997,7 +1197,8 @@ tasks:
       server: localhost
       port: 6800
       secret: &lt;TOKEN&gt;
-      path: /YTS.MX.Japan4KAnime/</code></pre>
+      path: /YTS.MX.Japan4KAnime/
+</code></pre>
 </details><br />
 
 
@@ -1015,7 +1216,8 @@ flexget status
 # 删掉前面配置文件中的 scheduler 块配置
 # 使用偏好的编辑器进入，添加一行
 crontab -e
-*/30 * * * * /usr/local/bin/flexget --cron execute</code></pre>
+*/30 * * * * /usr/local/bin/flexget --cron execute
+</code></pre>
 <p>关于定时任务，上方示例中开头 L1-4 的配置使用了 scheduler 插件，只有在 Daemon 模式下才可用。使用 crontab 定时任务不需要该配置。</p>
 <h2 id="local">Local</h2>
 <p>最后一步，在本地登录 OneDrive 账号设置同步文件夹。右键将本地文件夹标记为「始终在此设备上保留」即可，当云端存入新的文件时本地就会自动下载同步。删除本地文件夹时，默认会将 OneDrive 云端文件一同删除，只删除本地需要右键选择「释放空间」。</p>
@@ -1084,10 +1286,10 @@ jobs:
           path: ~/.cache/pip        # Ubuntu 的缓存位置，不同系统不同位置需要修改
           key: ${{ runner.os }}-pip-${{ hashFiles(&#39;**/requirements.txt&#39;) }}
           restore-keys: ${{ runner.os }}-pip-
-
+      
       - name: Addons Install        # 安装脚本必须组件 lxml requests
         run: pip install lxml requests
-
+      
       - name: Secrets Get           # 获取 Secrets
         env: 
           SECRET_ID: ${{ secrets.SECRET_ID }}
@@ -1105,7 +1307,7 @@ jobs:
           sed -i &#39;20 r action-pass.txt&#39; action.py
           sed -i &#39;21 r action-bound.txt&#39; action.py
           sed -i &#39;22 r action-data.txt&#39; action.py
-
+      
       - name: Checkin Action
         env:
           TZ: Asia/Shanghai         # 设定时区为北京时间
@@ -1114,10 +1316,10 @@ jobs:
           mkdir log
           echo `date +&quot;%Y-%m-%d %H:%M:%S %A&quot;` &gt;&gt; log/time.log
           python action.py &gt;&gt; log/time.log
-
+      
       - name: Secrets Delete        # 删除临时文件
         run: rm -f action*
-
+      
       - name: Deploy Log            # 发布 log 文件夹下的记录文件到 log 分支
         uses: docker://peaceiris/gh-pages:v2
         env:
@@ -1126,7 +1328,8 @@ jobs:
           PUBLISH_BRANCH: log
           PUBLISH_DIR: ./log
         with:
-          emptyCommits: false</code></pre>
+          emptyCommits: false
+</code></pre>
 </details><br />
 
 
@@ -1155,7 +1358,8 @@ jobs:
 <p>也许看官早就想说了：为什么引用 Secrets 而已，又是设置环境变量、又是将环境变量 <code>echo</code> 到 <code>.txt</code> 文件、又是将 <code>.txt</code> <code>sed</code> 写入 <code>.py</code> 的，不能简单点吗？确实，在朋友 <a href="https://xyenon.bid">@XYenon</a> 的指导下我得知 Python 可以通过 <code>os.environ</code> 读取环境变量，所以简单的办法来了，将 Python 脚本中原来的赋值改写成下面的格式直接读环境变量</p>
 <pre><code class="language-python">import os
 
-myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
+myid = os.environ [&#39;SECRET_ID&#39;]
+</code></pre>
 <p>直接读入环境变量 <code>SECRET_ID</code> 的值并赋给 <code>myid</code> 。如此一来，上面 Secrets Get、Checkin Action、Secrets Delete 三步合并为一步：</p>
 <pre><code class="language-yaml">- name: Action Execute
   env:
@@ -1164,7 +1368,8 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
     SECRET_PASS: ${{ secrets.SECRET_PASS }}
     SECRET_BOUND: ${{ secrets.SECRET_BOUND }}
     SECRET_DATA: ${{ secrets.SECRET_DATA }}
-  run: python checkin.py | tee -a checkin-python.log</code></pre>
+  run: python checkin.py | tee -a checkin-python.log
+</code></pre>
 <p>心情顿时舒畅了不少！</p>
 <h3 id="round-3">Round 3</h3>
 <p>上次那篇关于调试 Python 打卡的《<a href="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/">Mark 并调试 HEU 自动打卡代码</a>》下 <a href="https://xyenon.bid">@XYenon</a> 给出了仅需用户名和密码的 Ruby 版本 <a href="https://gist.github.com/XYenon/79317d63e7f769e5bdff5b595d709b65">@XYenon/checkin.rb</a>。</p>
@@ -1188,27 +1393,28 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
         env:
           HUB_HOST: localhost
           HUB_PORT: 9515
-
+    
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
         uses: actions/checkout@master
-
+      
       - name: Ruby Setup
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.5.x
-
+      
       - name: Addons Install
         run: gem install watir webdrivers
-
+      
       - name: Action Execute
         env:
           TZ: Asia/Shanghai
           LANG: zh_CN.UTF-8
           SECRET_ID: ${{ secrets.SECRET_ID }}
           SECRET_PASS: ${{ secrets.SECRET_PASS }}
-        run: ruby checkin.rb | tee -a checkin-ruby.log</code></pre>
+        run: ruby checkin.rb | tee -a checkin-ruby.log
+</code></pre>
 <blockquote>
 <p>也许 Ruby 版本的打卡程序更适合写成 JavaScript 用户脚本交给浏览器插件执行。</p>
 </blockquote>
@@ -1268,7 +1474,8 @@ myid = os.environ [&#39;SECRET_ID&#39;]</code></pre>
 <p>什么？你说这个年头还有人电脑上没装 Python？なんと！</p>
 <p>Windows 系统直接上 Python 官网下载安装包，注意将 Python 安装目录添加到 PATH 环境变量，一并安装 pip。如果运行时显示缺少模块就 pip 安装一下。</p>
 <pre><code class="language-bash">python -m pip install --upgrade pip
-pip install requests lxml</code></pre>
+pip install requests lxml
+</code></pre>
 <h2 id="获取-form-data">获取 form Data</h2>
 <p>今天早上起来的出奇的早（7 点半我就醒了），一想到学校的打卡十点前就要完成，我突然想到了那个自动打卡、表单数据的事情。于是我点开了浏览器开始尝试。</p>
 <p>打开 <a href="http://one.hrbeu.edu.cn/infoplus/form/JKXXSB/start">网上办事中心 - 平安行动</a> ，虽然不知道是啥，但 F12 肯定会告诉我的。选择 Network 栏，网页从打开这个菜单后加载的所有请求都会在这里显示，先刷新一遍网页，找了一遍好像什么也没有（一开始我以为表单数据是缓存下来的什么东西），Emmm，提交一遍试试，点完确认提交之后 Network 最下面显示了一个新的名叫 <code>doAction</code> 资源，那一定就是你了！<strong>注意此时不要点确定，点确定之后该资源会被刷新掉。</strong></p>
@@ -1290,10 +1497,12 @@ pip install requests lxml</code></pre>
     raise err
   File &quot;/usr/lib64/python3.6/socket.py&quot;, line 713, in create_connection
     sock.connect(sa)
-TimeoutError: [Errno 110] Connection timed out</code></pre>
+TimeoutError: [Errno 110] Connection timed out
+</code></pre>
 <p>搜索了一圈发现 Linux 下 SMTP 发信加密程度要求更高，所以得加密发信，将原来的发信替换为 SSL 加密发信：</p>
 <pre><code class="language-python">smtpObj = smtplib.SMTP_SSL() 
-smtpObj.connect(mail_host, 465)      # 一般加密发信 smtp 端口号为 465</code></pre>
+smtpObj.connect(mail_host, 465)      # 一般加密发信 smtp 端口号为 465
+</code></pre>
 <p>在 3.7 版本以上的 Python 中需要此脚本时必须使用 <code>smtpObj = smtplib.SMTP_SSL(mail_host)</code> ，否则邮件发信会报错 ValueError 如下：</p>
 <pre><code class="language-powershell">Traceback (most recent call last):
   File &quot;/home/Project/Python/HEUCheckin-2018041015.py&quot;, line 170, in &lt;module&gt;
@@ -1306,7 +1515,8 @@ smtpObj.connect(mail_host, 465)      # 一般加密发信 smtp 端口号为 465<
     return self.sslsocket_class._create(
   File &quot;/usr/local/Python3.8.2/lib/python3.8/ssl.py&quot;, line 1031, in _create
     self._sslobj = self._context._wrap_socket(
-ValueError: server_hostname cannot be an empty string or start with a leading dot.</code></pre>
+ValueError: server_hostname cannot be an empty string or start with a leading dot.
+</code></pre>
 <h3 id="关闭代理">关闭代理</h3>
 <p>本地调试的时候，由于我平时习惯开 Clash 代理挂着，没注意这个，结果就报错了，信息如下：</p>
 <details><summary><strong>Python Traceback</strong></summary><br />
@@ -1358,7 +1568,8 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File &quot;D:\Python\Python38-64\lib\site-packages\requests\adapters.py&quot;, line 510, in send
     raise ProxyError(e, request=request)
-requests.exceptions.ProxyError: HTTPConnectionPool(host=&#39;127.0.0.1&#39;, port=7890): Max retries exceeded with url: http://cas.hrbeu.edu.cn/cas/login?service=http%3A%2F%2Fjkgc.hrbeu.edu.cn%2Finfoplus%2Flogin%3FretUrl%3Dhttp%253A%252F%252Fjkgc.hrbeu.edu.cn%252Finfoplus%252Fform%252FJSXNYQSBtest%252Fstart%253Fticket%253DST-3779417-6SDr7iRPSkJxSd3MFyNd-cas01.example.org (Caused by ProxyError(&#39;Cannot connect to proxy.&#39;, RemoteDisconnected(&#39;Remote end closed connection without response&#39;)))</code></pre>
+requests.exceptions.ProxyError: HTTPConnectionPool(host=&#39;127.0.0.1&#39;, port=7890): Max retries exceeded with url: http://cas.hrbeu.edu.cn/cas/login?service=http%3A%2F%2Fjkgc.hrbeu.edu.cn%2Finfoplus%2Flogin%3FretUrl%3Dhttp%253A%252F%252Fjkgc.hrbeu.edu.cn%252Finfoplus%252Fform%252FJSXNYQSBtest%252Fstart%253Fticket%253DST-3779417-6SDr7iRPSkJxSd3MFyNd-cas01.example.org (Caused by ProxyError(&#39;Cannot connect to proxy.&#39;, RemoteDisconnected(&#39;Remote end closed connection without response&#39;)))
+</code></pre>
 </details><br />
 
 
@@ -1385,7 +1596,8 @@ requests.exceptions.ProxyError: HTTPConnectionPool(host=&#39;127.0.0.1&#39;, por
   &quot;ecode&quot;:&quot;EVENT_CANCELLED&quot;,
   &quot;error&quot;:&quot;发生异常\n\njava.lang.reflect.InvocationTargetException\n\tat sun.reflect.GeneratedMethodAccessor457.invoke(Unknown Source)\n\t...\n&quot;,
   &quot;entities&quot;:[]
-}</code></pre>
+}
+</code></pre>
 <p>可以看到返回的字段中 <code>errno</code> 为 <code>0</code> 代表成功提交，剩下的 <code>ecode</code> 显示 <code>str</code> 型的状态，<code>error</code> 只有出现错误时才有，包含了所有的错误信息，这个错误是在学校服务器上报的，不是本地脚本的问题。<code>entities</code> 包含成功提交后的一些数据。那么这就用 <code>errno</code> 来判定远程提交后返回是否成功。先使用 <code>json.loads()</code> 将其转换为 JSON 格式，注意在返回的数据中 <code>errno</code> 字段为 <code>int</code> 类型，<code>entities</code> 字段为 <code>list</code> 类型，发信的 <code>msg</code> 要用 <code>str()</code> 转换这两个数据。</p>
 <p>实现代码如下：</p>
 <pre><code class="language-python">try:
@@ -1415,7 +1627,8 @@ except:
     err = traceback.format_exc()
     print(&#39;Python Error: \n&#39;, err)
     title = &#39;打卡失败！脚本出错&#39;
-    msg = &#39;\t脚本报错: \n\n\t&#39; + err</code></pre>
+    msg = &#39;\t脚本报错: \n\n\t&#39; + err
+</code></pre>
 <p>好啦，现在就差不多完美了，唯一美中不足的就是没有加入 <code>retry</code> 的功能，还不了解这个怎么实现，有空可以试试。</p>
 <h2 id="完工">完工</h2>
 <details><summary><strong>修补完整的 auto-checkin.py</strong></summary><br />
@@ -1574,7 +1787,7 @@ finally:
 
     from email.mime.text import MIMEText
     from email.header import Header
-
+ 
     # 第三方 SMTP 服务
     mail_host=&quot;smtp.exmail.qq.com&quot;                 # 设置 smtp 服务器
     mail_user=&quot;example@example.com&quot;                # smtp 发信邮箱用户名
@@ -1596,7 +1809,8 @@ finally:
         smtpObj.sendmail(sender, receivers, message.as_string())
         print (&quot;Success: The email was sent successfully&quot;)
     except smtplib.SMTPException:
-        print (&quot;Error: Can not send mail&quot;)</code></pre>
+        print (&quot;Error: Can not send mail&quot;)
+</code></pre>
 </details><br />
 
 
@@ -1609,7 +1823,8 @@ finally:
 
 crontab -e
 0 8 * * * root /path/to/python3 /path/to/auto-checkin.py &gt; /path/to/checkin.log
-# :wq 保存并退出</code></pre>
+# :wq 保存并退出
+</code></pre>
 <p>Windows 下按 <code>win</code> 搜索“任务计划程序”调出菜单，然后在右栏选择创建基础任务。跟着创建基本任务向导的指示一步一步来就好了，「触发器 -&gt; 每日」设置时间推荐避开 6:00 腐败街预约打卡的高峰，8:00 就不错。「操作 -&gt; 启动程序」的程序或脚本项按下面格式填写。</p>
 <p><img src="https://blog.monsterx.cn/code/heu-auto-checkin-covid19/images/post/heu-autotask.png" alt="Windows 定时任务设置"></p>
 <p>Okay，睡个回笼觉庆祝一下 🥳..</p>
@@ -1625,7 +1840,9 @@ crontab -e
         <updated>2020-03-10T00:00:00.000Z</updated>
         <content type="html"><![CDATA[<p>闲来无事逛逛别人的博客，看到了 DIYgod 大佬的年终总结。我想起来 2019 我好像还没有写总结呢！元旦跨年时我就在网站数据统计上草率地截了一张图，塞在自言页面。那时我感觉自己的 2019 是极其失败的一年，我渐渐活成了不想自己成为的那种人：庸碌无为、不思进取，这一点也不值得我写出来。现在又写下来并不是突然觉得 2019 也还说得过去了，而是想想也许活得的确失败，但还是不妨记录下来存档。</p>
 <p>像 2018 总结一样，先上一首歌。</p>
-<pre><code>[Meting-Music server=&quot;tencent&quot; id=&quot;002rKsUf3HUKfx&quot; type=&quot;song&quot;/]</code></pre><p>翻了翻自己的歌单，这首 2019 听到的歌（《记昨日书》）正好风格一致。本来是从群聊里一位朋友在 K 歌唱的歌里听到的，觉得歌词挺好的。尤其是安静独处的时候，这首歌让我想起了以前的琐事…</p>
+<pre><code>[Meting-Music server=&quot;tencent&quot; id=&quot;002rKsUf3HUKfx&quot; type=&quot;song&quot;/]
+</code></pre>
+<p>翻了翻自己的歌单，这首 2019 听到的歌（《记昨日书》）正好风格一致。本来是从群聊里一位朋友在 K 歌唱的歌里听到的，觉得歌词挺好的。尤其是安静独处的时候，这首歌让我想起了以前的琐事…</p>
 <h2 id="寒假">寒假</h2>
 <p>2019 年元旦，我应该还沉浸在自己写的 2018 总结里，我把那篇文章广播到了 QQ 空间，点赞的评论的也许都有所感触吧，毕竟大家都是刚从高中进入大学，很多事情应该和我的总结里有共鸣吧，我猜。之后是大一的第一次期末，我慵懒的带上笔和学生证就上考场了，很随意，抱着反正大学才刚刚开始的态度（挂科有什么可怕的，我当时这样想，只要我开始学不就不会挂科么）。考试结束后室友都回家了，只有我最后一个走，帮室友盖了床铺，晚上的时候寝室没有人，我就站在寝室的空地上伸懒腰，到上铺体验上铺的视角：脑袋空空，盯着天花板，我感觉自己就好像还是第一次躺在这个寝室似的，莫名的新鲜感。我宅在寝室享受哈尔滨的暖气和爸妈给的生活费，刷着 QQ 动态看别人趁回家前去了冰雪大世界、中央大街，我却一点都不羡慕，甚至想说一句：这大冬天外面这么冷怎么可能出去玩呢？</p>
 <p>从寝室离开的那天，我提前收拾了一行李箱的东西，衣服书籍，准备回家大干一场。打了个车从寝室楼下到火车站，第一次一个人坐火车，有一种他乡游子的凄凉感。坐上火车我爸妈一路关切，而我带着耳机在火车上看群聊、听歌、看电影，丝毫不觉得想家，还在心里计划着大三大四忙的时候暑假干脆不回家了。回到家那几天我和高中几个同学在群聊里策划着什么时候聚会，我很好奇大家经历了半个大一都变没变呢？是不是大家都开始变美变帅学化妆辣？我是不是大家伙里的 Low 比呢？实际到聚会的时候我好像有很多话说，但又变得像高中那样拘谨起来，可能是因为有两个女生在场吧。我们的第一次聚会是小团体的，班级上并没有要聚会的意思，而且班长因为复读的关系也不好联系大家。这次见的都是铁哥们，算是一直以来唠嗑打游戏的骨灰级基友。另外两个女生也是在群里聊天的同学，感兴趣就一起来了，大家围在自助火锅面前，吃了一顿简简单单的午饭！第一次同学聚会的感觉，不可描述。我和他们面对面的聊起了琐碎的事情，各自的学校、寝室关系、课表安排等等，虽然也没少相互磕碜，但跟群里口嗨还是很不一样的。</p>
@@ -1658,7 +1875,9 @@ crontab -e
         <link href="https://blog.monsterx.cn/life/2018-annual-summary/"/>
         <updated>2019-01-20T00:00:00.000Z</updated>
         <content type="html"><![CDATA[<p>突然想写写文章，想来已经有很久没有产出了。万念俱灰，无物可叙。试着听听这首歌读完这篇文章吧。</p>
-<pre><code>[Meting-Music server=&quot;netease&quot; id=&quot;1313558186&quot; type=&quot;song&quot;/]</code></pre><p>2018 年，是我难以忘却的一年。就像网传的段子所言，上半年我还在经历无尽的复习检测/模拟考试，下半年我却舒舒服服地躺在异乡某不知名大学的寝室里夜夜笙歌。回首这一年我仿佛在做梦一般，一切都如此难以置信，却又如此的真实。</p>
+<pre><code>[Meting-Music server=&quot;netease&quot; id=&quot;1313558186&quot; type=&quot;song&quot;/]
+</code></pre>
+<p>2018 年，是我难以忘却的一年。就像网传的段子所言，上半年我还在经历无尽的复习检测/模拟考试，下半年我却舒舒服服地躺在异乡某不知名大学的寝室里夜夜笙歌。回首这一年我仿佛在做梦一般，一切都如此难以置信，却又如此的真实。</p>
 <blockquote>
 <p>这人间袅袅炊烟
 和风花雪月浪漫
