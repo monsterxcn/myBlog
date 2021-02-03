@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Wed, 03 Feb 2021 07:20:53 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 03 Feb 2021 07:38:10 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
@@ -151,9 +151,11 @@ RP SWREV: B:4 K:4 S:4
 <p>打开 Odin，将修改后的 <code>up_param.bin</code> tar 压缩包作为 <code>BL</code> 包 <strong>单独刷入</strong>。</p>
 <details><summary>懒人必备</summary><br />
 
+
 <p>我懒得修改，从旧的极光 ROM 包里找到了大佬修改好的 <code>up_param.bin</code> 文件，把它拖出来再单独压缩成 tar 包即可：</p>
 <p><img src="https://rmt.dogedoge.com/fetch/tingle/storage/lazyme.png?w=985&fmt=webp" alt="AuroraROM 中已经修改好的文件"></p>
 </details>
+
 
 <p>这里我刷完自动重启后也成功进入 Magisk in Recovery，如果你不幸进入了没有 Magisk 的系统，可以参考上一章节重新进入。</p>
 <h2 id="完工">完工</h2>
