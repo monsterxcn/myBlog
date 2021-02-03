@@ -9,7 +9,7 @@ import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
  */
 const DEBUG = false
 
-addEventListener('fetch', event => {
+addEventListener('fetch', (event) => {
   try {
     event.respondWith(handleEvent(event))
   } catch (e) {
@@ -47,7 +47,7 @@ async function handleEvent(event) {
     if (!DEBUG) {
       try {
         let notFoundResponse = await getAssetFromKV(event, {
-          mapRequestToAsset: req =>
+          mapRequestToAsset: (req) =>
             new Request(`${new URL(req.url).origin}/404.html`, req),
         })
 
@@ -70,7 +70,7 @@ async function handleEvent(event) {
  * to exist at a specific path.
  */
 function handlePrefix(prefix) {
-  return request => {
+  return (request) => {
     // compute the default (e.g. / -> index.html)
     let defaultAssetKey = mapRequestToAsset(request)
     let url = new URL(defaultAssetKey.url)

@@ -172,7 +172,7 @@ export default {
   },
   methods: {
     // Covert actual number to `xx.x k` expression, see: https://url.cn/JobLixKT
-    kFormatter: num => {
+    kFormatter: (num) => {
       return Math.abs(num) > 999
         ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + 'k'
         : Math.sign(num) * Math.abs(num)
@@ -196,7 +196,7 @@ export default {
   mounted() {
     this.totalPosts = this.$page.posts.edges.length
     const timeline = {}
-    this.$page.posts.edges.forEach(post => {
+    this.$page.posts.edges.forEach((post) => {
       this.totalWords += post.node.cjkWordCount
       // Render timeline views
       const postYear = new Date(post.node.date).getFullYear()
@@ -206,9 +206,7 @@ export default {
       timeline[postYear].push(post.node)
     })
     this.timeline = timeline
-    this.backwardsTimeKey = Object.keys(timeline)
-      .sort()
-      .reverse()
+    this.backwardsTimeKey = Object.keys(timeline).sort().reverse()
     this.totalWords = this.kFormatter(this.totalWords)
   },
 }

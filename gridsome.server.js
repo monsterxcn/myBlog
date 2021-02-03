@@ -7,12 +7,12 @@
 
 const count = require('word-count')
 
-module.exports = function(api) {
+module.exports = function (api) {
   api.loadSource(({ addCollection }) => {
     // Use the Data store API here: https://gridsome.org/docs/data-store-api/
   })
 
-  api.onCreateNode(options => {
+  api.onCreateNode((options) => {
     if (options.internal.typeName === 'Post') {
       const postContent = options.content.replace(/<\/?[^>]+(>|$)/g, '')
       const wpm = 330
@@ -48,7 +48,7 @@ module.exports = function(api) {
       }
     `)
 
-    data.allPost.edges.forEach(element => {
+    data.allPost.edges.forEach((element) => {
       createPage({
         path: element.node.path,
         component: './src/templates/BlogPost.vue',

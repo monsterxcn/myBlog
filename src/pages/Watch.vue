@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="post-title">
-      <h1 class="post-title__text">
-        剧
-      </h1>
+      <h1 class="post-title__text">剧</h1>
       <!-- <PostMeta :post="$page.post" /> -->
     </div>
 
@@ -575,6 +573,13 @@
 
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1307914/"
+              target="_blank"
+              >无间道 × 3</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch good"
               href="https://movie.douban.com/subject/33400537/"

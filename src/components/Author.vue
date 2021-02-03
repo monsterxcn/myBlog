@@ -14,20 +14,18 @@
       {{ $static.metadata.siteName }}
     </h1>
 
-    <p class="author__intro">
-      一只怠惰的臭弟弟 つ﹏⊂
-    </p>
+    <p class="author__intro">一只怠惰的臭弟弟 つ﹏⊂</p>
 
     <p class="author__links">
-      <g-link to="/feed.xml" target="_blank" style="color: #F5A623;"
-        ><font-awesome :icon="['fas', 'rss']"/></g-link
-      ><g-link to="/archives" style="color: var(--title-color);"
-        ><font-awesome :icon="['fas', 'archive']"/></g-link
-      ><g-link to="/watch" style="color: #06a878;"
-        ><font-awesome :icon="['fas', 'dragon']"/></g-link
-      ><g-link to="/friends" style="color: #ff0000;"
-        ><font-awesome :icon="['fas', 'heart']"/></g-link
-      ><g-link to="/about"><font-awesome :icon="['fas', 'id-badge']"/></g-link>
+      <g-link to="/feed.xml" target="_blank" style="color: #f5a623"
+        ><font-awesome :icon="['fas', 'rss']" /></g-link
+      ><g-link to="/archives" style="color: var(--title-color)"
+        ><font-awesome :icon="['fas', 'archive']" /></g-link
+      ><g-link to="/watch" style="color: #06a878"
+        ><font-awesome :icon="['fas', 'dragon']" /></g-link
+      ><g-link to="/friends" style="color: #ff0000"
+        ><font-awesome :icon="['fas', 'heart']" /></g-link
+      ><g-link to="/about"><font-awesome :icon="['fas', 'id-badge']" /></g-link>
     </p>
   </div>
 </template>

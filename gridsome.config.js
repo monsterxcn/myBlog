@@ -56,8 +56,8 @@ module.exports = {
         },
         htmlFields: ['description', 'content'],
         enforceTrailingSlashes: false,
-        filterNodes: node => node.published,
-        nodeToFeedItem: node => ({
+        filterNodes: (node) => node.published,
+        nodeToFeedItem: (node) => ({
           title: node.title,
           date: node.date,
           content: marked(node.content),

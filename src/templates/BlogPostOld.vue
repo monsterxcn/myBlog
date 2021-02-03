@@ -21,7 +21,7 @@
       </div>
 
       <div class="admonition admonition-warning" v-if="publishedDays >= 180">
-        <p style="margin-bottom: 0;">
+        <p style="margin-bottom: 0">
           🌶 <strong>注意：</strong> 本文最后修改于
           {{ publishedDays }}
           天前，其中某些信息可能已经过时，还请仔细甄别！
@@ -39,14 +39,14 @@
           class="navlink"
           v-if="$page.previous"
           :href="$page.previous.path"
-          style="float: left;"
+          style="float: left"
           >&#9664; {{ $page.previous.title }}</a
         >
         <a
           class="navlink"
           v-if="$page.next"
           :href="$page.next.path"
-          style="float: right;"
+          style="float: right"
           >{{ $page.next.title }} &#9654;</a
         >
       </div>

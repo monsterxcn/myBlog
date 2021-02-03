@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="post-title">
-      <h1 class="post-title__text">
-        己
-      </h1>
+      <h1 class="post-title__text">己</h1>
       <!-- <PostMeta :post="$page.post" /> -->
     </div>
 

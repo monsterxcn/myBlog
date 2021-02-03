@@ -25,7 +25,7 @@
           href="http://www.beian.miit.gov.cn/"
           target="_blank"
           rel="nofollow noopener noreferrer"
-          style="text-decoration: none; cursor: default;"
+          style="text-decoration: none; cursor: default"
           >皖 ICP 备 18021272 号 - 1</a
         >
         © 2014 - {{ new Date().getFullYear() }}
