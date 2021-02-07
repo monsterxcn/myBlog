@@ -17,7 +17,8 @@ body {
   // Chinese New Year!
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  background-image: url(https://rmt.dogedoge.com/fetch/tingle/storage/red-home.jpg?w=1280&fmt=webp);
+  // background-image: url(https://rmt.dogedoge.com/fetch/tingle/storage/red-home.jpg?w=1280&fmt=webp);
+  background-image: radial-gradient(rgb(240, 124, 130), rgb(237, 90, 101), rgb(222, 28, 49));
   background-size: cover;
   transition: color 1s, background-image 1s;
   &[data-theme='dark'] {
