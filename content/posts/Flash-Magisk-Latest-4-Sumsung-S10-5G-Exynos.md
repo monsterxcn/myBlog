@@ -37,7 +37,7 @@ WARRANTY VOID: 1 (0x0400)
 RP SWREV: B:4 K:4 S:4
 ```
 
-> 如果你之前曾刷过 AoruraROM 等定制 ROM，那么一般来说 Bootloader OEM 已处于解锁状态。存在刷入官方固件后锁定状态改变的情况，具体要如何确检查锁定状态，可以将手机关机按住「下载模式组合键」连接电脑进入 Download 模式查看。
+> 如果你之前曾刷过 AuroraROM 等定制 ROM，那么一般来说 Bootloader OEM 已处于解锁状态。存在刷入官方固件后锁定状态改变的情况，具体要如何确检查锁定状态，可以将手机关机按住「下载模式组合键」连接电脑进入 Download 模式查看。
 
 请留意设备的各项锁定状态，不过刷回官方固件的话应该都没什么问题。接下来准备此次刷机需要的软件和固件：
 
@@ -52,7 +52,7 @@ RP SWREV: B:4 K:4 S:4
 
 在三星设备上安装 Magisk 需要首先 **删除所有启动镜像修改**（boot image mods），由于 AuroraROM 已经预置 Root，所以需要用原厂镜像重新刷机。
 
-这里用 Frija 查找并下载固件。使用 Frija 前需要安装 [Microsoft Visual C++ 2008 Redistributable Package (x86)](https://www.microsoft.com/zh-CN/download/details.aspx?id=29) 和 [Microsoft Visual C++ 2010 Redistributable Package (x86)](https://www.microsoft.com/zh-CN/download/details.aspx?id=5555)。如果下载时卡在 `Checking CRC32` 可以尝试在 Settings 中关闭 CRC Check，下载完毕后另寻方式校验文件。
+这里用 Frija 查找并下载固件。使用 Frija 前需要安装 [Microsoft Visual C++ 2008 Redistributable Package (x86)](https://www.microsoft.com/zh-CN/download/details.aspx?id=29) 和 [Microsoft Visual C++ 2010 Redistributable Package (x86)](https://www.microsoft.com/zh-CN/download/details.aspx?id=5555)。如果下载时卡在「Checking CRC32」可以尝试在 Settings 中关闭 CRC Check，下载完毕后另寻方式校验文件。
 
 ```
 Model: SM-G977N    CSC: KTC    Method: Auto
@@ -70,7 +70,7 @@ Filename: SM-G977N_4_20210120142634_acqegd7bb2_fac.zip.enc4
 
 将手机关机，按住 `Bixby`+`音量减` 插入数据线将手机连接至电脑，直至手机屏幕亮起松开按键，按一下音量加进入 Download 模式。
 
-打开 Odin 软件，此时应该看到界面中提示 `Added!`。接下来点击「AP」「BL」「CP」「CSC」依次选中对应的 `AP` `BL` `CP` `CSC` 文件。保证数据线连接可靠，点击「Start」开始刷入官方固件。
+打开 Odin 软件，此时应该看到界面中提示「Added!」。接下来点击「AP」「BL」「CP」「CSC」依次选中对应的 `AP` `BL` `CP` `CSC` 文件。保证数据线连接可靠，点击「Start」开始刷入官方固件。
 
 > 如果点击 `AP` 包返回 Odin 后卡住，稍微多等一会就好了，这个包比较大。
 
@@ -115,7 +115,7 @@ D:\SumsungFirmwarePath\AP_G977NKSU4EUA4_xxxxxxxxxx.tar.md5: 1 file pushed, 0 ski
 
 ![Magisk Manager 检查手机信息](https://rmt.dogedoge.com/fetch/tingle/storage/magisk-manager.jpg?w=600&fmt=webp)
 
-我正在用的这台三星启动镜像不包含 ramsidk，「SAR」状态为是，所以只能用 Magisk in Recovery 的方式刷入 Magisk。
+我正在用的这台三星启动镜像不包含 ramdisk，「SAR」状态为是，所以只能用 Magisk in Recovery 的方式刷入 Magisk。
 
 接下来要手动修补镜像，点击「Magisk」卡片上的「安装」，确保「安装到 Recovery」被勾选，点击下一步「选择并修补一个文件」，选中刚才复制的官方固件 AP 包，等待 Magisk Manager 完成修补。修补后的文件在 `/Download` 文件夹下，将其用 ADB 推送至电脑。
 
@@ -193,7 +193,7 @@ Odin 显示状态为绿色 PASS 后即可关闭 Odin 软件、将手机与电脑
 ![AuroraROM 中已经修改好的文件](https://rmt.dogedoge.com/fetch/tingle/storage/lazyme.png?w=985&fmt=webp)
 
 
-</details>
+</details><br />
 
 
 这里我刷完自动重启后也成功进入 Magisk in Recovery，如果你不幸进入了没有 Magisk 的系统，可以参考上一章节重新进入。
