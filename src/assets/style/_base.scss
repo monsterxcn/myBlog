@@ -8,11 +8,21 @@
 body {
   background-color: var(--bg-color);
   color: var(--body-color);
-  transition: color 0.6s, background-color 0.6s;
+  // transition: color 0.6s, background-color 0.6s;
   font-family: var(--base-font-family);
   margin: 0;
   padding: 0;
   line-height: 1.5;
+
+  // Chinese New Year!
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-image: url(https://rmt.dogedoge.com/fetch/tingle/storage/red-home.jpg?w=1280&fmt=webp);
+  background-size: cover;
+  transition: color 1s, background-image 1s;
+  &[data-theme='dark'] {
+    background-image: unset;
+  }
 
   ::selection {
     background-color: var(--selection-color);

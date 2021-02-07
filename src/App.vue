@@ -99,16 +99,14 @@ export default {
   min-height: var(--header-height);
   padding: 0 calc(var(--space) / 2);
   top: 0;
-  background-color: rgba(255, 255, 255, 0.6);
-  background-color: rgba($color: var(--bg-color-rgb), $alpha: 0.6);
+  // background-color: rgba(255, 255, 255, 0.6);
+  // background-color: rgba($color: var(--bg-color-rgb), $alpha: 0.6);
   backdrop-filter: blur(32px);
   z-index: 10;
 
-  @media screen and (min-width: 1300px) {
-    // Make header sticky for large screens
-    position: sticky;
-    width: 100%;
-  }
+  // Make header sticky always
+  position: sticky;
+  width: 100%;
 }
 
 .header {
