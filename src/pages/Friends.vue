@@ -336,6 +336,9 @@ export default {
     }
   }
 }
+.post-author {
+  margin-top: 100px;
+}
 @media screen and (max-width: 1280px) {
   .friends-container .friends-content .friends-card {
     width: calc(100% / 3 - 16px);
@@ -361,7 +364,7 @@ export default {
 #back-to-top {
   position: fixed;
   bottom: 40px;
-  right: 30px;
+  right: 40px;
   z-index: 100;
   cursor: pointer;
 }

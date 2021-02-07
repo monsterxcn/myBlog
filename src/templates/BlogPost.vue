@@ -283,7 +283,7 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
   background: var(--at-bg-main);
   border-radius: var(--radius);
   max-width: var(--content-width);
-  margin: 20px auto 100px;
+  margin: 20px auto;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.02),
     1px 1px 15px 0 rgba(0, 0, 0, 0.03);
   details {
@@ -409,12 +409,12 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
   margin: 0 auto;
 }
 .post-author {
-  margin-top: calc(var(--space) / 2);
+  margin-top: 100px;
 }
 #back-to-top {
   position: fixed;
   bottom: 40px;
-  right: 30px;
+  right: 40px;
   z-index: 100;
   cursor: pointer;
 }

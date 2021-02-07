@@ -14,7 +14,7 @@
 .not-found-container {
   text-align: center;
   max-width: var(--content-width);
-  margin: 0 auto;
+  margin: 200px auto;
   .description {
     opacity: 0.8;
   }

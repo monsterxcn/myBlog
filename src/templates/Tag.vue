@@ -121,7 +121,7 @@ export default {
 #back-to-top {
   position: fixed;
   bottom: 40px;
-  right: 30px;
+  right: 40px;
   z-index: 100;
   cursor: pointer;
 }
