@@ -284,8 +284,7 @@ query Post ($id: ID!, $previousElement: ID!, $nextElement: ID!) {
   border-radius: var(--radius);
   max-width: var(--content-width);
   margin: 20px auto;
-  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.02),
-    1px 1px 15px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   details {
     margin: 0 auto;
     text-align: center;
