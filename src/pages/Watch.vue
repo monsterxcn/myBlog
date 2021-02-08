@@ -574,6 +574,13 @@
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
             <a
+              class="watch"
+              href="https://movie.douban.com/subject/26366496/"
+              target="_blank"
+              >邪不压正</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch good"
               href="https://movie.douban.com/subject/1307914/"
               target="_blank"
@@ -592,6 +599,13 @@
               href="https://movie.douban.com/subject/1766086/"
               target="_blank"
               >太阳照常升起</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/3742360/"
+              target="_blank"
+              >让子弹飞</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -1935,7 +1949,7 @@ export default {
         serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
         readMore: {
           pageSize: 10,
-          autoLoad: true,
+          autoLoad: false,
         },
       })
     }

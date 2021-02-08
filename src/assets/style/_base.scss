@@ -25,6 +25,8 @@ body {
     background-image: unset;
   }
 
+  overflow: overlay;
+
   ::selection {
     background-color: var(--selection-color);
   }

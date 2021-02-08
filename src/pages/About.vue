@@ -350,7 +350,7 @@ export default {
         serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
         readMore: {
           pageSize: 10,
-          autoLoad: true,
+          autoLoad: false,
         },
       })
     }
