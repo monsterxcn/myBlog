@@ -104,9 +104,13 @@ export default {
   backdrop-filter: blur(32px);
   z-index: 10;
 
-  // Make header sticky always
   position: sticky;
   width: 100%;
+  // Make header not sticky on middle screen
+  @media (min-width: 767.5px) and (max-width: 1280px) {
+    position: absolute;
+    backdrop-filter: unset;
+  }
 }
 
 .header {

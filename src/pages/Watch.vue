@@ -574,10 +574,24 @@
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
             <a
-              class="watch"
-              href="https://movie.douban.com/subject/26366496/"
+              class="watch good"
+              href="https://movie.douban.com/subject/3075287/"
               target="_blank"
-              >邪不压正</a
+              >源代码</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1767042/"
+              target="_blank"
+              >潘神的迷宫</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch cinema"
+              href="https://movie.douban.com/subject/27619748/"
+              target="_blank"
+              >唐人街探案 3</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
