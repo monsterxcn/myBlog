@@ -595,6 +595,13 @@
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
+              class="watch"
+              href="https://movie.douban.com/subject/26366496/"
+              target="_blank"
+              >邪不压正</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch good"
               href="https://movie.douban.com/subject/1307914/"
               target="_blank"
