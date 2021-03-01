@@ -4,7 +4,7 @@
         <title>Monstx's Blog</title>
         <link>https://blog.monsterx.cn/</link>
         <description>Monsterx CN - 学生 / 前端 / 电气</description>
-        <lastBuildDate>Mon, 01 Mar 2021 11:39:07 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 01 Mar 2021 11:39:28 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://blog.monsterx.cn/feed.xml" rel="self" type="application/rss+xml"/>
