@@ -574,6 +574,34 @@
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
             <a
+              class="watch"
+              href="https://movie.douban.com/subject/1966182/"
+              target="_blank"
+              >霍比特人 × 3</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1291571/"
+              target="_blank"
+              >指环王 × 3</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/4135710/"
+              target="_blank"
+              >Hello！树先生</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/4237879/"
+              target="_blank"
+              >人在囧途</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch good"
               href="https://movie.douban.com/subject/3075287/"
               target="_blank"
