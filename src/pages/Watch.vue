@@ -82,6 +82,41 @@
           <p>
             <a
               class="watch"
+              href="https://bgm.tv/subject/285666"
+              target="_blank"
+              >进击的巨人 最终季 Part1</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/294993"
+              target="_blank"
+              >咒术回战 Part1</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/278031"
+              target="_blank"
+              >关于我转生变成史莱姆这档事 第二季 Part1</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/292527"
+              target="_blank"
+              >弱角友崎同学</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/295017"
+              target="_blank"
+              >&#5074; 回复术士的重来人生</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
               href="https://bgm.tv/subject/301469"
               target="_blank"
               >我立于百万生命之上</a
@@ -573,6 +608,20 @@
 
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/20452350/"
+              target="_blank"
+              >9号秘事 第一季</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/35076714/"
+              target="_blank"
+              >扎克·施奈德版正义联盟</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch"
               href="https://movie.douban.com/subject/1966182/"
@@ -1909,20 +1958,6 @@ export default {
     return {
       wow: [
         {
-          name: '進撃の巨人 The Final Season',
-          namecn: '进击的巨人 最终季',
-          url: 'https://bgm.tv/subject/285666',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/285666_q9f05.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '呪術廻戦',
-          namecn: '咒术回战',
-          url: 'https://bgm.tv/subject/294993',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/294993_8o0Sa.jpg?w=1280&fmt=webp)',
-        },
-        {
           name: '無職転生 ～異世界行ったら本気だす～',
           namecn: '无职转生 ～在异世界认真地活下去～',
           url: 'https://bgm.tv/subject/277554',
@@ -1930,32 +1965,18 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/277554_zkGha.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '転生したらスライムだった件 第2期',
-          namecn: '关于我转生变成史莱姆这档事 第二季',
-          url: 'https://bgm.tv/subject/278031',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/278031_skvSD.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '弱キャラ友崎くん',
-          namecn: '弱角友崎同学',
-          url: 'https://bgm.tv/subject/292527',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/292527_0G0zk.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '回復術士のやり直し',
-          namecn: '回复术士的重来人生',
-          url: 'https://bgm.tv/subject/295017',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/295017_90As6.jpg?w=1280&fmt=webp)',
-        },
-        {
           name: '銀魂',
           namecn: '银魂',
           url: 'https://bgm.tv/subject/247',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/247_h3wfn.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '呪術廻戦',
+          namecn: '咒术回战漫画',
+          url: 'https://bgm.tv/subject/238887',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/238887_mohh8.jpg?w=1280&fmt=webp)',
         },
         {
           name: '彼女、お借りします',
