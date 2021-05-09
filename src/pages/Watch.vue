@@ -80,6 +80,31 @@
 
           <h3 id="次元碰撞の贰"><a href="#次元碰撞の贰"></a>次元碰撞の贰</h3>
           <p>
+            <a class="watch" href="https://bgm.tv/subject/8491" target="_blank"
+              >漫画 进击的巨人</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/316607"
+              target="_blank"
+              >奇蛋物语</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/282000"
+              target="_blank"
+              >五等分的新娘∬</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/277554"
+              target="_blank"
+              >无职转生 ～在异世界认真地活下去～</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch"
               href="https://bgm.tv/subject/285666"
@@ -88,7 +113,7 @@
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
-              class="watch"
+              class="watch good"
               href="https://bgm.tv/subject/294993"
               target="_blank"
               >咒术回战 Part1</a
@@ -609,10 +634,17 @@
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
             <a
-              class="watch"
+              class="watch good"
+              href="https://movie.douban.com/subject/24697949/"
+              target="_blank"
+              >半泽直树 × 2</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
               href="https://movie.douban.com/subject/20452350/"
               target="_blank"
-              >9号秘事 第一季</a
+              >9 号秘事 × 2</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -637,7 +669,21 @@
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
+              class="watch good"
+              href="https://movie.douban.com/subject/34896140/"
+              target="_blank"
+              >老师，你不知道吗？</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch"
+              href="https://movie.douban.com/subject/30122633/"
+              target="_blank"
+              >快把我哥带走</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
               href="https://movie.douban.com/subject/4135710/"
               target="_blank"
               >Hello！树先生</a
@@ -1958,11 +2004,39 @@ export default {
     return {
       wow: [
         {
-          name: '無職転生 ～異世界行ったら本気だす～',
-          namecn: '无职转生 ～在异世界认真地活下去～',
-          url: 'https://bgm.tv/subject/277554',
+          name: '不滅のあなたへ',
+          namecn: '致不灭的你',
+          url: 'https://bgm.tv/subject/297954',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/277554_zkGha.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/297954_NyA7J.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '86―エイティシックス―',
+          namecn: '86 -不存在的战区-',
+          url: 'https://bgm.tv/subject/302189',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/302189_SfN7e.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '異世界魔王と召喚少女の奴隷魔術 Ω',
+          namecn: '异世界魔王与召唤少女的奴隶魔术 OMEGA',
+          url: 'https://bgm.tv/subject/303864',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/303864_md2TS.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: 'スライム倒して300年、知らないうちにレベルMAXになってました',
+          namecn: '打了三百年的史莱姆，不知不觉就练到了满等',
+          url: 'https://bgm.tv/subject/292969',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/292969_RLbg9.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '聖女の魔力は万能です',
+          namecn: '圣女的魔力是万能的',
+          url: 'https://bgm.tv/subject/314518',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/314518_H8mV6.jpg?w=1280&fmt=webp)',
         },
         {
           name: '銀魂',
@@ -1984,6 +2058,13 @@ export default {
           url: 'https://bgm.tv/subject/217598',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/217598_HJ7jJ.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: 'かぐや様は告らせたい～天才たちの恋愛頭脳戦～',
+          namecn: '辉夜大小姐想让我告白漫画',
+          url: 'https://bgm.tv/subject/135218',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/135218_YYbSq.jpg?w=1280&fmt=webp)',
         },
       ],
       scrolledDist: 0,
