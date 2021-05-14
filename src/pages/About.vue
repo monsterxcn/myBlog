@@ -92,6 +92,21 @@
               </tr>
             </tbody>
           </table>
+          <p>
+            最近有在玩一些二次元手游，比如原神、明日方舟什么的。都是最近才继续玩起来的老帐号了
+            >.< <br />
+            在 GitHub 上看到了一个展示原神账号卡片的仓库
+            <a
+              href="https://github.com/journey-ad/genshin-impact-card"
+              target="_blank"
+              >@journey-ad/genshin-impact-card</a
+            >
+            ，随手搭了展示一下： <br />
+            <img
+              src="https://genshin.tingle.dev/detail/[1,2,3,4,5,6,7,9,12,13,14,17,18,20,21,28,31,32,34]/281410093.png"
+              width="400px"
+            />
+          </p>
 
           <h3 id="关于这个博客的一些情报">
             <a href="#关于这个博客的一些情报"></a>关于这个博客的一些情报

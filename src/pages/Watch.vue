@@ -635,6 +635,13 @@
           <p>
             <a
               class="watch good"
+              href="https://movie.douban.com/subject/34841067/"
+              target="_blank"
+              >你好，李焕英</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
               href="https://movie.douban.com/subject/24697949/"
               target="_blank"
               >半泽直树 × 2</a
@@ -2065,6 +2072,13 @@ export default {
           url: 'https://bgm.tv/subject/135218',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/135218_YYbSq.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '圓圈正義',
+          namecn: '圆圈正义',
+          url: 'https://book.douban.com/subject/34815132/',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/s33544846.jpg?w=1280&fmt=webp)',
         },
       ],
       scrolledDist: 0,
