@@ -69,16 +69,7 @@
 import Logo from '~/components/Logo'
 import ToggleTheme from '~/components/ToggleTheme'
 export default {
-  metaInfo: {
-    script: [
-      {
-        async: true,
-        defer: true,
-        'data-website-id': '65fec8e8-f05c-48ee-8d37-9177594c4282',
-        src: 'https://analytics.monsterx.cn/umami.js',
-      },
-    ],
-  },
+  metaInfo: {},
   props: {
     showLogo: { default: true },
   },

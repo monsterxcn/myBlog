@@ -30,6 +30,13 @@
           <p>
             <a
               class="watch"
+              href="https://book.douban.com/subject/34815132/"
+              target="_blank"
+              >圆圈正义</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
               href="https://book.douban.com/subject/26990639/"
               target="_blank"
               >带上她的眼睛</a
@@ -2074,11 +2081,11 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/135218_YYbSq.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '圓圈正義',
-          namecn: '圆圈正义',
-          url: 'https://book.douban.com/subject/34815132/',
+          name: '逃げるは恥だが役に立つ',
+          namecn: '逃避虽可耻但有用',
+          url: 'https://movie.douban.com/subject/26816519/',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/s33544846.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/p2400201631.jpg?w=1280&fmt=webp)',
         },
       ],
       scrolledDist: 0,
