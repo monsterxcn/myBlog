@@ -13,7 +13,7 @@
           </h3>
           <p>
             <span>坐标</span>合肥 / 哈尔滨 <br />
-            <span>爱好</span>烧烤 / 动漫 / Marvel DC Disney / 博客写作 / 代码
+            <span>爱好</span>吃 / 动漫 / 科幻 / 博客写作 / 代码
             <br />
             <span>入门</span>C Language / JavaScript / PHP <br />
             <span>想学</span>Cpp / Python / Vue.js / React.js <br />

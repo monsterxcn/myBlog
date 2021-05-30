@@ -87,6 +87,13 @@
 
           <h3 id="次元碰撞の贰"><a href="#次元碰撞の贰"></a>次元碰撞の贰</h3>
           <p>
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/317614"
+              target="_blank"
+              >辉夜大小姐想让我告白？～天才们的恋爱头脑战～ OVA</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a class="watch" href="https://bgm.tv/subject/8491" target="_blank"
               >漫画 进击的巨人</a
             >
@@ -640,6 +647,48 @@
 
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/34954336/"
+              target="_blank"
+              >砍人快乐</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26389321/"
+              target="_blank"
+              >X 战警：新变种人</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26613692/"
+              target="_blank"
+              >哥斯拉大战金刚</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26826330/"
+              target="_blank"
+              >刺杀小说家</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/30331433/"
+              target="_blank"
+              >旺达幻视</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26816519/"
+              target="_blank"
+              >逃避虽可耻但有用</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch good"
               href="https://movie.douban.com/subject/34841067/"
@@ -2053,13 +2102,6 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/314518_H8mV6.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '銀魂',
-          namecn: '银魂',
-          url: 'https://bgm.tv/subject/247',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/247_h3wfn.jpg?w=1280&fmt=webp)',
-        },
-        {
           name: '呪術廻戦',
           namecn: '咒术回战漫画',
           url: 'https://bgm.tv/subject/238887',
@@ -2079,13 +2121,6 @@ export default {
           url: 'https://bgm.tv/subject/135218',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/135218_YYbSq.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '逃げるは恥だが役に立つ',
-          namecn: '逃避虽可耻但有用',
-          url: 'https://movie.douban.com/subject/26816519/',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/p2400201631.jpg?w=1280&fmt=webp)',
         },
       ],
       scrolledDist: 0,
