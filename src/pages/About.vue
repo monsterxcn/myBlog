@@ -22,7 +22,7 @@
             平等・人权・社会主义 / 前网络话痨
           </p>
           <p>
-            按照推荐程度，欢迎通过下面方式联系我。直接留言亦可，交友不必如此复杂。
+            我在以下平台出没，欢迎通过下面方式联系我。直接留言亦可，交友不必如此复杂。
           </p>
           <table>
             <thead>
@@ -90,23 +90,14 @@
                   >
                 </td>
               </tr>
+              <tr>
+                <td align="center">Genshin<sup>Offical</sup></td>
+                <td align="left">134266985（你干嘛呢）</td>
+                <td align="center">Arknights<sup>Bili</sup></td>
+                <td align="left">Dr. 苏哒哒#6074</td>
+              </tr>
             </tbody>
           </table>
-          <p>
-            最近有在玩一些二次元手游，比如原神、明日方舟什么的。都是最近才继续玩起来的老帐号了
-            >.< <br />
-            在 GitHub 上看到了一个展示原神账号卡片的仓库
-            <a
-              href="https://github.com/journey-ad/genshin-impact-card"
-              target="_blank"
-              >@journey-ad/genshin-impact-card</a
-            >
-            ，随手搭了展示一下： <br />
-            <img
-              src="https://genshin.tingle.dev/detail/[1,2,3,4,5,6,7,9,12,13,14,17,18,20,21,28,31,32,34]/281410093.png"
-              width="400px"
-            />
-          </p>
 
           <h3 id="关于这个博客的一些情报">
             <a href="#关于这个博客的一些情报"></a>关于这个博客的一些情报
@@ -142,6 +133,11 @@
             <a href="https://github.com/monsterxcn/myBlog" target="_blank"
               >@monsterxcn/myBlog</a
             >
+          </p>
+          <p>
+            由于站长怠惰，还有一些早期博文存留在
+            <a href="https://monsterx.cn/index.php" target="_blank">旧版站点</a>
+            未转移，如果有闲工夫可以翻翻。
           </p>
           <div>
             <h4>History</h4>
