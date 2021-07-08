@@ -88,6 +88,55 @@
           <h3 id="次元碰撞の贰"><a href="#次元碰撞の贰"></a>次元碰撞の贰</h3>
           <p>
             <a
+              class="watch good"
+              href="https://bgm.tv/subject/320224"
+              target="_blank"
+              >时光代理人</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://bgm.tv/subject/268279"
+              target="_blank"
+              >漫画 电锯人</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://bgm.tv/subject/271687"
+              target="_blank"
+              >虚构推理</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/314518"
+              target="_blank"
+              >圣女的魔力是万能的</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/292969"
+              target="_blank"
+              >打了三百年的史莱姆，不知不觉就练到了满等</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/302189"
+              target="_blank"
+              >86 -不存在的战区-</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/303864"
+              target="_blank"
+              >异世界魔王与召唤少女的奴隶魔术 OMEGA</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch"
               href="https://bgm.tv/subject/317614"
               target="_blank"
@@ -647,6 +696,48 @@
 
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/21328095/"
+              target="_blank"
+              >科洛弗悖论</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/2977957/"
+              target="_blank"
+              >科洛弗道 10 号</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/2144242/"
+              target="_blank"
+              >科洛弗档案</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/32493124/"
+              target="_blank"
+              >悬崖之上</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/27077479/"
+              target="_blank"
+              >招魂 3</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1417598/"
+              target="_blank"
+              >电锯惊魂 × 3</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch"
               href="https://movie.douban.com/subject/34954336/"
@@ -2067,6 +2158,27 @@ export default {
     return {
       wow: [
         {
+          name: '小林さんちのメイドラゴンS',
+          namecn: '小林家的龙女仆 S',
+          url: 'https://bgm.tv/subject/274234',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/274234_iZ22k.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '転生したらスライムだった件 第2期 2',
+          namecn: '关于我转生变成史莱姆这档事 第二季 2',
+          url: 'https://bgm.tv/subject/302523',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/302523_t8Iir.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '乙女ゲームの破滅フラグしかない悪役令嬢に転生してしまった…Ｘ',
+          namecn: '转生恶役只好拔除破灭旗标…Ｘ',
+          url: 'https://bgm.tv/subject/309056',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/309056_s0q03.jpg?w=1280&fmt=webp)',
+        },
+        {
           name: '不滅のあなたへ',
           namecn: '致不灭的你',
           url: 'https://bgm.tv/subject/297954',
@@ -2074,32 +2186,18 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/297954_NyA7J.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '86―エイティシックス―',
-          namecn: '86 -不存在的战区-',
-          url: 'https://bgm.tv/subject/302189',
+          name: '100万の命の上に俺は立っている 第2シーズン',
+          namecn: '我立于百万生命之上 第二季',
+          url: 'https://bgm.tv/subject/322859',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/302189_SfN7e.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/322859_ZYoxI.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '異世界魔王と召喚少女の奴隷魔術 Ω',
-          namecn: '异世界魔王与召唤少女的奴隶魔术 OMEGA',
-          url: 'https://bgm.tv/subject/303864',
+          name: '死神坊ちゃんと黒メイド',
+          namecn: '死神少爷与黑女仆',
+          url: 'https://bgm.tv/subject/327055',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/303864_md2TS.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: 'スライム倒して300年、知らないうちにレベルMAXになってました',
-          namecn: '打了三百年的史莱姆，不知不觉就练到了满等',
-          url: 'https://bgm.tv/subject/292969',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/292969_RLbg9.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '聖女の魔力は万能です',
-          namecn: '圣女的魔力是万能的',
-          url: 'https://bgm.tv/subject/314518',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/314518_H8mV6.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/327055_K0hyk.jpg?w=1280&fmt=webp)',
         },
         {
           name: '呪術廻戦',
@@ -2109,18 +2207,11 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/238887_mohh8.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '彼女、お借りします',
-          namecn: '租借女友漫画',
-          url: 'https://bgm.tv/subject/217598',
+          name: 'Loki Season 1',
+          namecn: '洛基 第一季',
+          url: 'https://movie.douban.com/subject/30331432/',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/217598_HJ7jJ.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: 'かぐや様は告らせたい～天才たちの恋愛頭脳戦～',
-          namecn: '辉夜大小姐想让我告白漫画',
-          url: 'https://bgm.tv/subject/135218',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/135218_YYbSq.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/p2646859929.jpg?w=1280&fmt=webp)',
         },
       ],
       scrolledDist: 0,
