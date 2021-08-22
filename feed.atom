@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.monsterx.cn/</id>
     <title>Monstx's Blog</title>
-    <updated>2021-08-22T09:06:26.862Z</updated>
+    <updated>2021-08-22T09:21:30.587Z</updated>
     <generator>Gridsome Feed Plugin</generator>
     <link rel="alternate" href="https://blog.monsterx.cn/"/>
     <link rel="self" href="https://blog.monsterx.cn/feed.atom"/>
@@ -104,7 +104,7 @@ async def main():
 asyncio.run(main())
 </code></pre>
 <p>像这种获取数据供插件使用的函数 NoneBot 推荐写在插件文件夹下 <code>data_source.py</code> 里。在其他需要的地方通过 <code>import</code> 导入。关于 <code>httpx</code> 的更多操作可以在《<a href="https://www.python-httpx.org/quickstart/">QuickStart - HTTPX</a>》中查找，现学现卖完全够用。</p>
-<p>回到此插件，获取到 HTTP 响应的数据之后还需要挑选其中有用的部分，我这里获取的 JSON 数据包含了拥有折扣的众多游戏信息，为了挑选出其中的限免游戏我写了另外一个函数 <code>get_Epicfree()</code> 放在 <code>data_source.py</code> 里。这里讲个插曲，写完获取数据的函数后我才发现 python 原来已经有写好的包可以直接用 <a href="https://github.com/SD4RK/epicstore_api">SD4RK/epicstore_api</a>，而且这个包里给出了更多 <code>query</code> 查询语句，并且免费游戏的例子他也写出来了。好家伙，处理 JSON 数据的逻辑我直接照搬，省下了大把功夫。</p>
+<p>回到此插件，获取到 HTTP 响应的数据之后还需要挑选其中有用的部分，我这里获取的 JSON 数据包含了拥有折扣的众多游戏信息，为了挑选出其中的限免游戏我写了另外一个函数 <code>get_Epicfree()</code> 放在 <code>data_source.py</code> 里。这里讲个插曲，写完获取数据的函数后我才发现 python 原来已经有写好的包可以直接用 <a href="https://github.com/SD4RK/epicstore_api">@SD4RK/epicstore_api</a>，而且这个包里给出了更多 <code>query</code> 查询语句，免费游戏的例子他也写出来了。好家伙，处理 JSON 数据的逻辑我直接照搬，省下了大把功夫。</p>
 <p>这样 <code>data_source.py</code> 的大部分功能就完成了，接下来新建 <code>__init__.py</code> 文件，这里将告诉机器人插件何时响应用户，如何响应用户。</p>
 <pre><code class="language-python">from nonebot import on_regex
 from nonebot.typing import T_State
@@ -131,7 +131,7 @@ async def handle(bot: Bot, event: Event, state: T_State):
 <p>很多时候咱有发图片的需求，比如「无内鬼，搞点…」什么的，其中图片除了像第一个插件一样通过请求 API 返回图片的 URL，有的时候可能还需要添加一些细节。比如 <a href="https://github.com/Xtao-Labs/PagerMaid_Plugins">@Xtao-Labs/PagerMaid_Plugins</a> Telegram 人形自走机器人插件仓库中的吃 / 丢用户头像功能，需要获取用户的头像然后自行拼接到背景图片上；又比如我想做一个原神每日素材的功能，事先准备好了各种素材对应角色或武器的图片，希望机器人来处理拼接这些图片成为当日素材。</p>
 <p>这里就以原神每日素材的功能需求为例，交代我的实现方法。@Xtao-Labs/PagerMaid_Plugins 中的功能可以作为进阶操作，我自己也照着原仓库代码改写出来了，但是代码理解的不够深，就不拿出来献丑了，说不定什么时候没人我就悄咪咪传到 Gist 存个档留念。</p>
 <p>各种素材图片来源于 <a href="https://genshin.pub/daily">今日素材表 - 可莉特调</a>，我通过 Chrome 开发者工具中 <code>Ctrl</code> <code>Shift</code> <code>P</code> 调用 <code>[Screenshot] Capture node screenshot</code> 手动获取，算是个笨办法了。将每种素材对应截取一张图片，3 个区域 18 种素材 18 张图片，分别命名成 <code>{区域名}.{星期数}.png</code> 的格式。我还另外截取了「今日素材可升天赋角色」「今日素材可突破武器」两张头图，命名为 <code>header.png</code>。</p>
-<p>接下来编写 <code>getMaterial(type)</code> 函数用来获取包含了 <code>type</code> 对应头图和蒙德、璃月、稻妻三个区域 <code>type</code> 对应素材图片的 <code>Image</code> 类型列表，函数内调用 <code>datetime</code> 库获取当日星期数。<code>Image</code> 类型是 Python 绘图库 <code>Pillow</code> 内定义的，他包含了图片的色彩模式、像素大小等信息，使用 <code>image.open(filename)</code> 或者 <code>Image.new()</code> 均可得到一个 Image 类型的对象。</p>
+<p>接下来编写 <code>getMaterial(type)</code> 函数用来获取包含了 <code>type</code> 对应头图和蒙德、璃月、稻妻三个区域 <code>type</code> 对应素材图片的 <code>Image</code> 类型列表，函数内调用 <code>datetime</code> 库获取当日星期数。<code>Image</code> 类型是 Python 绘图库 <code>Pillow</code> 内定义的，它包含了图片的色彩模式、像素大小等信息，使用 <code>image.open(filename)</code> 或者 <code>Image.new()</code> 均可得到一个 Image 类型的对象。</p>
 <pre><code class="language-python">async def getMaterial(type):
   day = datetime.today().weekday() + 1    # 星期一对应 1，星期日对应 7
   imgList = []                            # 存放 Image 类型数据的列表，默认为空
@@ -234,7 +234,7 @@ async def auto_checkin():
 <p>卡片 HTML 模板我已经放在了 <a href="https://gist.github.com/monsterxcn/d933cafcdc6662c6bdcbd561fe921e8c">Gist</a>，样式参考可莉特调做了一些调整，字体使用原神游戏客户端的文件即可，路径如下：</p>
 <pre><code>Genshin Impact\Genshin Impact Game\YuanShen_Data\StreamingAssets\MiHoYoSDKRes\HttpServerResources\font
 </code></pre>
-<p>读取 <code>.json</code> 使用了自带的 <code>json</code> 库，我将卡片模板分别命名为抽签 <code>chim.html</code> 和解签 <code>intp.html</code>。生成图片时调用的是同一个函数，通过参数决定使用哪一个模板。由于无论是之前生成的随机数还是 json 文件中的签号均是阿拉伯数字，写入模板时，还需要一个将阿拉伯数字转换为中文繁体数字的函数，这个算是小细节。代码不难，我就不放在这里占用篇幅了。</p>
+<p>读取 <code>.json</code> 使用了自带的 <code>json</code> 库，我将卡片模板分别命名为抽签 <code>poem.html</code> 和解签 <code>intp.html</code>。生成图片时调用的是同一个函数，通过参数决定使用哪一个模板。由于无论是之前生成的随机数还是 json 文件中的签号均是阿拉伯数字，写入模板时，还需要一个将阿拉伯数字转换为中文繁体数字的函数，这个算是小细节。代码不难，我就不放在这里占用篇幅了。</p>
 <p>这个插件最后一个点是如何连续对话：发送抽签命令后机器人发出了一张图片，接下来应该询问是否需要解签，根据用户回答决定整个流程是否结束。这里用到的是《<a href="https://v2.nonebot.dev/2.0.0a7/api/matcher.html#classmethod-got-key-prompt-none-args-parser-none">Nonebot.matcher 模块 - NoneBot</a>》的 <code>got()</code> 函数，文档里介绍得不多，我学得也比较蒙，但是最后写出来还是能用的：</p>
 <pre><code class="language-python"># __init__.py
 
