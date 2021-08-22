@@ -88,6 +88,13 @@
           <h3 id="次元碰撞の贰"><a href="#次元碰撞の贰"></a>次元碰撞の贰</h3>
           <p>
             <a
+              class="watch"
+              href="https://bgm.tv/subject/218713"
+              target="_blank"
+              >Promare</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch good"
               href="https://bgm.tv/subject/320224"
               target="_blank"
@@ -697,6 +704,132 @@
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
             <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1303173/"
+              target="_blank"
+              >甲方乙方</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1292895/"
+              target="_blank"
+              >精武英雄</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1298909/"
+              target="_blank"
+              >魔鬼代言人</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1308338/"
+              target="_blank"
+              >蜀山传</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26741632/"
+              target="_blank"
+              >X 特遣队：全员集结</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/30206311/"
+              target="_blank"
+              >寂静之地 2</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/27668250/"
+              target="_blank"
+              >南方车站的聚会</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/3006772/"
+              target="_blank"
+              >第九区</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1292226/"
+              target="_blank"
+              >2001 太空漫游</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1889243/"
+              target="_blank"
+              >星际穿越</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26703121/"
+              target="_blank"
+              >黑白魔女库伊拉</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26825664/"
+              target="_blank"
+              >修女</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1296078/"
+              target="_blank"
+              >断头谷</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1467044/"
+              target="_blank"
+              >魔术师</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/25828589/"
+              target="_blank"
+              >黑寡妇</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/30331432/"
+              target="_blank"
+              >洛基 第一季</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1652592/"
+              target="_blank"
+              >阿丽塔：战斗天使</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/27073752/"
+              target="_blank"
+              >神奇女侠 1984</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch"
               href="https://movie.douban.com/subject/21328095/"
               target="_blank"
@@ -728,7 +861,7 @@
               class="watch"
               href="https://movie.douban.com/subject/27077479/"
               target="_blank"
-              >招魂 3</a
+              >招魂 3：鬼使神差</a
             >
             &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
@@ -2165,6 +2298,20 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/274234_iZ22k.jpg?w=1280&fmt=webp)',
         },
         {
+          name: '死神坊ちゃんと黒メイド',
+          namecn: '死神少爷与黑女仆',
+          url: 'https://bgm.tv/subject/327055',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/327055_K0hyk.jpg?w=1280&fmt=webp)',
+        },
+        {
+          name: '不滅のあなたへ',
+          namecn: '致不灭的你',
+          url: 'https://bgm.tv/subject/297954',
+          style:
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/297954_NyA7J.jpg?w=1280&fmt=webp)',
+        },
+        {
           name: '転生したらスライムだった件 第2期 2',
           namecn: '关于我转生变成史莱姆这档事 第二季 2',
           url: 'https://bgm.tv/subject/302523',
@@ -2179,13 +2326,6 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/309056_s0q03.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '不滅のあなたへ',
-          namecn: '致不灭的你',
-          url: 'https://bgm.tv/subject/297954',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/297954_NyA7J.jpg?w=1280&fmt=webp)',
-        },
-        {
           name: '100万の命の上に俺は立っている 第2シーズン',
           namecn: '我立于百万生命之上 第二季',
           url: 'https://bgm.tv/subject/322859',
@@ -2193,11 +2333,11 @@ export default {
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/322859_ZYoxI.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '死神坊ちゃんと黒メイド',
-          namecn: '死神少爷与黑女仆',
-          url: 'https://bgm.tv/subject/327055',
+          name: '探偵はもう、死んでいる。',
+          namecn: '侦探已经死了。',
+          url: 'https://bgm.tv/subject/325727',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/327055_K0hyk.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/325727_U1eEj.jpg?w=1280&fmt=webp)',
         },
         {
           name: '呪術廻戦',
@@ -2205,13 +2345,6 @@ export default {
           url: 'https://bgm.tv/subject/238887',
           style:
             'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/238887_mohh8.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: 'Loki Season 1',
-          namecn: '洛基 第一季',
-          url: 'https://movie.douban.com/subject/30331432/',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/p2646859929.jpg?w=1280&fmt=webp)',
         },
       ],
       scrolledDist: 0,
