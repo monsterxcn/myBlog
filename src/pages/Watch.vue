@@ -88,6 +88,41 @@
           <h3 id="次元碰撞の贰"><a href="#次元碰撞の贰"></a>次元碰撞の贰</h3>
           <p>
             <a
+              class="watch good"
+              href="https://bgm.tv/subject/242216"
+              target="_blank"
+              >紫罗兰永恒花园 剧场版</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/328443"
+              target="_blank"
+              >白蛇 2：青蛇劫起</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://bgm.tv/subject/327055"
+              target="_blank"
+              >死神少爷与黑女仆</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://bgm.tv/subject/274234"
+              target="_blank"
+              >小林家的龙女仆 S</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://bgm.tv/subject/297954"
+              target="_blank"
+              >致不灭的你</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
               class="watch"
               href="https://bgm.tv/subject/218713"
               target="_blank"
@@ -703,6 +738,97 @@
 
           <h3 id="次元碰撞の叁"><a href="#次元碰撞の叁"></a>次元碰撞の叁</h3>
           <p>
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1292287/"
+              target="_blank"
+              >新龙门客栈</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/4896304/"
+              target="_blank"
+              >龙门飞甲</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1947089/"
+              target="_blank"
+              >投名状</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/1306808/"
+              target="_blank"
+              >咒怨 × 2</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/34626280/"
+              target="_blank"
+              >月光光心慌慌：杀戮</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/3001114/"
+              target="_blank"
+              >沙丘</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/35116336/"
+              target="_blank"
+              >路西法 第六季</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/30337388/"
+              target="_blank"
+              >失控玩家</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/35087699/"
+              target="_blank"
+              >中国医生</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/35208823/"
+              target="_blank"
+              >灵媒</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/26284621/"
+              target="_blank"
+              >追凶者也</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch"
+              href="https://movie.douban.com/subject/30372022/"
+              target="_blank"
+              >绿衣骑士</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a
+              class="watch good"
+              href="https://movie.douban.com/subject/1441602/"
+              target="_blank"
+              >霍元甲</a
+            >
+            &nbsp;&nbsp;/&nbsp;&nbsp;
             <a
               class="watch good"
               href="https://movie.douban.com/subject/1303173/"
@@ -2291,53 +2417,25 @@ export default {
     return {
       wow: [
         {
-          name: '小林さんちのメイドラゴンS',
-          namecn: '小林家的龙女仆 S',
-          url: 'https://bgm.tv/subject/274234',
+          name: '王様ランキング',
+          namecn: '国王排名',
+          url: 'https://bgm.tv/subject/296109',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/274234_iZ22k.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/296109_052vK.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '死神坊ちゃんと黒メイド',
-          namecn: '死神少爷与黑女仆',
-          url: 'https://bgm.tv/subject/327055',
+          name: 'takt op.Destiny',
+          namecn: '宿命回响',
+          url: 'https://bgm.tv/subject/331535',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/327055_K0hyk.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/331535_6Lhh8.jpg?w=1280&fmt=webp)',
         },
         {
-          name: '不滅のあなたへ',
-          namecn: '致不灭的你',
-          url: 'https://bgm.tv/subject/297954',
+          name: 'Foundation Season 1',
+          namecn: '基地 第一季',
+          url: 'https://movie.douban.com/subject/3161109/',
           style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/297954_NyA7J.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '転生したらスライムだった件 第2期 2',
-          namecn: '关于我转生变成史莱姆这档事 第二季 2',
-          url: 'https://bgm.tv/subject/302523',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/302523_t8Iir.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '乙女ゲームの破滅フラグしかない悪役令嬢に転生してしまった…Ｘ',
-          namecn: '转生恶役只好拔除破灭旗标…Ｘ',
-          url: 'https://bgm.tv/subject/309056',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/309056_s0q03.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '100万の命の上に俺は立っている 第2シーズン',
-          namecn: '我立于百万生命之上 第二季',
-          url: 'https://bgm.tv/subject/322859',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/322859_ZYoxI.jpg?w=1280&fmt=webp)',
-        },
-        {
-          name: '探偵はもう、死んでいる。',
-          namecn: '侦探已经死了。',
-          url: 'https://bgm.tv/subject/325727',
-          style:
-            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/325727_U1eEj.jpg?w=1280&fmt=webp)',
+            'background-image:url(https://rmt.dogedoge.com/fetch/tingle/storage/p2665224649.jpg?w=1280&fmt=webp)',
         },
         {
           name: '呪術廻戦',
