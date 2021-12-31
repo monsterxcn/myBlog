@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.5.1
         with:
           node-version: '12.x'
       # - name: Cache Modules
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.5.1
         with:
           node-version: '12.x'
       # - name: Cache
@@ -70,7 +70,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.5.1
         with:
           node-version: '12.x'
       # - name: Cache gridsome modules
