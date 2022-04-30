@@ -23,7 +23,7 @@
     "@gridsome/transformer-remark": "^0.6.4",
     "@microflash/gridsome-plugin-feed": "^1.0.7",
     "artalk": "https://github.com/monsterxcn/Artalk.git",
-    "axios": "^0.21.1",
+    "axios": "^0.27.2",
     "gridsome": "^0.7.13",
     "gridsome-plugin-remark-container": "^0.1.3",
     "gridsome-remark-figure-caption": "^1.1.3",
