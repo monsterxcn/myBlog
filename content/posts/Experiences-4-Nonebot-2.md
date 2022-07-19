@@ -1,5 +1,5 @@
 ---
-title: NoneBot 插件编写尝试
+title: NoneBot2 插件编写尝试
 date: 2021-08-22
 published: true
 slug: Experiences-4-Nonebot-2
