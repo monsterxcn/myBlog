@@ -35,7 +35,7 @@
     "word-count": "^0.2.2"
   },
   "devDependencies": {
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.1",
     "pre-commit": "^1.2.2",
     "prettier": "^2.2.1",
     "sass-loader": "^10.1.1"
