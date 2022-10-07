@@ -225,7 +225,7 @@ export default {
         defaultAvatar: 'mp',
         maxNest: 2,
         pageKey: 'https://blog.monsterx.cn' + this.$page.post.path,
-        serverUrl: 'https://lab.monsterx.cn/ArtalkServer',
+        serverUrl: 'https://monsterx.cn/ArtalkServer',
         readMore: {
           pageSize: 10,
           autoLoad: false,
