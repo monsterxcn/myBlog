@@ -8,11 +8,5 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "sunday"
-      timezone: "Asia/Shanghai"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
       interval: "monthly"
       timezone: "Asia/Shanghai"

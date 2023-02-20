@@ -2,42 +2,15 @@
   "name": "myblog",
   "private": true,
   "scripts": {
-    "build": "gridsome build",
-    "develop": "gridsome develop",
-    "explore": "gridsome explore",
-    "prettier": "prettier --write '**/*.{ts,js,css,html,vue}' '!dist/**'"
-  },
-  "pre-commit": [
-    "prettier"
-  ],
-  "dependencies": {
-    "@allanchain/gridsome-plugin-pwa": "^0.3.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.27",
-    "@fortawesome/free-brands-svg-icons": "^5.12.1",
-    "@fortawesome/free-solid-svg-icons": "^5.12.1",
-    "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@gridsome/plugin-google-analytics": "^0.1.1",
-    "@gridsome/plugin-sitemap": "^0.4.0",
-    "@gridsome/remark-prismjs": "0.5.0",
-    "@gridsome/source-filesystem": "^0.6.0",
-    "@gridsome/transformer-remark": "^0.6.4",
-    "@microflash/gridsome-plugin-feed": "^1.0.7",
-    "artalk": "https://github.com/monsterxcn/Artalk.git",
-    "axios": "^0.21.1",
-    "gridsome": "^0.7.13",
-    "gridsome-plugin-remark-container": "^0.1.3",
-    "gridsome-remark-figure-caption": "^1.1.3",
-    "gridsome-remark-katex": "^0.1.1",
-    "marked": "^2.0.0",
-    "nprogress": "^0.2.0",
-    "register-service-worker": "^1.7.1",
-    "vue-scrollto": "^2.18.1",
-    "word-count": "^0.2.2"
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare"
   },
   "devDependencies": {
-    "node-sass": "^6.0.1",
-    "pre-commit": "^1.2.2",
-    "prettier": "^2.2.1",
-    "sass-loader": "^10.1.1"
+    "content-wind": "^0.5.1",
+    "nuxt": "^3.0.0",
+    "typescript": "^4.9.3"
   }
 }

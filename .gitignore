@@ -1,10 +1,8 @@
-*.log
-.cache
-.DS_Store
-src/.temp
 node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
 dist
-package-lock.json
-yarn.lock
-.yarn
-.env*
