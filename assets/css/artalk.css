@@ -1,0 +1,44 @@
+#Artalk {
+  --at-color-bg: rgb(248, 250, 252);
+  --at-color-bg-transl: rgb(255, 255, 255);
+  --at-color-bg-grey: rgb(248, 250, 252);
+  @apply rounded-b-2xl p-5;
+}
+.dark #Artalk {
+  --at-color-bg: rgb(15, 23, 42);
+  --at-color-bg-transl: rgb(30, 41, 59);
+  --at-color-bg-grey: rgb(15, 23, 42);
+}
+.atk-loading {
+  @apply !bg-transparent;
+}
+.atk-main-editor {
+  @apply overflow-hidden rounded-md border-none bg-[var(--at-color-bg)] shadow-md;
+}
+.atk-main-editor,
+.atk-list,
+.atk-error-layer {
+  @apply !z-0 transition-colors duration-1000;
+}
+.atk-main-editor > .atk-textarea-wrap > .atk-textarea {
+  @apply max-h-32 overflow-auto transition-colors duration-1000;
+}
+.atk-main-editor > .atk-plug-panel-wrap {
+  @apply transition-[border-color] duration-1000;
+}
+.atk-plug-panel-wrap > .atk-editor-plug-emoticons > .atk-grp-switcher {
+  @apply transition-[background-color,border-color] duration-1000 [&>span.active]:transition-[background-color] [&>span.active]:duration-1000;
+}
+.atk-main-editor > .atk-bottom .atk-plug-btn {
+  @apply transition-[color] duration-1000 [&>i>svg>path]:transition-[fill] [&>i>svg>path]:duration-1000;
+}
+.atk-main-editor > .atk-bottom .atk-send-btn {
+  @apply -my-[5px] -mr-[10px] ml-0 h-[35px] rounded-tl-md rounded-tr-none rounded-br-md rounded-bl-none py-0 pr-[30px] pl-[24px];
+}
+.artalk > .atk-list > .atk-list-footer {
+  @apply max-[768px]:hidden;
+}
+.artalk > .atk-list > .atk-list-footer .atk-copyright,
+.atk-error-layer .atk-error-text * {
+  @apply transition-[color] duration-1000;
+}

@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply box-border antialiased;
+}
+body {
+  @apply m-0 scroll-smooth bg-slate-50 font-sans dark:bg-slate-900;
+  overflow: overlay;
+}
+::selection {
+  @apply bg-blue-500;
+}
+/* 滚动条 */
+::-webkit-scrollbar {
+  @apply !h-1 !w-2;
+  background: 0 0 !important;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+/* Transition 组件动画 fade & toggle */
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  @apply transition-all;
+}
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
+}
+/* content */
+div.document-driven-page {
+  @apply min-h-[calc(100vh-128px-70px)];
+}
+/* .prose 正文 margin 去除 */
+article.prose > div {
+  @apply [&>:first-child]:!mt-0 [&>:last-child]:!mb-0;
+}
+/* 夜间模式切换动画 */
+body,
+div#site-btns button,
+header#site-nav li,
+section#site-comments,
+section#site-comments details,
+section#site-comments div.prose,
+.prose a,
+.prose code,
+.prose strong,
+.prose blockquote {
+  @apply !transition-colors !duration-1000;
+}
+
+/* 从某个 nuxt 站点 copy 的 */
+.alert :first-child {
+  margin-top: 0;
+}
+.alert :last-child {
+  margin-bottom: 0;
+}
+.alert {
+  --tw-border-opacity: 1;
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  border-width: 1px;
+}
+.alert-info {
+  background-color: rgb(217 241 255);
+  border-color: rgb(179 228 255);
+  color: rgb(0 144 225);
+}
+.alert-warning {
+  background-color: rgb(253 246 219);
+  border-color: rgb(252 237 183);
+  color: rgb(218 172 10);
+}
+.alert-success {
+  background-color: rgb(214 255 238);
+  border-color: rgb(172 255 221);
+  color: rgb(0 157 93);
+}
+.alert-danger {
+  background-color: rgb(255 219 217);
+  border-color: rgb(255 183 179);
+  color: rgb(225 14 0);
+}
+.dark .alert-info {
+  background-color: rgb(0 72 112);
+  border-color: rgb(0 36 56);
+  color: rgb(141 214 255);
+}
+.dark .alert-warning {
+  background-color: rgb(109 86 5);
+  border-color: rgb(54 43 3);
+  color: rgb(252 237 183);
+}
+.dark .alert-success {
+  background-color: rgb(0 94 56);
+  border-color: rgb(0 63 37);
+  color: rgb(131 255 204);
+}
+.dark .alert-danger {
+  background-color: rgb(112 7 0);
+  border-color: rgb(56 3 0);
+  color: rgb(255 183 179);
+}
