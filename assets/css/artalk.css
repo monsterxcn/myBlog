@@ -2,7 +2,7 @@
   --at-color-bg: rgb(248, 250, 252);
   --at-color-bg-transl: rgb(255, 255, 255);
   --at-color-bg-grey: rgb(248, 250, 252);
-  @apply rounded-b-2xl p-5;
+  @apply rounded-b-2xl p-2.5 sm:p-5;
 }
 .dark #Artalk {
   --at-color-bg: rgb(15, 23, 42);

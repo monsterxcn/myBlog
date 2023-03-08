@@ -17,7 +17,7 @@ const props = defineProps({
   },
 });
 const artalkStatus = computed(() => {
-  if ((!props.show) || (!page.value?.comment)) return "当前页面评论已关闭";
+  if (!props.show || !page.value?.comment) return "当前页面评论已关闭";
   if (!artalkConf.server) return "Artalk 服务端未配置";
   return "ok";
 });

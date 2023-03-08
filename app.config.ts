@@ -62,6 +62,7 @@ export default defineAppConfig({
       'heart': 'ph:heart-straight-fill',
       'nuxt': 'logos:nuxt-icon',
       'tailwind': 'logos:tailwindcss-icon',
+      'unocss': 'logos:unocss',
     }
   }
 })
