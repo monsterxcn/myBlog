@@ -51,6 +51,8 @@ export default defineAppConfig({
       'play-page': 'ph:game-controller-bold',
       'friends-page': 'ph:users-bold',
       'about-page': 'ph:info-bold',
+      'prev-icon': 'ph:caret-left-bold',
+      'next-icon': 'ph:caret-right-bold',
       'totop-btn': 'ph:arrow-line-up-bold',
       'toc-btn': 'ph:list-bold',
       'comment-btn': 'ph:fire-bold',

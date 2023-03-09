@@ -3,7 +3,7 @@
     <CardArticle>
       <slot />
     </CardArticle>
-    <!-- <CardArticle /> -->
+    <CardNav />
     <CardArtalk />
   </main>
 </template>
