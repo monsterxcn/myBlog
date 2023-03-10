@@ -41,6 +41,7 @@ article.prose > div {
 /* 夜间模式切换动画 */
 body,
 div#site-btns button,
+header#site-nav > a,
 header#site-nav li,
 nav#post-nav,
 section#site-comments,

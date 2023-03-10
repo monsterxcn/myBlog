@@ -1,12 +1,15 @@
 <script setup lang="ts">
 const { msx } = useAppConfig();
 const { page } = useContent();
+const getPageTitle = () => {
+  if (page.value?._empty) return `204 - ${msx.title}`;
+  if (page.value?._path === "/") return msx.title;
+  if (page.value?.title) return `${page.value.title} - ${msx.title}`;
+  return `404 - ${msx.title}`;
+};
 useHead({
-  titleTemplate: () => {
-    if (page.value?._empty) return `204 - ${msx.title}`;
-    if (page.value?.title) return `${page.value.title} - ${msx.title}`;
-    return `404 - ${msx.title}`;
-  },
+  title: getPageTitle(),
+  titleTemplate: () => getPageTitle(),
 });
 </script>
 
