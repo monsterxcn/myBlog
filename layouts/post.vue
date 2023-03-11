@@ -3,6 +3,7 @@
     <CardArticle>
       <slot />
     </CardArticle>
+    <CardToc />
     <CardNav />
     <CardArtalk />
   </main>

@@ -1,344 +1,99 @@
+<script setup lang="ts">
+const { page } = useContent();
+const toc = page.value?.body.toc.links || [];
+const tocBtn = 'div#site-btns button[aria-label="To Content"]';
+const tocBody = "div#post-toc";
+const tocMaskId = "post-nav-mask";
+const activeTocId: Ref<string | null> = ref(null);
+const postContent = ref(null);
+const observer: Ref<IntersectionObserver | null | undefined> = ref(null);
+const observerOptions = reactive({
+  root: postContent.value,
+  threshold: 0.9,
+});
+const closeToc = async (): Promise<void> => {
+  document.querySelector(tocBody)?.classList.remove("!block");
+  document.getElementById(tocMaskId)?.classList.remove("!block");
+};
+const setActiveTitle = async (id: string) => {
+  activeTocId.value = id;
+};
+const observeTitles = async (): Promise<void> => {
+  observer.value = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const id = entry.target.getAttribute("id");
+      if (entry.isIntersecting) {
+        console.log(id);
+        activeTocId.value = id;
+      }
+    });
+  }, observerOptions);
+  document
+    .querySelectorAll("article.prose h2[id], article.prose h3[id]")
+    .forEach((section) => {
+      observer.value?.observe(section);
+    });
+};
+onMounted(() => {
+  nextTick(() => {
+    document.querySelector(tocBtn)?.classList.remove("!hidden");
+    observeTitles();
+  });
+});
+onUnmounted(() => {
+  observer.value?.disconnect();
+  document.querySelector(tocBtn)?.classList.add("!hidden");
+});
+</script>
+
 <template>
-  <aside class="w-toc -ml-82 aside group fixed top-24 hidden xl:block">
-    <div>
-      <div
-        class="rounded-xl border bg-white shadow-sm dark:border-gray-800 dark:bg-gray-800"
-      >
-        <h1
-          class="flex items-center border-b border-gray-200 px-6 py-3 text-2xl font-medium tracking-wide text-gray-700 dark:border-gray-700 dark:text-white"
-        >
-          <span class="mr-2 -mt-[1.5px] h-[19px] w-[19px]"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+  <aside class="block min-w-0">
+    <div
+      :id="tocMaskId"
+      @click="closeToc"
+      class="fixed top-0 bottom-0 right-0 left-0 z-50 hidden bg-[rgb(0_0_0/.6)]"
+    ></div>
+    <div
+      id="post-toc"
+      class="no-scrollbar fixed left-0 right-0 bottom-0 z-50 m-5 hidden max-h-[50vh] min-h-[40px] select-none overflow-auto rounded-2xl bg-white p-5 text-slate-900 shadow-xl dark:bg-slate-800 dark:text-white sm:left-[calc(12.5%-20px)] sm:right-[calc(12.5%-20px)] sm:mb-[30px] sm:max-h-[316px] lg:left-[calc(19.1%+20px)] lg:right-[calc(19.1%+20px)] xl:left-[calc(80.9%-60px)] xl:right-0 xl:top-[64px] xl:mb-5 xl:block xl:max-h-[calc(100vh-316px-30px)] xl:!bg-transparent xl:shadow-none"
+    >
+      <div class="mb-5 font-bold xl:-mt-5">文章目录</div>
+      <ul class="list-none">
+        <template v-for="item in toc">
+          <li
+            class="m-0"
+            @click="setActiveTitle(item.id)"
+            :class="{
+              'font-bold':
+                item.id === activeTocId ||
+                item.children?.some((sub) => sub.id === activeTocId),
+            }"
+          >
+            <NuxtLink
+              class="flex cursor-pointer justify-between overflow-hidden text-ellipsis whitespace-nowrap px-3 py-2 text-sm leading-tight no-underline"
+              :to="`#${item.id}`"
+              >{{ item.text }}</NuxtLink
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              ></path></svg></span
-          >Contents
-        </h1>
-        <ul
-          class="aside-mask max-h-[70vh] overflow-hidden overflow-y-auto overscroll-contain px-3 py-3 text-xl text-gray-500 transition-colors duration-300 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300"
-          id="toc"
-        >
-          <li
-            class="cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header0"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 0px"
-          >
-            圣诞快乐
           </li>
-          <li
-            class="cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header1"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 0px"
+          <ul
+            class="mx-5 mb-3 list-none border-l-2 border-solid pl-1"
+            v-if="item.children"
           >
-            问题与后果
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header2"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
+            <li
+              class="m-0"
+              @click="setActiveTitle(subItem.id)"
+              v-for="subItem in item.children"
             >
-              模糊的目标，敷衍的执行
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header3"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              转折中失去了掌控感
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header4"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              不尽人意的环境
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header5"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              几乎不存在的社交生活
-            </div>
-          </li>
-          <li
-            class="cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header6"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 0px"
-          >
-            原因与动机
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header7"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              身心健康对生产力的直接影响
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header8"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              过度的内容消费
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header9"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              被动思维
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header10"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              可怕的舒适区
-            </div>
-          </li>
-          <li
-            class="cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header11"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 0px"
-          >
-            解决方案
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header12"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              态度与计划
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header13"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 10px; margin-left: 10px"
-            >
-              <div
-                class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-                style="padding-left: 0px; margin-left: 0px"
+              <NuxtLink
+                class="flex cursor-pointer justify-between px-3 py-1 text-sm leading-tight no-underline"
+                :to="`#${subItem.id}`"
+                :class="{ 'font-bold': subItem.id === activeTocId }"
+                >{{ subItem.text }}</NuxtLink
               >
-                态度的转变
-              </div>
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header14"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 10px; margin-left: 10px"
-            >
-              <div
-                class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-                style="padding-left: 0px; margin-left: 0px"
-              >
-                深度工作
-              </div>
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header15"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 10px; margin-left: 10px"
-            >
-              <div
-                class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-                style="padding-left: 0px; margin-left: 0px"
-              >
-                目标与系统
-              </div>
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header16"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              方法论
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header17"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              总有更值得做的事
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header18"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              普通且自信
-            </div>
-          </li>
-          <li
-            class="toc-sub cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:rounded-tl-none hover:rounded-bl-none hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header19"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 10px"
-          >
-            <div
-              class="border-l-0toc-sub -my-2 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-              style="padding-left: 0px; margin-left: 0px"
-            >
-              积硅步以致千里
-            </div>
-          </li>
-          <li
-            class="cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header20"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 0px"
-          >
-            年轻才卷的动
-          </li>
-          <li
-            class="toc-active cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header21"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 0px"
-          >
-            一些好事
-          </li>
-          <li
-            class="cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header22"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 0px"
-          >
-            往日不再
-          </li>
-          <li
-            class="cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap border-gray-100 py-2 pr-[10px] hover:rounded-md hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
-            id="header23"
-            data-oa="click-tocItem"
-            style="padding-left: 10px; margin-left: 0px"
-          >
-            引用与参考
-          </li>
-        </ul>
-      </div>
-      <div
-        class="tour mt-5 grid grid-cols-1 rounded-xl border bg-white text-xl text-gray-700 shadow-sm dark:border-gray-800 dark:bg-gray-800 dark:text-gray-400"
-      >
-        <a href="/post/984">
-          <div
-            class="flex cursor-pointer items-center justify-center rounded-xl px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700"
-          >
-            Next<span class="ml-2 h-6 w-6"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                ></path></svg
-            ></span>
-          </div>
-        </a>
-      </div>
+            </li>
+          </ul>
+        </template>
+      </ul>
     </div>
   </aside>
 </template>

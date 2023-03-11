@@ -5,7 +5,7 @@ const { msx } = useAppConfig();
 <template>
   <header
     id="site-nav"
-    class="sticky top-0 z-50 mx-auto mt-0 mb-5 flex h-16 w-full select-none items-center justify-between px-4 py-0 text-slate-900 backdrop-blur-md dark:text-white sm:px-16 lg:px-[19.1%] [&.scroll-shadow]:shadow-md"
+    class="sticky top-0 z-50 mx-auto mt-0 mb-5 flex h-16 w-full select-none items-center justify-between px-4 py-0 text-slate-900 backdrop-blur-2xl dark:text-white sm:px-16 lg:px-[19.1%] [&.scroll-shadow]:shadow-md"
   >
     <NuxtLink
       to="/"

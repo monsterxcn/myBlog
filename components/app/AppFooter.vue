@@ -15,6 +15,8 @@ const navBar = "header#site-nav";
 const shadowClass = "scroll-shadow";
 const commentBody = "section#site-comments";
 const commentBtn = 'div#site-btns button[aria-label="To Comment"]';
+const tocBody = "div#post-toc";
+const tocMaskId = "post-nav-mask";
 
 export default {
   methods: {
@@ -51,6 +53,10 @@ export default {
         .querySelector(commentBody)
         ?.scrollIntoView({ behavior: "smooth" });
     },
+    showToc() {
+      document.querySelector(tocBody)?.classList.add("!block");
+      document.getElementById(tocMaskId)?.classList.add("!block");
+    },
   },
   data() {
     return {
@@ -69,18 +75,18 @@ export default {
 <template>
   <div
     id="site-btns"
-    class="fixed bottom-5 right-5 z-50 flex flex-col items-end justify-end sm:bottom-[30px] lg:right-[calc(19.1%-44px)]"
+    class="fixed bottom-5 right-5 flex flex-col items-end justify-end sm:bottom-[30px] lg:right-[calc(19.1%-44px)]"
   >
     <ClientOnly>
       <button aria-label="To Top" @click="scrollToTop" v-if="scrolledY > 400">
         <Icon name="totop-btn" />
       </button>
     </ClientOnly>
-    <button aria-label="To Content" class="!hidden">
-      <Icon name="toc-btn" />
-    </button>
     <button aria-label="To Comment" @click="scrollToComment" class="!hidden">
       <Icon name="comment-btn" />
+    </button>
+    <button aria-label="To Content" @click="showToc" class="!hidden xl:!hidden">
+      <Icon name="toc-btn" />
     </button>
     <button aria-label="Color Mode" @click="toggleTheme">
       <ColorScheme placeholder="...">
@@ -119,7 +125,7 @@ export default {
 
 <style>
 div#site-btns button {
-  @apply z-50 mt-3 flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl border border-dashed border-slate-900 bg-white text-slate-900 opacity-70 shadow-xl hover:shadow-md dark:border-white dark:bg-slate-800 dark:text-white sm:mt-5 sm:h-16 sm:w-16 sm:border-0 sm:border-hidden sm:opacity-100;
+  @apply z-40 mt-3 flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl border border-dashed border-slate-900 bg-white text-slate-900 opacity-70 shadow-xl hover:shadow-md dark:border-white dark:bg-slate-800 dark:text-white sm:mt-5 sm:h-16 sm:w-16 sm:border-0 sm:border-hidden sm:opacity-100;
 }
 div#site-btns svg {
   @apply h-6 w-6 fill-gray-800 sm:h-8 sm:w-8;

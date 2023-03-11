@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 文章目录隐藏滚动条 */
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 * {
   @apply box-border antialiased;
 }
@@ -30,13 +42,13 @@ body {
 .fade-leave-to {
   @apply opacity-0;
 }
-/* content */
-div.document-driven-page {
-  @apply min-h-[calc(100vh-128px-70px)];
-}
 /* .prose 正文 margin 去除 */
 article.prose > div {
   @apply [&>:first-child]:!mt-0 [&>:last-child]:!mb-0;
+}
+/* .prose 正文标题滚动偏移 */
+article.prose h2[id]::before, article.prose h3[id]::before {
+  @apply content-[''] block h-20 -mt-20 invisible
 }
 /* 夜间模式切换动画 */
 body,
@@ -44,6 +56,7 @@ div#site-btns button,
 header#site-nav > a,
 header#site-nav li,
 nav#post-nav,
+div#post-toc,
 section#site-comments,
 section#site-comments details,
 section#site-comments div.prose,
