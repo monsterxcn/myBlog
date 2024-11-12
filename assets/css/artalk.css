@@ -13,32 +13,32 @@
   @apply !bg-transparent;
 }
 .atk-main-editor {
-  @apply overflow-hidden rounded-md border-none bg-[var(--at-color-bg)] shadow-md;
+  @apply !overflow-hidden !rounded-md !border-none !bg-[var(--at-color-bg)] !shadow-md;
 }
 .atk-main-editor,
 .atk-list,
 .atk-error-layer {
-  @apply !z-0 transition-colors duration-1000;
+  @apply !z-0 !transition-colors !duration-1000;
 }
 .atk-main-editor > .atk-textarea-wrap > .atk-textarea {
-  @apply max-h-32 overflow-auto transition-colors duration-1000;
+  @apply !max-h-32 !overflow-auto !transition-colors !duration-1000;
 }
 .atk-main-editor > .atk-plug-panel-wrap {
-  @apply transition-[border-color] duration-1000;
+  @apply !transition-[border-color] !duration-1000;
 }
 .atk-plug-panel-wrap > .atk-editor-plug-emoticons > .atk-grp-switcher {
-  @apply transition-[background-color,border-color] duration-1000 [&>span.active]:transition-[background-color] [&>span.active]:duration-1000;
+  @apply !transition-[background-color,border-color] !duration-1000 [&>span.active]:!transition-[background-color] [&>span.active]:!duration-1000;
 }
 .atk-main-editor > .atk-bottom .atk-plug-btn {
-  @apply transition-[color] duration-1000 [&>i>svg>path]:transition-[fill] [&>i>svg>path]:duration-1000;
+  @apply !transition-[color] !duration-1000 [&>i>svg>path]:!transition-[fill] [&>i>svg>path]:!duration-1000;
 }
 .atk-main-editor > .atk-bottom .atk-send-btn {
-  @apply -my-[5px] -mr-[10px] ml-0 h-[35px] rounded-tl-md rounded-tr-none rounded-br-md rounded-bl-none py-0 pr-[30px] pl-[24px];
+  @apply !-mt-[5px] !-mb-[5px] !-mr-[5px] !ml-0 !h-[42px] !rounded-tl-md !rounded-tr-none !rounded-br-md !rounded-bl-none;
 }
 .artalk > .atk-list > .atk-list-footer {
-  @apply max-[768px]:hidden;
+  @apply max-[768px]:!hidden;
 }
 .artalk > .atk-list > .atk-list-footer .atk-copyright,
 .atk-error-layer .atk-error-text * {
-  @apply transition-[color] duration-1000;
+  @apply !transition-[color] !duration-1000;
 }
