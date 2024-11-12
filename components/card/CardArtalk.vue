@@ -34,11 +34,11 @@ const initArtalk = async (): Promise<void> => {
       }),
     ]).then(([{ default: _Artalk }]) => {
       const initConf = {
-        site: msx.title,
+        site: page.value.atk_site || msx.title,
         pageTitle: page.value.title,
         ...artalkConf,
         el: `#${artalkId}`,
-        pageKey: page.value._path,
+        pageKey: page.value.atk_page_key || page.value._path,
       };
       // console.info(initConf);
 

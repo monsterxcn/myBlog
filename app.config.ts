@@ -40,7 +40,7 @@ export default defineAppConfig({
       readMore: true,
       autoLoad: false,
     },
-    useBackendConf: false,
+    useBackendConf: true,
   },
   nuxtIcon: {
     class: 'icon',
