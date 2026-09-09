@@ -92,9 +92,13 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('workers-site/package-lock.json') }}
       - name: Install
         run: npm ci
+      - name: Install Worker dependencies
+        run: npm ci --prefix workers-site
       - name: Build
         run: npm run build
       - name: Deploy
-        uses: cloudflare/wrangler-action@1.3.0
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_WORKERS_TOKEN }}
+          wranglerVersion: '4.130.0'
+          command: deploy
