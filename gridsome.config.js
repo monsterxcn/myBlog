@@ -153,4 +153,10 @@ module.exports = {
   css: {
     split: true,
   },
+
+  // Gridsome's bundled imagemin binaries are obsolete and are not available
+  // on current Node releases. Sharp still handles resizing and format output.
+  images: {
+    compress: false,
+  },
 }

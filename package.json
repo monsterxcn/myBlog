@@ -1,10 +1,14 @@
 {
   "name": "myblog",
   "private": true,
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=11"
+  },
   "scripts": {
-    "build": "gridsome build",
-    "develop": "gridsome develop",
-    "explore": "gridsome explore",
+    "build": "node --openssl-legacy-provider ./node_modules/gridsome/bin/gridsome.js build",
+    "develop": "node --openssl-legacy-provider ./node_modules/gridsome/bin/gridsome.js develop",
+    "explore": "node --openssl-legacy-provider ./node_modules/gridsome/bin/gridsome.js explore",
     "prettier": "prettier --write '**/*.{ts,js,css,html,vue}' '!dist/**'"
   },
   "pre-commit": [
@@ -19,12 +23,12 @@
     "@gridsome/plugin-google-analytics": "^0.1.1",
     "@gridsome/plugin-sitemap": "^0.4.0",
     "@gridsome/remark-prismjs": "0.5.0",
-    "@gridsome/source-filesystem": "^0.6.0",
+    "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-remark": "^0.6.4",
     "@microflash/gridsome-plugin-feed": "^1.0.7",
-    "artalk": "https://github.com/monsterxcn/Artalk.git",
+    "artalk": "1.0.6",
     "axios": "^0.21.1",
-    "gridsome": "^0.7.13",
+    "gridsome": "^0.7.23",
     "gridsome-plugin-remark-container": "^0.1.3",
     "gridsome-remark-figure-caption": "^1.1.3",
     "gridsome-remark-katex": "^0.1.1",
@@ -35,9 +39,14 @@
     "word-count": "^0.2.2"
   },
   "devDependencies": {
-    "node-sass": "^6.0.1",
     "pre-commit": "^1.2.2",
     "prettier": "^2.2.1",
+    "sass": "^1.93.2",
     "sass-loader": "^10.1.1"
+  },
+  "overrides": {
+    "lodash": "4.17.21",
+    "lodash.template": "4.5.0",
+    "sharp": "0.34.4"
   }
 }
